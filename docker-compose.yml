@@ -1,0 +1,31 @@
+version: "3"
+services:
+    php:
+        build:
+            context: ./buildFiles/phpBuild
+        volumes:
+            - ./html_cine:/var/www/html
+        ports:
+            - 8080:80
+        depends_on: 
+            - mysql_db
+
+    mysql_db:
+        build:
+            context: ./buildFiles/mysqlBuild
+        ports:
+            - 3306:3306
+        environment:
+            MYSQL_USERNAME: root
+            MYSQL_ROOT_PASSWORD: examplepass
+        volumes:
+            - ./DB:/docker-entrypoint-initdb.d
+    
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        ports:
+            - 8181:80
+        environment:
+            MYSQL_USERNAME: root
+            MYSQL_ROOT_PASSWORD: examplepass
+            PMA_HOST: mysql_db
