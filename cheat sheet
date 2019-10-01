@@ -1,0 +1,11 @@
+cheat sheet
+
+how to link an image
+https://www.themoviedb.org/talk/568e3711c3a36858fc002384
+
+resp:
+	http://image.tmdb.org/t/p/w185//nBNZadXqJSdt05SHLqgT0HuC5Gm.jpg
+
+	Hi again, these are the the sizes that I know: "w92", "w154", "w185", "w342", "w500", "w780", or "original"; and I think there isn't any other sizes "original" will give you a very large poster, if you're on mobile "w185" is the best choice
+
+	
