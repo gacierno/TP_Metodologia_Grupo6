@@ -5,6 +5,7 @@
 	include_once './model/Movie.php';
 	include_once './model/Show.php';
 
+	include_once './dao/MovieData.php';
 
 	$genreeeee = new model\Genre();
 
@@ -13,6 +14,10 @@
 	$show = new model\Show();
 
 	$cinema = new model\Cinema();
+
+	// $data = new dao\MovieData();
+
+	// $data->getDataFromApi();
 
  ?>
 
@@ -29,6 +34,7 @@
 		<p><?php echo "Show Time: ".$show->getTime() ."\n" ?></p>
 
  		<p><?php echo "Cinema Name: ".$cinema->getName()."\n" ?></p>
+
  		
  	</body>
  </html>
