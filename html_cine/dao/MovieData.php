@@ -1,8 +1,9 @@
 <?php 
 namespace dao;
 /**
+ *
  *	NAMESPACE DAO
- *	STATIC METHODS
+ *
  */
 
 require_once dirname(__DIR__).'/config/settings.php';
@@ -13,9 +14,18 @@ class MovieData
 
 	private $movieList = array();
 
-	/************
-	*	METHODS THAT CONNECT THE API
-	*************/
+	/*
+	+-----------------------------------+
+	|									|
+	|	METHODS THAT CONNECT THE API    |
+	|									|
+	+-----------------------------------+
+	*/
+
+	/**
+	 * getMoviesFromApi
+	 * @return mixed
+	 */
 	private function getMoviesFromApi(){
 
 		$listJson = file_get_contents( API_MOVIE_HOST.API_NOW."?api_key=". API_KEY );
@@ -23,6 +33,11 @@ class MovieData
 
 	}
 
+	/**
+	 * getSingleMovieApi
+	 * @param integer
+	 * @return json
+	 */
 	private function getSingleMovieApi( $id ){
 
 		$jsonMovie = file_get_contents( API_MOVIE_HOST.$id."?api_key=". API_KEY );
@@ -30,6 +45,9 @@ class MovieData
 
 	}
 
+	/**
+	 * getDataFromApi
+	 */
 	public function getDataFromApi(){
 
 		$this->retrieveData();
@@ -61,36 +79,62 @@ class MovieData
 
 
 
-	/************
-	*	METHODS THAT CONNECT THE JSON STORED DATA
-	*************/
+	/*
+	+------------------------------------------------+
+	|											     |
+	|	METHODS THAT CONNECT THE JSON STORED DATA    |
+	|										     	 |
+	+------------------------------------------------+
+	*/
+
+	/**
+	 * retrieveData
+	 */
 	private function retrieveData(){
 
 		$jsonMovieList = ( file_exists( dirname(__DIR__).'/data/movies.json' ) ) ? file_get_contents( dirname(__DIR__).'/data/movies.json' ) : '[]' ;
 		$this->movieList = json_decode($jsonMovieList, TRUE); 
-		// return $this->movieList;
 
 	}
 
 	/**
+	 * saveDataToJson
+	 * @param integer
+	 */
+
+	private function saveDataToJson(){
+
+		$listToFile = json_encode( $this->movieList, JSON_PRETTY_PRINT );
+		file_put_contents( dirname(__DIR__).'/data/movies.json', $listToFile );
+
+	}
+
+	/**
+	 * saveDataToJson
+	 * @return Array() 
+	 */
+
+	public function getMovieList(){
+		$this->retrieveData();
+		return $this->movieList;
+	}
+
+	/**
+	 * getById
 	 * @param integer
 	 * @return mixed
 	 */
 	public function getById( $id ){
 
 		$output = false;
-		if( sizeof($this->movieList) == 0) $this->retrieveData();
+
+		// THIS SENTENCE VOIDS DATA DELETIONS WHILE UPDATING LIST
+		if( sizeof($this->movieList) == 0) $this->retrieveData(); 
+
 		foreach ($this->movieList as $value){
 			if( $value['id'] == $id ) $output = $value;
 		}
 		return $output;
-	}
-
-
-	public function saveDataToJson(){
-
-		$listToFile = json_encode( $this->movieList, JSON_PRETTY_PRINT );
-		file_put_contents( dirname(__DIR__).'/data/movies.json', $listToFile );
 
 	}
 
