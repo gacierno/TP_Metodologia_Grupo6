@@ -16,12 +16,14 @@
 		private $image;
 		private $genre;
 
-		function __construct( $name = 'Unnamed', $duration = 0, $language = 'Unavailable', $image = '/assets/default.jpg' ){
+		function __construct( $name = 'Unnamed', $duration = 0, $language = 'Unavailable', $image = '/assets/default.jpg', $genres = new array() ){
 			$this->setName($name);
 			$this->setDuration($duration);
 			$this->setLanguage($language);
 			$this->setImage($image);
-			$this->genre = array();
+			foreach ($genres as $genre ) {
+				$this->addGenre( $genre );
+			}
 		}
 	
 	    /**

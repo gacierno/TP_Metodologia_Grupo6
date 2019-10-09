@@ -7,9 +7,9 @@ namespace dao;
  */
 
 require_once dirname(__DIR__).'/config/settings.php';
-include_once dirname(__DIR__).'/model/Movie.php';
+include_once 'GenreDao.php';
 
-class MovieData
+class MovieDao
 {
 
 	private $movieList = array();
