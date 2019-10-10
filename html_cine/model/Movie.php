@@ -16,7 +16,7 @@
 		private $image;
 		private $genre;
 
-		function __construct( $name = 'Unnamed', $duration = 0, $language = 'Unavailable', $image = '/assets/default.jpg', $genres = new array() ){
+		function __construct( $name = 'Unnamed', $duration = 0, $language = 'Unavailable', $image = '/assets/default.jpg', $genres = array() ){
 			$this->setName($name);
 			$this->setDuration($duration);
 			$this->setLanguage($language);
