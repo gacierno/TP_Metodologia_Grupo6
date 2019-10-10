@@ -1,7 +1,5 @@
 <?php namespace Response;
 
-include_once('Autoload.php');
-
 use Response\Response as Response;
 
 class ErrorResponse extends Response{

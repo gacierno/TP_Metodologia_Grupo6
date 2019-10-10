@@ -40,7 +40,7 @@ class Router {
   }
 
   function find($httpMethod,$path){
-    $httpMethod      = strtolower($httpMethod); 
+    $httpMethod      = strtolower($httpMethod);
     $httpMethodArray = isset($this->map[$httpMethod]) ? $this->map[$httpMethod] : array();
     $allMethodArray  = isset($this->map['all']) ? $this->map['all'] : array();
     $method = array_merge(
@@ -53,7 +53,6 @@ class Router {
         return call_user_func($route['callback']);
       }
     }
-    return false;
   }
 
 }

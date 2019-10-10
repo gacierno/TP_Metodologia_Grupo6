@@ -1,10 +1,17 @@
 <?php
 
-  require_once('config/router.php');
+  require_once('lib/autoload.php');
+  autoload::Start();
 
+  use Response\ErrorResponse as ErrorResponse;
+
+  require_once('config/router.php');
   $router->find($_SERVER['REQUEST_METHOD'],$_SERVER['REQUEST_URI']);
 
-  return "FAIL";
+  echo new ErrorResponse(array(
+    'code' => 404,
+    'body' => 'PAGE NOT FOUND'
+  ));
 
 	// require "Config/Autoload.php";
 	// require "Config/Config.php";
