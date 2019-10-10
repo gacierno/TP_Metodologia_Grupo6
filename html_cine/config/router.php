@@ -1,5 +1,5 @@
 <?php
-require_once('lib/Router.php');
+require_once('lib/Router/Router.php');
 
 $router = new Router();
 $router->get('\/home',function(){
