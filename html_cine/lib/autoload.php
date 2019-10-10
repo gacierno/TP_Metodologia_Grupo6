@@ -1,6 +1,6 @@
 <?php
 
-class autoload {
+class LibAutoload {
 
     public static function Start() {
       spl_autoload_register(function($className) {

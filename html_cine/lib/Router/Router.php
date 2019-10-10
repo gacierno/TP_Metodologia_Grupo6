@@ -43,10 +43,7 @@ class Router {
     $httpMethod      = strtolower($httpMethod);
     $httpMethodArray = isset($this->map[$httpMethod]) ? $this->map[$httpMethod] : array();
     $allMethodArray  = isset($this->map['all']) ? $this->map['all'] : array();
-    $method = array_merge(
-      $httpMethodArray,
-      $allMethodArray
-    );
+    $method = array_merge( $httpMethodArray, $allMethodArray );
     foreach( $method as $route ){
       $pattern = '/' . $route['regexp'] . '/';
       if(preg_match($pattern,$path)){
