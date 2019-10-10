@@ -1,23 +1,6 @@
 <?php
 
-  require_once('lib/Router.php');
-
-	// ini_set('display_errors', 1);
-	// ini_set('display_startup_errors', 1);
-	// error_reporting(E_ALL);
-
-  $router = new Router();
-  $router->get('\/home',function(){
-    echo "Home";
-  });
-
-  $router->get('\/about',function(){
-    echo "Abouttt";
-  });
-
-  $router->get('\/api\/movies',function(){
-    echo json_encode(array( "movie" => "something" ));
-  });
+  require_once('config/router.php');
 
   $router->find($_SERVER['REQUEST_METHOD'],$_SERVER['REQUEST_URI']);
 
