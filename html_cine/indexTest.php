@@ -5,7 +5,8 @@
 	include_once './model/Movie.php';
 	include_once './model/Show.php';
 
-	include_once './dao/MovieData.php';
+	include_once './dao/MovieDao.php';
+	include_once './dao/GenreDao.php';
 
 	$genreeeee = new model\Genre();
 
@@ -15,9 +16,12 @@
 
 	$cinema = new model\Cinema();
 
-	// $data = new dao\MovieData();
+	// $data = new dao\MovieDao();
 
 	// $data->getDataFromApi();
+
+	$genres = new dao\GenreDao();
+	$genres->getDataFromApi();
 
  ?>
 
