@@ -40,6 +40,7 @@ class Router {
   }
 
   function find($httpMethod,$path){
+    $httpMethod      = strtolower($httpMethod); 
     $httpMethodArray = isset($this->map[$httpMethod]) ? $this->map[$httpMethod] : array();
     $allMethodArray  = isset($this->map['all']) ? $this->map['all'] : array();
     $method = array_merge(
