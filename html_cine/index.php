@@ -4,6 +4,10 @@
 	ini_set('display_startup_errors', 1);
 	error_reporting(E_ALL);
 	
+	echo '<pre>';
+	print_r($_GET);
+	echo '</pre>';
+
 	// require "Config/Autoload.php";
 	// require "Config/Config.php";
 

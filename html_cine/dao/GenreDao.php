@@ -13,6 +13,58 @@ class GenreDao
 
 	private $genreList = array();
 
+
+	/*
+	+-----------------------------------+
+	|									|
+	|	METHODS THAT CONNECT THE API    |
+	|									|
+	+-----------------------------------+
+	*/
+
+	/**
+	 * getGenresFromApi
+	 * @return mixed
+	 */
+	private function getGenresFromApi(){
+
+		$listJson = file_get_contents( API_HOST.API_GENRE."?api_key=". API_KEY ."&language=en-US");
+		return json_decode($listJson, TRUE );
+
+	}
+
+	/**
+	 * getDataFromApi
+	 */
+	public function getDataFromApi(){
+
+		$this->retrieveData();
+
+		$rawList = $this->getGenresFromApi();
+
+		foreach ($rawList['genres'] as $value) {
+
+			if( !($this->getById( $value['id']) ) ){
+				
+				$dataToSave['id'] = $value['id'];
+				$dataToSave['name'] = $value['name'];
+
+				array_push( $this->genreList, $dataToSave );
+			}
+
+		}
+
+		$this->saveDataToJson();
+
+	}
+
+
+
+
+
+
+
+
 	/*
 	+------------------------------------------------+
 	|											     |

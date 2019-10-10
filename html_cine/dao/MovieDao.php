@@ -28,7 +28,7 @@ class MovieDao
 	 */
 	private function getMoviesFromApi(){
 
-		$listJson = file_get_contents( API_MOVIE_HOST.API_NOW."?api_key=". API_KEY );
+		$listJson = file_get_contents( API_HOST.API_NOW."?api_key=". API_KEY );
 		return json_decode($listJson, TRUE );
 
 	}
@@ -40,7 +40,7 @@ class MovieDao
 	 */
 	private function getSingleMovieApi( $id ){
 
-		$jsonMovie = file_get_contents( API_MOVIE_HOST.$id."?api_key=". API_KEY );
+		$jsonMovie = file_get_contents( API_HOST.API_MOVIE.$id."?api_key=". API_KEY );
 		return json_decode($jsonMovie, TRUE );
 
 	}

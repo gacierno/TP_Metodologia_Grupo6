@@ -14,9 +14,14 @@
 
 	define( "API_KEY", "bf7b5aa77cd926df60a5fbfba661fa2c" );
 
-	define( "API_MOVIE_HOST", "https://api.themoviedb.org/3/movie/" );
+	define( "API_HOST", "https://api.themoviedb.org/3/" );
 
-	define( "API_NOW", "now_playing" );
+	define( "API_NOW", "movie/now_playing" );
+
+	define( "API_MOVIE", "movie/" );
+
+	define( "API_GENRE", "genre/movie/list" );
+
 	
 
 
