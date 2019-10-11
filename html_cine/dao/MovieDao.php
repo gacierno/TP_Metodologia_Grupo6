@@ -6,8 +6,7 @@ namespace dao;
  *
  */
 
-require_once dirname(__DIR__).'/config/settings.php';
-include_once 'GenreDao.php';
+use model\Movie as Movie;
 
 class MovieDao
 {
@@ -119,8 +118,24 @@ class MovieDao
 	 */
 
 	public function getMovieList(){
+
+		$output = array();
 		$this->retrieveData();
-		return $this->movieList;
+
+		foreach ( $this->movieList as $value ) {
+			$movie = new Movie(
+				$value['name'],
+				$value['duration'],
+				$value['language'],
+				$value['image'],
+				$value['genres'],
+				$value['id']
+			);
+
+			array_push( $output, $movie );
+		}
+		return $output;
+
 	}
 
 	/**
@@ -136,7 +151,16 @@ class MovieDao
 		if( sizeof($this->movieList) == 0) $this->retrieveData(); 
 
 		foreach ($this->movieList as $value){
-			if( $value['id'] == $id ) $output = $value;
+			if( $value['id'] == $id ){
+				$output = new Movie(
+					$value['name'],
+					$value['duration'],
+					$value['language'],
+					$value['image'],
+					$value['genres'],
+					$value['id']
+				);
+			}
 		}
 		return $output;
 
