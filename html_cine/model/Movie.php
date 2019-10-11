@@ -10,22 +10,40 @@
 	class Movie
 	{
 		
+		private $id;	
 		private $name;
 		private $duration;
 		private $language;
 		private $image;
-		private $genre;
+		private $genres;
 
-		function __construct( $name = 'Unnamed', $duration = 0, $language = 'Unavailable', $image = '/assets/default.jpg', $genres = array() ){
+		function __construct( $name = 'Unnamed', $duration = 0, $language = 'Unavailable', $image = '/assets/default.jpg', $genres = array(), $id = 0 ){
 			$this->setName($name);
 			$this->setDuration($duration);
 			$this->setLanguage($language);
 			$this->setImage($image);
+			$this->genres = array();
 			foreach ($genres as $genre ) {
 				$this->addGenre( $genre );
 			}
 		}
 	
+		/**
+		 * @return mixed
+		 */
+		public function getId()
+		{
+		    return $this->id;
+		}
+
+		/**
+		 * @param mixed $name
+		 */
+		public function setId($id)
+		{
+		    $this->id = $id;
+		}
+
 	    /**
 	     * @return mixed
 	     */
@@ -91,10 +109,18 @@
 	    }
 
 	    /**
+	     * @return array
+	     */
+	    public function getGenres()
+	    {
+	        return $this->genres;
+	    }
+
+	    /**
 	    *	@param Genre : $genre
 	    */
-	    public function addGenre( Genre $genre ){
-	    	array_push($this->genre, $genre );
+	    public function addGenre( $genre ){
+	    	array_push($this->genres, $genre );
 	    }
 
 	}
