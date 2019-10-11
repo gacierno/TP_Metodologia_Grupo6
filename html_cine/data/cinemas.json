@@ -1,0 +1,9 @@
+[
+    {
+        "id": 1,
+        "name": "cine del paseo",
+        "address": "diagonale pueyredon 4545",
+        "capacity": 45,
+        "ticketValue": 0
+    }
+]

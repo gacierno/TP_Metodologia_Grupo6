@@ -5,12 +5,13 @@ namespace model;
  */
 class Cinema
 {
+    private $id;
 	private $name;
 	private $address;
 	private $capacity;
 	private $ticketValue;
 
-	function __construct( $name = 'Unnamed', $address = 'No address', $capacity = 0, $ticketValue = 0 )
+	function __construct( $name = 'Unnamed', $address = 'No address', $capacity = 0, $ticketValue = 0, $id = 0 )
 	{
 		$this->setAddress($address);
 		$this->setCapacity($capacity);
@@ -18,6 +19,21 @@ class Cinema
 		$this->setTicketValue($ticketValue);
 	}
 
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param mixed $name
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
 
     /**
      * @return mixed
