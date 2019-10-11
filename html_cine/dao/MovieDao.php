@@ -65,7 +65,11 @@ class MovieDao
 				$dataToSave['duration'] = $rawMovie['runtime'];
 				$dataToSave['language'] = $rawMovie['original_language'];
 				$dataToSave['image'] = $rawMovie['poster_path'];
-				$dataToSave['genre'] = $rawMovie['genres'];
+				$dataToSave['genre'] = array();
+
+				foreach ($rawMovie['genres'] as $genre ) {
+					array_push( $dataToSave['genre'], $genre['id'] );
+				}	
 
 				array_push( $this->movieList, $dataToSave );
 			}

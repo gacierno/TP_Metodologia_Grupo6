@@ -16,12 +16,12 @@
 
 	$cinema = new model\Cinema();
 
-	// $data = new dao\MovieDao();
+	$data = new dao\MovieDao();
 
 	// $data->getDataFromApi();
 
-	$genres = new dao\GenreDao();
-	$genres->getDataFromApi();
+	// $genres = new dao\GenreDao();
+	// $genres->getDataFromApi();
 
  ?>
 
@@ -38,6 +38,8 @@
 		<p><?php echo "Show Time: ".$show->getTime() ."\n" ?></p>
 
  		<p><?php echo "Cinema Name: ".$cinema->getName()."\n" ?></p>
+
+ 		<pre><?php print_r( $data->getMovieList() ) ?></pre>
 
  		
  	</body>
