@@ -8,7 +8,7 @@
 	include_once './dao/MovieDao.php';
 	include_once './dao/GenreDao.php';
 
-	$genreeeee = new model\Genre();
+	$genreeeee = new model\Genre( 1, 'fafa');
 
 	$show = new model\Show();
 
@@ -16,7 +16,7 @@
 
 	$data = new dao\MovieDao();
 
-	$data->getDataFromApi();
+	// $data->getDataFromApi();
 
 	// $genres = new dao\GenreDao();
 	// $genres->getDataFromApi();
@@ -59,6 +59,7 @@
  	<body>
 
 		<p><?php echo "Genre ID: ".$genreeeee->getId() ."\n" ?></p>
+		<p><?php echo "Genre NAME: ".$genreeeee->getName() ."\n" ?></p>
 
 		<p><?php echo "Movie Name: ".$movie->getName() ."\n" ?></p>
 
@@ -72,7 +73,6 @@
  		<p>ID: <?php $movie->getId() ?></p>
  		<p>NOMBRE: <?php $movie->getName() ?></p>
  		<img src="<?php echo API_IMAGE_HOST . API_IMAGE_SIZE_LARGE . $movie->getImage();?>" alt="">
-
- 		
+		<pre><?php print_r( $movie->getGenres() ) ?></pre>
  	</body>
  </html>

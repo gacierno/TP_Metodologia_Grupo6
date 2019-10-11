@@ -2,8 +2,6 @@
 
 	namespace model;
 
-	include_once 'Genre.php';
-
 	/**
 	 * 
 	 */
@@ -18,6 +16,8 @@
 		private $genres;
 
 		function __construct( $name = 'Unnamed', $duration = 0, $language = 'Unavailable', $image = '/assets/default.jpg', $genres = array(), $id = 0 ){
+
+
 			$this->setName($name);
 			$this->setDuration($duration);
 			$this->setLanguage($language);
