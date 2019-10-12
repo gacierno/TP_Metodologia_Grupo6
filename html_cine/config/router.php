@@ -14,6 +14,12 @@ $router->get('\/cines\/eliminar', array( new CinemaController(),'deleteForm' ) )
 // POST
 $router->post('\/cines\/nuevo', array( new CinemaController(),'create' ) );
 
+// DELETE
+$router->post('\/cines\/eliminar', array( new CinemaController(),'delete' ) );
+
+// PUT
+$router->post('\/cines\/actualizar', array( new CinemaController(),'update' ) );
+
 
 $router->all('.*',array(
     new ErrorResponse(
