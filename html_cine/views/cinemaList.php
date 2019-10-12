@@ -4,7 +4,7 @@
     <div class="row cinemalist__row">
 <?php foreach($cinemas as $cinema) : ?>
 
-        <div id="cinema-<?php echo($cinema->getId()); ?>" class="cinemacard__container col-sm-12 col-md-6 col-lg-4 col-xl-3">
+        <div id="cinema-<?php echo($cinema->getId()); ?>" class="cinemacard__container col-sm-12 col-md-6 col-lg-4 col-xl-4">
             <div class="cinemacard__inner-container">
                 <div class="cinemacard__image">
                     <img src="/public/assets/images/cinema.jpg" alt="cinemacard">
