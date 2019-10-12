@@ -7,8 +7,9 @@ namespace dao;
  */
 
 use model\Cinema as Cinema;
+use dao\BaseDao  as BaseDao;
 
-class CinemaDao
+class CinemaDao extends BaseDao
 {
 
 	private $cinemaList = array();

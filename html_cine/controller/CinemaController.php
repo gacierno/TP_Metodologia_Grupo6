@@ -26,8 +26,8 @@ class CinemaController extends BaseController{
   }
 
   function create(){
-    $d_cinema   = new CinemaDao();
     extract($_POST);
+    $d_cinema   = new CinemaDao();
     $new_cinema = new Cinema(
       $name,
       $address,
@@ -35,6 +35,14 @@ class CinemaController extends BaseController{
       $ticketvalue
     );
     $d_cinema->addCinema($new_cinema);
+    return new RedirectResponse('/cines');
+  }
+
+
+  function update(){
+    extract($_POST);
+    $d_cinema   = new CinemaDao();
+    $d_cinema->getById($cinema_id);
     return new RedirectResponse('/cines');
   }
 
