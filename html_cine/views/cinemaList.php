@@ -16,7 +16,7 @@
                     <div class="cinemacard__capacity"><?php echo('Capacidad : '.$cinema->getCapacity() .' personas'); ?></div>
                     <div class="cinemacard__value"><?php echo('Valor de ticket : $'.$cinema->getTicketValue() ); ?></div>
                 </div>
-                <div class="cinemacard__overlay"><img src="/public/assets/images/edit.svg" alt=""></div>
+                <a href="/cines/editar?id=<?php echo($cinema->getId()); ?>" class="cinemacard__overlay"><img src="/public/assets/images/edit.svg" alt=""></a>
             </div>
         </div>
 

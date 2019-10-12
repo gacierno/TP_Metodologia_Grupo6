@@ -4,24 +4,28 @@
 <div class="main-container container-fluid">
     <div class="row cinema__form--container">
 
-        <form id="cinema-form" class="form-group cinema__form" method="POST" action="<?php if($isCinemaSet) : echo('/cines/editar'); else : echo('/cines/nuevo'); endif; ?>">
+        <form id="cinema-form" class="cinema__form" method="POST" action="<?php if($isCinemaSet) : echo('/cines/editar'); else : echo('/cines/nuevo'); endif; ?>">
         <?php if($isCinemaSet) : ?>
         <label style="display:none;">
-            <input type="text" class="form-control" name="id" value="<?php echo($cinema->getId()); ?>">
+            <input type="text"  name="id" value="<?php echo($cinema->getId()); ?>">
         </label>
         <?php endif; ?>
 
         <label>
-            <input placeholder="Nombre del Cine" type="text" class="form-control" name="name" value="<?php if($isCinemaSet) : echo($cinema->getName()); endif; ?>" required>
+            <input class="inputText" type="text" name="name" value="<?php if($isCinemaSet) : echo($cinema->getName()); endif; ?>" required>
+            <span class="floating-label">Nombre del Cine</span>
         </label>
         <label>
-            <input placeholder="Direccion del Cine" type="text" class="form-control" name="address" value="<?php if($isCinemaSet) : echo($cinema->getAddress()); endif; ?>" required>
+            <input class="inputText" type="text"  name="address" value="<?php if($isCinemaSet) : echo($cinema->getAddress()); endif; ?>" required>
+            <span class="floating-label">Direccion del Cine</span>
         </label>
         <label>
-            <input placeholder="Capacidad del Cine" type="text" class="form-control" name="capacity" value="<?php if($isCinemaSet) : echo($cinema->getCapacity()); endif; ?>" required>
+            <input class="inputText" type="text" name="capacity" value="<?php if($isCinemaSet) : echo($cinema->getCapacity()); endif; ?>" required>
+            <span class="floating-label">Capacidad del Cine</span>
         </label>
         <label>
-            <input placeholder="Valor del ticket del Cine" type="text" class="form-control" name="ticketValue" value="<?php if($isCinemaSet) : echo($cinema->getTicketValue()); endif; ?>" required>
+            <input class="inputText" type="text"  name="ticketValue" value="<?php if($isCinemaSet) : echo($cinema->getTicketValue()); endif; ?>" required>
+            <span class="floating-label">Valor del ticket del Cine</span>
         </label>
 
         <div class="cinemaform__button--container">
