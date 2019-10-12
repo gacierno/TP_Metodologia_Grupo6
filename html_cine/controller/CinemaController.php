@@ -18,11 +18,10 @@ class CinemaController extends BaseController{
   }
 
   function editForm(){
-    include("views/cinemaUpdate.php");
-  }
-
-  function deleteForm(){
-    include("views/cinemaDelete.php");
+    extract($_GET);
+    $d_cinema   = new CinemaDao();
+    $cinema     = $d_cinema->getById($id);
+    include("views/cinemaForm.php");
   }
 
   function create(){
