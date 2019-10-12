@@ -31,7 +31,7 @@
         <div class="cinemaform__button--container">
             <button type="submit" class="cinemaform__button--primary">Submit</button>
             <?php if($isCinemaSet) : ?>
-            <button id="cinema-delete" type="submit" class="cinemaform__button--secondary">Delete</button>
+            <button id="cinema-delete" cinema-id="<?php extract($_GET); echo($id); ?>" type="submit" class="cinemaform__button--secondary">Delete</button>
             <?php endif; ?>
         </div>
 

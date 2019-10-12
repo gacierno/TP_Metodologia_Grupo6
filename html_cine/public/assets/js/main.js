@@ -12,5 +12,7 @@ $('.owl-carousel.owl-cinemaList').owlCarousel({
 
 
 $('#cinema-delete').on('click',function(){
-    $('#cinema-form').attr('action','/cines/eliminar')
+    var id = $(this).attr('cinema-id');
+    var newAction = '/cines/eliminar?id=' + id;
+    $('#cinema-form').attr('action',newAction);
 });
