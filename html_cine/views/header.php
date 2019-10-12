@@ -18,7 +18,7 @@
   <div class="nav__container nav-desktop">
     <div class="nav__logo--container">
       <a href="/">
-        <img src="public/assets/images/black-cat.svg" >
+        <img src="public/assets/images/logo.svg" >
       </a>
     </div>
   <div class="nav-mobile"></div>
