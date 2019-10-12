@@ -9,3 +9,8 @@ $('.owl-carousel.owl-cinemaList').owlCarousel({
         }
     }
 });
+
+
+$('#cinema-delete').on('click',function(){
+    $('#cinema-form').attr('action','/cines/eliminar')
+});

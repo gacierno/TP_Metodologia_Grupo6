@@ -71,6 +71,7 @@ body{
 }
 
 .cinemacard__inner-container{
+    position: relative;
     width: 85%;
     justify-content: center;
     margin: 0 auto;
@@ -79,6 +80,33 @@ body{
     -webkit-box-shadow: 6px 6px 13px 2px rgba(0,0,0,0.75);
     -moz-box-shadow: 6px 6px 13px 2px rgba(0,0,0,0.75);
     box-shadow: 6px 6px 13px 2px rgba(0,0,0,0.75);
+    cursor: pointer;
+}
+
+.cinemacard__overlay{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    transition: all 0.2s ease-in-out;
+    background-color:  rgba(0, 0, 0, 0.5);
+}
+
+.cinemacard__inner-container:hover{
+    transition: all .2s ease-in-out;
+    transform: scale(1.1);
+}
+
+.cinemacard__inner-container:hover .cinemacard__overlay{
+    display: flex;
+    justify-content: center;
+}
+
+.cinemacard__overlay img{
+    vertical-align: middle;
+    text-align: center;
 }
 
 .cinemalist__row{
@@ -106,3 +134,107 @@ body{
     height: 1px;
     background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
 }
+
+.cinema__form--container{
+    position: relative;
+    width: 100%;
+    border-radius: 20px;
+    background-image: linear-gradient(to right, #eea2a2 0%, #bbc1bf 19%, #57c6e1 42%, #b49fda 79%, #7ac5d8 100%);
+    padding: 20px;
+}
+
+.cinema__form{
+    width: 100%;
+}
+
+.cinema__form label{
+    width: 100%;
+    margin:0;
+}
+
+.cinema__form label:not(:last-child){
+    margin-bottom: 3%;
+}
+
+.cinemaform__button--primary,.cinemaform__button--secondary{
+    border-radius:5px;
+}
+
+.cinemaform__button--primary{
+    background:cyan;
+    color:#fff;
+    border:none;
+    position:relative;
+    height:60px;
+    font-size:1.6em;
+    padding:0 2em;
+    cursor:pointer;
+    transition:800ms ease all;
+    outline:none;
+  }
+  .cinemaform__button--primary:hover{
+    background:white;
+    color:cyan;
+  }
+  .cinemaform__button--primary:before,.cinemaform__button--primary:after{
+    content:'';
+    position:absolute;
+    top:0;
+    right:0;
+    height:2px;
+    width:0;
+    background-image: linear-gradient(to right, #eea2a2 0%, #bbc1bf 19%, #57c6e1 42%, #b49fda 79%, #7ac5d8 100%);
+    transition:400ms ease all;
+  }
+  .cinemaform__button--primary:after{
+    right:inherit;
+    top:inherit;
+    left:0;
+    bottom:0;
+  }
+  .cinemaform__button--primary:hover:before,.cinemaform__button--primary:hover:after{
+    width:100%;
+    transition:800ms ease all;
+  }
+
+  .cinemaform__button--container{
+      text-align: end;
+  }
+
+  .cinemaform__button--secondary{
+    margin-left:10px;
+    background:red;
+    color:#fff;
+    border:none;
+    position:relative;
+    height:60px;
+    font-size:1.6em;
+    padding:0 2em;
+    cursor:pointer;
+    transition:800ms ease all;
+    outline:none;
+  }
+  .cinemaform__button--secondary:hover{
+    background:white;
+    color:red;
+  }
+  .cinemaform__button--secondary:before,.cinemaform__button--secondary:after{
+    content:'';
+    position:absolute;
+    top:0;
+    right:0;
+    height:2px;
+    width:0;
+    background-image: linear-gradient(to right, #eea2a2 0%, #bbc1bf 19%, #57c6e1 42%, #b49fda 79%, #7ac5d8 100%);
+    transition:400ms ease all;
+  }
+  .cinemaform__button--secondary:after{
+    right:inherit;
+    top:inherit;
+    left:0;
+    bottom:0;
+  }
+  .cinemaform__button--secondary:hover:before,.cinemaform__button--secondary:hover:after{
+    width:100%;
+    transition:800ms ease all;
+  }
