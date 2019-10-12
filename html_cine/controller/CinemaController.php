@@ -9,7 +9,7 @@ class CinemaController extends BaseController{
 
   function index(){
     $d_cinema = new CinemaDao();
-    $cines = $d_cinema->getCinemaList();
+    $cinemas = $d_cinema->getCinemaList();
     include("views/cinemaList.php");
   }
 
