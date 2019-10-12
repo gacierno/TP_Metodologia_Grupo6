@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace dao;
 /**
  *
@@ -59,7 +59,7 @@ class MovieDao
 			$rawMovie = $this->getSingleMovieApi( $value['id'] );
 
 			if( !($this->getById( $rawMovie['id']) ) ){
-				
+
 				$dataToSave['id'] = $rawMovie['id'];
 				$dataToSave['name'] = $rawMovie['title'];
 				$dataToSave['duration'] = $rawMovie['runtime'];
@@ -69,7 +69,7 @@ class MovieDao
 
 				foreach ($rawMovie['genres'] as $genre ) {
 					array_push( $dataToSave['genres'], $genre['id'] );
-				}	
+				}
 
 				array_push( $this->movieList, $dataToSave );
 			}
@@ -97,7 +97,7 @@ class MovieDao
 	private function retrieveData(){
 
 		$jsonMovieList = ( file_exists( dirname(__DIR__).'/data/movies.json' ) ) ? file_get_contents( dirname(__DIR__).'/data/movies.json' ) : '[]' ;
-		$this->movieList = json_decode($jsonMovieList, TRUE); 
+		$this->movieList = json_decode($jsonMovieList, TRUE);
 
 	}
 
@@ -115,7 +115,7 @@ class MovieDao
 
 	/**
 	 * saveDataToJson
-	 * @return Array() 
+	 * @return Array()
 	 */
 
 	public function getMovieList(){
@@ -133,7 +133,7 @@ class MovieDao
 		$output = false;
 
 		// THIS SENTENCE VOIDS DATA DELETIONS WHILE UPDATING LIST
-		if( sizeof($this->movieList) == 0) $this->retrieveData(); 
+		if( sizeof($this->movieList) == 0) $this->retrieveData();
 
 		foreach ($this->movieList as $value){
 			if( $value['id'] == $id ) $output = $value;

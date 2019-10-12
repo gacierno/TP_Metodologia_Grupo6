@@ -2,10 +2,13 @@
 use Router\Router as Router;
 use Response\ErrorResponse as ErrorResponse;
 use Controller\CinemaController as CinemaController;
+use Controller\MovieController as MovieController;
 
 $router = new Router();
 
 // GET
+$router->get('\/movies', array( new MovieController(),'index' ) );
+
 $router->get('\/cines', array( new CinemaController(),'index' ) );
 $router->get('\/cines\/nuevo', array( new CinemaController(),'createForm' ) );
 $router->get('\/cines\/editar', array( new CinemaController(),'editForm' ) );
