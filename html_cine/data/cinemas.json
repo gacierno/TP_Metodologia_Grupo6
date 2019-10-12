@@ -12,5 +12,12 @@
         "address": "El centro",
         "capacity": "300",
         "ticketValue": "200"
+    },
+    {
+        "id": 3,
+        "name": "El aldrey",
+        "address": "La terminal vieja",
+        "capacity": "1000000",
+        "ticketValue": null
     }
 ]
