@@ -14,7 +14,7 @@ class CinemaController extends BaseController{
   }
 
   function createForm(){
-    include("views/cinemaAdd.php");
+    include("views/cinemaForm.php");
   }
 
   function editForm(){
