@@ -1,5 +1,7 @@
 <?php
   require_once('lib/autoload.php');
+  require_once('config/autoload.php');
+  config\Autoload::Start();
   LibAutoload::Start();
   require_once('config/router.php');
   $router->find($_SERVER['REQUEST_METHOD'],$_SERVER['REQUEST_URI']);

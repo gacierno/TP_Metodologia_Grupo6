@@ -27,6 +27,10 @@ class Response{
     header("$name: $value");
   }
 
+  function send(){
+    echo $this;
+  }
+
   function __toString(){
     return $this->body;
   }

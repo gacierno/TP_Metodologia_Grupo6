@@ -12,6 +12,8 @@ class Router {
     if(!isset($this->map[$methodName])){
       $this->map[$methodName] = array();
     }
+    if(!isset($callback[1])) $callback[1] = false;
+    if(!isset($callback[2])) $callback[2] = array();
     array_push(
       $this->map[$methodName], array(
         'regexp'   => $regexp,
@@ -48,7 +50,10 @@ class Router {
     foreach( $method as $route ){
       $pattern = '/' . $route['regexp'] . '/';
       if(preg_match($pattern,$path)){
-        return call_user_func($route['callback']);
+        $object = $route['callback'][0];
+        $method = $route['callback'][1];
+        $params = $route['callback'][2];
+        return call_user_func_array(array($object,$method), $params);
       }
     }
   }
