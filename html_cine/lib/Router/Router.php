@@ -1,4 +1,5 @@
-<?php
+<?php namespace Router;
+
 class Router {
 
   private $map = array();
