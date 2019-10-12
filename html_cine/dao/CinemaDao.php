@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace dao;
 /**
  *
@@ -28,7 +28,7 @@ class CinemaDao
 	private function retrieveData(){
 
 		$jsonList = ( file_exists( dirname(__DIR__).'/data/cinemas.json' ) ) ? file_get_contents( dirname(__DIR__).'/data/cinemas.json' ) : '[]' ;
-		$this->cinemaList = json_decode($jsonList, TRUE); 
+		$this->cinemaList = json_decode($jsonList, TRUE);
 
 	}
 
@@ -46,7 +46,7 @@ class CinemaDao
 
 	/**
 	 * saveDataToJson
-	 * @return Array() 
+	 * @return Array()
 	 */
 
 	public function getCinemaList(){
@@ -81,7 +81,7 @@ class CinemaDao
 		$output = false;
 
 		// THIS SENTENCE VOIDS DATA DELETIONS WHILE UPDATING LIST
-		if( sizeof($this->cinemaList) == 0 ) $this->retrieveData(); 
+		if( sizeof($this->cinemaList) == 0 ) $this->retrieveData();
 
 		foreach ($this->cinemaList as $value){
 			if( $value['id'] == $id ) {

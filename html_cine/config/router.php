@@ -12,7 +12,7 @@ $router->get('\/cines\/editar', array( new CinemaController(),'editForm' ) );
 $router->get('\/cines\/eliminar', array( new CinemaController(),'deleteForm' ) );
 
 // POST
-$router->post('\/cines/nuevo', array( new CinemaController(),'create' ) );
+$router->post('\/cines\/nuevo', array( new CinemaController(),'create' ) );
 
 
 $router->all('.*',array(

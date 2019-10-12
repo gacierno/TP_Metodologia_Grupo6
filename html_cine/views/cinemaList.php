@@ -5,8 +5,8 @@
     <title></title>
   </head>
   <body>
-    <?php foreach($cines as $cine): ?>
-      <div>Cine</div>
+    <?php foreach($cinemas as $cine): ?>
+      <div><?= $cine->getName() ?></div>
     <?php endforeach; ?>
   </body>
 </html>
