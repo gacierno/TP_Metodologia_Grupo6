@@ -8,9 +8,15 @@ class Response{
 
   function __construct($obj){
     if(gettype($obj) == 'array'){
-      $this->setCode($obj['code']);
-      $this->body = $obj['body'];
-      $this->headers = $obj['headers'];
+      if(isset($obj['code'])){
+        $this->code = $obj['code'];
+      }
+      if(isset( $obj['body'] )){
+        $this->body = $obj['body'];
+      }
+      if(isset( $obj['headers'] )){
+        $this->headers = $obj['headers'];
+      }
     }
     if(gettype($obj) == 'string'){
       $this->body = $obj;
@@ -30,8 +36,10 @@ class Response{
   }
 
   function writeHeaders(){
-    foreach($headers as $name=>$value){
-      header("$name: $value");
+    if(is_array($this->headers)){
+      foreach($this->headers as $name=>$value){
+        header("$name: $value");
+      }
     }
   }
 
@@ -53,7 +61,7 @@ class Response{
   }
 
   function __set($attr,$value){
-    $writeable_attributes = array('body');
+    $writeable_attributes = array('body','code');
     if(in_array( $attr, $writeable_attributes)){
       $this->$attr = $value;
     };
