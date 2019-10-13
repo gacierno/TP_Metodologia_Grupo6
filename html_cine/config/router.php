@@ -1,6 +1,7 @@
 <?php
 use Router\Router as Router;
 use Response\ErrorResponse as ErrorResponse;
+use Response\RedirectResponse as RedirectResponse;
 use Controller\CinemaController as CinemaController;
 use Controller\MovieController as MovieController;
 
@@ -13,7 +14,7 @@ $router->get('\/cines', array( new CinemaController(),'index' ) );
 
 $router->get('\/peliculas', array( new MovieController(),'index' ) );
 
-$router->get('^\/$', array( new MovieController(),'index' ) );
+$router->get('^\/$', array( new RedirectResponse("/peliculas"), 'send' ) );
 
 // POST
 $router->post('\/cines\/nuevo', array( new CinemaController(),'create' ) );
