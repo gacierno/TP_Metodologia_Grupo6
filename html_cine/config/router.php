@@ -11,7 +11,7 @@ $router->get('\/cines\/nuevo', array( new CinemaController(),'createForm' ) );
 $router->get('\/cines\/editar', array( new CinemaController(),'editForm' ) );
 $router->get('\/cines', array( new CinemaController(),'index' ) );
 
-$router->get('\/movies', array( new MovieController(),'index' ) );
+$router->get('\/peliculas', array( new MovieController(),'index' ) );
 
 $router->get('\/', array( new MovieController(),'index' ) );
 
