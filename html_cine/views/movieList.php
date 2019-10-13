@@ -6,6 +6,14 @@ $movies = array($movie);
 ?>
 
 <div class="main-container container-fluid">
+
+    <div class="movielist__filter--container">
+        <form method="POST" action="/peliculas">
+            <label id="inpt_search_label" class="search" for="inpt_search">
+                <input name="genre" placeholder="Filtra por género/s" id="inpt_search" type="text" />
+            </label>
+        </form> 
+    </div>
     <div class="row movielist__row">
         <div id="movielist-slider" class="owl-carousel owl-theme owl-movielist">
 <?php foreach($movies as $movie) : ?>

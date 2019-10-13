@@ -15,15 +15,15 @@
 <body>
     
 <div class="nav row container-fluid">
-<div class="nav__container col-4"></div>
-  <div class="nav__container col-4">
+<div class="nav__container col-3"></div>
+  <div class="nav__container col-6">
     <div class="nav__logo--container ">
       <a target="_self" href="/">
         <img src="/public/assets/images/logo.svg" >
       </a>
     </div>
   </div>
-  <div class="nav__container nav__links--container col-4">
+  <div class="nav__container nav__links--container col-3">
     <a target="_self" href="/cines">Cines</a>
   </div>
 </div>

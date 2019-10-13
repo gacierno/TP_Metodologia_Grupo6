@@ -64,3 +64,25 @@ function hideArrows(event){
         $('.owl-movielist').closest('.movielist__row').find('.left-arrow').first().fadeIn('fast');
     }
 }
+
+var placeholder;
+
+$(document).ready(function(){
+    if($('#inpt_search').length > 0){
+        placeholder = $('#inpt_search').attr('placeholder');
+        $('#inpt_search').attr('placeholder','');
+
+    }
+})
+
+$("#inpt_search,#inpt_search_label").on('focus mouseover', function () {
+    $('#inpt_search').attr('placeholder',placeholder);
+    $(this).parent('label').addClass('active');
+});
+
+$("#inpt_search,#inpt_search_label").on('blur mouseout', function () {
+	if($(this).val().length == 0){
+        $('#inpt_search').attr('placeholder','');
+        $(this).parent('label').removeClass('active');
+    }
+});
