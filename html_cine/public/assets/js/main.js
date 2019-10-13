@@ -86,3 +86,11 @@ $("#inpt_search,#inpt_search_label").on('blur mouseout', function () {
         $(this).parent('label').removeClass('active');
     }
 });
+
+
+$('#genre-filter-form').submit(function(event){
+    event.preventDefault();
+    event.stopPropagation();
+    var genre = $('#inpt_search').val();
+    $('#movielist-slider').load('/peliculas?genero=' + genre);
+});
