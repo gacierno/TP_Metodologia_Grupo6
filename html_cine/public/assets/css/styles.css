@@ -558,3 +558,12 @@ body{
 .search input::placeholder{
     display: none;
 }
+
+.search input:-webkit-autofill,
+.search input:-webkit-autofill:hover, 
+.search input:-webkit-autofill:focus, 
+.search input:-webkit-autofill:active{
+    -webkit-box-shadow: linear-gradient(to right, #eea2a2 0%, #bbc1bf 19%, #57c6e1 42%, #b49fda 79%, #7ac5d8 100%);
+    transition: background-color 5000s ease-in-out 0s;
+    -webkit-text-fill-color: white;
+}

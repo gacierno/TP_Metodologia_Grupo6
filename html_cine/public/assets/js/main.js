@@ -1,47 +1,22 @@
-var moviesSlider = $('.owl-carousel.owl-movielist');
-
-moviesSlider.owlCarousel({
-    center: true,
-    items:2,
-    loop:true,
-    margin:30,
-    onInitialized:hideArrows,
-    nav: false,
-    dots:false,
-    responsive:{
-        768:{
-            items:3
-        },
-        1200:{
-            items:4
-        }
-    }
-});
-
-if($('.owl-movielist').length > 0){
-    var rightArrow = $('.owl-movielist').closest('.movielist__row').find('.right-arrow').first();
-    rightArrow.on('click',function(){
-        moviesSlider.trigger('next.owl.carousel');
-    });
-
-    var leftArrow = $('.owl-movielist').closest('.movielist__row').find('.left-arrow').first();
-    leftArrow.on('click',function(){
-        moviesSlider.trigger('prev.owl.carousel');
-    });
-}
+//select the slider container for the movieList view
+var moviesSlider = '.owl-carousel.owl-movielist';
+//build the carousel with function
+var builtCarousel = buildCarousel(moviesSlider,false);
 
 
+//bind event to change action in cinema-form when delete button's clicked
 $('#cinema-delete').on('click',function(){
     $('#cinema-form').attr('action','/cines/eliminar');
 });
 
+//on ready and resize event, executes a setMovieInfoCenter() to keep
+//the movie info on hover centered dinamically
 if($('.moviecard__info--container').length > 0){
     $(document).ready(setMovieInfoCenter);
     $(window).on('resize',function(){
         setMovieInfoCenter();
     });
 }
-
 
 function setMovieInfoCenter(){
     setTimeout(function(){
@@ -58,15 +33,12 @@ function setMovieInfoCenter(){
     },300);
 }
 
-function hideArrows(event){
-    if(event.item.count > 1){
-        $('.owl-movielist').closest('.movielist__row').find('.right-arrow').first().fadeIn('fast');
-        $('.owl-movielist').closest('.movielist__row').find('.left-arrow').first().fadeIn('fast');
-    }
-}
+
+
 
 var placeholder;
-
+//on document ready,hide filter input placeholder and to load
+//new movies/create new slider with jquery.Load() method
 $(document).ready(function(){
     if($('#inpt_search').length > 0){
         placeholder = $('#inpt_search').attr('placeholder');
@@ -78,31 +50,13 @@ $(document).ready(function(){
         event.preventDefault();
         event.stopPropagation();
         var genre = $('#inpt_search').val();
-        $('#movielist-slider-container').css("opacity","0.5");
+        $(moviesSlider).css("opacity","0.5");
         history.pushState({ genre : genre }, "Peliculas", "/peliculas?genero="+genre);
         $('#movielist-slider-container').load("/peliculas?genero="+genre+" #movielist-slider",function(){
 
-          var moviesSlider = $('.owl-carousel.owl-movielist');
+          builtCarousel = buildCarousel(moviesSlider,true);
 
-          moviesSlider.owlCarousel({
-              center: true,
-              items:2,
-              loop:true,
-              margin:30,
-              onInitialized:hideArrows,
-              nav: false,
-              dots:false,
-              responsive:{
-                  768:{
-                      items:3
-                  },
-                  1200:{
-                      items:4
-                  }
-              }
-          });
-
-          $('#movielist-slider-container').css("opacity","1.0");
+          $(moviesSlider).css("opacity","1.0");
 
         });
 
@@ -110,6 +64,8 @@ $(document).ready(function(){
     });
 })
 
+
+//bind filter functionality
 $("#inpt_search,#inpt_search_label").on('focus mouseover', function () {
     $('#inpt_search').attr('placeholder',placeholder);
     $(this).parent('label').addClass('active');
@@ -121,3 +77,49 @@ $("#inpt_search,#inpt_search_label").on('blur mouseout', function () {
         $(this).parent('label').removeClass('active');
     }
 });
+
+
+//rebuild carousel function
+function buildCarousel(selector,destroy){
+    var carousel_settings = {
+        center: true,
+        items:2,
+        loop:true,
+        margin:30,
+        onInitialized:bindArrows,
+        nav: false,
+        dots:false,
+        responsive:{
+            768:{
+                items:3
+            },
+            1200:{
+                items:4
+            }
+        }
+    };
+
+    if(destroy){
+        builtCarousel.trigger('destroy').removeClass('owl-carousel owl-loaded');
+    }
+    return($(selector).owlCarousel( carousel_settings ));
+
+}
+
+
+//function to bind or hide arrows on slider creation
+function bindArrows(event){
+    if(event.item.count > 1){
+        $(moviesSlider).closest('.movielist__row').find('.right-arrow').first().fadeIn('fast');
+        $(moviesSlider).closest('.movielist__row').find('.left-arrow').first().fadeIn('fast');
+        var rightArrow = $(moviesSlider).closest('.movielist__row').find('.right-arrow').first();
+        rightArrow.on('click',function(){
+            $(moviesSlider).trigger('next.owl.carousel');
+        });
+        
+        var leftArrow = $(moviesSlider).closest('.movielist__row').find('.left-arrow').first();
+        leftArrow.on('click',function(){
+            $(moviesSlider).trigger('prev.owl.carousel');
+        });
+    }   
+}
