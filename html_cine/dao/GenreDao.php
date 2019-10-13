@@ -6,12 +6,16 @@ namespace dao;
  *
  */
 
-require_once dirname(__DIR__).'/config/settings.php';
+use model\Genre as Genre
+use dao\BaseDao as BaseDao
+use dao\IApiConnector as IApiConnector
 
-class GenreDao
+class GenreDao extends BaseDao implements IApiConnector
 {
 
-	private $genreList = array();
+	function __construct(){
+		parent::setItemType( 'movies' );
+	}
 
 
 	/*
@@ -36,7 +40,7 @@ class GenreDao
 	/**
 	 * getDataFromApi
 	 */
-	public function getDataFromApi(){
+	public function fetch(){
 
 		$this->retrieveData();
 
@@ -62,9 +66,6 @@ class GenreDao
 
 
 
-
-
-
 	/*
 	+------------------------------------------------+
 	|											     |
@@ -73,36 +74,27 @@ class GenreDao
 	+------------------------------------------------+
 	*/
 
-	/**
-	 * retrieveData
-	 */
-	private function retrieveData(){
-
-		$jsonGenreList = ( file_exists( dirname(__DIR__).'/data/genres.json' ) ) ? file_get_contents( dirname(__DIR__).'/data/genres.json' ) : '[]' ;
-		$this->genreList = json_decode($jsonGenreList, TRUE); 
-
-	}
-
-	/**
-	 * saveDataToJson
-	 * @param integer
-	 */
-
-	private function saveDataToJson(){
-
-		$listToFile = json_encode( $this->genreList, JSON_PRETTY_PRINT );
-		file_put_contents( dirname(__DIR__).'/data/genres.json', $listToFile );
-
-	}
 
 	/**
 	 * saveDataToJson
 	 * @return Array() 
 	 */
 
-	public function getGenreList(){
+	public function getList(){
+
+		$output = array();
 		$this->retrieveData();
-		return $this->genreList;
+
+		foreach ( $this->itemList as $value ) {
+			$genre = new Genre(
+				$value['id'],
+				$value['name']
+			);
+
+			array_push( $output, $genre );
+		}
+
+		return $output;
 	}
 
 	/**
@@ -116,29 +108,49 @@ class GenreDao
 		$output = false;
 
 		// THIS SENTENCE VOIDS DATA DELETIONS WHILE UPDATING LIST
-		if( sizeof($this->genreList) == 0 ) $this->retrieveData(); 
+		if( sizeof($this->itemList) == 0 ) $this->retrieveData(); 
 
-		foreach ($this->genreList as $value){
-			if( $value['id'] == $id ) $output = $value;
+		foreach ($this->itemList as $value){
+			if( $value['id'] == $id ){
+				$output = new Genre(
+					$value['id'],
+					$value['name']
+				);
+			} 
+
 		}
 		return $output;
-
 	}
-
 
 	/**
 	 * getById
 	 * @param integer
 	 */
-	public function addGenre( $id, $name ){
-		if( $this->getById($id) ){
+	public function add( $obj ){
+		if( !$this->getById( $obj->getId() ) ){
 			$genreHash = array(
-				'id' => $id,
-				'name' => $name
+				'id' => $obj->getId(),
+				'name' => $obj->getName()
 			);
-			array_push( $this->genreList , $genreHash );
-			$this->saveDataToJson();
+			array_push( $this->itemList , $genreHash );
+			$this->SaveAll();
 		}
+	}
+
+
+	public function update( $id , $obj ){
+		foreach ( $this->retrieveData() as $key=>$post) {
+		    if($post->getID() == $id){
+
+		    	$value['id'] = $obj->getName();
+		    	$value['name'] = $obj->getDuration();
+
+		        $this->postsList[$key] = $value;
+		        $this->SaveAll();
+		        return true;
+		    }
+		}
+		return false;
 	}
 
 }

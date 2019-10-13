@@ -3,7 +3,7 @@ namespace dao;
 
 abstract class BaseDao{
 
-    protected $itemList;
+    protected $itemList = array();
     protected $itemType;
 
 
