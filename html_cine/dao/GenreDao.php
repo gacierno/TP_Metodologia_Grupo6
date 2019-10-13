@@ -6,9 +6,9 @@ namespace dao;
  *
  */
 
-use model\Genre as Genre
-use dao\BaseDao as BaseDao
-use dao\IApiConnector as IApiConnector
+use model\Genre as Genre;
+use dao\BaseDao as BaseDao;
+use dao\IApiConnector as IApiConnector;
 
 class GenreDao extends BaseDao implements IApiConnector
 {

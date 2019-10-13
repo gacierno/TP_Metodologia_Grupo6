@@ -24,9 +24,9 @@ abstract class BaseDao{
     }
 
     function delete( $id , $obj ){
-
-        foreach ( $this->retrieveData() as $key=>$post) {
-            if($post->getID() == $id){
+        $this->retrieveData();
+        foreach ( $this->itemList as $key => $post) {
+            if( $post['id'] == $id ){
                 unset($this->itemList[$key]);
                 $this->SaveAll();
                 return true;
