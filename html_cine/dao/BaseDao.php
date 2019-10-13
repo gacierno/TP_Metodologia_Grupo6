@@ -23,7 +23,7 @@ abstract class BaseDao{
 
     }
 
-    function delete( $id , $obj ){
+    function delete( $id ){
         $this->retrieveData();
         foreach ( $this->itemList as $key => $post) {
             if( $post['id'] == $id ){
