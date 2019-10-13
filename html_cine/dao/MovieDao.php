@@ -7,11 +7,15 @@ namespace dao;
  */
 
 use model\Movie as Movie;
+use dao\BaseDao  as BaseDao;
+use dao\IApiConnector as IApiConnector; 
 
-class MovieDao
+class MovieDao extends BaseDao implements IApiConnector
 {
 
-	private $movieList = array();
+	function __construct(){
+		parent::setItemType( 'movies' );
+	}
 
 	/*
 	+-----------------------------------+
@@ -25,7 +29,7 @@ class MovieDao
 	 * getMoviesFromApi
 	 * @return mixed
 	 */
-	private function getMoviesFromApi(){
+	private function getApi(){
 
 		$listJson = file_get_contents( API_HOST.API_NOW."?api_key=". API_KEY );
 		return json_decode($listJson, TRUE );
@@ -47,11 +51,11 @@ class MovieDao
 	/**
 	 * getDataFromApi
 	 */
-	public function getDataFromApi(){
+	public function fetch(){
 
 		$this->retrieveData();
 
-		$rawList = $this->getMoviesFromApi();
+		$rawList = $this->getApi();
 
 		foreach ($rawList['results'] as $value) {
 
@@ -70,12 +74,12 @@ class MovieDao
 					array_push( $dataToSave['genres'], $genre['id'] );
 				}
 
-				array_push( $this->movieList, $dataToSave );
+				array_push( $this->itemList, $dataToSave );
 			}
 
 		}
 
-		$this->saveDataToJson();
+		$this->SaveAll();
 
 	}
 
@@ -90,39 +94,18 @@ class MovieDao
 	+------------------------------------------------+
 	*/
 
-	/**
-	 * retrieveData
-	 */
-	private function retrieveData(){
-
-		$jsonMovieList = ( file_exists( dirname(__DIR__).'/data/movies.json' ) ) ? file_get_contents( dirname(__DIR__).'/data/movies.json' ) : '[]' ;
-		$this->movieList = json_decode($jsonMovieList, TRUE);
-
-	}
 
 	/**
-	 * saveDataToJson
-	 * @param integer
-	 */
-
-	private function saveDataToJson(){
-
-		$listToFile = json_encode( $this->movieList, JSON_PRETTY_PRINT );
-		file_put_contents( dirname(__DIR__).'/data/movies.json', $listToFile );
-
-	}
-
-	/**
-	 * saveDataToJson
+	 * getList
 	 * @return Array()
 	 */
 
-	public function getMovieList(){
+	public function getList(){
 
 		$output = array();
 		$this->retrieveData();
 
-		foreach ( $this->movieList as $value ) {
+		foreach ( $this->itemList as $value ) {
 			$movie = new Movie(
 				$value['name'],
 				$value['duration'],
@@ -148,9 +131,9 @@ class MovieDao
 		$output = false;
 
 		// THIS SENTENCE VOIDS DATA DELETIONS WHILE UPDATING LIST
-		if( sizeof($this->movieList) == 0) $this->retrieveData();
+		if( sizeof($this->itemList) == 0) $this->retrieveData();
 
-		foreach ($this->movieList as $value){
+		foreach ($this->itemList as $value){
 			if( $value['id'] == $id ){
 				$output = new Movie(
 					$value['name'],
@@ -164,6 +147,44 @@ class MovieDao
 		}
 		return $output;
 
+	}
+
+	public function add( $obj ){
+
+		if( !$this->getById( $obj->getId() ) ){
+
+			$value['name'] = $obj->getName();
+			$value['duration'] = $obj->getDuration();
+			$value['language'] = $obj->getLanguage();
+			$value['image'] = $obj->getImage();
+			$value['genres'] = $obj->getGenres();
+			$value['id'] = $obj->getId();
+
+			array_push( $this->itemList, $value );
+			$this->SaveAll();
+			return true;
+		}
+		return false;
+
+	}
+
+	public function update( $id , $obj ){
+		foreach ( $this->retrieveData() as $key=>$post) {
+		    if($post->getID() == $id){
+
+		    	$value['name'] = $obj->getName();
+		    	$value['duration'] = $obj->getDuration();
+		    	$value['language'] = $obj->getLanguage();
+		    	$value['image'] = $obj->getImage();
+		    	$value['genres'] = $obj->getGenres();
+		    	$value['id'] = $obj->getId();
+
+		        $this->postsList[$key] = $value;
+		        $this->SaveAll();
+		        return true;
+		    }
+		}
+		return false;
 	}
 
 }

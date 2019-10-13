@@ -11,7 +11,7 @@ class Cinema
 	private $capacity;
 	private $ticketValue;
 
-	function __construct( $name = 'Unnamed', $address = 'No address', $capacity = 0, $ticketValue = 0, $id = 0 )
+	function __construct( $name = 'Unnamed', $address = 'No address', $capacity = 0, $ticketValue = 0, $id = null )
 	{
 		$this->setAddress($address);
 		$this->setCapacity($capacity);

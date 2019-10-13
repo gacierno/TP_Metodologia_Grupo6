@@ -3,26 +3,56 @@ namespace dao;
 
 abstract class BaseDao{
 
-  function update( $id , $obj ){
+    protected $itemList;
+    protected $itemType;
 
-  }
 
-  function delete( $id , $obj ){
+    function getList(){
 
-    foreach ( $this->retrieveData() as $key=>$post) {
-      if($post->getID() == $id){
-        unset($this->postsList[$key]);
-        $this->SaveAll();
-        return true;
-      }
     }
-    return false;
 
-  }
+    function getById( $id){
 
-  private function retrieveData(){
+    }
+
+    function add( $obj ){
+
+    }
+
+    function update( $id , $obj ){
+
+    }
+
+    function delete( $id , $obj ){
+
+        foreach ( $this->retrieveData() as $key=>$post) {
+            if($post->getID() == $id){
+                unset($this->itemList[$key]);
+                $this->SaveAll();
+                return true;
+            }
+        }
+        return false;
+
+    }
+
+    protected function retrieveData(){
+
+        $jsonList = ( file_exists( dirname(__DIR__).'/data/'. $this->itemType .'.json' ) ) ? file_get_contents( dirname(__DIR__).'/data/'. $this->itemType .'.json' ) : '[]' ;
+        $this->itemList = json_decode($jsonList, TRUE);
 
 	}
+
+    protected function SaveAll(){
+
+        $listToFile = json_encode( $this->itemList, JSON_PRETTY_PRINT );
+        file_put_contents( dirname(__DIR__).'/data/'. $this->itemType .'.json', $listToFile );
+    
+    }
+
+    protected function setItemType( $type ){
+        $this->itemType = $type;
+    }
 
 }
 

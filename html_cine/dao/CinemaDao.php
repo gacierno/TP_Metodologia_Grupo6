@@ -26,24 +26,24 @@ class CinemaDao extends BaseDao
 	/**
 	 * retrieveData
 	 */
-	private function retrieveData(){
+	// private function retrieveData(){
 
-		$jsonList = ( file_exists( dirname(__DIR__).'/data/cinemas.json' ) ) ? file_get_contents( dirname(__DIR__).'/data/cinemas.json' ) : '[]' ;
-		$this->cinemaList = json_decode($jsonList, TRUE);
+	// 	$jsonList = ( file_exists( dirname(__DIR__).'/data/cinemas.json' ) ) ? file_get_contents( dirname(__DIR__).'/data/cinemas.json' ) : '[]' ;
+	// 	$this->cinemaList = json_decode($jsonList, TRUE);
 
-	}
+	// }
 
 	/**
 	 * saveDataToJson
 	 * @param integer
 	 */
 
-	private function saveDataToJson(){
+	// private function saveDataToJson(){
 
-		$listToFile = json_encode( $this->cinemaList, JSON_PRETTY_PRINT );
-		file_put_contents( dirname(__DIR__).'/data/cinemas.json', $listToFile );
+	// 	$listToFile = json_encode( $this->cinemaList, JSON_PRETTY_PRINT );
+	// 	file_put_contents( dirname(__DIR__).'/data/cinemas.json', $listToFile );
 
-	}
+	// }
 
 	/**
 	 * saveDataToJson
