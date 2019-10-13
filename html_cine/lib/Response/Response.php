@@ -28,7 +28,7 @@ class Response{
   }
 
   function setHeader($name,$value){
-    $headers[$name] = $value;
+    $this->headers[$name] = $value;
   }
 
   function writeCode(){

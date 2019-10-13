@@ -13,7 +13,7 @@ class RedirectResponse extends Response{
     }
 
     if($this->code < 300 || $this->code >= 400){
-      $this->code = 300;
+      $this->code = 301;
     }
 
   }
