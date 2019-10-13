@@ -49,7 +49,7 @@ class CinemaController extends BaseController{
       $ticketvalue,
       $id
     );
-    $d_cinema->update($new_cinema);
+    $d_cinema->update($id,$new_cinema);
     $redirect = new RedirectResponse('/cines');
     return $redirect->send();
   }
