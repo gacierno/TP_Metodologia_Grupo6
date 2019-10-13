@@ -34,7 +34,8 @@ class CinemaController extends BaseController{
       $ticketvalue
     );
     $d_cinema->add($new_cinema);
-    return new RedirectResponse('/cines');
+    $redirect = new RedirectResponse('/cines');
+    return $redirect->send();
   }
 
 
@@ -49,14 +50,16 @@ class CinemaController extends BaseController{
       $id
     );
     $d_cinema->update($new_cinema);
-    return new RedirectResponse('/cines');
+    $redirect = new RedirectResponse('/cines');
+    return $redirect->send();
   }
 
   function delete(){
     extract($_POST);
     $d_cinema   = new CinemaDao();
     $d_cinema->delete($id);
-    return new RedirectResponse('/cines');
+    $redirect = new RedirectResponse('/cines');
+    return $redirect->send();
   }
 
 
