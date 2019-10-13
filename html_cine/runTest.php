@@ -17,6 +17,10 @@ include_once './views/header.php';
 					<span class="test-name">CinemaDao :: getById().........</span>
 					<spant class="test-result"><?php echo ( testGetById( $cinemaDao,$cinemaForTest ) )?'PASS':'FAIL'; ?></spant>
 				</li>
+				<li style="color:#FFF;">
+					<span class="test-name">CinemaDao :: add().........</span>
+					<spant class="test-result"><?php echo ( testAdd( $cinemaDao,$cinemaForTest ) )?'PASS':'FAIL'; ?></spant>
+				</li>
 			</ul>
 
 		</section>
