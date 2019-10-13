@@ -19,16 +19,26 @@ class Response{
 
   function setCode($code){
     $this->code = $code;
-    http_response_code($this->code);
   }
 
   function setHeader($name,$value){
     $headers[$name] = $value;
-    header("$name: $value");
+  }
+
+  function writeCode(){
+    http_response_code($this->code);
+  }
+
+  function writeHeaders(){
+    foreach($headers as $name=>$value){
+      header("$name: $value");
+    }
   }
 
   function send(){
-    echo $this;
+    $this->writeHeaders();
+    $this->writeCode();
+    if($this->body) echo $this;
   }
 
   function __toString(){

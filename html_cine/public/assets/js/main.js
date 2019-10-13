@@ -53,7 +53,7 @@ function setMovieInfoCenter(){
                 leftPercentage = (100 - leftPercentage)/2;
                 leftPercentage += '%';
                 $(this).css('left',leftPercentage);
-            } 
+            }
         });
     },300);
 }
@@ -73,6 +73,41 @@ $(document).ready(function(){
         $('#inpt_search').attr('placeholder','');
 
     }
+
+    $('form#genre-filter-form').on('submit',function(event){
+        event.preventDefault();
+        event.stopPropagation();
+        var genre = $('#inpt_search').val();
+        $('#movielist-slider-container').css("opacity","0.5");
+        history.pushState({ genre : genre }, "Peliculas", "/peliculas?genero="+genre);
+        $('#movielist-slider-container').load("/peliculas?genero="+genre+" #movielist-slider",function(){
+
+          var moviesSlider = $('.owl-carousel.owl-movielist');
+
+          moviesSlider.owlCarousel({
+              center: true,
+              items:2,
+              loop:true,
+              margin:30,
+              onInitialized:hideArrows,
+              nav: false,
+              dots:false,
+              responsive:{
+                  768:{
+                      items:3
+                  },
+                  1200:{
+                      items:4
+                  }
+              }
+          });
+
+          $('#movielist-slider-container').css("opacity","1.0");
+
+        });
+
+        return false;
+    });
 })
 
 $("#inpt_search,#inpt_search_label").on('focus mouseover', function () {
@@ -85,12 +120,4 @@ $("#inpt_search,#inpt_search_label").on('blur mouseout', function () {
         $('#inpt_search').attr('placeholder','');
         $(this).parent('label').removeClass('active');
     }
-});
-
-
-$('#genre-filter-form').submit(function(event){
-    event.preventDefault();
-    event.stopPropagation();
-    var genre = $('#inpt_search').val();
-    $('#movielist-slider').load('/peliculas?genero=' + genre);
 });
