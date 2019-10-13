@@ -4,7 +4,7 @@
 <div class="main-container container-fluid">
     <div class="row cinema__form--container">
 
-        <form id="cinema-form" class="cinema__form" method="POST" action="<?php if($isCinemaSet) : echo('/cines/editar'); else : echo('/cines/nuevo'); endif; ?>">
+        <form id="cinema-form" class="cinema__form" method="POST" action="<?php if($isCinemaSet) : echo('/cines/actualizar'); else : echo('/cines/nuevo'); endif; ?>">
         <?php if($isCinemaSet) : ?>
         <label style="display:none;">
             <input type="text"  name="id" value="<?php echo($cinema->getId()); ?>">
