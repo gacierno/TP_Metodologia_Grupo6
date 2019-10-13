@@ -9,7 +9,7 @@ class CinemaController extends BaseController{
 
   function index(){
     $d_cinema = new CinemaDao();
-    $cinemas = $d_cinema->getCinemaList();
+    $cinemas = $d_cinema->getList();
     include("views/cinemaList.php");
   }
 
@@ -33,7 +33,7 @@ class CinemaController extends BaseController{
       $capacity,
       $ticketvalue
     );
-    $d_cinema->addCinema($new_cinema);
+    $d_cinema->add($new_cinema);
     return new RedirectResponse('/cines');
   }
 
