@@ -12,7 +12,9 @@ use dao\BaseDao  as BaseDao;
 class CinemaDao extends BaseDao
 {
 
-	private $cinemaList = array();
+	function __construct(){
+		parent::setItemType( 'cinemas' );
+	}
 
 
 	/*
@@ -23,40 +25,19 @@ class CinemaDao extends BaseDao
 	+------------------------------------------------+
 	*/
 
-	/**
-	 * retrieveData
-	 */
-	private function retrieveData(){
-
-		$jsonList = ( file_exists( dirname(__DIR__).'/data/cinemas.json' ) ) ? file_get_contents( dirname(__DIR__).'/data/cinemas.json' ) : '[]' ;
-		$this->cinemaList = json_decode($jsonList, TRUE);
-
-	}
-
-	/**
-	 * saveDataToJson
-	 * @param integer
-	 */
-
-	private function saveDataToJson(){
-
-		$listToFile = json_encode( $this->cinemaList, JSON_PRETTY_PRINT );
-		file_put_contents( dirname(__DIR__).'/data/cinemas.json', $listToFile );
-
-	}
 
 	/**
 	 * saveDataToJson
 	 * @return Array()
 	 */
 
-	public function getCinemaList(){
+	public function getList(){
 
 		$output = array();
 
 		$this->retrieveData();
 
-		foreach ( $this->cinemaList as $value ) {
+		foreach ( $this->itemList as $value ) {
 			$cine = new Cinema(
 				$value['name'],
 				$value['address'],
@@ -71,6 +52,7 @@ class CinemaDao extends BaseDao
 
 	}
 
+
 	/**
 	 * getById
 	 * @param integer
@@ -82,9 +64,9 @@ class CinemaDao extends BaseDao
 		$output = false;
 
 		// THIS SENTENCE VOIDS DATA DELETIONS WHILE UPDATING LIST
-		if( sizeof($this->cinemaList) == 0 ) $this->retrieveData();
+		if( sizeof($this->itemList) == 0 ) $this->retrieveData();
 
-		foreach ($this->cinemaList as $value){
+		foreach ($this->itemList as $value){
 			if( $value['id'] == $id ) {
 				$output = new Cinema(
 					$value['name'],
@@ -102,24 +84,50 @@ class CinemaDao extends BaseDao
 
 
 	/**
-	 * getById
+	 * add
 	 * @param Cinema
 	 */
-	public function addCinema( Cinema $cine ){
-		if( !$this->getById( $cine->getId() ) ){ //getById executes retrieve data
-			if( $cine->getId() == 0 ){
-				$cine->setId( sizeof( $this->cinemaList ) +1 );
+	public function add( $obj ){
+		if( !$this->getById( $obj->getId() ) ){ //getById executes retrieve data
+
+			if( is_null($obj->getId()) ){
+				$obj->setId( sizeof( $this->itemList ) );
 			}
+
 			$cinemaHash = array(
-				'id' 		=> $cine->getId(),
-				'name' 		=> $cine->getName(),
-				'address' 	=> $cine->getAddress(),
-				'capacity'	=> $cine->getCapacity(),
-				'ticketValue' => $cine->getTicketValue()
+				'id' 		=> $obj->getId(),
+				'name' 		=> $obj->getName(),
+				'address' 	=> $obj->getAddress(),
+				'capacity'	=> $obj->getCapacity(),
+				'ticketValue' => $obj->getTicketValue()
 			);
-			array_push( $this->cinemaList , $cinemaHash );
-			$this->saveDataToJson();
+
+			array_push( $this->itemList , $cinemaHash );
+			$this->SaveAll();
+			return true;
 		}
+		return false;
+	}
+
+
+	public function update( $id , $obj ){
+		foreach ( $this->retrieveData() as $key=>$post) {
+		    if($post->getID() == $id){
+
+		    	$cinemaHash = array(
+					'id' 		=> $obj->getId(),
+					'name' 		=> $obj->getName(),
+					'address' 	=> $obj->getAddress(),
+					'capacity'	=> $obj->getCapacity(),
+					'ticketValue' => $obj->getTicketValue()
+				);
+
+		        $this->postsList[$key] = $cinemaHash;
+		        $this->SaveAll();
+		        return true;
+		    }
+		}
+		return false;
 	}
 
 }
