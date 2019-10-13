@@ -1,23 +1,16 @@
-[
-    {
-        "id": 1,
-        "name": "cine del paseo",
-        "address": "diagonale pueyredon 4545",
-        "capacity": 45,
-        "ticketValue": 0
-    },
-    {
+{
+    "1": {
         "id": 2,
         "name": "Ambassador",
         "address": "El centro",
         "capacity": "300",
         "ticketValue": "200"
     },
-    {
+    "2": {
         "id": 3,
         "name": "El aldrey",
         "address": "La terminal vieja",
         "capacity": "1000000",
         "ticketValue": null
     }
-]
+}
