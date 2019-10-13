@@ -38,18 +38,39 @@
     font-family: 'Roboto',sans-serif;
     font-size:16px;
     letter-spacing: 1px;
-    padding: 8px;
-    border: 2px solid;
-    border-image-source: linear-gradient(-70deg, rgba(250, 124, 48, 0.6) 30%, rgba(0, 255, 255, 0.6) 50%,rgba(138, 43, 226, 0.6) 75%, rgba(0, 255, 0, 0.6) 100%);
+    padding: 10px;
+    position:relative;
+    transition:800ms ease all;
+    outline:none;
+    border-right: 2px solid;
+    border-left: 2px solid;
+    border-image-source: linear-gradient(-70deg, rgba(250, 124, 48, 0.7) 30%, rgba(0, 255, 255,0.7) 50%,rgba(138, 43, 226, 0.7) 75%, rgba(0, 255, 0, 0.7) 100%);
     border-image-slice: 1;
 }
 
 .nav__links--container a:hover{
-    transition: .5s all ease-in-out;
-    color:rgb(20, 20, 20);
-    background-color: white;
-    
+    color:white;
 }
+.nav__links--container a:before,.nav__links--container a:after{
+    content:'';
+    position:absolute;
+    top:0;
+    right:0;
+    height:2px;
+    width:0;
+    background: linear-gradient(-70deg, rgba(250, 124, 48, 0.7) 30%, rgba(0, 255, 255,0.7) 50%,rgba(138, 43, 226, 0.7) 75%, rgba(0, 255, 0, 0.7) 100%);
+    transition:400ms ease all;
+  }
+  .nav__links--container a:after{
+    right:inherit;
+    top:inherit;
+    left:0;
+    bottom:0;
+  }
+  .nav__links--container a:hover:before,.nav__links--container a:hover:after{
+    width:100%;
+    transition:800ms ease all;
+  }
 
 .nav__logo--container{
     vertical-align: middle;
@@ -244,7 +265,7 @@ body{
     position:relative;
     height:60px;
     font-size:1.6em;
-    padding:0 2em;
+    padding:0 30px;
     cursor:pointer;
     transition:800ms ease all;
     outline:none;
@@ -286,7 +307,7 @@ body{
     position:relative;
     height:60px;
     font-size:1.6em;
-    padding:0 2em;
+    padding:0 30px;
     cursor:pointer;
     transition:800ms ease all;
     outline:none;
