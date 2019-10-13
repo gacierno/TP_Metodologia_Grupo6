@@ -14,13 +14,16 @@
 </head>
 <body>
     
-<div class="nav">
-  <div class="nav__container nav-desktop">
-    <div class="nav__logo--container">
-      <a href="/">
+<div class="nav row container-fluid">
+<div class="nav__container col-4"></div>
+  <div class="nav__container col-4">
+    <div class="nav__logo--container ">
+      <a target="_self" href="/">
         <img src="/public/assets/images/logo.svg" >
       </a>
     </div>
-  <div class="nav-mobile"></div>
+  </div>
+  <div class="nav__container nav__links--container col-4">
+    <a target="_self" href="/cines">Cines</a>
   </div>
 </div>

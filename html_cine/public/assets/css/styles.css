@@ -18,13 +18,40 @@
     border-bottom: 1px solid;
     border-image-source: linear-gradient(-70deg, rgba(250, 124, 48, 0.6) 30%, rgba(0, 255, 255, 0.6) 50%,rgba(138, 43, 226, 0.6) 75%, rgba(0, 255, 0, 0.6) 100%);
     border-image-slice: 1;
+    margin: 0;
+    padding:0;
 }
 
 .nav__container{
     padding: 10px;
 }
 
-.nav__logo--container,.nav__search-box--container,.nav__login-opt--container{
+.nav__links--container{
+    text-align: center;
+    padding-top: 25px ;
+}
+
+.nav__links--container a{
+    text-decoration: none;
+    cursor:pointer;
+    color: white;
+    font-family: 'Roboto',sans-serif;
+    font-size:16px;
+    letter-spacing: 1px;
+    padding: 8px;
+    border: 2px solid;
+    border-image-source: linear-gradient(-70deg, rgba(250, 124, 48, 0.6) 30%, rgba(0, 255, 255, 0.6) 50%,rgba(138, 43, 226, 0.6) 75%, rgba(0, 255, 0, 0.6) 100%);
+    border-image-slice: 1;
+}
+
+.nav__links--container a:hover{
+    transition: .5s all ease-in-out;
+    color:rgb(20, 20, 20);
+    background-color: white;
+    
+}
+
+.nav__logo--container{
     vertical-align: middle;
 }
 
