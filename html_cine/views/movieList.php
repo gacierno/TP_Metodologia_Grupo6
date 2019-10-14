@@ -1,7 +1,7 @@
 <?php include_once('header.php');
 include_once dirname(__DIR__).'/model/Movie.php';
-$movie = new model\Movie('Los 3 chiflados',120,'espanolo','https://pulpfictioncine.com/download/multimedia.normal.b174f62ceef51960.64656164706f6f6c5f6e6f726d616c2e6a7067.jpg',array('comedia'),1);
-$movies = array($movie);
+// $movie = new model\Movie('Los 3 chiflados',120,'espanolo','https://pulpfictioncine.com/download/multimedia.normal.b174f62ceef51960.64656164706f6f6c5f6e6f726d616c2e6a7067.jpg',array('comedia'),1);
+// $movies = array($movie);
 $genero = isset($_GET['genero']) ? $_GET['genero'] : "";
 
 ?>

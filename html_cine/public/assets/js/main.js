@@ -55,7 +55,7 @@ $(document).ready(function(){
         $('#movielist-slider-container').load("/peliculas?genero="+genre+" #movielist-slider",function(){
 
           builtCarousel = buildCarousel(moviesSlider,true);
-
+          setMovieInfoCenter();
           $(moviesSlider).css("opacity","1.0");
 
         });
@@ -83,7 +83,7 @@ $("#inpt_search,#inpt_search_label").on('blur mouseout', function () {
 function buildCarousel(selector,destroy){
     var carousel_settings = {
         center: true,
-        items:2,
+        items:1,
         loop:true,
         margin:30,
         onInitialized:bindArrows,
@@ -91,7 +91,7 @@ function buildCarousel(selector,destroy){
         dots:false,
         responsive:{
             768:{
-                items:3
+                items:2
             },
             1200:{
                 items:4
