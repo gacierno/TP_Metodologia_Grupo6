@@ -53,7 +53,7 @@ $(document).ready(function(){
         event.stopPropagation();
         var genre = $('#moviefilter__select--genre').val();
         $(moviesSlider).css("opacity","0.5");
-        var url = "/peliculas"+ genre ? "?genero="+genre : "";
+        var url = "/peliculas"+ (genre ? "?genero="+genre : "");
         history.pushState({ genre : genre }, "Peliculas", url );
 
         $('#movielist-slider-container').load( url +" #movielist-slider",function(){
