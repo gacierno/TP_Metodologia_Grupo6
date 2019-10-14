@@ -500,7 +500,13 @@ body{
     margin-bottom: 20px;
 }
 
-@media all and (min-width:768px){
+@media all and (min-width:768px) and (max-width:1199px){
+    .movielist__filter--container{
+        margin-bottom: 80px;
+    }
+}
+
+@media all and (min-width:1200px){
     .movielist__filter--container{
         margin-bottom: 40px;
     }
@@ -575,10 +581,22 @@ body{
 
 
 .movielist__filter-select,.movielist__filter-select:active,.movielist__filter-select:focus{
-    width: 25%;
+    width: 100%;
     margin-left: auto;
     background: black;
     outline: none;
     color: white;
     border: none;
+}
+
+@media all and (min-width:768px){
+    .movielist__filter-select,.movielist__filter-select:active,.movielist__filter-select:focus{
+        width: 50%;
+    }
+}
+
+@media all and (min-width:1200px){
+    .movielist__filter-select,.movielist__filter-select:active,.movielist__filter-select:focus{
+        width: 25%;
+    }
 }
