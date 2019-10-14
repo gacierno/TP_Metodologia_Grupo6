@@ -3,7 +3,7 @@
         "id": 475557,
         "name": "Joker",
         "duration": 122,
-        "language": "en",
+        "language": "English",
         "image": "\/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg",
         "genres": [
             80,
@@ -15,18 +15,18 @@
         "id": 474350,
         "name": "It Chapter Two",
         "duration": 169,
-        "language": "en",
+        "language": "English",
         "image": "\/zfE0R94v1E8cuKAerbskfD3VfUt.jpg",
         "genres": [
             27
         ]
     },
     {
-        "id": 522938,
-        "name": "Rambo: Last Blood",
-        "duration": 101,
-        "language": "en",
-        "image": "\/kTQ3J8oTTKofAVLYnds2cHUz9KO.jpg",
+        "id": 453405,
+        "name": "Gemini Man",
+        "duration": 117,
+        "language": "English",
+        "image": "\/lRyesi2S9u8gIwcxeuPAFNYAYTy.jpg",
         "genres": [
             28,
             53
@@ -36,7 +36,7 @@
         "id": 301528,
         "name": "Toy Story 4",
         "duration": 100,
-        "language": "en",
+        "language": "English",
         "image": "\/w9kR8qbmQ01HwnvK4alvnQ2ca0L.jpg",
         "genres": [
             12,
@@ -47,21 +47,43 @@
         ]
     },
     {
-        "id": 453405,
-        "name": "Gemini Man",
-        "duration": 117,
-        "language": "en",
-        "image": "\/uTALxjQU8e1lhmNjP9nnJ3t2pRU.jpg",
+        "id": 559969,
+        "name": "El Camino: A Breaking Bad Movie",
+        "duration": 123,
+        "language": "English",
+        "image": "\/ePXuKdXZuJx8hHMNr2yM4jY2L7Z.jpg",
+        "genres": [
+            80,
+            18,
+            53
+        ]
+    },
+    {
+        "id": 522938,
+        "name": "Rambo: Last Blood",
+        "duration": 101,
+        "language": "English",
+        "image": "\/kTQ3J8oTTKofAVLYnds2cHUz9KO.jpg",
         "genres": [
             28,
             53
         ]
     },
     {
+        "id": 384018,
+        "name": "Fast & Furious Presents: Hobbs & Shaw",
+        "duration": 136,
+        "language": "English",
+        "image": "\/keym7MPn1icW1wWfzMnW3HeuzWU.jpg",
+        "genres": [
+            28
+        ]
+    },
+    {
         "id": 458156,
         "name": "John Wick: Chapter 3 - Parabellum",
         "duration": 131,
-        "language": "en",
+        "language": "\u0627\u0644\u0639\u0631\u0628\u064a\u0629",
         "image": "\/ziEuG1essDuWuC5lpWUaw1uXY2O.jpg",
         "genres": [
             28,
@@ -73,7 +95,7 @@
         "id": 466272,
         "name": "Once Upon a Time... in Hollywood",
         "duration": 161,
-        "language": "en",
+        "language": "English",
         "image": "\/8j58iEBw9pOXFD2L0nt0ZXeHviB.jpg",
         "genres": [
             18,
@@ -81,35 +103,10 @@
         ]
     },
     {
-        "id": 513045,
-        "name": "Stuber",
-        "duration": 93,
-        "language": "en",
-        "image": "\/klkFYDZOetegK8floj6IjvbzzQ2.jpg",
-        "genres": [
-            28,
-            35,
-            53,
-            80
-        ]
-    },
-    {
-        "id": 559969,
-        "name": "El Camino: A Breaking Bad Movie",
-        "duration": 123,
-        "language": "en",
-        "image": "\/ePXuKdXZuJx8hHMNr2yM4jY2L7Z.jpg",
-        "genres": [
-            80,
-            18,
-            53
-        ]
-    },
-    {
         "id": 481084,
         "name": "The Addams Family",
         "duration": 87,
-        "language": "en",
+        "language": "English",
         "image": "\/uaXNjRkDdjfxfVuKHo25wkA6CiA.jpg",
         "genres": [
             16,
@@ -120,10 +117,23 @@
         ]
     },
     {
+        "id": 513045,
+        "name": "Stuber",
+        "duration": 93,
+        "language": "English",
+        "image": "\/klkFYDZOetegK8floj6IjvbzzQ2.jpg",
+        "genres": [
+            28,
+            35,
+            53,
+            80
+        ]
+    },
+    {
         "id": 511987,
         "name": "Crawl",
         "duration": 88,
-        "language": "en",
+        "language": "English",
         "image": "\/4WH6AZd473lRZ3hUp8TYiv2LfZW.jpg",
         "genres": [
             53,
@@ -133,10 +143,21 @@
         ]
     },
     {
+        "id": 428045,
+        "name": "The Mystery of the Dragon\u2019s Seal",
+        "duration": 121,
+        "language": "P\u0443\u0441\u0441\u043a\u0438\u0439",
+        "image": "\/vS6TCG4HiUSCyX30f5wDGQDt1k3.jpg",
+        "genres": [
+            12,
+            14
+        ]
+    },
+    {
         "id": 419704,
         "name": "Ad Astra",
         "duration": 124,
-        "language": "en",
+        "language": "English",
         "image": "\/lNnomQxXpRP9mgUwMuSZhA8LXfA.jpg",
         "genres": [
             878,
@@ -145,69 +166,10 @@
         ]
     },
     {
-        "id": 540901,
-        "name": "Hustlers",
-        "duration": 107,
-        "language": "en",
-        "image": "\/y9IcwcD95wCPR3IGbzlZ00f64Sj.jpg",
-        "genres": [
-            35,
-            80,
-            18
-        ]
-    },
-    {
-        "id": 428045,
-        "name": "The Mystery of the Dragon\u2019s Seal",
-        "duration": 121,
-        "language": "ru",
-        "image": "\/vS6TCG4HiUSCyX30f5wDGQDt1k3.jpg",
-        "genres": [
-            12,
-            14
-        ]
-    },
-    {
-        "id": 338967,
-        "name": "Zombieland: Double Tap",
-        "duration": 93,
-        "language": "en",
-        "image": "\/pIcV8XXIIvJCbtPoxF9qHMKdRr2.jpg",
-        "genres": [
-            27,
-            28,
-            35
-        ]
-    },
-    {
-        "id": 623393,
-        "name": "Sanggano, Sanggago't Sanggwapo",
-        "duration": null,
-        "language": "tl",
-        "image": "\/ygvNtnAYFly9aGZgW0B492gfuke.jpg",
-        "genres": [
-            35,
-            10751
-        ]
-    },
-    {
-        "id": 530385,
-        "name": "Midsommar",
-        "duration": 148,
-        "language": "en",
-        "image": "\/rXsh4MI6uyVgZBSSzXCfitJnVPy.jpg",
-        "genres": [
-            27,
-            18,
-            53,
-            9648
-        ]
-    },
-    {
         "id": 568012,
         "name": "One Piece: Stampede",
         "duration": 101,
-        "language": "ja",
+        "language": "\u65e5\u672c\u8a9e",
         "image": "\/4E2lyUGLEr3yH4q6kJxPkQUhX7n.jpg",
         "genres": [
             16,
@@ -216,36 +178,62 @@
         ]
     },
     {
-        "id": 549859,
-        "name": "The Dead Center",
+        "id": 540901,
+        "name": "Hustlers",
+        "duration": 107,
+        "language": "English",
+        "image": "\/zBhv8rsLOfpFW2M5b6wW78Uoojs.jpg",
+        "genres": [
+            35,
+            80,
+            18
+        ]
+    },
+    {
+        "id": 338967,
+        "name": "Zombieland: Double Tap",
         "duration": 93,
-        "language": "en",
-        "image": "\/fBVHOrbm7OsQ9xRDi8MCeqdA7D.jpg",
+        "language": "English",
+        "image": "\/pIcV8XXIIvJCbtPoxF9qHMKdRr2.jpg",
         "genres": [
-            53
+            27,
+            28,
+            35
         ]
     },
     {
-        "id": 530382,
-        "name": "In the Shadow of the Moon",
-        "duration": 115,
-        "language": "en",
-        "image": "\/5DSVYlKwEzGBxTkS95L73c3oxLs.jpg",
+        "id": 454640,
+        "name": "The Angry Birds Movie 2",
+        "duration": 96,
+        "language": "English",
+        "image": "\/ebe8hJRCwdflNQbUjRrfmqtUiNi.jpg",
         "genres": [
-            9648,
-            878,
-            53
-        ]
-    },
-    {
-        "id": 420809,
-        "name": "Maleficent: Mistress of Evil",
-        "duration": null,
-        "language": "en",
-        "image": "\/tBuabjEqxzoUBHfbyNbd8ulgy5j.jpg",
-        "genres": [
-            14,
+            16,
+            35,
+            28,
             12,
+            10751
+        ]
+    },
+    {
+        "id": 417384,
+        "name": "Scary Stories to Tell in the Dark",
+        "duration": 103,
+        "language": "English",
+        "image": "\/d0FWbzrmm99BTfUqf1Lbjl2zu3S.jpg",
+        "genres": [
+            27,
+            53
+        ]
+    },
+    {
+        "id": 623393,
+        "name": "Sanggano, Sanggago't Sanggwapo",
+        "duration": null,
+        "language": "English",
+        "image": "\/ygvNtnAYFly9aGZgW0B492gfuke.jpg",
+        "genres": [
+            35,
             10751
         ]
     }

@@ -66,7 +66,7 @@ class MovieDao extends BaseDao implements IApiConnector
 				$dataToSave['id'] = $rawMovie['id'];
 				$dataToSave['name'] = $rawMovie['title'];
 				$dataToSave['duration'] = $rawMovie['runtime'];
-				$dataToSave['language'] = $rawMovie['original_language'];
+				$dataToSave['language'] = $rawMovie['spoken_languages'][0]['name'];
 				$dataToSave['image'] = $rawMovie['poster_path'];
 				$dataToSave['genres'] = array();
 
