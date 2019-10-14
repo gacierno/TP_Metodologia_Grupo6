@@ -37,7 +37,7 @@
     padding-top: 25px ;
 }
 
-.nav__links--container a{
+.nav__links--container a,.cinemalist__button--container a{
     text-decoration: none;
     cursor:pointer;
     color: white;
@@ -54,10 +54,10 @@
     border-image-slice: 1;
 }
 
-.nav__links--container a:hover{
+.nav__links--container a:hover,.cinemalist__button--container a:hover{
     color:white;
 }
-.nav__links--container a:before,.nav__links--container a:after{
+.nav__links--container a:before,.nav__links--container a:after,.cinemalist__button--container a:before,.cinemalist__button--container a:after{
     content:'';
     position:absolute;
     top:0;
@@ -67,13 +67,13 @@
     background: linear-gradient(-70deg, rgba(250, 124, 48, 0.7) 30%, rgba(0, 255, 255,0.7) 50%,rgba(138, 43, 226, 0.7) 75%, rgba(0, 255, 0, 0.7) 100%);
     transition:400ms ease all;
   }
-  .nav__links--container a:after{
+  .nav__links--container a:after,.cinemalist__button--container a:after{
     right:inherit;
     top:inherit;
     left:0;
     bottom:0;
   }
-  .nav__links--container a:hover:before,.nav__links--container a:hover:after{
+  .nav__links--container a:hover:before,.nav__links--container a:hover:after,.cinemalist__button--container a:hover:before,.cinemalist__button--container a:hover:after{
     width:100%;
     transition:800ms ease all;
   }
@@ -566,4 +566,9 @@ body{
     -webkit-box-shadow: linear-gradient(to right, #eea2a2 0%, #bbc1bf 19%, #57c6e1 42%, #b49fda 79%, #7ac5d8 100%);
     transition: background-color 5000s ease-in-out 0s;
     -webkit-text-fill-color: white;
+}
+
+.cinemalist__button--container{
+    text-align: center;
+    margin-bottom: 40px;
 }

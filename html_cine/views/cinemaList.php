@@ -1,6 +1,11 @@
 <?php include_once('header.php'); ?>
 
 <div class="main-container container-fluid">
+    <div class="row ">
+        <div class="cinemalist__button--container col-12">
+            <a target="_self" href="/cines/nuevo">Agregar Cine</a>
+        </div>
+    </div>
     <div class="row cinemalist__row">
 <?php foreach($cinemas as $cinema) : ?>
 
