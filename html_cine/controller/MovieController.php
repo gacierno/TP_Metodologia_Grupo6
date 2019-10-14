@@ -11,7 +11,6 @@ class MovieController extends BaseController{
 
   function index(){
 		extract($_GET);
-    // if(!isset($genero)) $genero = "";
     $d_movie = new MovieDao();
     $d_genre = new GenreDao();
     $movies = isset($genero) ? $d_movie->getByGenre($genero) : $d_movie->getList();
