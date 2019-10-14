@@ -111,8 +111,9 @@ class CinemaDao extends BaseDao
 
 
 	public function update( $id , $obj ){
-		foreach ( $this->retrieveData() as $key=>$post) {
-		    if($post->getID() == $id){
+		$this->retrieveData();
+		foreach ( $this->itemList as $key=>$post) {
+		    if($post['id'] == $id){
 
 		    	$cinemaHash = array(
 					'id' 		=> $obj->getId(),
@@ -122,7 +123,7 @@ class CinemaDao extends BaseDao
 					'ticketValue' => $obj->getTicketValue()
 				);
 
-		        $this->postsList[$key] = $cinemaHash;
+		        $this->itemList[$key] = $cinemaHash;
 		        $this->SaveAll();
 		        return true;
 		    }
