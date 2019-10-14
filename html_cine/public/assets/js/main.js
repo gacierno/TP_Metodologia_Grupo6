@@ -53,8 +53,10 @@ $(document).ready(function(){
         event.stopPropagation();
         var genre = $('#moviefilter__select--genre').val();
         $(moviesSlider).css("opacity","0.5");
-        history.pushState({ genre : genre }, "Peliculas", "/peliculas?genero="+genre);
-        $('#movielist-slider-container').load("/peliculas?genero="+genre+" #movielist-slider",function(){
+        var url = "/peliculas"+ genre ? "?genero="+genre : "";
+        history.pushState({ genre : genre }, "Peliculas", url );
+
+        $('#movielist-slider-container').load( url +" #movielist-slider",function(){
 
           builtCarousel = buildCarousel(moviesSlider,true);
           setMovieInfoCenter();
@@ -104,7 +106,7 @@ function buildCarousel(selector,destroy){
         }
     };
 
-    
+
     return($(selector).owlCarousel( carousel_settings ));
 
 }
@@ -119,7 +121,7 @@ function bindArrows(){
         rightArrow.on('click',function(){
             $(moviesSlider).trigger('next.owl.carousel');
         });
-        
+
         var leftArrow = $(moviesSlider).closest('.movielist__row').find('.left-arrow').first();
         leftArrow.on('click',function(){
             $(moviesSlider).trigger('prev.owl.carousel');
