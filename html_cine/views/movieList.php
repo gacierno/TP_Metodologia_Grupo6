@@ -14,6 +14,7 @@ $genero = isset($_GET['genero']) ? $_GET['genero'] : "";
                 <input name="genre" value="" placeholder="Filtra por género/s" id="inpt_search" type="text" />
             </label> -->
             <select id="moviefilter__select--genre" name="genre" class="form-control form-control-md movielist__filter-select">
+                <option value="" disable selected>Selecciona un genero</option>
                 <?php foreach ($genres as $genre) : ?>
                 <option value="<?php echo($genre->getId()); ?>"><?php echo($genre->getName()); ?></option>
                 <?php endforeach; ?>

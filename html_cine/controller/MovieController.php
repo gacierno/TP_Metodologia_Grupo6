@@ -14,7 +14,7 @@ class MovieController extends BaseController{
     // if(!isset($genero)) $genero = "";
     $d_movie = new MovieDao();
     $d_genre = new GenreDao();
-    if(!isset($genero)){
+    if(!isset($genero) || $genero === ''){
       $movies = $d_movie->getList();
     }
     else{
