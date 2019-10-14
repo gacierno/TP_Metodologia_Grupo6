@@ -10,9 +10,14 @@ $genero = isset($_GET['genero']) ? $_GET['genero'] : "";
 
     <div class="movielist__filter--container">
         <form id="genre-filter-form" method="GET" action="/peliculas">
-            <label id="inpt_search_label" class="search" for="inpt_search">
-                <input name="genre" value="<?= $genero; ?>" placeholder="Filtra por género/s" id="inpt_search" type="text" />
-            </label>
+            <!-- <label id="inpt_search_label" class="search" for="inpt_search">
+                <input name="genre" value="" placeholder="Filtra por género/s" id="inpt_search" type="text" />
+            </label> -->
+            <select id="moviefilter__select--genre" name="genre" class="form-control form-control-md movielist__filter-select">
+                <?php foreach ($genres as $genre) : ?>
+                <option value="<?php echo($genre->getId()); ?>"><?php echo($genre->getName()); ?></option>
+                <?php endforeach; ?>
+            </select>
         </form>
     </div>
     <div class="row movielist__row">
