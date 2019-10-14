@@ -13,7 +13,7 @@ class MovieController extends BaseController{
 		extract($_GET);
     if(!isset($genero)) $genero = "";
     $d_movie = new MovieDao();
-    $d_genre = new Genre();
+    $d_genre = new GenreDao();
     $movies = $d_movie->getList(explode($genero));
     $genres = $d_genre->getList();
     include("views/movieList.php");
