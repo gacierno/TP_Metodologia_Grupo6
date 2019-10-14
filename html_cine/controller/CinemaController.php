@@ -46,7 +46,7 @@ class CinemaController extends BaseController{
       $name,
       $address,
       $capacity,
-      $ticketvalue,
+      $ticketValue,
       $id
     );
     $d_cinema->update($id,$new_cinema);

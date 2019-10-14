@@ -139,13 +139,14 @@ class GenreDao extends BaseDao implements IApiConnector
 
 
 	public function update( $id , $obj ){
-		foreach ( $this->retrieveData() as $key=>$post) {
-		    if($post->getID() == $id){
+		$this->retrieveData();
+		foreach ( $this->itemList as $key=>$post) {
+		    if($post['id'] == $id){
 
 		    	$value['id'] = $obj->getName();
 		    	$value['name'] = $obj->getDuration();
 
-		        $this->postsList[$key] = $value;
+		        $this->itemList[$key] = $value;
 		        $this->SaveAll();
 		        return true;
 		    }

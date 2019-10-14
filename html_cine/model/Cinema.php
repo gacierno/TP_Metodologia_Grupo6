@@ -17,7 +17,7 @@ class Cinema
 		$this->setCapacity($capacity);
 		$this->setName($name);
 		$this->setTicketValue($ticketValue);
-    if(isset($id)) $this->setId($id);
+        if(isset($id)) $this->setId($id);
 	}
 
     /**

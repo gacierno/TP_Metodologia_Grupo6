@@ -7,10 +7,17 @@
         "ticketValue": "200"
     },
     "2": {
-        "id": 3,
+        "id": "3",
         "name": "El aldrey",
-        "address": "La terminal vieja",
+        "address": "La vieja Terminal",
         "capacity": "1000000",
-        "ticketValue": null
+        "ticketValue": "123"
+    },
+    "3": {
+        "id": 1571084161,
+        "name": "Cine Don Bosco",
+        "address": "Test 123, Test 123",
+        "capacity": "New york",
+        "ticketValue": "123"
     }
 }

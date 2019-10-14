@@ -169,8 +169,9 @@ class MovieDao extends BaseDao implements IApiConnector
 	}
 
 	public function update( $id , $obj ){
-		foreach ( $this->retrieveData() as $key=>$post) {
-		    if($post->getID() == $id){
+		$this->retrieveData();
+		foreach ( $this->itemList as $key=>$post) {
+		    if($post['id'] == $id){
 
 		    	$value['name'] = $obj->getName();
 		    	$value['duration'] = $obj->getDuration();
@@ -179,7 +180,7 @@ class MovieDao extends BaseDao implements IApiConnector
 		    	$value['genres'] = $obj->getGenres();
 		    	$value['id'] = $obj->getId();
 
-		        $this->postsList[$key] = $value;
+		        $this->itemList[$key] = $value;
 		        $this->SaveAll();
 		        return true;
 		    }
