@@ -46,10 +46,10 @@ $(document).ready(function(){
 
     }
 
-    $('form#genre-filter-form').on('submit',function(event){
+    $('form #moviefilter__select--genre').on('change',function(event){
         event.preventDefault();
         event.stopPropagation();
-        var genre = $('#inpt_search').val();
+        var genre = $('#moviefilter__select--genre').val();
         $(moviesSlider).css("opacity","0.5");
         history.pushState({ genre : genre }, "Peliculas", "/peliculas?genero="+genre);
         $('#movielist-slider-container').load("/peliculas?genero="+genre+" #movielist-slider",function(){
