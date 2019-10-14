@@ -91,7 +91,7 @@ class CinemaDao extends BaseDao
 		if( !$this->getById( $obj->getId() ) ){ //getById executes retrieve data
 
 			if( is_null($obj->getId()) ){
-				$obj->setId( sizeof( $this->itemList ) +1 );
+				$obj->setId( time() );  // SETTING A TIMESTAMP AS CINEMA ID
 			}
 
 			$cinemaHash = array(
