@@ -188,5 +188,34 @@ class MovieDao extends BaseDao implements IApiConnector
 		return false;
 	}
 
+	/**
+	 * getByGenre
+	 * @param integer
+	 * @return mixed
+	 */
+	public function getByGenre( $id ){
+
+		$output = array();
+
+		// THIS SENTENCE VOIDS DATA DELETIONS WHILE UPDATING LIST
+		if( sizeof($this->itemList) == 0) $this->retrieveData();
+
+		foreach ($this->itemList as $movie){
+			if( array_search( $id, $movie['genres'] ) ){
+				$match = new Movie(
+					$movie['name'],
+					$movie['duration'],
+					$movie['language'],
+					$movie['image'],
+					$movie['genres'],
+					$movie['id']
+				);
+				array_push( $output, $match );
+			}
+		}
+		return $output;
+
+	}
+
 }
  ?>
