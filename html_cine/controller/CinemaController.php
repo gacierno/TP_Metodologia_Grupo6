@@ -31,7 +31,7 @@ class CinemaController extends BaseController{
       $name,
       $address,
       $capacity,
-      $ticketvalue
+      $ticketValue
     );
     $d_cinema->add($new_cinema);
     $redirect = new RedirectResponse('/cines');
