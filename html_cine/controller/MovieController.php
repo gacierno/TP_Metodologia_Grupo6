@@ -3,6 +3,8 @@
 use Controller\BaseController as BaseController;
 use DAO\MovieDao             	as MovieDao;
 use Model\Movie               as Movie;
+use DAO\GenreDao             	as GenreDao;
+use Model\Genre               as Genre;
 use Response\RedirectResponse as RedirectResponse;
 
 class MovieController extends BaseController{
