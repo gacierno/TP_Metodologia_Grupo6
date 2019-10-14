@@ -12,7 +12,9 @@ class MovieController extends BaseController{
   function index(){
 		extract($_GET);
     $d_movie = new MovieDao();
+    $d_genre = new Genre();
     $movies = $d_movie->getList();
+    $genres = $d_genre->getList();
     include("views/movieList.php");
   }
 
