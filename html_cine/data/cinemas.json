@@ -21,24 +21,10 @@
         "ticketValue": "123"
     },
     "4": {
-        "id": 1571143594,
-        "name": "EL nuevito",
-        "address": "asfsffsaasf",
-        "capacity": "142",
-        "ticketValue": "134314"
-    },
-    "5": {
-        "id": 1571143626,
-        "name": "gadagdag",
-        "address": "dgadagdag",
-        "capacity": "351315",
-        "ticketValue": "13535135315"
-    },
-    "6": {
-        "id": 1571143728,
-        "name": "Test Test",
-        "address": "Test 123, Test 123",
-        "capacity": "0",
-        "ticketValue": "0"
+        "id": "1571143865",
+        "name": "gasdggda",
+        "address": "gsasggas",
+        "capacity": "2",
+        "ticketValue": "1"
     }
 }
