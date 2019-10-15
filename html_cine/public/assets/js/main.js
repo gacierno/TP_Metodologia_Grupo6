@@ -143,7 +143,6 @@ function checkArrowsVisibility(){
     leftArrow.fadeOut('fast');
 
     var items = $(moviesSlider).find('.owl-item:not(.cloned)').length;
-    console.log(items);
     if(items > 1){
         rightArrow.fadeIn('fast');
         leftArrow.fadeIn('fast');
