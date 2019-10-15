@@ -600,3 +600,20 @@ body{
         width: 25%;
     }
 }
+
+#movies__not-found-row{
+    height: 60vh;
+    display: none;
+    text-align: center;
+    margin: 0 auto;
+}
+
+#movies__not-found-row .col-12{
+    display: table-cell;
+    vertical-align: middle;;
+}
+
+#movies__not-found-row h2{
+    font-size: 48px;
+    font-family: 'Roboto',sans-serif;
+}

@@ -46,6 +46,8 @@ $(document).ready(function(){
 
     }
 
+    //arrows functionality are binded one time only, as they are independent
+    //of the slider creation
     bindArrows();
 
     $('form #moviefilter__select--genre').on('change',function(event){
@@ -56,11 +58,19 @@ $(document).ready(function(){
         var url = "/peliculas"+ (genre ? "?genero="+genre : "");
         history.pushState({ genre : genre }, "Peliculas", url );
 
-        $('#movielist-slider-container').load( url +" #movielist-slider",function(){
+        $('#movielist-slider-container').load( url +" #movielist-slider",function(data){
+          var newSlider = $(data).find('#movielist-slider');
+          if(newSlider.find('.item').length > 0){
+            $('#movies__not-found-row').css('display','none');
+            builtCarousel = buildCarousel(moviesSlider,true);
+            setMovieInfoCenter();
+            $(moviesSlider).css("opacity","1.0");
+          }
+          else{
+            $('#movies__not-found-row').css('display','table');
+          }
 
-          builtCarousel = buildCarousel(moviesSlider,true);
-          setMovieInfoCenter();
-          $(moviesSlider).css("opacity","1.0");
+          checkArrowsVisibility();
 
         });
 
@@ -106,7 +116,6 @@ function buildCarousel(selector,destroy){
         }
     };
 
-
     return($(selector).owlCarousel( carousel_settings ));
 
 }
@@ -126,4 +135,20 @@ function bindArrows(){
         leftArrow.on('click',function(){
             $(moviesSlider).trigger('prev.owl.carousel');
         });
+}
+
+
+function checkArrowsVisibility(){
+    var rightArrow = $(moviesSlider).closest('.movielist__row').find('.right-arrow').first();
+    var leftArrow = $(moviesSlider).closest('.movielist__row').find('.left-arrow').first();
+    rightArrow.fadeOut('fast');
+    leftArrow.fadeOut('fast');
+
+    var items = $(moviesSlider).find('.owl-item:not(.cloned)').length;
+    console.log(items);
+    if(items > 1){
+        rightArrow.fadeIn('fast');
+        leftArrow.fadeIn('fast');
+    }
+
 }
