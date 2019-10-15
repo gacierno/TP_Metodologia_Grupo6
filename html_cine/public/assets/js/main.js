@@ -115,6 +115,7 @@ function buildCarousel(selector,destroy){
             }
         }
     };
+    bindSliderItems();
 
     return($(selector).owlCarousel( carousel_settings ));
 
@@ -150,4 +151,12 @@ function checkArrowsVisibility(){
         leftArrow.fadeIn('fast');
     }
 
+}
+
+function bindSliderItems(){
+    $(moviesSlider).find('.item').each(function(index){
+        $(this).on('click',function(){
+            $(moviesSlider).trigger('to.owl.carousel',index);
+        })
+    })
 }
