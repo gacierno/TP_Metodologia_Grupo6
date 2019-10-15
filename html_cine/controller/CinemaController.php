@@ -22,9 +22,9 @@ class CinemaController extends BaseController{
     $valid = true;
     extract($data);
     if(
-      !isset($name,$address,$capacity,$ticketValue) &&
-      $capacity > 0 &&
-      $ticketValue > 0
+      !isset($name,$address,$capacity,$ticketValue) ||
+      $capacity < 1 ||
+      $ticketValue <= 1
     ){
       $valid = false;
     }

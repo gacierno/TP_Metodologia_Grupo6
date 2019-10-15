@@ -33,5 +33,12 @@
         "address": "dgadagdag",
         "capacity": "351315",
         "ticketValue": "13535135315"
+    },
+    "6": {
+        "id": 1571143728,
+        "name": "Test Test",
+        "address": "Test 123, Test 123",
+        "capacity": "0",
+        "ticketValue": "0"
     }
 }
