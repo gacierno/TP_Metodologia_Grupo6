@@ -46,6 +46,8 @@ $(document).ready(function(){
 
     }
 
+    //arrows functionality are binded one time only, as they are independent
+    //of the slider creation
     bindArrows();
 
     $('form #moviefilter__select--genre').on('change',function(event){
@@ -54,11 +56,19 @@ $(document).ready(function(){
         var genre = $('#moviefilter__select--genre').val();
         $(moviesSlider).css("opacity","0.5");
         history.pushState({ genre : genre }, "Peliculas", "/peliculas?genero="+genre);
-        $('#movielist-slider-container').load("/peliculas?genero="+genre+" #movielist-slider",function(){
-
-          builtCarousel = buildCarousel(moviesSlider,true);
-          setMovieInfoCenter();
-          $(moviesSlider).css("opacity","1.0");
+        $('#movielist-slider-container').load("/peliculas?genero="+genre+" #movielist-slider",function(data){
+          var newSlider = $(data).find('#movielist-slider');
+          if(newSlider.find('.item').length > 0){
+            $('#movies__not-found-row').css('display','none');
+            builtCarousel = buildCarousel(moviesSlider,true);
+            setMovieInfoCenter();
+            $(moviesSlider).css("opacity","1.0");
+          }
+          else{
+            $('#movies__not-found-row').css('display','table');
+          }
+          
+          checkArrowsVisibility();
 
         });
 
@@ -104,7 +114,6 @@ function buildCarousel(selector,destroy){
         }
     };
 
-    
     return($(selector).owlCarousel( carousel_settings ));
 
 }
@@ -124,4 +133,20 @@ function bindArrows(){
         leftArrow.on('click',function(){
             $(moviesSlider).trigger('prev.owl.carousel');
         });
+}
+
+
+function checkArrowsVisibility(){
+    var rightArrow = $(moviesSlider).closest('.movielist__row').find('.right-arrow').first();
+    var leftArrow = $(moviesSlider).closest('.movielist__row').find('.left-arrow').first();
+    rightArrow.fadeOut('fast');
+    leftArrow.fadeOut('fast');
+
+    var items = $(moviesSlider).find('.owl-item:not(.cloned)').length;
+    console.log(items);
+    if(items > 1){
+        rightArrow.fadeIn('fast');
+        leftArrow.fadeIn('fast');
+    }
+
 }

@@ -30,5 +30,8 @@ $genero = isset($_GET['genero']) ? $_GET['genero'] : "";
         <div class="right-arrow"><img src="/public/assets/images/arrow-right.svg"></div>
         <div class="left-arrow"><img src="/public/assets/images/arrow-left.svg"></div>
     </div>
+    <div id="movies__not-found-row" class="row">
+        <div class="col-12"><h2>NO MOVIES FOUND</h2></div>
+    </div>
 </div>
 <?php include_once('footer.php'); ?>
