@@ -96,97 +96,54 @@ class MovieDao extends BaseDao implements IApiConnector
 
 
 	/**
-	 * getList
-	 * @return Array()
+	 * parseToObjects
+	 * @param Array()
+	 * @return Array(Cunema)
 	 */
 
-	public function getList(){
+	public function parseToObjects( $arr ){
 
 		$output = array();
-		$this->retrieveData();
-
-		foreach ( $this->itemList as $value ) {
-			$movie = new Movie(
-				$value['name'],
-				$value['duration'],
-				$value['language'],
-				$value['image'],
-				$value['genres'],
-				$value['id']
-			);
-
-			array_push( $output, $movie );
+		foreach ( $arr as $value ) {
+			array_push( $output, $this->parseToObject( $value ) );
 		}
 		return $output;
-
 	}
 
 	/**
-	 * getById
-	 * @param integer
-	 * @return mixed
+	 * parseToObject
+	 * @param hashMap
+	 * @return Object
 	 */
-	public function getById( $id ){
 
-		$output = false;
-
-		// THIS SENTENCE VOIDS DATA DELETIONS WHILE UPDATING LIST
-		if( sizeof($this->itemList) == 0) $this->retrieveData();
-
-		foreach ($this->itemList as $value){
-			if( $value['id'] == $id ){
-				$output = new Movie(
-					$value['name'],
-					$value['duration'],
-					$value['language'],
-					$value['image'],
-					$value['genres'],
-					$value['id']
-				);
-			}
-		}
-		return $output;
-
+	public function parseToObject( $arr ){
+		$movie = new Movie(
+			$arr['name'],
+			$arr['duration'],
+			$arr['language'],
+			$arr['image'],
+			$arr['genres'],
+			$arr['id']
+		);
+		return $movie;
 	}
 
-	public function add( $obj ){
-
-		if( !$this->getById( $obj->getId() ) ){
-
-			$value['name'] = $obj->getName();
-			$value['duration'] = $obj->getDuration();
-			$value['language'] = $obj->getLanguage();
-			$value['image'] = $obj->getImage();
-			$value['genres'] = $obj->getGenres();
-			$value['id'] = $obj->getId();
-
-			array_push( $this->itemList, $value );
-			$this->SaveAll();
-			return true;
-		}
-		return false;
-
+	/**
+	 * parseToHash
+	 * @param object
+	 */
+	
+	public function parseToHash( $obj ){
+		return array(
+			'name' => $obj->getName(),
+			'duration' => $obj->getDuration(),
+			'language' => $obj->getLanguage(),
+			'image' => $obj->getImage(),
+			'genres' => $obj->getGenres(),
+			'id' => $obj->getId()
+		);
 	}
 
-	public function update( $id , $obj ){
-		$this->retrieveData();
-		foreach ( $this->itemList as $key=>$post) {
-		    if($post['id'] == $id){
-
-		    	$value['name'] = $obj->getName();
-		    	$value['duration'] = $obj->getDuration();
-		    	$value['language'] = $obj->getLanguage();
-		    	$value['image'] = $obj->getImage();
-		    	$value['genres'] = $obj->getGenres();
-		    	$value['id'] = $obj->getId();
-
-		        $this->itemList[$key] = $value;
-		        $this->SaveAll();
-		        return true;
-		    }
-		}
-		return false;
-	}
 
 	/**
 	 * getByGenre

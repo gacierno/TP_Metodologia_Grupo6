@@ -7,23 +7,61 @@ abstract class BaseDao{
     protected $itemType;
 
 
-    function getList(){
+    public function getList(){
+
+        $output = array();
+        $this->retrieveData();
+        return $this->parseToObjects( $this->itemList );
 
     }
 
-    function getById( $id){
+    public function getById( $id ){
+        $output = false;
+        // THIS SENTENCE VOIDS DATA DELETIONS WHILE UPDATING LIST
+        if( sizeof($this->itemList) == 0 ) $this->retrieveData();
 
+        foreach ($this->itemList as $value){
+            if( $value['id'] == $id ) {
+                $output = $this->parseToObject($value);
+            };
+        }
+        return $output;
     }
 
-    function add( $obj ){
 
+    public function add( $obj ){
+        if( !$this->getById( $obj->getId() ) ){ //getById executes retrieve data
+
+            if( is_null($obj->getId()) ){
+                $obj->setId( time() );  // SETTING A TIMESTAMP AS CINEMA ID
+            }
+            $hash = $this->parseToHash( $obj );
+            array_push( $this->itemList , $hash );
+            $this->SaveAll();
+            return true;
+        }
+        return false;
     }
 
-    function update( $id , $obj ){
 
+
+
+    public function update( $id , $obj ){
+        $this->retrieveData();
+        foreach ( $this->itemList as $key=>$post) {
+            if($post['id'] == $id){
+                $hash = $this->parseToHash( $obj );
+                $this->itemList[$key] = $hash;
+                $this->SaveAll();
+                return true;
+            }
+        }
+        return false;
     }
 
-    function delete( $id ){
+
+
+    public function delete( $id ){
         $this->retrieveData();
         foreach ( $this->itemList as $key => $post) {
             if( $post['id'] == $id ){
@@ -36,24 +74,29 @@ abstract class BaseDao{
 
     }
 
-    protected function retrieveData(){
+    public function retrieveData(){
 
         $jsonList = ( file_exists( dirname(__DIR__).'/data/'. $this->itemType .'.json' ) ) ? file_get_contents( dirname(__DIR__).'/data/'. $this->itemType .'.json' ) : '[]' ;
         $this->itemList = json_decode($jsonList, TRUE);
 
 	}
 
-    protected function SaveAll(){
+    public function SaveAll(){
 
         $listToFile = json_encode( $this->itemList, JSON_PRETTY_PRINT );
         file_put_contents( dirname(__DIR__).'/data/'. $this->itemType .'.json', $listToFile );
     
     }
 
-    protected function setItemType( $type ){
+    public function setItemType( $type ){
         $this->itemType = $type;
     }
 
+    public function parseToObjects( $arr ){ }
+
+    public function parseToObject( $hash ){ }
+
+    public function parseToHash( $obj ){ }
 }
 
 

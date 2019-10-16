@@ -27,108 +27,45 @@ class CinemaDao extends BaseDao
 
 
 	/**
-	 * saveDataToJson
-	 * @return Array()
+	 * parseToObjects
+	 * @param Array()
+	 * @return Array(Cunema)
 	 */
 
-	public function getList(){
+	public function parseToObjects( $arr ){
 
 		$output = array();
-
-		$this->retrieveData();
-
-		foreach ( $this->itemList as $value ) {
-			$cine = new Cinema(
-				$value['name'],
-				$value['address'],
-				$value['capacity'],
-				$value['ticketValue'],
-				$value['id']
-			);
-
-			array_push( $output, $cine );
+		foreach ( $arr as $value ) {
+			array_push( $output, $this->parseToObject( $value ) );
 		}
 		return $output;
-
 	}
-
 
 	/**
-	 * getById
-	 * @param integer
-	 * @return mixed
+	 * parseToObject
+	 * @param hashMap
+	 * @return Object
 	 */
 
-	public function getById( $id ){
-
-		$output = false;
-
-		// THIS SENTENCE VOIDS DATA DELETIONS WHILE UPDATING LIST
-		if( sizeof($this->itemList) == 0 ) $this->retrieveData();
-
-		foreach ($this->itemList as $value){
-			if( $value['id'] == $id ) {
-				$output = new Cinema(
-					$value['name'],
-					$value['address'],
-					$value['capacity'],
-					$value['ticketValue'],
-					$value['id']
-				);
-			};
-		}
-
-		return $output;
-
+	public function parseToObject( $arr ){
+		$cine = new Cinema(
+			$arr['name'],
+			$arr['address'],
+			$arr['capacity'],
+			$arr['ticketValue'],
+			$arr['id']
+		);
+		return $cine;
 	}
 
-
-	/**
-	 * add
-	 * @param Cinema
-	 */
-	public function add( $obj ){
-		if( !$this->getById( $obj->getId() ) ){ //getById executes retrieve data
-
-			if( is_null($obj->getId()) ){
-				$obj->setId( time() );  // SETTING A TIMESTAMP AS CINEMA ID
-			}
-
-			$cinemaHash = array(
-				'id' 		=> $obj->getId(),
-				'name' 		=> $obj->getName(),
-				'address' 	=> $obj->getAddress(),
-				'capacity'	=> $obj->getCapacity(),
-				'ticketValue' => $obj->getTicketValue()
-			);
-
-			array_push( $this->itemList , $cinemaHash );
-			$this->SaveAll();
-			return true;
-		}
-		return false;
-	}
-
-
-	public function update( $id , $obj ){
-		$this->retrieveData();
-		foreach ( $this->itemList as $key=>$post) {
-		    if($post['id'] == $id){
-
-		    	$cinemaHash = array(
-					'id' 		=> $obj->getId(),
-					'name' 		=> $obj->getName(),
-					'address' 	=> $obj->getAddress(),
-					'capacity'	=> $obj->getCapacity(),
-					'ticketValue' => $obj->getTicketValue()
-				);
-
-		        $this->itemList[$key] = $cinemaHash;
-		        $this->SaveAll();
-		        return true;
-		    }
-		}
-		return false;
+	public function parseToHash( $obj ){
+		return array(
+			'id' 		=> $obj->getId(),
+			'name' 		=> $obj->getName(),
+			'address' 	=> $obj->getAddress(),
+			'capacity'	=> $obj->getCapacity(),
+			'ticketValue' => $obj->getTicketValue()
+		);
 	}
 
 }

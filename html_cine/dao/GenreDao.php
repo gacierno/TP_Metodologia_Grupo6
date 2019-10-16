@@ -76,83 +76,46 @@ class GenreDao extends BaseDao implements IApiConnector
 
 
 	/**
-	 * saveDataToJson
-	 * @return Array() 
+	 * parseToObjects
+	 * @param Array()
+	 * @return Array(Cunema)
 	 */
 
-	public function getList(){
+	public function parseToObjects( $arr ){
 
 		$output = array();
-		$this->retrieveData();
-
-		foreach ( $this->itemList as $value ) {
-			$genre = new Genre(
-				$value['id'],
-				$value['name']
-			);
-
-			array_push( $output, $genre );
-		}
-
-		return $output;
-	}
-
-	/**
-	 * getById
-	 * @param integer
-	 * @return mixed
-	 */
-
-	public function getById( $id ){
-
-		$output = false;
-
-		// THIS SENTENCE VOIDS DATA DELETIONS WHILE UPDATING LIST
-		if( sizeof($this->itemList) == 0 ) $this->retrieveData(); 
-
-		foreach ($this->itemList as $value){
-			if( $value['id'] == $id ){
-				$output = new Genre(
-					$value['id'],
-					$value['name']
-				);
-			} 
-
+		foreach ( $arr as $value ) {
+			array_push( $output, $this->parseToObject( $value ) );
 		}
 		return $output;
 	}
 
 	/**
-	 * getById
-	 * @param integer
+	 * parseToObject
+	 * @param hashMap
+	 * @return Object
 	 */
-	public function add( $obj ){
-		if( !$this->getById( $obj->getId() ) ){
-			$genreHash = array(
-				'id' => $obj->getId(),
-				'name' => $obj->getName()
+
+	public function parseToObject( $arr ){
+		$genre = new Genre(
+				$arr['id'],
+				$arr['name']
 			);
-			array_push( $this->itemList , $genreHash );
-			$this->SaveAll();
-		}
+		return $genre;
 	}
 
+	/**
+	 * parseToHash
+	 * @param object
+	 */
 
-	public function update( $id , $obj ){
-		$this->retrieveData();
-		foreach ( $this->itemList as $key=>$post) {
-		    if($post['id'] == $id){
-
-		    	$value['id'] = $obj->getName();
-		    	$value['name'] = $obj->getDuration();
-
-		        $this->itemList[$key] = $value;
-		        $this->SaveAll();
-		        return true;
-		    }
-		}
-		return false;
+	public function parseToHash( $obj ){
+		return array(
+			'id' => $obj->getId(),
+			'name' => $obj->getName()
+		);
 	}
+
 
 }
  ?>
