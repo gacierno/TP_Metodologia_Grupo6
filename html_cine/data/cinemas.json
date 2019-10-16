@@ -1,5 +1,33 @@
 [
     {
+        "id": 2,
+        "name": "Ambassador",
+        "address": "El centro",
+        "capacity": "300",
+        "ticketValue": "200"
+    },
+    {
+        "id": "3",
+        "name": "El aldrey",
+        "address": "La vieja Terminal",
+        "capacity": "1000000",
+        "ticketValue": "123"
+    },
+    {
+        "id": 1571084161,
+        "name": "Cine Don Bosco",
+        "address": "Test 123, Test 123",
+        "capacity": "New york",
+        "ticketValue": "123"
+    },
+    {
+        "id": "1571143865",
+        "name": "gasdggda",
+        "address": "gsasggas",
+        "capacity": "2",
+        "ticketValue": "1"
+    },
+    {
         "id": 1571237913,
         "name": "Cine del Paseo",
         "address": "Diagonal Alberdi 46",
