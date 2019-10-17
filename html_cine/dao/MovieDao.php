@@ -53,7 +53,7 @@ class MovieDao extends BaseDao implements IApiConnector
 	 */
 	public function fetch(){
 
-		$this->retrieveData();
+		$this->itemList = $this->retrieveData();
 
 		$rawList = $this->getApi();
 
@@ -155,7 +155,7 @@ class MovieDao extends BaseDao implements IApiConnector
 		$output = array();
 
 		// THIS SENTENCE VOIDS DATA DELETIONS WHILE UPDATING LIST
-		if( sizeof($this->itemList) == 0) $this->retrieveData();
+		if( sizeof($this->itemList) == 0) $this->itemList = $this->retrieveData();
 
 		foreach ($this->itemList as $movie){
 			if( array_search( $id, $movie['genres'] ) ){

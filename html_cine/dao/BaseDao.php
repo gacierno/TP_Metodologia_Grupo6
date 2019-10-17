@@ -10,7 +10,7 @@ abstract class BaseDao{
     public function getList(){
 
         $output = array();
-        $this->retrieveData();
+        $this->itemList = $this->retrieveData();
         return $this->parseToObjects( $this->itemList );
 
     }
@@ -18,7 +18,7 @@ abstract class BaseDao{
     public function getById( $id ){
         $output = false;
         // THIS SENTENCE VOIDS DATA DELETIONS WHILE UPDATING LIST
-        if( sizeof($this->itemList) == 0 ) $this->retrieveData();
+        if( sizeof($this->itemList) == 0 ) $this->itemList =  $this->retrieveData();
 
         foreach ($this->itemList as $value){
             if( $value['id'] == $id ) {
@@ -47,7 +47,7 @@ abstract class BaseDao{
 
 
     public function update( $id , $obj ){
-        $this->retrieveData();
+        $this->itemList = $this->retrieveData();
         foreach ( $this->itemList as $key=>$post) {
             if($post['id'] == $id){
                 $hash = $this->parseToHash( $obj );
@@ -62,7 +62,7 @@ abstract class BaseDao{
 
 
     public function delete( $id ){
-        $this->retrieveData();
+        $this->itemList = $this->retrieveData();
         foreach ( $this->itemList as $key => $post) {
             if( $post['id'] == $id ){
                 unset($this->itemList[$key]);
@@ -77,7 +77,7 @@ abstract class BaseDao{
     public function retrieveData(){
 
         $jsonList = ( file_exists( dirname(__DIR__).'/data/'. $this->itemType .'.json' ) ) ? file_get_contents( dirname(__DIR__).'/data/'. $this->itemType .'.json' ) : '[]' ;
-        $this->itemList = json_decode($jsonList, TRUE);
+        return json_decode($jsonList, TRUE);
 
 	}
 

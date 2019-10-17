@@ -42,7 +42,7 @@ class GenreDao extends BaseDao implements IApiConnector
 	 */
 	public function fetch(){
 
-		$this->retrieveData();
+		$this->itemList = $this->retrieveData();
 
 		$rawList = $this->getGenresFromApi();
 
