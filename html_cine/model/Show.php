@@ -5,21 +5,36 @@ namespace model;
  */
 class Show
 {
-	
+	private $id;
 	private $day;
 	private $time;
     private $movie;
     private $cinema;
 
-	function __construct( $day = '1980-01-01', $time = '00:00', $movie = null, $cinema = null )
+	function __construct( $day = '1980-01-01', $time = '00:00', $movie = null, $cinema = null, $id = null )
 	{
+        if( $id != null ) $this->setId($id);
 		$this->setTime($time);
 		$this->setDay($day);
         $this->setMovie($movie);
         $this->setCinema($cinema);
 	}
 
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
+    /**
+     * @param mixed $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
 
     /**
      * @return mixed
