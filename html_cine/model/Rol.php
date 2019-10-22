@@ -3,19 +3,19 @@ namespace model;
 /**
  * 
  */
-class Count
+class Rol
 {
 
 	private $id;
 	private $name;
+	private $description;
 	
-	function __construct($name, $id)
+	function __construct($name, $id, $description)
 	{
+		$this->setDescription($description);
 		$this->setId($id);
-		$this->setName($name);
+		$this->setName($name);	
 	}
-
-
 
     /**
      * @return mixed
@@ -47,6 +47,22 @@ class Count
     public function setName($name)
     {
         $this->name = $name;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param mixed $description
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
     }
 }
  ?>
