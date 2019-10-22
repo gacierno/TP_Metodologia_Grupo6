@@ -11,9 +11,13 @@
  	private $amount;
  	private $count;		//	:int id account
  	
- 	function __construct(argument)
+ 	function __construct( $authCode, $date, $amount, $count, $id )
  	{
- 		# code...
+ 		$this->setId($id);
+ 		$this->setAmount($amount);
+ 		$this->setCount($count);
+ 		$this->setDate($date);
+ 		$this->setAuthCode($authCode);
  	}
  
     /**

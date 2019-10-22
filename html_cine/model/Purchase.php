@@ -11,9 +11,12 @@
 		private $user;		//	:int user id
 
 		
-		function __construct(argument)
+		function __construct( $user, $purchase, $id, $qr )
 		{
-			# code...
+			$this->setId($id);
+			$this->setPurchase($purchase);
+			$this->setQr($qr);
+			$this->setUser($user);
 		}
 
 
