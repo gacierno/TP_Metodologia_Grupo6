@@ -12,6 +12,9 @@
 	include_once dirname(__DIR__).'/dao/MovieDao.php';
 	include_once dirname(__DIR__).'/dao/GenreDao.php';
 
+	include_once dirname(__DIR__).'/dao/Connection.php';
+	include_once dirname(__DIR__).'/dao/QueryType.php';
+
 	include_once dirname(__DIR__).'/config/settings.php';
 
 	/*
@@ -125,14 +128,41 @@
 
 
 
-	$data = new dao\MovieDao();
+	// $data = new dao\MovieDao();
 
-	$data->fetch();
+	// $data->fetch();
 
-	$list = $data->getList();
+	// $list = $data->getList();
+
+	// $query = "INSERT INTO ". "Genres" ." ( id_genre, genre_name ) VALUES (:id, :name )";
+
+	// $parameters["id"] =  15;
+	// $parameters["name"] = "peperino";
+
+	// $connection->ExecuteNonQuery($query, $parameters);
+          
+	// $query = "create database moviepass;";
+         
+    $query = "select * from ". "Genres";
+
+	$connection = dao\Connection::GetInstance();
+
+	$fafa = $connection->Execute($query, $parameters);
 
 
 
+	// $connection = new PDO("mysql:host=localhost;dbname=moviepass", 'root', 'examplepass');
+
+	// $connection->ExecuteNonQuery($query, $parameters);
+
+	// $servername = "mysql_db";
+	// $username = "root";
+	// $password = "examplepass";
+
+	// // Create connection
+	// $conn = mysqli_connect($servername, $username, $password);
+
+	// Check connection
 
 
  ?>

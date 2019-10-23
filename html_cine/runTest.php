@@ -11,33 +11,25 @@ include_once './views/header.php';
 			<ul>
 				<li style="color:#FFF;">
 					<span class="test-name">CinemaDao :: getList().........</span>
-					<spant class="test-result"><?php echo ( testGetList( $cinemaDao,$cinemaForTest ) )?'PASS':'FAIL'; ?></spant>
+					<spant class="test-result"><?php //echo ( testGetList( $cinemaDao,$cinemaForTest ) )?'PASS':'FAIL'; ?></spant>
 				</li>
 				<li style="color:#FFF;">
 					<span class="test-name">CinemaDao :: getById().........</span>
-					<spant class="test-result"><?php echo ( testGetById( $cinemaDao,$cinemaForTest ) )?'PASS':'FAIL'; ?></spant>
+					<spant class="test-result"><?php //echo ( testGetById( $cinemaDao,$cinemaForTest ) )?'PASS':'FAIL'; ?></spant>
 				</li>
 			</ul>
-
+	<pre style="color: white"><?php print_r($_ENV) ?></pre>
 		</section>
  	</div>
 	
-
+<pre>
+	<?php 
+print_r($fafa);
+ ?>
+ 	
+ </pre>
 
 
 <?php include_once './views/footer.php'; ?>
 
 
-    function getById( $id){
-
-    }
-
-    function add( $obj ){
-
-    }
-
-    function update( $id , $obj ){
-
-    }
-
-    function delete( $id , $obj ){

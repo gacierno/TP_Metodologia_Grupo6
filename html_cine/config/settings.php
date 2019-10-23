@@ -22,7 +22,15 @@
 
 	define( "API_GENRE", "genre/movie/list" );
 
-	
+	// DB
 
+	// define( "DB_HOST", $_ENV['HOSTNAME'] );
+	// define( "DB_HOST", "tp_metologia_grupo6_mysql_db_1" );
+	// define( "DB_HOST", "2b2ce21d19f3" );
+	define( "DB_HOST", "mysql" );
+	
+	define( "DB_NAME", "moviepass" );
+	define( "DB_USER", "root" );
+	define( "DB_PASS", "examplepass" );
 
  ?>
