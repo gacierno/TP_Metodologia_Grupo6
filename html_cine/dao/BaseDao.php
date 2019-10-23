@@ -1,31 +1,45 @@
 <?php
 namespace dao;
 
+use dao\Connection as Connection;
+
 abstract class BaseDao{
 
     protected $itemList = array();
-    protected $itemType;
+    protected $tableName;
+    protected $singleType;
+    protected $connection;
 
 
     public function getList(){
 
         $output = array();
-        $this->itemList = $this->retrieveData();
-        return $this->parseToObjects( $this->itemList );
+        $query = "select * from ". $this->tableName;
+        try {
+            $this->connection = Connection::GetInstance();
+            $output = $this->connection->Execute( $query );
+        } catch (PDOException $e) {
+            throw $e;
+        } catch (Exception $e) {
+            throw $e;
+        }
+        return $this->parseToObjects( $output );
 
     }
 
     public function getById( $id ){
         $output = false;
-        // THIS SENTENCE VOIDS DATA DELETIONS WHILE UPDATING LIST
-        if( sizeof($this->itemList) == 0 ) $this->itemList =  $this->retrieveData();
-
-        foreach ($this->itemList as $value){
-            if( $value['id'] == $id ) {
-                $output = $this->parseToObject($value);
-            };
+        $query = "select * from ". $this->tableName . " where id_". strtolower( $this->singleType ) ." = ". $id.";";
+        try {
+            $this->connection = Connection::GetInstance();
+            $output = $this->connection->Execute( $query );
+        } catch (PDOException $e) {
+            throw $e;
+        } catch (Exception $e) {
+            throw $e;
         }
-        return $output;
+
+        return $this->parseToObjects( $output );
     }
 
 
@@ -74,22 +88,13 @@ abstract class BaseDao{
 
     }
 
-    public function retrieveData(){
 
-        $jsonList = ( file_exists( dirname(__DIR__).'/data/'. $this->itemType .'.json' ) ) ? file_get_contents( dirname(__DIR__).'/data/'. $this->itemType .'.json' ) : '[]' ;
-        return json_decode($jsonList, TRUE);
-
-	}
-
-    public function SaveAll(){
-
-        $listToFile = json_encode( $this->itemList, JSON_PRETTY_PRINT );
-        file_put_contents( dirname(__DIR__).'/data/'. $this->itemType .'.json', $listToFile );
-    
+    public function setTableName( $type ){
+        $this->tableName = $type;
     }
 
-    public function setItemType( $type ){
-        $this->itemType = $type;
+    public function setSingleType( $type ){
+        $this->singleType = $type;
     }
 
     public function parseToObjects( $arr ){ }

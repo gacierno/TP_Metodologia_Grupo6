@@ -143,11 +143,11 @@
           
 	// $query = "create database moviepass;";
          
-    $query = "select * from ". "Genres";
+ //    $query = "select * from ". "Genres";
 
-	$connection = dao\Connection::GetInstance();
+	// $connection = dao\Connection::GetInstance();
 
-	$fafa = $connection->Execute($query, $parameters);
+	// $fafa = $connection->Execute($query, $parameters);
 
 
 
@@ -163,6 +163,11 @@
 	// $conn = mysqli_connect($servername, $username, $password);
 
 	// Check connection
+
+
+	$genDao = new dao\GenreDao();
+
+	$fafa = $genDao->getById(15);
 
 
  ?>

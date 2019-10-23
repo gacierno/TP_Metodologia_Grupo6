@@ -14,7 +14,8 @@ class GenreDao extends BaseDao implements IApiConnector
 {
 
 	function __construct(){
-		parent::setItemType( 'genres' );
+		parent::setTableName( 'Genres' );
+		parent::setSingleType( 'genre' );
 	}
 
 

@@ -13,7 +13,8 @@ class CinemaDao extends BaseDao
 {
 
 	function __construct(){
-		parent::setItemType( 'cinemas' );
+		parent::setTableName( 'Cinemas' );
+		parent::setSingleType( 'cinema' );
 	}
 
 

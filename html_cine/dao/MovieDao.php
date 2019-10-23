@@ -14,7 +14,8 @@ class MovieDao extends BaseDao implements IApiConnector
 {
 
 	function __construct(){
-		parent::setItemType( 'movies' );
+		parent::setTableName( 'Movies' );
+		parent::setSingleType( 'movie' );
 	}
 
 	/*
