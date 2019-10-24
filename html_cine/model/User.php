@@ -9,8 +9,8 @@ class User
 	private $id;
 	private $email;
 	private $pass;
-	private $rol;		// :int rol id
-	private $profile;	//	:int profile id
+	private $rol;		
+	private $profile;
 
 	function __construct( $email, $pass, $rol, $profile, $id )
 	{
