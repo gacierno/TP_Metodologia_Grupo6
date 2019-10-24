@@ -9,18 +9,17 @@ class User
 	private $id;
 	private $email;
 	private $pass;
-	private $rol;		
+	private $role;		
 	private $profile;
 
-	function __construct( $email, $pass, $rol, $profile, $id )
+	function __construct( $options )
 	{
-		$this->setEmail($email);
-		$this->setId($id);
-		$this->setPass($pass);
-		$this->setProfile($profile);
-		$this->setRol($rol);
+		$this->setEmail( (isset($options['email']) ) ? $options['email'] : '' );
+		$this->setId( (isset($options['id']) ) ? $options['id'] : null );
+		$this->setPass( (isset($options['pass']) ) ? $options['pass'] : '' );
+		$this->setProfile( (isset($options['profile']) ) ? $options['profile'] : null );
+		$this->setRole( (isset($options['role']) ) ? $options['role'] : null );
 	}
-
 
 
     /**
@@ -74,17 +73,17 @@ class User
     /**
      * @return mixed
      */
-    public function getRol()
+    public function getRole()
     {
-        return $this->rol;
+        return $this->role;
     }
 
     /**
-     * @param mixed $rol
+     * @param mixed $role
      */
-    public function setRol($rol)
+    public function setRole($role)
     {
-        $this->rol = $rol;
+        $this->role = $role;
     }
 
     /**

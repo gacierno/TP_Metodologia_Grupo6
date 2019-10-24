@@ -8,24 +8,22 @@
 	class Movie
 	{
 		
-		private $id;	
+		private $id;
+		private $apiId;	
 		private $name;
 		private $duration;
 		private $language;
 		private $image;
 		private $genres;
 
-		function __construct( $name = 'Unnamed', $duration = 0, $language = 'Unavailable', $image = '/assets/default.jpg', $genres = array(), $id = 0 ){
-
-
-			$this->setName($name);
-			$this->setDuration($duration);
-			$this->setLanguage($language);
-			$this->setImage($image);
-			$this->genres = array();
-			foreach ($genres as $genre ) {
-				$this->addGenre( $genre );
-			}
+		function __construct( $options ){
+			$this->setName( 	(isset($options['name'] ) ) 	?$options['name']: '' );
+			$this->setDuration( (isset($options['duration'] ) ) ?$options['duration']: 0 );
+			$this->setLanguage( (isset($options['language'] ) ) ?$options['language']: '' );
+			$this->setImage( 	(isset($options['image'] ) ) 	?$options['image']: '' );
+			$this->setGenres( 	(isset($options['genres'] ) ) 	?$options['genres']: array() );
+			$this->setId( 		(isset($options['id'] ) )		?$options['id']: null );
+			$this->setApiId( 	(isset($options['apiId'] ) ) 	?$options['apiId']: null );	
 		}
 	
 		/**
@@ -117,10 +115,33 @@
 	    }
 
 	    /**
+	     * @param array : Genre
+	     */
+	    public function setGenres( $genres )
+	    {
+	        return $this->genres = $genres;
+	    }
+
+	    /**
 	    *	@param Genre : $genre
 	    */
 	    public function addGenre( $genre ){
 	    	array_push($this->genres, $genre );
+	    }
+
+	    /**
+	     * @return array
+	     */
+	    public function getApiId()
+	    {
+	        return $this->apiId;
+	    }
+
+	    /**
+	    *	@param 
+	    */
+	    public function setApiId( $apiId ){
+	    	$this->apiId = $apiId;
 	    }
 
 	}

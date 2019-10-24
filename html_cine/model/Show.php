@@ -10,12 +10,12 @@ class Show
 	private $time;
     private $movie;
 
-	function __construct( $day = '1980-01-01', $time = '00:00', $movie = null, $id = null )
+	function __construct( $options )
 	{
-        if( $id != null ) $this->setId($id);
-		$this->setTime($time);
-		$this->setDay($day);
-        $this->setMovie($movie);
+        $this->setId( (isset($options['id']) ) ? $options['id'] : null );
+		$this->setTime( (isset($options['time']) ) ? $options['time'] : null );
+		$this->setDay( (isset($options['day']) ) ? $options['day'] : null );
+        $this->setMovie( (isset($options['movie']) ) ? $options['movie'] : null );
 	}
 
     /**

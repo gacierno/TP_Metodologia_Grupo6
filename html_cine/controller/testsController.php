@@ -4,6 +4,9 @@
 	include_once dirname(__DIR__).'/model/Genre.php';
 	include_once dirname(__DIR__).'/model/Movie.php';
 	// include_once dirname(__DIR__).'/model/Show.php';
+	include_once dirname(__DIR__).'/model/Role.php';
+	include_once dirname(__DIR__).'/model/Profile.php';
+	include_once dirname(__DIR__).'/model/User.php';
 
 
 	include_once dirname(__DIR__).'/dao/IApiConnector.php';
@@ -114,11 +117,53 @@
 
 
 
+	/*
+	 *	hardcoded rol to perform tests
+	 */
+	$testRole = new model\Role(
+		array(
+			'id' => -1,
+			'name' => 'test rol name',
+			'description' => 'test rol description'
+		)
+	);
+
+	/*
+	 *	hardcoded profile to perform tests
+	 */
+	$testProfile = new model\Profile(
+		array(
+			'id' => -1,
+			'name' => 'test profile name',
+			'apellido' => 'test profile apellido',
+			'dni' => 'test profile dni'
+		)
+	);
+
+	/*
+	 *	hardcoded user to perform tests
+	 */
+	$testUser = new model\User(
+		array(
+			'id' => -1,
+			'email' => 'test user name',
+			'pass' => 'test user apellido',
+			'role' => $testRole,
+			'profile' => $testProfile
+		)
+	);
+
 
 	/*
 	 *	hardcoded cinema to perform tests
 	 */
-	$cinemaForTest = new model\Cinema( "Test Cinema","Test Address",-1,-1,-1 );
+	$testCine = new model\Cinema(array (
+		'id' => -1,
+		'name' => 'some name',
+		'address' => 'address test',
+		'capacity' => 3,
+		'ticketValue' => 100,
+	));
 	/*
 	 * Instance CinemaDao for testing
 	 */
@@ -143,11 +188,11 @@
           
 	// $query = "create database moviepass;";
          
-    $query = "select * from ". "Genres";
+ //    $query = "select * from ". "Genres";
 
-	$connection = dao\Connection::GetInstance();
+	// $connection = dao\Connection::GetInstance();
 
-	$fafa = $connection->Execute($query, $parameters);
+	// $fafa = $connection->Execute($query, $parameters);
 
 
 
@@ -163,6 +208,8 @@
 	// $conn = mysqli_connect($servername, $username, $password);
 
 	// Check connection
+
+	
 
 
  ?>

@@ -6,12 +6,14 @@
 	{
 
 		private $id;
+		private $apiId;
 		private $name;
 
-		function __construct( $id = 0, $name = '' )
+		function __construct( $options )
 		{
-			$this->setId( $id );
-			$this->setName( $name );
+			$this->setId( 	( isset($options['id']) ) 	? $options['id'] : null );
+			$this->setName( ( isset($options['name']) ) ? $options['name'] : '' );
+			$this->setName( (isset($options['apiId']) ) ? $options['apiId'] : null );
 		}
 
 	    /**
@@ -44,6 +46,21 @@
 	    public function setName($name)
 	    {
 	        $this->name = $name;
+	    }
+
+	    /**
+	     * @return array
+	     */
+	    public function getApiId()
+	    {
+	        return $this->apiId;
+	    }
+
+	    /**
+	    *	@param 
+	    */
+	    public function setApiId( $apiId ){
+	    	$this->apiId = $apiId;
 	    }
 	}
 
