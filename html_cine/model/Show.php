@@ -9,15 +9,13 @@ class Show
 	private $day;
 	private $time;
     private $movie;
-    private $cinema;
 
-	function __construct( $day = '1980-01-01', $time = '00:00', $movie = null, $cinema = null, $id = null )
+	function __construct( $day = '1980-01-01', $time = '00:00', $movie = null, $id = null )
 	{
         if( $id != null ) $this->setId($id);
 		$this->setTime($time);
 		$this->setDay($day);
         $this->setMovie($movie);
-        $this->setCinema($cinema);
 	}
 
     /**
@@ -84,20 +82,5 @@ class Show
         $this->movie = $movie;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getCinema()
-    {
-        return $this->cinema;
-    }
-
-    /**
-     * @param mixed $cinema
-     */
-    public function setCinema($cinema)
-    {
-        $this->cinema = $cinema;
-    }
 }
  ?>

@@ -1,6 +1,6 @@
-create database movie_pass;
+create database if not exists moviepass;
 
-use movie_pass;
+use moviepass;
 
 create table Cinemas(
 	cinema_id int not null,
