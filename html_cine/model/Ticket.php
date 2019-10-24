@@ -10,12 +10,12 @@ class Ticket
 	private $purchase;
 	private $show;
 
-	function __construct( $id = null, $qrCode = null, $purchase = null, $show = null )
+	function __construct( $options )
 	{
-		if( $id != null )		$this->setId($id);
-		if( $qrCode != null )	$this->setQrCode($qrCode);
-		if( $purchase != null )	$this->setPurchase($purchase);
-		if( $show != null )		$this->setShow($show);
+		$this->setId( (isset($options['id']) ) ? $options['id'] : null );
+		$this->setQrCode( (isset($options['qrCode']) ) ? $options['qrCode'] : null );
+		$this->setPurchase( (isset($options['purchase']) ) ? $options['purchase'] : null );
+		$this->setShow( (isset($options['show']) ) ? $options['show'] : null );
 
 	}
 

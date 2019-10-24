@@ -18,16 +18,10 @@ include_once './views/header.php';
 					<spant class="test-result"><?php //echo ( testGetById( $cinemaDao,$cinemaForTest ) )?'PASS':'FAIL'; ?></spant>
 				</li>
 			</ul>
-	<pre style="color: white"><?php print_r($_ENV) ?></pre>
+	<pre style="color: white"><?php print_r($testUser) ?></pre>
 		</section>
  	</div>
 	
-<pre>
-	<?php 
-print_r($fafa);
- ?>
- 	
- </pre>
 
 
 <?php include_once './views/footer.php'; ?>

@@ -12,12 +12,12 @@ class Profile
 	private $dni;
 
 
-	function __construct( $nomnre, $apellido, $dni, $id )
+	function __construct( $options )
 	{
-		$this->setApellido($apellido);
-		$this->setDni($dni);
-		$this->setId($id);
-		$this->setNombre($nombre);
+		$this->setApellido(   (isset($options['apellido']) )?$options['apellido']: '' );
+		$this->setDni(        (isset($options['dni'])      )?$options['dni']: null );
+		$this->setId(         (isset($options['id'])       )?$options['id']: null );
+		$this->setNombre(     (isset($options['nombre'])   )?$options['nombre']: '' );
 	}
 
 

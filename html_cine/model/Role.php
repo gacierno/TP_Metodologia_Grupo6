@@ -3,18 +3,18 @@ namespace model;
 /**
  * 
  */
-class Rol
+class Role
 {
 
 	private $id;
 	private $name;
 	private $description;
 	
-	function __construct($name, $id, $description)
+	function __construct( $options )
 	{
-		$this->setDescription($description);
-		$this->setId($id);
-		$this->setName($name);	
+		$this->setDescription( (isset($options['description']) )? $options['description'] : null ) ;
+		$this->setId( (isset($options['id']) )? $options['id'] : null ) ;
+		$this->setName( (isset($options['name']) )? $options['name'] : null ) ;	
 	}
 
     /**

@@ -11,12 +11,12 @@
 		private $user;		//	:int user id
 
 		
-		function __construct( $user, $purchase, $id, $qr )
+		function __construct( $options )
 		{
-			$this->setId($id);
-			$this->setPurchase($purchase);
-			$this->setQr($qr);
-			$this->setUser($user);
+			$this->setId( 		(isset($options['id'])		)?$options['id']:null );
+			$this->setPurchase( (isset($options['purchase']))?$options['purchase']:null );
+			$this->setQr( 		(isset($options['qr'])		)?$options['qr']:null );
+			$this->setUser( 	(isset($options['user'])	)?$options['user']:null );
 		}
 
 
