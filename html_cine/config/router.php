@@ -2,30 +2,32 @@
 use Router\Router as Router;
 use Response\ErrorResponse as ErrorResponse;
 use Response\RedirectResponse as RedirectResponse;
+use Controller\AuthenticationController as AuthenticationController;
 use Controller\CinemaController as CinemaController;
 use Controller\MovieController as MovieController;
 
+
 $router = new Router();
+// MIDDLEWARES ======================================================================
+$router->use('.*',                    array( new AuthenticationController(),'authenticate' ));
 
-// GET
-$router->get('\/cines\/nuevo', array( new CinemaController(),'createForm' ) );
-$router->get('\/cines\/editar', array( new CinemaController(),'editForm' ) );
-$router->get('\/cines', array( new CinemaController(),'index' ) );
+// CINES ============================================================================
+$router->get('\/cines\/nuevo',        array( new CinemaController(),'createForm' ) );
+$router->get('\/cines\/editar',       array( new CinemaController(),'editForm' ) );
+$router->get('\/cines',               array( new CinemaController(),'index' ) );
 
-$router->get('\/peliculas', array( new MovieController(),'index' ) );
+$router->post('\/cines\/nuevo',       array( new CinemaController(),'create' ) );
+$router->post('\/cines\/eliminar',    array( new CinemaController(),'delete' ) );
+$router->post('\/cines\/actualizar',  array( new CinemaController(),'update' ) );
 
-$router->get('^\/$', array( new RedirectResponse("/peliculas"), 'send' ) );
+// PELICULAS =======================================================================
+$router->get('\/peliculas',           array( new MovieController(),'index' ) );
 
-// POST
-$router->post('\/cines\/nuevo', array( new CinemaController(),'create' ) );
+// LOGIN ============================================================================
+$router->get('\/login',               array( new AuthenticationController(), 'login' ) );
 
-// DELETE
-$router->post('\/cines\/eliminar', array( new CinemaController(),'delete' ) );
-
-// PUT
-$router->post('\/cines\/actualizar', array( new CinemaController(),'update' ) );
-
-
+// DEFAULT ==========================================================================
+$router->get('^\/$',                  array( new RedirectResponse("/peliculas"), 'send' ) );
 $router->all('.*',array(
     new ErrorResponse(
       array(
