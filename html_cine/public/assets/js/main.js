@@ -152,14 +152,3 @@ function checkArrowsVisibility(){
 
 }
 
-// function bindSliderItems(){
-//     var length =  $(moviesSlider).find('.owl-item').length;
-//     var cardnum;
-//     $(moviesSlider).find('.owl-item').each(function(index){
-//         cardnum = (length/2) - (index+1);
-//         $(this).attr('slider-num',cardnum);
-//         $(this).on('click',function(){
-//             $(moviesSlider).trigger('to.owl.carousel',cardnum);
-//         })
-//     })
-// }

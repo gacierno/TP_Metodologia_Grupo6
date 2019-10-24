@@ -225,7 +225,7 @@ body{
     width: 100%;
 }
 
-.cinema__form label{
+.cinema__form label,.login-form label{
     width: 100%;
     margin:0;
     position: relative;
@@ -244,14 +244,17 @@ body{
     padding-left:5px;
 }
 
-.cinema__form input:focus{
+.cinema__form input:focus,.login-form input:focus{
     outline:none;
 }
 
 .cinema__form input:-webkit-autofill,
 .cinema__form input:-webkit-autofill:hover, 
 .cinema__form input:-webkit-autofill:focus, 
-.cinema__form input:-webkit-autofill:active  {
+.cinema__form input:-webkit-autofill:active,.login-form input:-webkit-autofill,
+.login-form input:-webkit-autofill:hover, 
+.login-form input:-webkit-autofill:focus, 
+.login-form input:-webkit-autofill:active {
     -webkit-box-shadow: linear-gradient(to right, #eea2a2 0%, #bbc1bf 19%, #57c6e1 42%, #b49fda 79%, #7ac5d8 100%);
     transition: background-color 5000s ease-in-out 0s;
     -webkit-text-fill-color: white;
@@ -616,4 +619,159 @@ body{
 #movies__not-found-row h2{
     font-size: 48px;
     font-family: 'Roboto',sans-serif;
+}
+
+/* LOGIN STYLES */
+
+.login__row{
+    justify-content: center;
+    background-image: url('/public/assets/images/loginback.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 80vh;
+    position: relative;
+    justify-content: center;
+}
+
+.login__container{
+    background: transparent;
+    width: 100%;
+    margin: auto 0;
+    padding: 10% 5%;
+}
+
+@media all and (min-width:768px){
+    .login__container{
+        padding: 6% 2% 5% 2%;
+        border-radius: 10%;
+        background: rgb(20, 20, 20);
+
+    }
+}
+
+.login__header--format{
+    color: white;
+    font-family: 'Roboto',sans-serif;
+    font-size: 36px;
+    text-align: center;
+}
+
+.login__overlay{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: black;
+    opacity: 0.4;
+    top:0;
+    left:0;
+}
+
+.login-form input{
+    padding: 10px 0;
+    border: none;
+    border-bottom: solid 1px white;
+    background:rgb(20,20,20);
+    width: 100%;
+    color: white;
+    letter-spacing: 1px;
+    font-size: 15px;
+    font-family: 'Roboto',sans-serif;
+    padding-left:5px;
+    opacity: 0.6;
+}
+
+.login-form input:first-child{
+    margin-bottom:50px;
+}
+
+.login-form input:focus ~ .floating-label,
+.login-form input:not(:focus):valid ~ .floating-label{
+  top: -30px;
+  left: 0px;
+  opacity: 1;
+  color: white;
+}
+
+.login__button--container,.login__create--container{
+    width: 100%;
+}
+
+.login__button,.fb-login__button{
+    width: 100%;
+    background: black;
+    outline: none;
+    border: none;
+    color:white;
+    font-family: 'Roboto',sans-serif;
+    font-size: 12px;
+    letter-spacing: 1px;
+    padding: 10px 0;
+    cursor: pointer;
+    margin-bottom: 30px;
+}
+
+@media all and (min-width:768px){
+    .login__button,.fb-login__button{
+        font-size: 16px;
+    }
+}
+
+.fb-login__button{
+    background: #3b5998;
+}
+
+.glow-on-hover {
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
+}
+
+.glow-on-hover:before {
+    content: '';
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    position: absolute;
+    top: -2px;
+    left:-2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing 20s linear infinite;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+    border-radius: 10px;
+}
+
+.glow-on-hover:focus {
+    outline:none;
+}
+
+.glow-on-hover:active:after {
+    background: transparent;
+}
+
+.glow-on-hover:hover:before {
+    opacity: 1;
+}
+
+.glow-on-hover:after {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #111;
+    left: 0;
+    top: 0;
+}
+
+@keyframes glowing {
+    0% { background-position: 0 0; }
+    50% { background-position: 400% 0; }
+    100% { background-position: 0 0; }
+}
+
+.login__create--container{
+    text-align: center;
 }
