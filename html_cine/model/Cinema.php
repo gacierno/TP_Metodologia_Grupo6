@@ -10,8 +10,9 @@ class Cinema
 	private $address;
 	private $capacity;
 	private $ticketValue;
+    private $shows;
 
-	function __construct( $name = 'Unnamed', $address = 'No address', $capacity = 0, $ticketValue = 0, $id = null )
+	function __construct( $name = 'Unnamed', $address = 'No address', $capacity = 0, $ticketValue = 0, $shows = array() $id = null )
 	{
 		$this->setAddress($address);
 		$this->setCapacity($capacity);
@@ -99,5 +100,27 @@ class Cinema
     {
         $this->ticketValue = $ticketValue;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getSwhos()
+    {
+        return $this->shows;
+    }
+
+    /**
+     * @param mixed $shows
+     */
+    public function setShows($shows)
+    {
+        $this->shows = $shows;
+    }
+
+    public function addShow( $single )
+    {
+        if( !is_null($single) ) array_push( $this->shows, $single );
+    }
+
 }
  ?>
