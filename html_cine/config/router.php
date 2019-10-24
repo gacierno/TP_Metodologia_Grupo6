@@ -24,7 +24,9 @@ $router->post('\/cines\/actualizar',  array( new CinemaController(),'update' ) )
 $router->get('\/peliculas',           array( new MovieController(),'index' ) );
 
 // LOGIN ============================================================================
-$router->get('\/login',               array( new AuthenticationController(), 'login' ) );
+$router->get('\/login',               array( new AuthenticationController(), 'loginForm' ) );
+$router->get('\/logout',              array( new AuthenticationController(), 'logout' ) );
+$router->post('\/login',              array( new AuthenticationController(), 'login' ) );
 
 // DEFAULT ==========================================================================
 $router->get('^\/$',                  array( new RedirectResponse("/peliculas"), 'send' ) );
