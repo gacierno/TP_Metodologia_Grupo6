@@ -623,14 +623,22 @@ body{
 
 /* LOGIN STYLES */
 
-.login__row{
+.login__row,.user-creation__row{
     justify-content: center;
-    background-image: url('/public/assets/images/loginback.jpg');
     background-size: cover;
     background-position: center;
-    height: 80vh;
+    min-height: 80vh;
     position: relative;
     justify-content: center;
+}
+
+.login__row{
+    background-image: url('/public/assets/images/userCImage.jpg');
+}
+
+.user-creation__row{
+    background-image: url('/public/assets/images/loginback.jpg');
+
 }
 
 .login__container{
@@ -774,4 +782,31 @@ body{
 
 .login__create--container{
     text-align: center;
+}
+
+.user-creation__row{
+    padding: 35px;
+}
+
+.dni-input[type=number]::-webkit-inner-spin-button,
+.dni-input[type=number]::-webkit-outer-spin-button{
+    -webkit-appearance: none; 
+    margin: 0; 
+}
+.custom-msg__container{
+    width: 100%;
+    text-align:center;
+    padding: 10px;
+}
+
+.custom-msg__container h2{
+    font-size: 16px;
+}
+
+.error-msg__container{
+    background-color: #B33A3A;
+}
+
+.success-msg__container{
+    background-color: #00ff00;
 }

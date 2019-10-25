@@ -1,5 +1,7 @@
 <?php include_once('header.php'); ?>
 
+<?php include_once('partials/customMessage.php'); ?>
+
 <div class="container-fluid">
     <div class="row login__row">
     <div class="login__overlay"></div>
@@ -10,7 +12,7 @@
                 <span class="floating-label">Nombre de Usuario</span>
             </label>
             <label>
-                <input class="inputText" type="password" name="password" required>
+                <input class="inputText" type="password" name="pass" required>
                 <span class="floating-label">Contraseña</span>
             </label>
             <div class="login__button--container">
