@@ -22,7 +22,7 @@ class AuthenticationController extends BaseController{
   }
 
   function loginForm(){
-    echo "<html><head></head><body><h1>LOGIN</h1></body></html>";
+    include("views/login.php");
   }
 
 
