@@ -9,10 +9,10 @@ class Count
 	private $id;
 	private $name;
 	
-	function __construct($name, $id)
+	function __construct( $arg )
 	{
-		$this->setId($id);
-		$this->setName($name);
+		$this->setId(     (isset($arg['id']))  ?$arg['id']     :null );
+		$this->setName(   (isset($arg['name']))?$arg['name']   :'' );
 	}
 
 

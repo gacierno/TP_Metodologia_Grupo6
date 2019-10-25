@@ -12,13 +12,14 @@ class Cinema
 	private $ticketValue;
     private $shows;
 
-	function __construct( $name = 'Unnamed', $address = 'No address', $capacity = 0, $ticketValue = 0, $shows = array() $id = null )
+	function __construct( $options )
 	{
-		$this->setAddress($address);
-		$this->setCapacity($capacity);
-		$this->setName($name);
-		$this->setTicketValue($ticketValue);
-        if(isset($id)) $this->setId($id);
+		$this->setAddress(    ( isset($options['address']) )  ? $options['address'] : '' );
+		$this->setCapacity(   ( isset($options['capacity']) ) ? $options['capacity'] : 0 );
+		$this->setName(       ( isset($options['name']) )     ? $options['name'] : '' );
+		$this->setTicketValue( ( isset($options['ticketValue']) )? $options['ticketValue'] : 0 );
+        $this->setId(         ( isset($options['id']) )       ? $options['id'] : null );
+        $this->setShows(      ( isset($options['shows']) )    ? $options['shows'] : array() ); // falta verificar que tenga un array de objetos show
 	}
 
     /**

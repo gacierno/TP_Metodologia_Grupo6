@@ -12,13 +12,13 @@ namespace model;
  	private $amount;
  	private $count;		//	:int id account
  	
- 	function __construct( $authCode, $date, $amount, $count, $id )
+ 	function __construct( $options )
  	{
- 		$this->setId($id);
- 		$this->setAmount($amount);
- 		$this->setCount($count);
- 		$this->setDate($date);
- 		$this->setAuthCode($authCode);
+ 		$this->setId(        ( isset($options['id']) )       ? $options['id'] : null );
+ 		$this->setAmount(    ( isset($options['amount']) )   ? $options['amount'] : 0 );
+ 		$this->setCount(     ( isset($options['count']) )    ? $options['count'] : null );
+ 		$this->setDate(      ( isset($options['date']) )     ? $options['date'] : null );
+ 		$this->setAuthCode(  ( isset($options['authCode']) ) ? $options['authCode'] : null );
  	}
  
     /**

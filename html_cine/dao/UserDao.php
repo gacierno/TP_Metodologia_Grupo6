@@ -6,26 +6,15 @@ namespace dao;
  *
  */
 
-use model\Cinema as Cinema;
 use dao\BaseDao  as BaseDao;
+use model\User as User;
 
-class CinemaDao extends BaseDao
+class UserDao extends BaseDao
 {
 
 	function __construct(){
-		parent::setTableName( 'Cinemas' );
-		parent::setSingleType( 'cinema' );
+		parent::setItemType( 'user' );
 	}
-
-
-	/*
-	+------------------------------------------------+
-	|											     |
-	|	METHODS THAT CONNECT THE JSON STORED DATA    |
-	|										     	 |
-	+------------------------------------------------+
-	*/
-
 
 	/**
 	 * parseToObjects
@@ -49,16 +38,16 @@ class CinemaDao extends BaseDao
 	 */
 
 	public function parseToObject( $arr ){
-		return new Cinema( $arr );
+		return new User($arr);
 	}
 
 	public function parseToHash( $obj ){
 		return array(
 			'id' 		=> $obj->getId(),
-			'name' 		=> $obj->getName(),
-			'address' 	=> $obj->getAddress(),
-			'capacity'	=> $obj->getCapacity(),
-			'ticketValue' => $obj->getTicketValue()
+			'email' 	=> $obj->getEmail(),
+			'pass' 		=> $obj->getPass(),
+			'role'		=> $obj->getRole(),
+			'profile' 	=> $obj->getProfile()
 		);
 	}
 
@@ -66,3 +55,4 @@ class CinemaDao extends BaseDao
 
 
  ?>
+
