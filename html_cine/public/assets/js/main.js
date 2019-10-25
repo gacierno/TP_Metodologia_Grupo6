@@ -35,7 +35,6 @@ function setMovieInfoCenter(){
 
 
 
-
 var placeholder;
 //on document ready,hide filter input placeholder and to load
 //new movies/create new slider with jquery.Load() method
@@ -45,6 +44,19 @@ $(document).ready(function(){
         $('#inpt_search').attr('placeholder','');
 
     }
+
+    setTimeout(function(){
+        if ($('.floating-label').length > 0 ){
+
+            $('.floating-label').each(function(){
+                var input = $(this).prev('input');
+                console.log(input.val());
+            });
+        }
+    },100);
+   
+
+    
 
     //arrows functionality are binded one time only, as they are independent
     //of the slider creation
@@ -152,14 +164,3 @@ function checkArrowsVisibility(){
 
 }
 
-// function bindSliderItems(){
-//     var length =  $(moviesSlider).find('.owl-item').length;
-//     var cardnum;
-//     $(moviesSlider).find('.owl-item').each(function(index){
-//         cardnum = (length/2) - (index+1);
-//         $(this).attr('slider-num',cardnum);
-//         $(this).on('click',function(){
-//             $(moviesSlider).trigger('to.owl.carousel',cardnum);
-//         })
-//     })
-// }

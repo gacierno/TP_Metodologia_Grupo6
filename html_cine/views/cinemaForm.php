@@ -1,6 +1,11 @@
 <?php include_once('header.php'); ?>
 
 <?php if(isset($cinema)) : $isCinemaSet = true; else : $isCinemaSet = false; endif; ?>
+
+
+<?php include_once('partials/customMessage.php'); ?>
+
+
 <div class="main-container container-fluid">
     <div class="row cinema__form--container">
 

@@ -14,6 +14,7 @@
 	include_once dirname(__DIR__).'/dao/CinemaDao.php';
 	include_once dirname(__DIR__).'/dao/MovieDao.php';
 	include_once dirname(__DIR__).'/dao/GenreDao.php';
+	include_once dirname(__DIR__).'/dao/UserDao.php';
 
 	include_once dirname(__DIR__).'/dao/Connection.php';
 	include_once dirname(__DIR__).'/dao/QueryType.php';
@@ -152,6 +153,14 @@
 			'profile' => $testProfile
 		)
 	);
+
+	/*
+	 * Instance UserDao for testing
+	 */
+	$userDao = new dao\UserDao();
+	//testeo add
+	$userDao->add( $testUser );
+
 
 
 	/*

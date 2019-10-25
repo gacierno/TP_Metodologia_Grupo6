@@ -23,6 +23,7 @@ $genero = isset($_GET['genero']) ? $_GET['genero'] : "";
     </div>
     <div class="row movielist__row">
         <div id="movielist-slider-container" class="col-12">
+        <?php include_once('partials/customMessage.php'); ?>
           <div id="movielist-slider" class="owl-carousel owl-theme owl-movielist">
           <?php include_once('movieItems.php'); ?>
           </div>
