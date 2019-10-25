@@ -193,6 +193,17 @@
 	$listGenre = $testGenreDao->getList();
 
 
+
+
+
+
+
+
+
+
+
+
+
 	// $data = new dao\MovieDao();
 
 	// $data->fetch();

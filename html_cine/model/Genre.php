@@ -13,7 +13,7 @@
 		{
 			$this->setId( 	( isset($options['id']) ) 	? $options['id'] : null );
 			$this->setName( ( isset($options['name']) ) ? $options['name'] : '' );
-			$this->setName( (isset($options['apiId']) ) ? $options['apiId'] : null );
+			$this->setApiId( ( isset($options['apiId']) ) ? $options['apiId'] : null );
 		}
 
 	    /**
