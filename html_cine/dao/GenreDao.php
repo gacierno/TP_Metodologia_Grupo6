@@ -97,11 +97,7 @@ class GenreDao extends BaseDao implements IApiConnector
 	 */
 
 	public function parseToObject( $arr ){
-		$genre = new Genre(
-				$arr['id'],
-				$arr['name']
-			);
-		return $genre;
+		return new Genre($arr);
 	}
 
 	/**

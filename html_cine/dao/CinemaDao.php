@@ -48,14 +48,7 @@ class CinemaDao extends BaseDao
 	 */
 
 	public function parseToObject( $arr ){
-		$cine = new Cinema(
-			$arr['name'],
-			$arr['address'],
-			$arr['capacity'],
-			$arr['ticketValue'],
-			$arr['id']
-		);
-		return $cine;
+		return new Cinema( $arr );
 	}
 
 	public function parseToHash( $obj ){

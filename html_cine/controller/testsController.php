@@ -164,13 +164,24 @@
 		'capacity' => 3,
 		'ticketValue' => 100,
 	));
+
 	/*
 	 * Instance CinemaDao for testing
 	 */
-	$cinemaDao = new dao\CinemaDao();
+	$testCinemaDao = new dao\CinemaDao();
+	$listCinema = $testCinemaDao->getList();
 
+	/*
+	 * Instance CinemaDao for testing
+	 */
+	$testMovieDao = new dao\MovieDao();
+	$listMovie = $testMovieDao->getList();
 
-
+	/*
+	 * Instance CinemaDao for testing
+	 */
+	$testGenreDao = new dao\GenreDao();
+	$listGenre = $testGenreDao->getList();
 
 
 	// $data = new dao\MovieDao();

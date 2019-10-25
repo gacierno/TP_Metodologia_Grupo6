@@ -8,7 +8,8 @@ namespace dao;
 
 use model\Movie as Movie;
 use dao\BaseDao  as BaseDao;
-use dao\IApiConnector as IApiConnector; 
+use dao\IApiConnector as IApiConnector;
+use dao\GenreDao as GenreDao; 
 
 class MovieDao extends BaseDao implements IApiConnector
 {
@@ -117,14 +118,13 @@ class MovieDao extends BaseDao implements IApiConnector
 	 */
 
 	public function parseToObject( $arr ){
-		$movie = new Movie(
-			$arr['name'],
-			$arr['duration'],
-			$arr['language'],
-			$arr['image'],
-			$arr['genres'],
-			$arr['id']
-		);
+		$new_genres = array();
+		$g_dao = new GenreDao();
+		foreach ( $arr['genres'] as $value) {
+			array_push( $new_genres, $g_dao->getById($value) );
+		}
+		$arr['genres'] = $new_genres;
+		$movie = new Movie($arr);
 		return $movie;
 	}
 
@@ -134,12 +134,16 @@ class MovieDao extends BaseDao implements IApiConnector
 	 */
 	
 	public function parseToHash( $obj ){
+		$genres = array();
+		foreach ( $obj->getGenres() as $genre) {
+			array_push( $genres, $genre->getId() );
+		}
 		return array(
 			'name' => $obj->getName(),
 			'duration' => $obj->getDuration(),
 			'language' => $obj->getLanguage(),
 			'image' => $obj->getImage(),
-			'genres' => $obj->getGenres(),
+			'genres' => json_encode( $genres ),
 			'id' => $obj->getId()
 		);
 	}
@@ -155,19 +159,14 @@ class MovieDao extends BaseDao implements IApiConnector
 		$output = array();
 
 		// THIS SENTENCE VOIDS DATA DELETIONS WHILE UPDATING LIST
-		if( sizeof($this->itemList) == 0) $this->itemList = $this->retrieveData();
+		if( sizeof($this->itemList) == 0 ) $this->itemList = $this->retrieveData();
 
 		foreach ($this->itemList as $movie){
-			if( array_search( $id, $movie['genres'] ) ){
-				$match = new Movie(
-					$movie['name'],
-					$movie['duration'],
-					$movie['language'],
-					$movie['image'],
-					$movie['genres'],
-					$movie['id']
-				);
-				array_push( $output, $match );
+			foreach ($movie['genres'] as $genre ) {
+				if( $genre->getId() == $id ){
+					$match = new Movie( $movie );
+					array_push( $output, $match );
+				}
 			}
 		}
 		return $output;
