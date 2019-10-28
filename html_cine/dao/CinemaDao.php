@@ -54,11 +54,10 @@ class CinemaDao extends BaseDao
 
 	public function parseToHash( $obj ){
 		return array(
-			'id' 		=> $obj->getId(),
-			'name' 		=> $obj->getName(),
-			'address' 	=> $obj->getAddress(),
-			'capacity'	=> $obj->getCapacity(),
-			'ticketValue' => $obj->getTicketValue()
+			'cinema_name' 		=> $obj->getName(),
+			'cinema_address' 	=> $obj->getAddress(),
+			'cinema_capacity'	=> $obj->getCapacity(),
+			'cinema_ticketValue' => $obj->getTicketValue()
 		);
 	}
 

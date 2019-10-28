@@ -25,7 +25,9 @@ include_once './views/header.php';
 	<pre style="color: white"><?php // print_r( $testMovie ) ?></pre>
 	<pre style="color: white"><?php // print_r( $testMovieDao->parseToHash( $testMovie ) ) ?></pre>
 	<pre style="color: white"><?php //  echo $testMovieDao->getFields( $testMovie ) ?></pre>
-	<pre style="color: white"><?php  print_r( $testMovieDao->getList() ) ?></pre>
+	<pre style="color: white"><?php // print_r( $testMovieDao->getList() ) ?></pre>
+	<pre style="color: white"><?php // print_r( $testGenreDao->getList() ) ?></pre>
+	<pre style="color: white"><?php // print_r( $testCinemaDao->getList() ) ?></pre>
 	<pre style="color: white"><?php // print_r( dao\GenresOnMoviesDao::getGenresByMovieId( 338967 ) ) ?></pre>
 	
 		</section>

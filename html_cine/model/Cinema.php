@@ -14,11 +14,11 @@ class Cinema
 
 	function __construct( $options )
 	{
-		$this->setAddress(    ( isset($options['address']) )  ? $options['address'] : '' );
-		$this->setCapacity(   ( isset($options['capacity']) ) ? $options['capacity'] : 0 );
-		$this->setName(       ( isset($options['name']) )     ? $options['name'] : '' );
-		$this->setTicketValue( ( isset($options['ticketValue']) )? $options['ticketValue'] : 0 );
-        $this->setId(         ( isset($options['id']) )       ? $options['id'] : null );
+		$this->setAddress(    ( isset($options['cinema_address']) )  ? $options['cinema_address'] : '' );
+		$this->setCapacity(   ( isset($options['cinema_capacity']) ) ? $options['cinema_capacity'] : 0 );
+		$this->setName(       ( isset($options['cinema_name']) )     ? $options['cinema_name'] : '' );
+		$this->setTicketValue( ( isset($options['cinema_ticketValue']) )? $options['cinema_ticketValue'] : 0);
+        $this->setId(         ( isset($options['cinema_id']) )       ? $options['cinema_id'] : null );
 	}
 
     /**

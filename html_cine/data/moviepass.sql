@@ -3,10 +3,11 @@ create database if not exists moviepass;
 use moviepass;
 
 create table Cinemas(
-	cinema_id int not null,
+	cinema_id int auto_increment,
 	cinema_name varchar(30) not null,
 	cinema_address varchar(30) not null,
 	cinema_capacity int,
+	cinema_ticketValue int,
 	constraint pk_cinema primary key (cinema_id)
 );
 
@@ -41,7 +42,7 @@ create table Shows(
 	cinema_id int not null,
 	constraint pk_show primary key (show_id),
 	constraint fk_show_movie foreign key (movie_id) references Movies(movie_id) on update cascade,
-	constraint fk_show_cinema foreign key (cinema_id) references Cinemas(cinema_id) on update cascade
+	constraint fk_show_cinema foreign key (cinema_id) references Cinemas(cinema_id) on update cascade on delete cascade
 );
 
 create table Rols(

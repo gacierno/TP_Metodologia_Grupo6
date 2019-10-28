@@ -168,18 +168,33 @@
 	 *	hardcoded cinema to perform tests
 	 */
 	$testCine = new model\Cinema(array (
-		'id' => -1,
-		'name' => 'some name',
-		'address' => 'address test',
-		'capacity' => 3,
-		'ticketValue' => 100,
+		'cinema_id'	=> 2,
+		'cinema_name' => 'some name',
+		'cinema_address' => 'address test',
+		'cinema_capacity' => 3,
+		'cinema_ticketValue' => 100,
 	));
 
 	/*
 	 * Instance CinemaDao for testing
 	 */
 	$testCinemaDao = new dao\CinemaDao();
+	// $testCinemaDao->add( $testCine );
 	$listCinema = $testCinemaDao->getList();
+
+	/*
+	 * Instance CinemaDao for testing
+	 */
+	$testGenreDao = new dao\GenreDao();
+	$listGenre = $testGenreDao->getList();
+
+
+	$testGenre = new model\Genre( array( 'genre_id' => 0, 'genre_name' => 'genrename') );
+
+	// $_POST['result'] = $testGenreDao->getById( 12 );
+	// $_POST['result'] = $testGenreDao->add( $testGenre );
+	// $testGenreDao->fetch();
+	// $options = $testGenreDao->getInsertQueryParams( $testGenre );
 
 	/*
 	 * Instance CinemaDao for testing
@@ -198,23 +213,6 @@
 	);
 	// $testMovieDao->fetch();
 	// $testMovieDao->add( $testMovie );
-
-
-	/*
-	 * Instance CinemaDao for testing
-	 */
-	$testGenreDao = new dao\GenreDao();
-	$listGenre = $testGenreDao->getList();
-
-
-	$testGenre = new model\Genre( array( 'genre_id' => 0, 'genre_name' => 'genrename') );
-
-	// $_POST['result'] = $testGenreDao->getById( 12 );
-	// $_POST['result'] = $testGenreDao->add( $testGenre );
-	// $testGenreDao->fetch();
-	// $options = $testGenreDao->getInsertQueryParams( $testGenre );
-
-
 
 
 
