@@ -8,7 +8,7 @@ class Ticket
 	private $id;
 	private $qrCode;
 	private $purchase;
-	private $show;
+	private $show;     // Object : Show
 
 	function __construct( $options )
 	{

@@ -39,28 +39,19 @@ class GenreDao extends BaseDao implements IApiConnector
 	}
 
 	/**
-	 * getDataFromApi
+	 * Update Database
 	 */
 	public function fetch(){
 
-		$this->itemList = $this->retrieveData();
-
 		$rawList = $this->getGenresFromApi();
-
 		foreach ($rawList['genres'] as $value) {
-
 			if( !($this->getById( $value['id']) ) ){
-				
-				$dataToSave['id'] = $value['id'];
-				$dataToSave['name'] = $value['name'];
-
-				array_push( $this->genreList, $dataToSave );
+				$value['genre_id'] = $value['id'];
+				$value['genre_name'] = $value['name'];
+				$this->add( $this->parseToObject( $value ) );
 			}
 
 		}
-
-		$this->saveDataToJson();
-
 	}
 
 
@@ -70,7 +61,7 @@ class GenreDao extends BaseDao implements IApiConnector
 	/*
 	+------------------------------------------------+
 	|											     |
-	|	METHODS THAT CONNECT THE JSON STORED DATA    |
+	|	METHODS THAT CONNECT TO DATA BASE     		 |
 	|										     	 |
 	+------------------------------------------------+
 	*/
@@ -108,8 +99,8 @@ class GenreDao extends BaseDao implements IApiConnector
 
 	public function parseToHash( $obj ){
 		return array(
-			'id' => $obj->getId(),
-			'name' => $obj->getName()
+			'genre_id' => $obj->getId(),
+			'genre_name' => $obj->getName()
 		);
 	}
 

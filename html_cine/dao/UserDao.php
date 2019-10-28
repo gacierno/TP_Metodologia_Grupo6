@@ -13,7 +13,8 @@ class UserDao extends BaseDao
 {
 
 	function __construct(){
-		parent::setItemType( 'user' );
+		parent::setTableName( 'Users' );
+		parent::setSingleType( 'user' );
 	}
 
 	/**

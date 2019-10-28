@@ -7,8 +7,8 @@
 	{
 		private $id;
 		private $qr;
-		private $purchase;	//	:int purchase id
-		private $user;		//	:int user id
+		private $purchase;	
+		private $user;		
 
 		
 		function __construct( $options )

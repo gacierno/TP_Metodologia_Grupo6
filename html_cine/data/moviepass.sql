@@ -19,7 +19,7 @@ create table Genres(
 create table Movies(
 	movie_id int not null,
 	movie_image varchar(100) not null,
-	movie_lang varchar(15) not null,
+	movie_language varchar(15) not null,
 	movie_title varchar(30) not null,
 	movie_runtime int not null,
 	constraint pk_movie primary key (movie_id)

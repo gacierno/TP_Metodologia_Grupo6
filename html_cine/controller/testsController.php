@@ -15,6 +15,7 @@
 	include_once dirname(__DIR__).'/dao/MovieDao.php';
 	include_once dirname(__DIR__).'/dao/GenreDao.php';
 	include_once dirname(__DIR__).'/dao/UserDao.php';
+	include_once dirname(__DIR__).'/dao/GenresOnMoviesDao.php';
 
 	include_once dirname(__DIR__).'/dao/Connection.php';
 	include_once dirname(__DIR__).'/dao/QueryType.php';
@@ -159,7 +160,7 @@
 	 */
 	$userDao = new dao\UserDao();
 	//testeo add
-	$userDao->add( $testUser );
+	// $userDao->add( $testUser );
 
 
 
@@ -186,6 +187,19 @@
 	$testMovieDao = new dao\MovieDao();
 	$listMovie = $testMovieDao->getList();
 
+	$testMovie = new model\Movie(
+		array(
+			'movie_title' => 'movie_title',
+			'movie_runtime' => 60,
+			'movie_language' => 'movie_language',
+			'movie_image' => 'movie_image',
+			'movie_id' => 0
+		)
+	);
+	// $testMovieDao->fetch();
+	// $testMovieDao->add( $testMovie );
+
+
 	/*
 	 * Instance CinemaDao for testing
 	 */
@@ -193,6 +207,12 @@
 	$listGenre = $testGenreDao->getList();
 
 
+	$testGenre = new model\Genre( array( 'genre_id' => 0, 'genre_name' => 'genrename') );
+
+	// $_POST['result'] = $testGenreDao->getById( 12 );
+	// $_POST['result'] = $testGenreDao->add( $testGenre );
+	// $testGenreDao->fetch();
+	// $options = $testGenreDao->getInsertQueryParams( $testGenre );
 
 
 
@@ -243,9 +263,9 @@
 	
 
 
-	$genDao = new dao\GenreDao();
+	// $genDao = new dao\GenreDao();
 
-	$fafa = $genDao->getById(15);
+	// $fafa = $genDao->getById(15);
 
 
  ?>

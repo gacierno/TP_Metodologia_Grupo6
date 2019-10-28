@@ -8,7 +8,8 @@ class Show
 	private $id;
 	private $day;
 	private $time;
-    private $movie;
+    private $movie;  // Object : Movie
+    private $cinema; // Object : Cinema
 
 	function __construct( $options )
 	{
@@ -16,6 +17,7 @@ class Show
 		$this->setTime( (isset($options['time']) ) ? $options['time'] : null );
 		$this->setDay( (isset($options['day']) ) ? $options['day'] : null );
         $this->setMovie( (isset($options['movie']) ) ? $options['movie'] : null );
+        $this->setMovie( (isset($options['cinema']) ) ? $options['cinema'] : null );
 	}
 
     /**
@@ -80,6 +82,22 @@ class Show
     public function setMovie($movie)
     {
         $this->movie = $movie;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCinema()
+    {
+        return $this->cinema;
+    }
+
+    /**
+     * @param mixed $cinema
+     */
+    public function setCinema($cinema)
+    {
+        $this->cinema = $cinema;
     }
 
 }

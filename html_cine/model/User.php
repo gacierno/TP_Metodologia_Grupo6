@@ -9,8 +9,8 @@ class User
 	private $id;
 	private $email;
 	private $pass;
-	private $role;		
-	private $profile;
+	private $role;     // Object : Role
+	private $profile;  // Object : Profile
 
 	function __construct( $options )
 	{

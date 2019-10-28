@@ -9,7 +9,8 @@ namespace dao;
 use model\Movie as Movie;
 use dao\BaseDao  as BaseDao;
 use dao\IApiConnector as IApiConnector;
-use dao\GenreDao as GenreDao; 
+use dao\GenreDao as GenreDao;
+use dao\GenresOnMoviesDao as GenresOnMoviesDao;
 
 class MovieDao extends BaseDao implements IApiConnector
 {
@@ -55,8 +56,6 @@ class MovieDao extends BaseDao implements IApiConnector
 	 */
 	public function fetch(){
 
-		$this->itemList = $this->retrieveData();
-
 		$rawList = $this->getApi();
 
 		foreach ($rawList['results'] as $value) {
@@ -65,23 +64,28 @@ class MovieDao extends BaseDao implements IApiConnector
 
 			if( !($this->getById( $rawMovie['id']) ) ){
 
-				$dataToSave['id'] = $rawMovie['id'];
-				$dataToSave['name'] = $rawMovie['title'];
-				$dataToSave['duration'] = $rawMovie['runtime'];
-				$dataToSave['language'] = $rawMovie['spoken_languages'][0]['name'];
-				$dataToSave['image'] = $rawMovie['poster_path'];
-				$dataToSave['genres'] = array();
+				$dataToSave['movie_id'] = $rawMovie['id'];
+				$dataToSave['movie_title'] = $rawMovie['title'];
+				$dataToSave['movie_runtime'] = $rawMovie['runtime'];
+				$dataToSave['movie_language'] = $rawMovie['spoken_languages'][0]['name'];
+				$dataToSave['movie_image'] = $rawMovie['poster_path'];
+				// $dataToSave['movie_genres'] = array();
 
+				$movie = new Movie($dataToSave);
+
+				$this->add( $movie ); //save movie to db
+
+				// save genre list to db
 				foreach ($rawMovie['genres'] as $genre ) {
-					array_push( $dataToSave['genres'], $genre['id'] );
+					$genreToSave['genre_id'] = $genre['id'];
+					$genreToSave['movie_id'] = $dataToSave['movie_id'];
+					GenresOnMoviesDao::add( $genreToSave );
+					
 				}
 
-				array_push( $this->itemList, $dataToSave );
 			}
 
 		}
-
-		$this->SaveAll();
 
 	}
 
@@ -120,11 +124,12 @@ class MovieDao extends BaseDao implements IApiConnector
 
 	public function parseToObject( $arr ){
 		$new_genres = array();
+		$raw_genres = GenresOnMoviesDao::getGenresByMovieId( $arr['movie_id'] );
 		$g_dao = new GenreDao();
-		foreach ( $arr['genres'] as $value) {
-			array_push( $new_genres, $g_dao->getById($value) );
+		foreach ( $raw_genres as $value) {
+			array_push( $new_genres, $g_dao->getById($value['genre_id']) );
 		}
-		$arr['genres'] = $new_genres;
+		$arr['movie_genres'] = $new_genres;
 		$movie = new Movie($arr);
 		return $movie;
 	}
@@ -133,19 +138,16 @@ class MovieDao extends BaseDao implements IApiConnector
 	 * parseToHash
 	 * @param object
 	 */
+
+	// this hash is set only to save data on database
 	
 	public function parseToHash( $obj ){
-		$genres = array();
-		foreach ( $obj->getGenres() as $genre) {
-			array_push( $genres, $genre->getId() );
-		}
 		return array(
-			'name' => $obj->getName(),
-			'duration' => $obj->getDuration(),
-			'language' => $obj->getLanguage(),
-			'image' => $obj->getImage(),
-			'genres' => json_encode( $genres ),
-			'id' => $obj->getId()
+			'movie_title' => $obj->getName(),
+			'movie_runtime' => $obj->getDuration(),
+			'movie_language' => $obj->getLanguage(),
+			'movie_image' => $obj->getImage(),
+			'movie_id' => $obj->getId()
 		);
 	}
 
