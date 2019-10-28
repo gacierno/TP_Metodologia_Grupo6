@@ -54,6 +54,39 @@ $(document).ready(function(){
             });
         }
     },100);
+
+    //give movie detail show dropdown individual functionality
+    if($('.dropdown').length > 0){
+        $('.dropdown').each(function(){
+            var dropId = '#' + $(this).attr('id');
+            var height = $(dropId + ' li').first().outerHeight();
+            $(dropId + ' .selLabel').click(function () {
+                $(dropId + '.dropdown').toggleClass('active');
+                
+                if($(dropId).hasClass('active')){
+                    var amountofShows = $(dropId + ' li').length;
+                    var finalHeight = (height*(amountofShows+1)) + 'px';
+                    $(dropId + '.dropdown').css('height',finalHeight);
+                    var index = 1;
+                    $(dropId + ' li').each(function(){
+                        var amount = (100 * index) + '%' ;
+                        $(this).css('transform','translateY(' + amount + ')');
+                        index++;
+                    });
+                }
+                else{
+                    setTimeout(function(){
+                        var finalHeight = (height) + 'px';
+                        $(dropId + '.dropdown').css('height',finalHeight);
+                    },250);
+                    $(dropId + ' li').each(function(){
+                        $(this).css('transform','translateY(0%)');
+                    });
+                }
+                
+            });
+        });
+    }
    
 
     
@@ -163,4 +196,3 @@ function checkArrowsVisibility(){
     }
 
 }
-
