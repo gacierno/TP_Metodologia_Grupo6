@@ -8,6 +8,7 @@ create table Cinemas(
 	cinema_address varchar(30) not null,
 	cinema_capacity int,
 	cinema_ticketValue int,
+	cinema_available boolean default 1,
 	constraint pk_cinema primary key (cinema_id)
 );
 
