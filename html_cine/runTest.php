@@ -31,7 +31,7 @@ include_once './views/header.php';
 	<pre style="color: white"><?php // print_r( dao\GenresOnMoviesDao::getGenresByMovieId( 338967 ) ) ?></pre>
 	<pre style="color: white"><?php // print_r( $testShow ) ?></pre>
 	<pre style="color: white"><?php // print_r( $testShowDao->getList() ) ?></pre>
-	<pre style="color: white"><?php  print_r( $dada ) ?></pre>
+	<pre style="color: white"><?php  print_r( $testMovieDao->getList( $args ) ) ?></pre>
 	
 	
 	
