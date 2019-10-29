@@ -2,22 +2,31 @@
 
 use Controller\BaseController as BaseController;
 use Response\RedirectResponse as RedirectResponse;
-use Request\Request as Request;
-use dao\UserDao as UserDao;
+use Request\Request           as Request;
+
+use dao\RoleDao               as RoleDao;
+use dao\UserDao               as UserDao;
+
+use model\User                as User;
+use model\Profile             as Profile;
 
 class AuthenticationController extends BaseController{
+
+  function __construct(){
+    parent::__construct();
+  }
 
   function authenticate(){
     $req = new Request();
     session_start();
     extract($_SESSION);
-    if($req->path() == '/login' && isset($user)){
-      $response = new RedirectResponse("/");
-      return $response->send();
+    $includesLogin = preg_match("/^\/login/",$req->path());
+    $includesUser  = preg_match("/^\/user/",$req->path());
+    if(($includesLogin || $includesUser) && isset($user)){
+      return $this->redirect("/");
     }
-    if(!isset($user) && $req->path() != '/login'){
-      $response = new RedirectResponse("/login");
-      return $response->send();
+    if(!isset($user) && !($includesLogin || $includesUser)){
+      return $this->redirect("/login");
     }
   }
 
@@ -25,6 +34,9 @@ class AuthenticationController extends BaseController{
     include("views/login.php");
   }
 
+  function registerForm(){
+    include("views/userCreation.php");
+  }
 
   function login(){
     extract($_POST);
@@ -46,8 +58,7 @@ class AuthenticationController extends BaseController{
     if(isset($_SESSION['user'])){
       unset($_SESSION['user']);
     }
-    $response = new RedirectResponse("/");
-    return $response->send();
+    return $this->redirect("/");
   }
 
 }

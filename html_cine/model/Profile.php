@@ -1,11 +1,11 @@
-<?php 
+<?php
 namespace model;
 /**
- * 
+ *
  */
 class Profile
 {
-	
+
 	private $id;
 	private $nombre;
 	private $apellido;
