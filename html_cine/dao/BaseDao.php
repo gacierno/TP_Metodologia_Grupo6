@@ -77,15 +77,11 @@ abstract class BaseDao{
 
     public function update( $id , $obj ){
 
-        // update autos   -- TABLENAME
-        // set kilomentros = 0  -- FIELDS
-        // where kilometros > 20000;  -- CONDICION
-
         $hash = $this->parseToHash($obj);
 
         foreach ( $hash as $key => $value ) {
 
-            $query = "update ". $this->tableName ." set ".$key." = ".$value." where ".$this->singleType."_id like %".$id."%;";
+            $query = "update ". $this->tableName ." set ".$key." = '".$value."' where ".$this->singleType."_id = ".$id.";";
 
             try {
                 $this->connection = Connection::GetInstance();
