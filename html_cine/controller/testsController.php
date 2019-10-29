@@ -3,7 +3,7 @@
 	include_once dirname(__DIR__).'/model/Cinema.php';
 	include_once dirname(__DIR__).'/model/Genre.php';
 	include_once dirname(__DIR__).'/model/Movie.php';
-	// include_once dirname(__DIR__).'/model/Show.php';
+	include_once dirname(__DIR__).'/model/Show.php';
 	include_once dirname(__DIR__).'/model/Role.php';
 	include_once dirname(__DIR__).'/model/Profile.php';
 	include_once dirname(__DIR__).'/model/User.php';
@@ -16,6 +16,7 @@
 	include_once dirname(__DIR__).'/dao/GenreDao.php';
 	include_once dirname(__DIR__).'/dao/UserDao.php';
 	include_once dirname(__DIR__).'/dao/GenresOnMoviesDao.php';
+	include_once dirname(__DIR__).'/dao/ShowDao.php';
 
 	include_once dirname(__DIR__).'/dao/Connection.php';
 	include_once dirname(__DIR__).'/dao/QueryType.php';
@@ -215,7 +216,18 @@
 	// $testMovieDao->add( $testMovie );
 
 
+	$testShowDao = new dao\ShowDao();
+	$testShow = new model\Show(
+		array(
+			'show_id' => 0,
+			'show_time' => '18:00:00',		// HH:MM:SS
+			'show_date' => '2019-10-20',	// YYYY-MM-DD
+			'show_movie' => $testMovie,
+			'show_cinema' => $testCine
+		)
+	);
 
+	// $testShowDao->add( $testShow );
 
 
 
