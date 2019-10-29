@@ -42,8 +42,8 @@ class AuthenticationController extends BaseController{
     if(!isset($username,$password)) return "Error: no user or pass";
     $userDao = new UserDao();
     $users = $userDao->getList(array(
-      'username' => $username,
-      'password' => $password
+      'user_email' => $username,
+      'user_password' => $password
     ));
 
     if(count($users) > 0){

@@ -23,4 +23,8 @@ class MovieController extends BaseController{
     include("views/movieList.php");
   }
 
+  function detail(){
+    include("views/movieDetail.php");
+  }
+
 }
