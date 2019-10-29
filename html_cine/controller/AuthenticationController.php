@@ -18,7 +18,6 @@ class AuthenticationController extends BaseController{
 
   function authenticate(){
     $req = new Request();
-    session_start();
     extract($_SESSION);
     $includesLogin = preg_match("/^\/login/",$req->path());
     $includesUser  = preg_match("/^\/user/",$req->path());
@@ -46,15 +45,15 @@ class AuthenticationController extends BaseController{
       'username' => $username,
       'password' => $password
     ));
+
     if(count($users) > 0){
-      session_start();
       $_SESSION['user'] = $users[0];
     }
+    $this->redirect("/");
   }
 
 
   function logout(){
-    session_start();
     if(isset($_SESSION['user'])){
       unset($_SESSION['user']);
     }

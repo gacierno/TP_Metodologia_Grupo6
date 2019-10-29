@@ -12,7 +12,7 @@
                 <span class="floating-label">Nombre de Usuario</span>
             </label>
             <label>
-                <input class="inputText" type="password" name="pass" required>
+                <input class="inputText" type="password" name="password" required>
                 <span class="floating-label">Contraseña</span>
             </label>
             <div class="login__button--container">
@@ -24,7 +24,7 @@
             <p>No tienes usuario? <a href="/login/create">REGISTRATE</a></p>
         </div>
         </div>
-        
+
     </div>
 </div>
 

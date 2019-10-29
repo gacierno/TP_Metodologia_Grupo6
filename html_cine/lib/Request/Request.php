@@ -11,7 +11,7 @@ class Request{
   }
 
   function path(){
-    return $_SERVER['REQUEST_URI'];
+    return preg_replace( "/\?.*$/", "", $_SERVER['REQUEST_URI'] );
   }
 
 
