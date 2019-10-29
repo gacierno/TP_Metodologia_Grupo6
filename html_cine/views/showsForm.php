@@ -26,10 +26,12 @@
             <span class="floating-label">Hora de la funcion</span>
         </label>
 
-        <label>
-            <input class="inputText" type="text" name="show_date" value="" required pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" onfocus="(this.type = 'date')" onblur="this.type = 'text'">
-            <span class="floating-label">Fecha de la funcion</span>
-        </label>
+        <select id="moviefilter__select--genre" name="genre" class="form-control form-control-md movielist__filter-select">
+                <option value="" disable selected>Selecciona un genero</option>
+                <?php foreach ($genres as $genre) : ?>
+                <option value="<?php echo($genre->getId()); ?>"><?php echo($genre->getName()); ?></option>
+                <?php endforeach; ?>
+        </select>
 
 
         </form>
