@@ -14,10 +14,10 @@ class Profile
 
 	function __construct( $options )
 	{
-		$this->setApellido(   (isset($options['apellido']) )?$options['apellido']: '' );
-		$this->setDni(        (isset($options['dni'])      )?$options['dni']: null );
-		$this->setId(         (isset($options['id'])       )?$options['id']: null );
-		$this->setNombre(     (isset($options['nombre'])   )?$options['nombre']: '' );
+		$this->setApellido(   (isset($options['profile_apellido']) )?$options['profile_apellido']: '' );
+		$this->setDni(        (isset($options['profile_dni'])      )?$options['profile_dni']: null );
+		$this->setId(         (isset($options['profile_id'])       )?$options['profile_id']: null );
+		$this->setNombre(     (isset($options['profile_nombre'])   )?$options['profile_nombre']: '' );
 	}
 
 

@@ -12,9 +12,9 @@ class Role
 	
 	function __construct( $options )
 	{
-		$this->setDescription( (isset($options['description']) )? $options['description'] : null ) ;
-		$this->setId( (isset($options['id']) )? $options['id'] : null ) ;
-		$this->setName( (isset($options['name']) )? $options['name'] : null ) ;	
+		$this->setDescription( (isset($options['role_description']) )? $options['role_description'] : null ) ;
+		$this->setId( (isset($options['role_id']) )? $options['role_id'] : null ) ;
+		$this->setName( (isset($options['role_name']) )? $options['role_name'] : null ) ;	
 	}
 
     /**
