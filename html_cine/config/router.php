@@ -10,7 +10,7 @@ use Controller\MovieController            as MovieController;
 
 $router = new Router();
 // MIDDLEWARES ======================================================================
-// $router->use('.*',                    array( new AuthenticationController(),'authenticate' ));
+$router->use('.*',                    array( new AuthenticationController(),'authenticate' ));
 
 // CINES ============================================================================
 $router->get('\/cines\/nuevo',        array( new CinemaController(),'createForm' ) );
