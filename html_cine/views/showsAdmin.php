@@ -41,7 +41,7 @@
 
                     <form method="POST" action="/funciones/delete">
                         <input type="text" name="id" value="<?php echo($show->getId()); ?>" hidden>
-                        <button id="funcion-delete" type="submit" class="showlist__button--secondary">Delete</button>
+                        <button id="funcion-delete" type="submit" class="showlist__button--secondary" onclick="return confirm('Estas Seguro?');">Delete</button>
                     </form>
                 </div>
             </div>

@@ -273,9 +273,9 @@ body{
     color:#fff;
     border:none;
     position:relative;
-    height:60px;
-    font-size:1.6em;
-    padding:0 30px;
+    height:auto;
+    font-size:12px;
+    padding: 10px;
     cursor:pointer;
     transition:800ms ease all;
     outline:none;
@@ -315,9 +315,9 @@ body{
     color:#fff;
     border:none;
     position:relative;
-    height:60px;
-    font-size:1.6em;
-    padding:0 30px;
+    height:auto;
+    font-size:12px;
+    padding:10px;
     cursor:pointer;
     transition:800ms ease all;
     outline:none;
@@ -347,6 +347,11 @@ body{
     transition:800ms ease all;
   }
 
+  @media all and (min-width:768px){
+    .cinemaform__button--primary,.cinemaform__button--secondary{
+        font-size:24px;
+    }
+  }
 
 .cinema__form input:focus ~ .floating-label,
 .cinema__form input:not(:focus):valid ~ .floating-label{
@@ -1066,3 +1071,37 @@ body{
     border-image-slice: 1;
 }
 
+.showlist__movie--select,.showlist__movie--select:active,.showlist__movie--select:focus,.showlist__cinema--select,.showlist__cinema--select:active,.showlist__cinema--select:focus{
+    width: 100%;
+    margin-left: auto;
+    background: rgb(197, 197, 197);
+    outline: none;
+    color: white;
+    border: none;
+    padding-left:5px;
+    border-radius: 0;
+    border-bottom: solid 1px black;
+    margin-bottom: 40px;
+}
+
+.showlist__movie--select option{
+    width: 100%;
+}
+
+.showlist__submit-button--container{
+    width: 100%;
+    text-align: right;
+}
+
+.showlist__main-container h1,.cinemalist__main-container h1{
+    font-size: 24px;
+    font-family: 'Roboto',sans-serif;
+    text-align: center;
+    color: white;
+}
+
+@media all and (min-width:768px){
+    .showlist__main-container h1,.cinemalist__main-container h1{
+        font-size: 32px;
+    }
+}

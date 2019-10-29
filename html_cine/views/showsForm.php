@@ -1,15 +1,16 @@
 <?php include_once('header.php'); ?>
 <!-- NECESITA ARRAY DE $MOVIES / $CINEMAS , SI ES /ACTUALIZAR NECESITO EL OBJETO $SHOW INSTANCIADO -->
-<?php if(isset($show)) : $isShowSet = true; else : $isShowSet = false; endif; ?>
+<?php if(isset($show)) : $isShowSet = true; $movie = $show->getMovie(); $cinema = $show->getCinema(); else : $isShowSet = false; endif; ?>
 
 
 <?php include_once('partials/customMessage.php'); ?>
 
 
-<div class="main-container container-fluid">
+<div class="main-container container-fluid showlist__main-container">
+    <h1><?php if($isShowSet) : echo('Modificación'); else : echo('Creación'); endif; ?> de Función</h1>
     <div class="row cinema__form--container">
 
-        <form id="show-form" class="cinema__form" method="POST" action="<?php if($isShowSet) : echo('/funciones/actualizar'); else : echo('/cines/nuevo'); endif; ?>">
+        <form id="show-form" class="cinema__form" method="POST" action="<?php if($isShowSet) : echo('/funciones/actualizar'); else : echo('/funciones/nuevo'); endif; ?>">
         <?php if($isShowSet) : ?>
         <label>
             <input id="show-date" type="text"  name="show_id" value="<?php echo($show->getId()); ?>" hidden>
@@ -26,13 +27,42 @@
             <span class="floating-label">Hora de la funcion</span>
         </label>
 
-        <select id="moviefilter__select--genre" name="genre" class="form-control form-control-md movielist__filter-select">
-                <option value="" disable selected>Selecciona un genero</option>
-                <?php foreach ($genres as $genre) : ?>
-                <option value="<?php echo($genre->getId()); ?>"><?php echo($genre->getName()); ?></option>
-                <?php endforeach; ?>
+        <select name="movie_id" class="form-control form-control-md showlist__movie--select" required>
+            <option value="<?php if($isShowSet) : echo($movie->getId()); endif; ?>" selected><?php if($isShowSet) : echo($movie->getName()); else : echo("Seleccione Pelicula"); endif; ?></option>
+            
+            <?php 
+            $selectedMovie = "";
+            if(isset($movie)){
+                $selectedMovie = $movie->getName();
+            }  
+            foreach ($movies as $mov) : 
+                if($mov->getName() !== $selectedMovie) :
+            ?>
+            <option value="<?php echo($mov->getId()); ?>"><?php echo($mov->getName()); ?> / <?php echo($mov->getLanguage()); ?></option>
+            <?php 
+                endif;
+            endforeach; ?>
         </select>
 
+        <select name="cinema_id" class="form-control form-control-md showlist__cinema--select" required>
+            <option value="<?php if($isShowSet) : echo($cinema->getId()); endif; ?>" selected><?php if($isShowSet) : echo($cinema->getName()); else : echo("Seleccione Sala de Cine"); endif; ?></option>
+            
+            <?php 
+            $selectedCinema = "";
+            if(isset($cinema)){
+                $selectedCinema = $cinema->getName();
+            }  
+            foreach ($cinemas as $cin) : 
+                if($cin->getName() !== $selectedCinema) :
+            ?>
+            <option value="<?php echo($cin->getId()); ?>"><?php echo($cin->getName()); ?></option>
+            <?php 
+                endif;
+            endforeach; ?>
+        </select>
+        <div class="showlist__submit-button--container">
+            <button type="submit" class="cinemaform__button--primary">Submit</button>
+        </div>
 
         </form>
 

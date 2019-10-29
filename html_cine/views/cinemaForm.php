@@ -6,7 +6,8 @@
 <?php include_once('partials/customMessage.php'); ?>
 
 
-<div class="main-container container-fluid">
+<div class="main-container container-fluid cinemalist__main-container">
+    <h1><?php if($isCinemaSet) : echo('Modificación'); else : echo('Creación'); endif; ?> de Cine</h1>
     <div class="row cinema__form--container">
 
         <form id="cinema-form" class="cinema__form" method="POST" action="<?php if($isCinemaSet) : echo('/cines/actualizar'); else : echo('/cines/nuevo'); endif; ?>">
@@ -36,7 +37,7 @@
         <div class="cinemaform__button--container">
             <button type="submit" class="cinemaform__button--primary">Submit</button>
             <?php if($isCinemaSet) : ?>
-            <button id="cinema-delete" type="submit" class="cinemaform__button--secondary">Delete</button>
+            <button id="cinema-delete" type="submit" class="cinemaform__button--secondary" onclick="return confirm('Estas Seguro?');">Delete</button>
             <?php endif; ?>
         </div>
 
