@@ -9,6 +9,10 @@ use Response\RedirectResponse as RedirectResponse;
 
 class MovieController extends BaseController{
 
+  function __construct(){
+    parent::__construct();
+  }
+
   function index(){
 		extract($_GET);
     $d_movie = new MovieDao();

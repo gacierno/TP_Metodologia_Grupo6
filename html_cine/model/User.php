@@ -1,11 +1,11 @@
-<?php 
+<?php
 namespace model;
 /**
- * 
+ *
  */
 class User
 {
-	
+
 	private $id;
 	private $email;
 	private $pass;

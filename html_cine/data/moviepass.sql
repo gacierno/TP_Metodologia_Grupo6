@@ -75,7 +75,7 @@ create table Users(
 create table Counts(
 	count_id int auto_increment,
 	count_name varchar(40),
-	constraint pk_count primary key (count_id) 
+	constraint pk_count primary key (count_id)
 );
 
 create table Payments(
@@ -229,4 +229,7 @@ INSERT INTO `Genres_on_Movies` (`movie_id`, `genre_id`) VALUES
 INSERT INTO `Shows` (`show_id`, `show_date`, `show_time`, `movie_id`, `cinema_id`) VALUES
 (3, '2019-10-20', '18:00:00', 0, 2);
 
-
+--
+-- Volcado de datos para la tabla `Roles`
+--
+INSERT INTO `Roles` (`role_id`, `role_name`, `role_description`) VALUES (NULL, 'cliente', '');

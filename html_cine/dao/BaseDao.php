@@ -48,7 +48,7 @@ abstract class BaseDao{
 
 
     public function add( $obj ){
-        if( is_null( $obj->getId() ) || !$this->getById( $obj->getId() ) ){ 
+        if( is_null( $obj->getId() ) || !$this->getById( $obj->getId() ) ){
 
             $options = $this->getFields( $obj );
 
@@ -95,9 +95,9 @@ abstract class BaseDao{
             } catch (Exception $e) {
                 throw $e;
             }
-        
+
         }
-        
+
     }
 
 
@@ -143,7 +143,7 @@ abstract class BaseDao{
             array_push( $output['values'], ":".$key );
         }
 
-        return 
+        return
             " (".
             preg_replace( "/[ \[ \] \" ]/", "", json_encode( $output['keys'] ) )
             .") values (".

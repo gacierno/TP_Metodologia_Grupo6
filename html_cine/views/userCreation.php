@@ -4,28 +4,28 @@
 
 <div class="container-fluid">
     <div class="row login__row user-creation__row">
-    
+
     <div class="login__overlay"></div>
         <div class="col-sm-10 col-md-8 col-lg-4 login__container">
-        <form method="POST" action="/login/create" class="login-form">
+        <form method="POST" action="/user/create" class="login-form">
             <label>
-                <input class="inputText" type="email" name="email" required autocomplete="off">
+                <input class="inputText" type="email" name="user_email" required autocomplete="off">
                 <span class="floating-label">Ingrese Correo Electronico</span>
             </label>
             <label>
-                <input class="inputText" type="password" name="pass" required autocomplete="off">
+                <input class="inputText" type="password" name="user_password" required autocomplete="off">
                 <span class="floating-label">Contraseña</span>
             </label>
             <label>
-                <input class="inputText" type="text" name="nombre" required>
+                <input class="inputText" type="text" name="profile_nombre" required>
                 <span class="floating-label">Ingresar nombre</span>
             </label>
             <label>
-                <input class="inputText" type="text" name="apellido" required>
+                <input class="inputText" type="text" name="profile_apellido" required>
                 <span class="floating-label">Ingresar Apellido</span>
             </label>
             <label>
-                <input class="inputText dni-input" type="number" name="dni" required>
+                <input class="inputText dni-input" type="number" name="profile_dni" required>
                 <span class="floating-label">Ingresar DNI</span>
             </label>
             <div class="login__button--container">
@@ -33,7 +33,7 @@
             </div>
         </form>
         </div>
-        
+
     </div>
 </div>
 

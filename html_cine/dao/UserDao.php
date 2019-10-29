@@ -50,8 +50,14 @@ class UserDao extends BaseDao
 		);
 	}
 
+	public function add( $obj ){
+		// $profileDAO = new ProfileDao();
+		// $profileDAO->add($obj->getProfile());
+		// $profiles = $profileDAO->getList();
+		// $obj->setProfile($profiles[0]);
+		parent::add($obj);
+	}
 }
 
 
  ?>
-

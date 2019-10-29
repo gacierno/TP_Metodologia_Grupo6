@@ -8,6 +8,10 @@ use Response\ErrorResponse    as ErrorResponse;
 
 class CinemaController extends BaseController{
 
+  function __construct(){
+    parent::__construct();
+  }
+
   function index(){
     $d_cinema = new CinemaDao();
     $cinemas = $d_cinema->getList();
