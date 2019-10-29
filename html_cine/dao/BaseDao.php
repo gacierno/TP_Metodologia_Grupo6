@@ -77,15 +77,27 @@ abstract class BaseDao{
 
     public function update( $id , $obj ){
 
-        // foreach ( $this->itemList as $key=>$post) {
-        //     if($post['id'] == $id){
-        //         $hash = $this->parseToHash( $obj );
-        //         $this->itemList[$key] = $hash;
-        //         $this->SaveAll();
-        //         return true;
-        //     }
-        // }
-        // return false;
+        // update autos   -- TABLENAME
+        // set kilomentros = 0  -- FIELDS
+        // where kilometros > 20000;  -- CONDICION
+
+        $hash = $this->parseToHash($obj);
+
+        foreach ( $hash as $key => $value ) {
+
+            $query = "update ". $this->tableName ." set ".$key." = ".$value." where ".$this->singleType."_id like %".$id."%;";
+
+            try {
+                $this->connection = Connection::GetInstance();
+                $this->connection->ExecuteNonQuery( $query );
+            } catch (PDOException $e) {
+                throw $e;
+            } catch (Exception $e) {
+                throw $e;
+            }
+        
+        }
+        
     }
 
 

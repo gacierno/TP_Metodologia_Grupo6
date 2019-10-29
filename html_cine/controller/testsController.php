@@ -235,7 +235,19 @@
 	 */
 	$testUserDao = new dao\UserDao();
 	//testeo add
-	$testUserDao->add( $testUser );
+	// $testUserDao->add( $testUser );
+
+
+	$fafa = new model\Profile(
+		array(
+			'profile_apellido' => 'modificado ape',
+			'profile_dni' => '55',
+			'profile_id' => 1,
+			'profile_nombre' => 'modifica na'
+		)
+	);
+
+	$testProfileDao->update( 1, $fafa );
 
 
 
