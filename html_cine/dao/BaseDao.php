@@ -11,10 +11,28 @@ abstract class BaseDao{
     protected $connection;
 
 
-    public function getList(){
+    public function getList( $criteria = array() , $conector = 'AND', $logical = '=' ){
 
         $output = array();
-        $query = "select * from ". $this->tableName;
+        $query = "select * from ".$this->tableName;
+
+        if( sizeof( $criteria ) != 0 ){
+     
+            $query .= " where ";
+
+            $i = 0;
+            foreach ( $criteria as $key => $value) {
+                $query .= $key." ".$logical." '".$value."'";
+                $i++;
+                if( $i < sizeof($criteria) ){
+                    $query .= " ".$conector." ";
+                }
+            }
+            $query .= ";";
+        }
+
+        echo $query;
+
         try {
             $this->connection = Connection::GetInstance();
             $output = $this->connection->Execute( $query );
