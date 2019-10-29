@@ -1,6 +1,8 @@
 <?php include_once('header.php'); ?>
 <!-- uso array de $shows -->
 
+<?php include_once('partials/customMessage.php'); ?>
+
 <div class="main-container container-fluid">
     <div class="row">
         <div class="showlist__button--container col-12">
@@ -29,13 +31,11 @@
                 </div>
                 <div class="col-sm-12 col-lg-2">
                     <form method="POST" action="/funciones/update">
-                        <input type="text" name="id" value="<?php echo($show->getId()); ?>" hidden>
-                        <input type="text" name="day" value="<?php echo($show->getDay()); ?>" hidden>
-                        <input type="text" name="time" value="<?php echo($show->getTime()); ?>" hidden>
-                        <input type="text" name="movieId" value="<?php echo($movie->getId()); ?>" hidden>
-                        <input type="text" name="movieName" value="<?php echo($movie->apiId()); ?>" hidden>
-
-
+                        <input type="number" name="show_id" value="<?php echo($show->getId()); ?>" hidden>
+                        <input type="text" name="show_day" value="<?php echo($show->getDay()); ?>" hidden>
+                        <input type="text" name="show_time" value="<?php echo($show->getTime()); ?>" hidden>
+                        <input type="number" name="movie_id" value="<?php echo($movie->getId()); ?>" hidden>
+                        <input type="number" name="cinema_id" value="<?php echo($cinema->getId()); ?>" hidden>
                         <button id="funcion-update" type="submit" class="showlist__button--primary">Update</button>
                     </form>
 
@@ -47,6 +47,7 @@
             </div>
         </div>
     </div> 
+    
     <?php endforeach; ?>
 
 </div>

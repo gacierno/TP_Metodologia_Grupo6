@@ -16,7 +16,7 @@ class MovieController extends BaseController{
     if(!isset($genero)) $genero = "";
     $movies = $genero == "" ? $d_movie->getList() : $d_movie->getByGenre($genero);
     $genres = $d_genre->getList();
-    include("views/movieList.php");
+    include("views/showsForm.php");
   }
 
 }
