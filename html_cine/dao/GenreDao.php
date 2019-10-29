@@ -68,21 +68,6 @@ class GenreDao extends BaseDao implements IApiConnector
 
 
 	/**
-	 * parseToObjects
-	 * @param Array()
-	 * @return Array(Cunema)
-	 */
-
-	public function parseToObjects( $arr ){
-
-		$output = array();
-		foreach ( $arr as $value ) {
-			array_push( $output, $this->parseToObject( $value ) );
-		}
-		return $output;
-	}
-
-	/**
 	 * parseToObject
 	 * @param hashMap
 	 * @return Object

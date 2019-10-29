@@ -14,11 +14,11 @@ class User
 
 	function __construct( $options )
 	{
-		$this->setEmail( (isset($options['email']) ) ? $options['email'] : '' );
-		$this->setId( (isset($options['id']) ) ? $options['id'] : null );
-		$this->setPass( (isset($options['pass']) ) ? $options['pass'] : '' );
-		$this->setProfile( (isset($options['profile']) ) ? $options['profile'] : null );
-		$this->setRole( (isset($options['role']) ) ? $options['role'] : null );
+		$this->setEmail( (isset($options['user_email']) ) ? $options['user_email'] : '' );
+		$this->setId( (isset($options['user_id']) ) ? $options['user_id'] : null );
+		$this->setPass( (isset($options['user_password']) ) ? $options['user_password'] : '' );
+		$this->setProfile( (isset($options['user_profile']) ) ? $options['user_profile'] : null );
+		$this->setRole( (isset($options['user_role']) ) ? $options['user_role'] : null );
 	}
 
 

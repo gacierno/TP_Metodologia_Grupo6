@@ -17,6 +17,8 @@
 	include_once dirname(__DIR__).'/dao/UserDao.php';
 	include_once dirname(__DIR__).'/dao/GenresOnMoviesDao.php';
 	include_once dirname(__DIR__).'/dao/ShowDao.php';
+	include_once dirname(__DIR__).'/dao/RoleDao.php';
+	include_once dirname(__DIR__).'/dao/ProfileDao.php';
 
 	include_once dirname(__DIR__).'/dao/Connection.php';
 	include_once dirname(__DIR__).'/dao/QueryType.php';
@@ -120,49 +122,6 @@
 
 
 
-	/*
-	 *	hardcoded rol to perform tests
-	 */
-	$testRole = new model\Role(
-		array(
-			'id' => -1,
-			'name' => 'test rol name',
-			'description' => 'test rol description'
-		)
-	);
-
-	/*
-	 *	hardcoded profile to perform tests
-	 */
-	$testProfile = new model\Profile(
-		array(
-			'id' => -1,
-			'name' => 'test profile name',
-			'apellido' => 'test profile apellido',
-			'dni' => 'test profile dni'
-		)
-	);
-
-	/*
-	 *	hardcoded user to perform tests
-	 */
-	$testUser = new model\User(
-		array(
-			'id' => -1,
-			'email' => 'test user name',
-			'pass' => 'test user apellido',
-			'role' => $testRole,
-			'profile' => $testProfile
-		)
-	);
-
-	/*
-	 * Instance UserDao for testing
-	 */
-	$userDao = new dao\UserDao();
-	//testeo add
-	// $userDao->add( $testUser );
-
 
 
 	/*
@@ -229,7 +188,54 @@
 
 	// $testShowDao->add( $testShow );
 
+	$testRoleDao = new dao\RoleDao();
+	/*
+	 *	hardcoded rol to perform tests
+	 */
+	$testRole = new model\Role(
+		array(
+			'role_id' => 1,
+			'role_description' => 'test rol description',
+			'role_name' => 'test rol name'
+		)
+	);
 
+	// $testRoleDao->add( $testRole );
+
+	$testProfileDao = new dao\ProfileDao();
+	/*
+	 *	hardcoded profile to perform tests
+	 */
+	$testProfile = new model\Profile(
+		array(
+			'profile_apellido' => 'test profile apell',
+			'profile_dni' => '1234567890',
+			'profile_id' => 1,
+			'profile_nombre' => 'test profile n'
+		)
+	);
+	// $testProfileDao->add( $testProfile );
+
+
+	/*
+	 *	hardcoded user to perform tests
+	 */
+	$testUser = new model\User(
+		array(
+			'user_id' => -1,
+			'user_email' => 'test user nam',
+			'user_password' => 'test user ape',
+			'user_role' => $testRole,
+			'user_profile' => $testProfile
+		)
+	);
+
+	/*
+	 * Instance UserDao for testing
+	 */
+	$testUserDao = new dao\UserDao();
+	//testeo add
+	$testUserDao->add( $testUser );
 
 
 

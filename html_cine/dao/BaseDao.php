@@ -140,7 +140,20 @@ abstract class BaseDao{
     }
 
 
-    public function parseToObjects( $arr ){ }
+    /**
+     * parseToObjects
+     * @param Array()
+     * @return Array(Cunema)
+     */
+
+    public function parseToObjects( $arr ){
+
+        $output = array();
+        foreach ( $arr as $value ) {
+            array_push( $output, $this->parseToObject( $value ) );
+        }
+        return $output;
+    }
 
     public function parseToObject( $hash ){ }
 

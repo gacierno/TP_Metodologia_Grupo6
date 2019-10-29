@@ -1,20 +1,22 @@
-<?php
+<?php 
 namespace dao;
+
 /**
- *
- *	NAMESPACE DAO
- *
+ * 
  */
 
-use model\Cinema as Cinema;
-use dao\BaseDao  as BaseDao;
+use model\Role as Role;
 
-class CinemaDao extends BaseDao
+use dao\BaseDao as BaseDao;
+
+
+
+class RoleDao extends BaseDao
 {
-
+	
 	function __construct(){
-		parent::setTableName( 'Cinemas' );
-		parent::setSingleType( 'cinema' );
+		parent::setTableName( 'Roles' );
+		parent::setSingleType( 'role' );
 	}
 
 
@@ -34,19 +36,15 @@ class CinemaDao extends BaseDao
 	 */
 
 	public function parseToObject( $arr ){
-		return new Cinema( $arr );
+		return new Role( $arr );
 	}
 
 	public function parseToHash( $obj ){
 		return array(
-			'cinema_name' 		=> $obj->getName(),
-			'cinema_address' 	=> $obj->getAddress(),
-			'cinema_capacity'	=> $obj->getCapacity(),
-			'cinema_ticketValue' => $obj->getTicketValue()
+			'role_description' 	=> $obj->getDescription(),
+			'role_name'			=> $obj->getName()
 		);
 	}
 
 }
-
-
  ?>
