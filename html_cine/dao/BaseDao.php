@@ -99,15 +99,16 @@ abstract class BaseDao{
 
 
     public function delete( $id ){
-        $this->itemList = $this->retrieveData();
-        foreach ( $this->itemList as $key => $post) {
-            if( $post['id'] == $id ){
-                unset($this->itemList[$key]);
-                $this->SaveAll();
-                return true;
-            }
+        $query = "update ". $this->tableName ." set ".$this->singleType."_available = 0 where ".$this->singleType."_id = ".$id.";";
+
+        try {
+            $this->connection = Connection::GetInstance();
+            $this->connection->ExecuteNonQuery( $query );
+        } catch (PDOException $e) {
+            throw $e;
+        } catch (Exception $e) {
+            throw $e;
         }
-        return false;
 
     }
 

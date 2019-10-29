@@ -247,7 +247,15 @@
 		)
 	);
 
-	$testProfileDao->update( 1, $fafa );
+	// $testProfileDao->update( 1, $fafa );
+
+	// $testCinemaDao->delete( 2 );
+
+	$dada = $testCinemaDao->getById( 2 );
+
+	$dada->setAbailability( 1 );
+
+	$testCinemaDao->update( 2, $dada );
 
 
 
