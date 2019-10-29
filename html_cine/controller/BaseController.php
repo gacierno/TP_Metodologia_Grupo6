@@ -21,6 +21,7 @@ class BaseController{
     foreach(array('passSuccessMessage','passErrorMessage') as $attr){
       if(isset($this->$attr)) $queryString .= $attr . "=" . $this->$attr . "&";
     }
+    if($queryString == "?") $queryString = "";
     $response = new RedirectResponse($path . $queryString);
     return $response->send();
   }
