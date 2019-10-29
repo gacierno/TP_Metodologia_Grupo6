@@ -10,16 +10,15 @@ class Cinema
 	private $address;
 	private $capacity;
 	private $ticketValue;
-    private $shows;
+
 
 	function __construct( $options )
 	{
-		$this->setAddress(    ( isset($options['address']) )  ? $options['address'] : '' );
-		$this->setCapacity(   ( isset($options['capacity']) ) ? $options['capacity'] : 0 );
-		$this->setName(       ( isset($options['name']) )     ? $options['name'] : '' );
-		$this->setTicketValue( ( isset($options['ticketValue']) )? $options['ticketValue'] : 0 );
-        $this->setId(         ( isset($options['id']) )       ? $options['id'] : null );
-        $this->setShows(      ( isset($options['shows']) )    ? $options['shows'] : array() ); // falta verificar que tenga un array de objetos show
+		$this->setAddress(    ( isset($options['cinema_address']) )  ? $options['cinema_address'] : '' );
+		$this->setCapacity(   ( isset($options['cinema_capacity']) ) ? $options['cinema_capacity'] : 0 );
+		$this->setName(       ( isset($options['cinema_name']) )     ? $options['cinema_name'] : '' );
+		$this->setTicketValue( ( isset($options['cinema_ticketValue']) )? $options['cinema_ticketValue'] : 0);
+        $this->setId(         ( isset($options['cinema_id']) )       ? $options['cinema_id'] : null );
 	}
 
     /**
@@ -108,19 +107,6 @@ class Cinema
     public function getSwhos()
     {
         return $this->shows;
-    }
-
-    /**
-     * @param mixed $shows
-     */
-    public function setShows($shows)
-    {
-        $this->shows = $shows;
-    }
-
-    public function addShow( $single )
-    {
-        if( !is_null($single) ) array_push( $this->shows, $single );
     }
 
 }

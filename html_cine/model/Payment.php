@@ -10,7 +10,7 @@ namespace model;
  	private $authCode;
  	private $date;
  	private $amount;
- 	private $count;		//	:int id account
+ 	private $count;	
  	
  	function __construct( $options )
  	{

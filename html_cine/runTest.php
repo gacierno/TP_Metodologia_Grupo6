@@ -18,7 +18,23 @@ include_once './views/header.php';
 					<spant class="test-result"><?php //echo ( testGetById( $cinemaDao,$cinemaForTest ) )?'PASS':'FAIL'; ?></spant>
 				</li>
 			</ul>
-	<pre style="color: white"><?php print_r($listGenre) ?></pre>
+
+	<pre style="color: white"><?php // print_r($options) ?></pre>
+	<pre style="color: white"><?php // print_r( $testGenreDao->getById( 18 ) ) ?></pre>
+	<pre style="color: white"><?php // echo $testGenreDao->getFields( $testGenre ) ?></pre>
+	<pre style="color: white"><?php // print_r( $testMovie ) ?></pre>
+	<pre style="color: white"><?php // print_r( $testMovieDao->parseToHash( $testMovie ) ) ?></pre>
+	<pre style="color: white"><?php //  echo $testMovieDao->getFields( $testMovie ) ?></pre>
+	<pre style="color: white"><?php // print_r( $testMovieDao->getList() ) ?></pre>
+	<pre style="color: white"><?php // print_r( $testGenreDao->getList() ) ?></pre>
+	<pre style="color: white"><?php // print_r( $testCinemaDao->getList() ) ?></pre>
+	<pre style="color: white"><?php // print_r( dao\GenresOnMoviesDao::getGenresByMovieId( 338967 ) ) ?></pre>
+	<pre style="color: white"><?php // print_r( $testShow ) ?></pre>
+	<pre style="color: white"><?php // print_r( $testShowDao->getList() ) ?></pre>
+	<pre style="color: white"><?php  print_r( $testUser ) ?></pre>
+	
+	
+	
 		</section>
  	</div>
 	

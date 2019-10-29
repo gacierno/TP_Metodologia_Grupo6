@@ -1,43 +1,72 @@
 <?php
 namespace dao;
 
+use dao\Connection as Connection;
+
 abstract class BaseDao{
 
     protected $itemList = array();
-    protected $itemType;
+    protected $tableName;
+    protected $singleType;
+    protected $connection;
 
 
     public function getList(){
 
         $output = array();
-        $this->itemList = $this->retrieveData();
-        return $this->parseToObjects( $this->itemList );
+        $query = "select * from ". $this->tableName;
+        try {
+            $this->connection = Connection::GetInstance();
+            $output = $this->connection->Execute( $query );
+        } catch (PDOException $e) {
+            throw $e;
+        } catch (Exception $e) {
+            throw $e;
+        }
+        return $this->parseToObjects( $output );
 
     }
 
     public function getById( $id ){
-        $output = false;
-        // THIS SENTENCE VOIDS DATA DELETIONS WHILE UPDATING LIST
-        if( sizeof($this->itemList) == 0 ) $this->itemList =  $this->retrieveData();
-
-        foreach ($this->itemList as $value){
-            if( $value['id'] == $id ) {
-                $output = $this->parseToObject($value);
-            };
+        $result = array();
+        $query = "select * from ". $this->tableName . " where ". strtolower( $this->singleType ) ."_id = ". $id.";";
+        try {
+            $this->connection = Connection::GetInstance();
+            $result = $this->connection->Execute( $query );
+        } catch (PDOException $e) {
+            throw $e;
+        } catch (Exception $e) {
+            throw $e;
+        }
+        if( sizeof($result) > 0 ){
+            $output = $this->parseToObject( $result[0] );
+        }else{
+            $output = false;
         }
         return $output;
     }
 
 
     public function add( $obj ){
-        if( !$this->getById( $obj->getId() ) ){ //getById executes retrieve data
+        if( is_null( $obj->getId() ) || !$this->getById( $obj->getId() ) ){ 
 
-            if( is_null($obj->getId()) ){
-                $obj->setId( time() );  // SETTING A TIMESTAMP AS CINEMA ID
+            $options = $this->getFields( $obj );
+
+            $query = "insert into " .$this->tableName. $options;
+
+            $params = $this->parseToHash($obj);
+
+            try {
+                $this->connection = Connection::GetInstance();
+                $this->connection->ExecuteNonQuery( $query, $params );
+            } catch (PDOException $e) {
+                throw $e;
+                return false;
+            } catch (Exception $e) {
+                throw $e;
+                return false;
             }
-            $hash = $this->parseToHash( $obj );
-            array_push( $this->itemList , $hash );
-            $this->SaveAll();
+
             return true;
         }
         return false;
@@ -47,16 +76,28 @@ abstract class BaseDao{
 
 
     public function update( $id , $obj ){
-        $this->itemList = $this->retrieveData();
-        foreach ( $this->itemList as $key=>$post) {
-            if($post['id'] == $id){
-                $hash = $this->parseToHash( $obj );
-                $this->itemList[$key] = $hash;
-                $this->SaveAll();
-                return true;
+
+        // update autos   -- TABLENAME
+        // set kilomentros = 0  -- FIELDS
+        // where kilometros > 20000;  -- CONDICION
+
+        $hash = $this->parseToHash($obj);
+
+        foreach ( $hash as $key => $value ) {
+
+            $query = "update ". $this->tableName ." set ".$key." = ".$value." where ".$this->singleType."_id like %".$id."%;";
+
+            try {
+                $this->connection = Connection::GetInstance();
+                $this->connection->ExecuteNonQuery( $query );
+            } catch (PDOException $e) {
+                throw $e;
+            } catch (Exception $e) {
+                throw $e;
             }
+        
         }
-        return false;
+        
     }
 
 
@@ -74,30 +115,68 @@ abstract class BaseDao{
 
     }
 
-    public function retrieveData(){
 
-        $jsonList = ( file_exists( dirname(__DIR__).'/data/'. $this->itemType .'.json' ) ) ? file_get_contents( dirname(__DIR__).'/data/'. $this->itemType .'.json' ) : '[]' ;
-        return json_decode($jsonList, TRUE);
-
-	}
-
-    public function SaveAll(){
-
-        $listToFile = json_encode( $this->itemList, JSON_PRETTY_PRINT );
-        file_put_contents( dirname(__DIR__).'/data/'. $this->itemType .'.json', $listToFile );
-    
+    public function setTableName( $type ){
+        $this->tableName = $type;
     }
 
-    public function setItemType( $type ){
-        $this->itemType = $type;
+    public function setSingleType( $type ){
+        $this->singleType = $type;
     }
 
-    public function parseToObjects( $arr ){ }
+
+    /*
+     * getTableFields
+     */
+    public function getFields( $obj ){
+
+        $output = array(
+            'keys'      => array(),
+            'values'    => array()
+
+        );
+
+        $hash = $this->parseToHash($obj);
+
+        foreach ($hash as $key => $value ) {
+            array_push( $output['keys'], $key );
+            array_push( $output['values'], ":".$key );
+        }
+
+        return 
+            " (".
+            preg_replace( "/[ \[ \] \" ]/", "", json_encode( $output['keys'] ) )
+            .") values (".
+            preg_replace( "/[ \[ \] \" ]/", "", json_encode( $output['values'] ) )
+            .");";
+    }
+
+
+    /**
+     * parseToObjects
+     * @param Array()
+     * @return Array(Cunema)
+     */
+
+    public function parseToObjects( $arr ){
+
+        $output = array();
+        foreach ( $arr as $value ) {
+            array_push( $output, $this->parseToObject( $value ) );
+        }
+        return $output;
+    }
 
     public function parseToObject( $hash ){ }
 
     public function parseToHash( $obj ){ }
+
+
+
+
+
 }
+
 
 
  ?>

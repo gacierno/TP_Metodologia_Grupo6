@@ -9,7 +9,6 @@
 	{
 		
 		private $id;
-		private $apiId;	
 		private $name;
 		private $duration;
 		private $language;
@@ -17,13 +16,12 @@
 		private $genres;
 
 		function __construct( $options ){
-			$this->setName( 	(isset($options['name'] ) ) 	?$options['name']: '' );
-			$this->setDuration( (isset($options['duration'] ) ) ?$options['duration']: 0 );
-			$this->setLanguage( (isset($options['language'] ) ) ?$options['language']: '' );
-			$this->setImage( 	(isset($options['image'] ) ) 	?$options['image']: '' );
-			$this->setGenres( 	(isset($options['genres'] ) ) 	?$options['genres']: array() );
-			$this->setId( 		(isset($options['id'] ) )		?$options['id']: null );
-			$this->setApiId( 	(isset($options['apiId'] ) ) 	?$options['apiId']: null );	
+			$this->setName( 	(isset($options['movie_title'] ) ) 	?$options['movie_title']: '' );
+			$this->setDuration( (isset($options['movie_runtime'] ) ) ?$options['movie_runtime']: 0 );
+			$this->setLanguage( (isset($options['movie_language'] ) ) ?$options['movie_language']: '' );
+			$this->setImage( 	(isset($options['movie_image'] ) ) 	?$options['movie_image']: '' );
+			$this->setGenres( 	(isset($options['movie_genres'] ) ) 	?$options['movie_genres']: array() );
+			$this->setId( 		(isset($options['movie_id'] ) )		?$options['movie_id']: null );
 		}
 	
 		/**
@@ -127,21 +125,6 @@
 	    */
 	    public function addGenre( $genre ){
 	    	array_push($this->genres, $genre );
-	    }
-
-	    /**
-	     * @return array
-	     */
-	    public function getApiId()
-	    {
-	        return $this->apiId;
-	    }
-
-	    /**
-	    *	@param 
-	    */
-	    public function setApiId( $apiId ){
-	    	$this->apiId = $apiId;
 	    }
 
 	}

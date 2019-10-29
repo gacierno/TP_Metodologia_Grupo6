@@ -7,29 +7,19 @@ namespace dao;
  */
 
 use dao\BaseDao  as BaseDao;
+use dao\ProfileDao as ProfileDao;
+use dao\RoleDao as RoleDao;
+
 use model\User as User;
 
 class UserDao extends BaseDao
 {
 
 	function __construct(){
-		parent::setItemType( 'user' );
+		parent::setTableName( 'Users' );
+		parent::setSingleType( 'user' );
 	}
 
-	/**
-	 * parseToObjects
-	 * @param Array()
-	 * @return Array(Cunema)
-	 */
-
-	public function parseToObjects( $arr ){
-
-		$output = array();
-		foreach ( $arr as $value ) {
-			array_push( $output, $this->parseToObject( $value ) );
-		}
-		return $output;
-	}
 
 	/**
 	 * parseToObject
@@ -38,16 +28,25 @@ class UserDao extends BaseDao
 	 */
 
 	public function parseToObject( $arr ){
+
+		$p_dao = new ProfileDao();
+		$new_profile = $p_dao->getById( $arr['profile_id'] );
+
+		$r_dao = new RoleDao();
+		$new_role = $r_dao->getById( $arr['role_id'] );
+
+		$arr['user_role'] = $new_role;
+		$arr['user_profile'] = $new_profile;
+
 		return new User($arr);
 	}
 
 	public function parseToHash( $obj ){
 		return array(
-			'id' 		=> $obj->getId(),
-			'email' 	=> $obj->getEmail(),
-			'pass' 		=> $obj->getPass(),
-			'role'		=> $obj->getRole(),
-			'profile' 	=> $obj->getProfile()
+			'user_email' 	=> $obj->getEmail(),
+			'user_password' => $obj->getPass(),
+			'role_id'		=> ( $obj->getRole() )->getId(),
+			'profile_id' 	=> ( $obj->getProfile() )->getId()
 		);
 	}
 
