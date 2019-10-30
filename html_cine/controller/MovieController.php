@@ -24,8 +24,15 @@ class MovieController extends BaseController{
   }
 
   function detail(){
-    $shows = array();
-    include("views/movieDetail.php");
+    extract($_GET);
+    if(isset($id)){
+      $shows = array();
+      $d_movie = new MovieDao();
+      $movies = $d_movie->getList(array( 'movie_id' => $id ));
+      $movie = count($movies) > 0 ? $movies[0] : null;
+      include("views/movieDetail.php");
+    }
+
   }
 
 }

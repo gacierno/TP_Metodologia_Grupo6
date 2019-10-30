@@ -49,7 +49,7 @@ foreach($shows as $show){
                     <span class="selLabel"><?php echo($key); ?></span>
                     <input type="hidden" name="cd-dropdown">
                     <ul class="dropdown-list">
-                        <?php foreach($value as $show) ?>
+                        <?php foreach($value as $show): ?>
                         <li data-value="<?php echo($show["ID"]); ?>">
                             <a href="/funciones?id=<?php echo($show["ID"]); ?>"><?php echo($show["day"]); ?> <?php echo($show["time"]); ?></a>
                         </li>

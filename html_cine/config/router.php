@@ -22,7 +22,7 @@ $router->post('\/cines\/eliminar',    array( new CinemaController(),'delete' ) )
 $router->post('\/cines\/actualizar',  array( new CinemaController(),'update' ) );
 
 // PELICULAS =======================================================================
-$router->get('\/peliculas\/detalle',   array( new MovieController(),'detail' ) );
+$router->get('\/pelicula\/detalle',   array( new MovieController(),'detail' ) );
 $router->get('\/peliculas',           array( new MovieController(),'index' ) );
 
 
