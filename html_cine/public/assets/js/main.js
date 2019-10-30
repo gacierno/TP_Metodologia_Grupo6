@@ -44,7 +44,8 @@ $(document).ready(function(){
     if($('.dropdown').length > 0){
         $('.dropdown').each(function(){
             var dropId = '#' + $(this).attr('id');
-            var height = $(dropId + ' li').first().outerHeight();
+            var height = $(dropId + ' .selLabel').first().outerHeight();
+            console.log(height);
             $(dropId + ' .selLabel').click(function () {
                 $(dropId + '.dropdown').toggleClass('active');
                 
