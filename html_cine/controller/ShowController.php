@@ -45,4 +45,16 @@ class ShowController extends BaseController{
     include("views/showsForm.php");
   }
 
+  function create(){
+
+  }
+
+  function update(){
+
+  }
+
+  function delete(){
+    
+  }
+
 }

@@ -8,10 +8,10 @@ $cines = [];
 $cinemaids = [];
 
 foreach($shows as $show){
-    $cinemaName = $show->getCine()->getName();
+    $cinemaName = $show->getCinema()->getName();
     if(!isset($cines[$cinemaName])){
         $cines[$cinemaName] = [];
-        $cinemaids[$cinemaName] = $show->getCine()->getId();
+        $cinemaids[$cinemaName] = $show->getCinema()->getId();
     }
     $showData = [];
     $showData["day"] = $show->getDay();
@@ -26,9 +26,6 @@ foreach($shows as $show){
 <!-- voiy a tener un array de funciones que tienen un objeto movie y un cine y fecha y hora -->
 <div class="main-container container-fluid">
 <div class="row movie-detail__container">
-        <pre>
-          <?php print_r($shows) ; ?>
-        </pre>
         <div class="col-sm-12 col-md-4 movie-detail__banner--container">
             <img src="/public/assets/images/try.jpg">
         </div>

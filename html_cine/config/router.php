@@ -27,8 +27,12 @@ $router->post('\/cines\/actualizar',  array( new CinemaController(),'update' ) )
 
 
 // SHOWS ============================================================================
-$router->get('\/admin\/shows\/nuevo',        array( new ShowController(),'newShow' ) );
-$router->get('\/admin\/shows',        array( new ShowController(),'index' ) );
+$router->get('\/admin\/shows\/nuevo',          array( new ShowController(),'newShow' ) );
+$router->get('\/admin\/shows',                 array( new ShowController(),'index' ) );
+
+$router->post('\/admin\/shows\/create',        array( new ShowController(),'create' ) );
+$router->post('\/admin\/shows\/delete',        array( new ShowController(),'delete' ) );
+$router->post('\/admin\/shows\/update',        array( new ShowController(),'update' ) );
 
 
 // PELICULAS =======================================================================
