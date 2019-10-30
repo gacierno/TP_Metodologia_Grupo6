@@ -6,15 +6,39 @@ $genero = isset($_GET['genero']) ? $_GET['genero'] : "";
 
 <div class="main-container container-fluid">
 
-    <div class="movielist__filter--container">
-        <form id="genre-filter-form" method="GET" action="/peliculas">
-            <select id="moviefilter__select--genre" name="genre" class="form-control form-control-md movielist__filter-select">
-                <option value="" disable selected>Selecciona un genero</option>
-                <?php foreach ($genres as $genre) : ?>
-                <option value="<?php echo($genre->getId()); ?>"><?php echo($genre->getName()); ?></option>
+    <div id="movielist__filter--outer-container" class="movielist__filter--container dropdown">
+        <span class="selLabel">Filtrar peliculas</span>
+        <input type="hidden" name="cd-dropdown">
+        <ul class="dropdown-list">
+            <li>
+            <form id="genre-filter-form" method="GET" action="/peliculas">
+                <select id="moviefilter__select--genre" name="genre" class="form-control form-control-md movielist__filter-select" value="">
+                    <option value="" disable selected>Selecciona un genero</option>
+                    <?php foreach ($genres as $genre) : ?>
+                    <option value="<?php echo($genre->getId()); ?>"><?php echo($genre->getName()); ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </form>
+            </li>
+
+            <li>
+                <form id="genre-filter-form" method="GET" action="/peliculas">
+                <?php $today = date('Y-m-d',time()); ?>
+                    <input id="moviefilter__select--date" min="<?php echo($today); ?>" value="" type="date" name="date" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" class="form-control form-control-md movielist__filter-select">
+                </form>
+            </li>
+
+            <li>
+            <form id="genre-filter-form" method="GET" action="/peliculas">
+            <select id="moviefilter__select--cinema" name="cinema" class="form-control form-control-md movielist__filter-select" value="">
+                <option value="" disable selected>Selecciona un cine</option>
+                <?php foreach ($cinemas as $cinema) : ?>
+                <option value="<?php echo($cinema->getId()); ?>"><?php echo($cinema->getName()); ?></option>
                 <?php endforeach; ?>
-            </select>
-        </form>
+                </select>
+            </form>
+            </li>
+        </ul>
     </div>
     <div class="row movielist__row">
         <div id="movielist-slider-container" class="col-12">
