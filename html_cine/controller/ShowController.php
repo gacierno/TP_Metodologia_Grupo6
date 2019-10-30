@@ -19,8 +19,11 @@ class ShowController extends BaseController{
 
   function index(){
     $d_show   = new ShowDao();
-    $shows    = $d_show->getList();
-    $this->render("showsAdmin");
+    $this->render("showsAdmin",
+      array(
+        'shows' => $d_show->getList()
+      )
+    );
   }
 
   function editShow(){
@@ -34,15 +37,22 @@ class ShowController extends BaseController{
         $show = $shows[0];
       }
     }
-    $this->render("showsForm");
+    $this->render("showsForm",
+      array(
+        'show' => $show
+      )
+    );
   }
 
   function newShow(){
     $d_cinema    = new CinemaDao();
-    $cinemas     = $d_cinema->getList();
     $d_movie     = new MovieDao();
-    $movies      = $d_movie->getList();
-    $this->render("showsForm");
+    $this->render("showsForm",
+      array(
+        'movies'  => $d_movie->getList(),
+        'cinemas' => $d_cinema->getList()
+      )
+    );
   }
 
   function create(){

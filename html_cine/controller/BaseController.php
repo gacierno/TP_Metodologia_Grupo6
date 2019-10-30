@@ -24,7 +24,8 @@ class BaseController{
     return;
   }
 
-  function render($name){
+  function render($name,$params){
+    extract($params);
     include("views/$name.php");
   }
 
