@@ -24,6 +24,7 @@ class MovieController extends BaseController{
   }
 
   function detail(){
+    $shows = array();
     include("views/movieDetail.php");
   }
 

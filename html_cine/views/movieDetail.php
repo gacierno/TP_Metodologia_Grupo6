@@ -1,4 +1,4 @@
-<?php include_once('header.php'); 
+<?php include_once('header.php');
 
 if(sizeof($shows) > 0) {
     $movie = $shows[0]->getMovie();
@@ -33,13 +33,13 @@ foreach($shows as $show){
             <h1><?php echo($movie->getName()); ?></h1>
             <small><?php echo($movie->getLanguage()); ?> / <?php echo($movie->getDuration()); ?></small>
             <div class="movie-detail__categories--container">
-                <?php $genres = $movie->getGenres(); 
-                foreach($genres as $genre) : 
-                
+                <?php $genres = $movie->getGenres();
+                foreach($genres as $genre) :
+
                 ?>
 
                 <div class="badge badge-secondary"><?php echo($genre->getName()); ?></div>
-                
+
                 <?php endforeach; ?>
             </div>
             <p><?php echo($movie->getDescription()); ?></p>

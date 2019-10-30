@@ -15,32 +15,40 @@ class UserController extends BaseController{
   }
 
   function create(){
+    // Flag
+    $created = false;
+    // Default error message
+    $errorMessage = "Hubo un error creando el usuario";
+    // Parse POST data into objects
     $userDao = new UserDao();
     $newUserProfile = new Profile($_POST);
     $roleDao = new RoleDao();
     $roles = $roleDao->getList(array( 'role_name' => 'cliente' ));
     $newUserRole = (count($roles) > 0) ? $roles[0] : null;
     $newUserData = $_POST;
+    // Assign role and profile
     $newUserData['user_profile'] = $newUserProfile;
     $newUserData['user_role'] = $newUserRole;
     $newUser = new User($newUserData);
+    $matchingUsers = $userDao->getList( array( 'user_email' => $newUser->getEmail()  ) );
+    $userExists = count($matchingUsers) > 0;
 
-    // echo "<pre>";
-    // print_r($_POST);
-    // print_r($newUser);
-    // echo "</pre>";
-
-    try{
-      $created = $userDao->add($newUser);
-    }catch( Exception $ex){
-      // $this->passErrorMessage = "Hubo un error creando el usuario";
+    if($userExists){
+      $errorMessage = "No se puede crear este usuario. El email ya se encuentra registrado";
+    }else{
+      try{
+        $created = $userDao->add($newUser);
+      }catch( Exception $ex){
+        // $this->passErrorMessage = "Hubo un error creando el usuario";
+      }
     }
 
     if($created){
       $this->passSuccessMessage = "Usuario creado correctamente";
     }else{
-      $this->passErrorMessage = "Hubo un error creando el usuario";
+      $this->passErrorMessage = $errorMessage;
     }
+
     $this->redirect("/login/create");
   }
 
