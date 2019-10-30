@@ -1,5 +1,5 @@
 <?php foreach($movies as $movie) : ?>
-            <div class="item movielist__card--container" style="background-image:url('<?php echo('https://image.tmdb.org/t/p/original'.$movie->getImage()); ?>');background-position:center;background-size:cover;">
+            <div class="item movielist__card--container" style="background-image:url('<?php echo(API_IMAGE_HOST . API_IMAGE_SIZE_LARGE . $movie->getImage()); ?>');background-position:center;background-size:cover;">
                 <a href="/pelicula/detalle?id=<?php echo($movie->getId()); ?>">
                 <div class="movielist__card--overlay">
                     <div class="moviecard__info--container">
