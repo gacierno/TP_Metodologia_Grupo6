@@ -1120,3 +1120,22 @@ input[type=date]::-webkit-calendar-picker-indicator:hover{
 #movielist__filter--outer-container li form{
     height: 100%;
 }
+
+#moviefilter__select--date{
+    padding-left: 8px;
+}
+
+input[type=date]#moviefilter__select--date::-webkit-calendar-picker-indicator:hover{
+    background-color:black;
+    cursor: pointer;
+}
+
+select#moviefilter__select--genre::-ms-expand,select#moviefilter__select--cinema::-ms-expand{
+    display: none;
+}
+
+select#moviefilter__select--genre,select#moviefilter__select--cinema{
+    -webkit-appearance: none;
+    appearance: none;
+    cursor:pointer;
+}

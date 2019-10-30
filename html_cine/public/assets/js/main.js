@@ -40,12 +40,16 @@ var placeholder;
 //new movies/create new slider with jquery.Load() method
 $(document).ready(function(){
 
+    $('#moviefilter__select--date,#moviefilter__select--cinema,#moviefilter__select--genre').change(function(){
+        console.log($(this).val());
+    });
+
+
     //give movie detail show dropdown individual functionality
     if($('.dropdown').length > 0){
         $('.dropdown').each(function(){
             var dropId = '#' + $(this).attr('id');
             var height = $(dropId + ' .selLabel').first().outerHeight();
-            console.log(height);
             $(dropId + ' .selLabel').click(function () {
                 $(dropId + '.dropdown').toggleClass('active');
                 
@@ -79,33 +83,38 @@ $(document).ready(function(){
     //of the slider creation
     bindArrows();
 
-    $('form #moviefilter__select--genre').on('change',function(event){
-        event.preventDefault();
-        event.stopPropagation();
-        var genre = $('#moviefilter__select--genre').val();
-        $(moviesSlider).css("opacity","0.5");
-        var url = "/peliculas"+ (genre ? "?genero="+genre : "");
-        history.pushState({ genre : genre }, "Peliculas", url );
-
-        $('#movielist-slider-container').load( url +" #movielist-slider",function(data){
-          var newSlider = $(data).find('#movielist-slider');
-          if(newSlider.find('.item').length > 0){
-            $('#movies__not-found-row').css('display','none');
-            builtCarousel = buildCarousel(moviesSlider,true);
-            setMovieInfoCenter();
-            $(moviesSlider).css("opacity","1.0");
-          }
-          else{
-            $('#movies__not-found-row').css('display','table');
-          }
-
-          checkArrowsVisibility();
-
+    if($('#movielist__filter--outer-container').length > 0){
+        $('form #moviefilter__select--genre,form #moviefilter__select--cinema,form #moviefilter__select--date').on('change',function(event){
+            event.preventDefault();
+            event.stopPropagation();
+            var genre = $('#moviefilter__select--genre').val();
+            var date = $('#moviefilter__select--date').val();
+            var cinema = $('#moviefilter__select--cinema').val();
+            $(moviesSlider).css("opacity","0.5");
+            var url = "/peliculas"+ (genre ? "?genero="+genre : "") + (date ? "?fecha="+ date : "") + (cinema ? "?cine="+ cinema : "");
+            history.pushState({ genre : genre , date : date , cinema : cinema}, "Peliculas", url );
+    
+            $('#movielist-slider-container').load( url +" #movielist-slider",function(data){
+              var newSlider = $(data).find('#movielist-slider');
+              if(newSlider.find('.item').length > 0){
+                $('#movies__not-found-row').css('display','none');
+                builtCarousel = buildCarousel(moviesSlider,true);
+                setMovieInfoCenter();
+                $(moviesSlider).css("opacity","1.0");
+              }
+              else{
+                $('#movies__not-found-row').css('display','table');
+              }
+    
+              checkArrowsVisibility();
+    
+            });
+    
+            return false;
         });
-
-        return false;
-    });
-})
+    }
+    
+});
 
 
 //bind filter functionality

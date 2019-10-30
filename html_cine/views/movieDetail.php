@@ -27,7 +27,7 @@ foreach($shows as $show){
 <div class="main-container container-fluid">
 <div class="row movie-detail__container">
         <div class="col-sm-12 col-md-4 movie-detail__banner--container">
-            <img src="/public/assets/images/try.jpg">
+            <img src="<?php echo($movie->getImage()); ?>">
         </div>
         <div class="col-sm-12 col-md-8 movie-detail__desc--container">
             <h1><?php echo($movie->getName()); ?></h1>
