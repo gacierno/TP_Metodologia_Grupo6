@@ -17,7 +17,7 @@ abstract class BaseDao{
         $query = "select * from ".$this->tableName;
 
         if( sizeof( $criteria ) != 0 ){
-     
+
             $query .= " where ";
 
             $i = 0;
@@ -31,7 +31,6 @@ abstract class BaseDao{
             $query .= ";";
         }
 
-        echo $query;
 
         try {
             $this->connection = Connection::GetInstance();
