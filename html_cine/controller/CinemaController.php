@@ -3,8 +3,7 @@
 use Controller\BaseController as BaseController;
 use DAO\CinemaDao             as CinemaDao;
 use Model\Cinema              as Cinema;
-use Response\RedirectResponse as RedirectResponse;
-use Response\ErrorResponse    as ErrorResponse;
+
 
 class CinemaController extends BaseController{
 
@@ -44,8 +43,7 @@ class CinemaController extends BaseController{
 
   function create(){
     if(!$this->validCinema($_POST)){
-      echo new ErrorResponse("Informacion de cinema invalida");
-      return;
+      return $this->throw("Informacion de cinema invalida");
     }
     extract($_POST);
     $d_cinema   = new CinemaDao();
@@ -64,8 +62,7 @@ class CinemaController extends BaseController{
   function update(){
     extract($_POST);
     if(!$this->validCinema($_POST) || !isset($id)){
-      echo new ErrorResponse("Informacion de cinema invalida");
-      return;
+      return $this->throw("Informacion de cinema invalida");
     }
     $d_cinema   = new CinemaDao();
     $new_cinema = new Cinema(

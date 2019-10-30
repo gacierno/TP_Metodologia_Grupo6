@@ -4,13 +4,17 @@ use Response\ErrorResponse                as ErrorResponse;
 use Response\RedirectResponse             as RedirectResponse;
 use Controller\AuthenticationController   as AuthenticationController;
 use Controller\UserController             as UserController;
+use Controller\ShowController             as ShowController;
 use Controller\CinemaController           as CinemaController;
 use Controller\MovieController            as MovieController;
 
 
 $router = new Router();
+
+
 // MIDDLEWARES ======================================================================
 $router->use('.*',                    array( new AuthenticationController(),'authenticate' ));
+
 
 // CINES ============================================================================
 $router->get('\/cines\/nuevo',        array( new CinemaController(),'createForm' ) );
@@ -20,6 +24,12 @@ $router->get('\/cines',               array( new CinemaController(),'index' ) );
 $router->post('\/cines\/nuevo',       array( new CinemaController(),'create' ) );
 $router->post('\/cines\/eliminar',    array( new CinemaController(),'delete' ) );
 $router->post('\/cines\/actualizar',  array( new CinemaController(),'update' ) );
+
+
+// SHOWS ============================================================================
+$router->get('\/admin\/shows\/nuevo',        array( new ShowController(),'newShow' ) );
+$router->get('\/admin\/shows',        array( new ShowController(),'index' ) );
+
 
 // PELICULAS =======================================================================
 $router->get('\/pelicula\/detalle',   array( new MovieController(),'detail' ) );
@@ -32,8 +42,10 @@ $router->get('\/login',               array( new AuthenticationController(), 'lo
 $router->get('\/logout',              array( new AuthenticationController(), 'logout' ) );
 $router->post('\/login',              array( new AuthenticationController(), 'login' ) );
 
+
 // USER ============================================================================
 $router->post('\/user\/create',        array( new UserController(), 'create' ) );
+
 
 // DEFAULT ==========================================================================
 $router->get('^\/$',                  array( new RedirectResponse("/peliculas"), 'send' ) );

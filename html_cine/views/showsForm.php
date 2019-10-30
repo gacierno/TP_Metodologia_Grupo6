@@ -30,34 +30,34 @@
 
         <select name="movie_id" class="form-control form-control-md showlist__movie--select" required>
             <option value="<?php if($isShowSet) : echo($movie->getId()); endif; ?>" selected><?php if($isShowSet) : echo($movie->getName()); else : echo("Seleccione Pelicula"); endif; ?></option>
-            
-            <?php 
+
+            <?php
             $selectedMovie = "";
             if(isset($movie)){
                 $selectedMovie = $movie->getName();
-            }  
-            foreach ($movies as $mov) : 
+            }
+            foreach ($movies as $mov) :
                 if($mov->getName() !== $selectedMovie) :
             ?>
             <option value="<?php echo($mov->getId()); ?>"><?php echo($mov->getName()); ?> / <?php echo($mov->getLanguage()); ?></option>
-            <?php 
+            <?php
                 endif;
             endforeach; ?>
         </select>
 
         <select name="cinema_id" class="form-control form-control-md showlist__cinema--select" required>
             <option value="<?php if($isShowSet) : echo($cinema->getId()); endif; ?>" selected><?php if($isShowSet) : echo($cinema->getName()); else : echo("Seleccione Sala de Cine"); endif; ?></option>
-            
-            <?php 
+
+            <?php
             $selectedCinema = "";
             if(isset($cinema)){
                 $selectedCinema = $cinema->getName();
-            }  
-            foreach ($cinemas as $cin) : 
+            }
+            foreach ($cinemas as $cin) :
                 if($cin->getName() !== $selectedCinema) :
             ?>
             <option value="<?php echo($cin->getId()); ?>"><?php echo($cin->getName()); ?></option>
-            <?php 
+            <?php
                 endif;
             endforeach; ?>
         </select>

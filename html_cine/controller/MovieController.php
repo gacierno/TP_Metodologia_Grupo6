@@ -11,7 +11,6 @@ use Model\Genre               as Genre;
 use DAO\ShowDao             	as ShowDao;
 use Model\Show                as Show;
 
-use Response\RedirectResponse as RedirectResponse;
 
 class MovieController extends BaseController{
 

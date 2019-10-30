@@ -1,6 +1,7 @@
 <?php namespace Controller;
 
 use Response\RedirectResponse as RedirectResponse;
+use Response\ErrorResponse    as ErrorResponse;
 use Request\Request           as Request;
 
 class BaseController{
@@ -14,6 +15,11 @@ class BaseController{
   function __construct(){
     if(isset($_GET['passSuccessMessage'])) $this->successMessage = $_GET['passSuccessMessage'];
     if(isset($_GET['passErrorMessage']))   $this->errorMessage = $_GET['passErrorMessage'];
+  }
+
+  function throw($message){
+    echo new ErrorResponse($message);
+    return;
   }
 
   function redirect($path){
