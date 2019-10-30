@@ -8,21 +8,9 @@
                         <div class="moviecard__duration--container"><h4><?php echo($movie->getDuration().' minutos'); ?></h4></div>
                         <div class="moviecard__language--container"><h4><?php echo($movie->getLanguage()); ?></h4></div>
                         <div class="moviecard__genre--container"><h4><?php foreach($movie->getGenres() as $genre) {
-                            $found = false;
-                            $index=0;
-                            $name;
-                            while(!$found and $index < sizeof($genres)){
-                                if($genres[$index]->getId() == $genre){
-                                   $name = $genres[$index]->getName();
-                                   $found = true;
-                                }
-                                $index++;
-                            }
                             
-                            echo($name);
-                            if($index > 1){
-                                echo(' ');
-                            }
+                            echo($genre->getName() . " ");
+
                         }  ?></h4></div>
                     </div>
                 </div>
