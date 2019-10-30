@@ -39,21 +39,6 @@ var placeholder;
 //on document ready,hide filter input placeholder and to load
 //new movies/create new slider with jquery.Load() method
 $(document).ready(function(){
-    if($('#inpt_search').length > 0){
-        placeholder = $('#inpt_search').attr('placeholder');
-        $('#inpt_search').attr('placeholder','');
-
-    }
-
-    setTimeout(function(){
-        if ($('.floating-label').length > 0 ){
-
-            $('.floating-label').each(function(){
-                var input = $(this).prev('input');
-                console.log(input.val());
-            });
-        }
-    },100);
 
     //give movie detail show dropdown individual functionality
     if($('.dropdown').length > 0){
@@ -87,8 +72,6 @@ $(document).ready(function(){
             });
         });
     }
-   
-
     
 
     //arrows functionality are binded one time only, as they are independent
