@@ -11,6 +11,9 @@ use Model\Genre               as Genre;
 use DAO\ShowDao             	as ShowDao;
 use Model\Show                as Show;
 
+use DAO\CinemaDao             as CinemaDao;
+use Model\Cinema              as Cinema;
+
 
 class MovieController extends BaseController{
 
@@ -20,11 +23,13 @@ class MovieController extends BaseController{
 
   function index(){
 		extract($_GET);
-    $d_movie = new MovieDao();
-    $d_genre = new GenreDao();
+    $d_movie  = new MovieDao();
+    $d_genre  = new GenreDao();
+    $d_cinema = new CinemaDao();
     if(!isset($genero)) $genero = "";
-    $movies = $genero == "" ? $d_movie->getList() : $d_movie->getByGenre($genero);
-    $genres = $d_genre->getList();
+    $movies   = $genero == "" ? $d_movie->getList() : $d_movie->getByGenre($genero);
+    $genres   = $d_genre->getList();
+    $cinemas  = $d_cinema->getList();
     include("views/movieList.php");
   }
 

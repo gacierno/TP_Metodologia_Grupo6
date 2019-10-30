@@ -54,7 +54,7 @@ class ShowController extends BaseController{
   }
 
   function delete(){
-    
+
   }
 
 }
