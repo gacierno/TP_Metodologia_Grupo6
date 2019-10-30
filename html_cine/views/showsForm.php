@@ -10,7 +10,7 @@
     <h1><?php if($isShowSet) : echo('Modificación'); else : echo('Creación'); endif; ?> de Función</h1>
     <div class="row cinema__form--container">
 
-        <form id="show-form" class="cinema__form" method="POST" action="<?php if($isShowSet) : echo('/funciones/actualizar'); else : echo('/funciones/nuevo'); endif; ?>">
+        <form id="show-form" class="cinema__form" method="POST" action="<?php if($isShowSet) : echo('/admin/funciones/actualizar'); else : echo('/admin/funciones/nuevo'); endif; ?>">
         <?php if($isShowSet) : ?>
         <label>
             <input id="show-date" type="text"  name="show_id" value="<?php echo($show->getId()); ?>" hidden>

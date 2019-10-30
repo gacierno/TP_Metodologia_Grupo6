@@ -6,7 +6,7 @@ var builtCarousel = buildCarousel(moviesSlider,false);
 
 //bind event to change action in cinema-form when delete button's clicked
 $('#cinema-delete').on('click',function(){
-    $('#cinema-form').attr('action','/cines/eliminar');
+    $('#cinema-form').attr('action','/admin/cines/eliminar');
 });
 
 //on ready and resize event, executes a setMovieInfoCenter() to keep

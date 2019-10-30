@@ -3,7 +3,7 @@
 <div class="main-container container-fluid">
     <div class="row ">
         <div class="cinemalist__button--container col-12">
-            <a target="_self" href="/cines/nuevo">Agregar Cine</a>
+            <a target="_self" href="/admin/cines/nuevo">Agregar Cine</a>
         </div>
     </div>
     <div class="row cinemalist__row">
@@ -21,7 +21,12 @@
                     <div class="cinemacard__capacity"><?php echo('Capacidad : '.$cinema->getCapacity() .' personas'); ?></div>
                     <div class="cinemacard__value"><?php echo('Valor de ticket : $'.$cinema->getTicketValue() ); ?></div>
                 </div>
-                <a href="/cines/editar?id=<?php echo($cinema->getId()); ?>" class="cinemacard__overlay"><img src="/public/assets/images/edit.svg" alt=""></a>
+                <?php 
+                $idCinema = $cinema->getId();
+                $link = ($user->getRole()->getName() === "admin") ? "admin/cines/editar?id=".$idCinema  : "/peliculas?cine=".$idCinema;
+                $image = ($user->getRole()->getName() === "admin") ? "/public/assets/images/edit.svg" : "";
+                ?>
+                <a href="<?php echo($link); ?>" class="cinemacard__overlay"><img src="<?php echo($image); ?>" alt=""></a>
             </div>
         </div>
 
