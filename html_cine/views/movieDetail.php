@@ -27,7 +27,7 @@ foreach($shows as $show){
 <div class="main-container container-fluid">
 <div class="row movie-detail__container">
         <div class="col-sm-12 col-md-4 movie-detail__banner--container">
-            <img src="/public/assets/images/try.jpg">
+            <img src="<?php echo($movie->getImage()); ?>">
         </div>
         <div class="col-sm-12 col-md-8 movie-detail__desc--container">
             <h1><?php echo($movie->getName()); ?></h1>
@@ -49,7 +49,7 @@ foreach($shows as $show){
                     <span class="selLabel"><?php echo($key); ?></span>
                     <input type="hidden" name="cd-dropdown">
                     <ul class="dropdown-list">
-                        <?php foreach($value as $show): ?>
+                        <?php foreach($value as $show) : ?>
                         <li data-value="<?php echo($show["ID"]); ?>">
                             <a href="/funciones?id=<?php echo($show["ID"]); ?>"><?php echo($show["day"]); ?> <?php echo($show["time"]); ?></a>
                         </li>
