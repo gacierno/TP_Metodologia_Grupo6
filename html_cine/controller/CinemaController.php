@@ -15,7 +15,8 @@ class CinemaController extends BaseController{
     $d_cinema = new CinemaDao();
     $this->render("cinemaList",
       array(
-        'cinemas' => $d_cinema->getList()
+        'cinemas' => $d_cinema->getList(),
+        'user' => $this->session->user
       )
     );
   }
