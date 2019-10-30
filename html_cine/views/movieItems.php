@@ -13,7 +13,7 @@
                             while(!$found and $index < sizeof($genres)){
                                 if($genres[$index]->getId() == $genre){
                                    $name = $genres[$index]->getName();
-                                    $found = true;
+                                   $found = true;
                                 }
                                 $index++;
                             }

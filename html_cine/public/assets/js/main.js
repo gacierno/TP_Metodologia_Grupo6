@@ -72,8 +72,6 @@ $(document).ready(function(){
             });
         });
     }
-   
-
     
 
     //arrows functionality are binded one time only, as they are independent

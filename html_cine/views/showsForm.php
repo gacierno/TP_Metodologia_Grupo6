@@ -18,12 +18,13 @@
         <?php endif; ?>
 
         <label>
-            <input class="inputText" type="text" name="show_date" value="<?php if($isShowSet) : echo($show->getDate()); endif; ?>" required pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" onfocus="(this.type = 'date')" onblur="this.type = 'text'">
+            <?php $today = date('Y-m-d',time()); ?>
+            <input class="inputText" type="text" min="<?php echo($today); ?>" name="show_date" value="<?php if($isShowSet) : echo($show->getDate()); endif; ?>" required pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" onfocus="(this.type = 'date')" onblur="this.type = 'text'">
             <span class="floating-label">Fecha de la funcion</span>
         </label>
 
         <label>
-            <input class="inputText" type="text" name="show_time" value="<?php if($isShowSet) : echo($show->getTime()); endif; ?>" required onfocus="(this.type = 'time')" onblur="this.type = 'text'">
+            <input id="time" class="inputText" type="text" name="show_time" step="10" value="<?php if($isShowSet) : echo($show->getTime()); endif; ?>" required onfocus="(this.type = 'time')" onblur="this.type = 'text'">
             <span class="floating-label">Hora de la funcion</span>
         </label>
 
