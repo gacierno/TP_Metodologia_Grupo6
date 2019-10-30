@@ -222,8 +222,7 @@
 	 */
 	$testUser = new model\User(
 		array(
-			'user_id' => -1,
-			'user_email' => 'test user nam',
+			'user_email' => 'test maill',
 			'user_password' => 'test user ape',
 			'user_role' => $testRole,
 			'user_profile' => $testProfile
@@ -235,7 +234,7 @@
 	 */
 	$testUserDao = new dao\UserDao();
 	//testeo add
-	// $testUserDao->add( $testUser );
+	$testUserDao->add( $testUser );
 
 
 	$fafa = new model\Profile(
@@ -257,9 +256,7 @@
 
 	// $testCinemaDao->update( 2, $dada );
 
-	$args = array(
-		'movie_title' => 'Joker'
-	);
+
 
 	// $sucutrule = $testMovieDao->getList( $args );
 

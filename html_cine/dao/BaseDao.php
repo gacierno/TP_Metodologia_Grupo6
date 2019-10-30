@@ -10,6 +10,8 @@ abstract class BaseDao{
     protected $singleType;
     protected $connection;
 
+    public $resultado_query;
+
 
     public function getList( $criteria = array() , $conector = 'AND', $logical = '=' ){
 
@@ -30,8 +32,6 @@ abstract class BaseDao{
             }
             $query .= ";";
         }
-
-        echo $query;
 
         try {
             $this->connection = Connection::GetInstance();
@@ -76,7 +76,8 @@ abstract class BaseDao{
 
             try {
                 $this->connection = Connection::GetInstance();
-                $this->connection->ExecuteNonQuery( $query, $params );
+                $this->resultado_query = $this->connection->ExecuteNonQuery( $query, $params );
+
             } catch (PDOException $e) {
                 throw $e;
                 return false;
