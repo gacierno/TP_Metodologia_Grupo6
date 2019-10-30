@@ -40,10 +40,6 @@ var placeholder;
 //new movies/create new slider with jquery.Load() method
 $(document).ready(function(){
 
-    $('#moviefilter__select--date,#moviefilter__select--cinema,#moviefilter__select--genre').change(function(){
-        console.log($(this).val());
-    });
-
 
     //give movie detail show dropdown individual functionality
     if($('.dropdown').length > 0){
