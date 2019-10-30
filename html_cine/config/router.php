@@ -20,6 +20,7 @@ $router->use('.*',                           array( new AuthenticationController
 $router->get('\/admin\/cines\/nuevo',        array( new CinemaController(),'createForm' ) );
 $router->get('\/admin\/cines\/editar',       array( new CinemaController(),'editForm' ) );
 $router->get('\/admin\/cines',               array( new CinemaController(),'index' ) );
+$router->get('\/admin',                      array( new RedirectResponse('/admin/cines'), 'send' ));
 $router->get('\/cines',                      array( new CinemaController(),'index' ) );
 
 $router->post('\/admin\/cines\/nuevo',       array( new CinemaController(),'create' ) );

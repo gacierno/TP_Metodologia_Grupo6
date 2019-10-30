@@ -13,12 +13,15 @@ class CinemaController extends BaseController{
 
   function index(){
     $d_cinema = new CinemaDao();
-    $cinemas = $d_cinema->getList();
-    include("views/cinemaList.php");
+    $this->render("cinemaList",
+      array(
+        'cinemas' => $d_cinema->getList()
+      )
+    );
   }
 
   function createForm(){
-    include("views/cinemaForm.php");
+    $this->render("cinemaForm");
   }
 
   function validCinema($data){
@@ -37,8 +40,11 @@ class CinemaController extends BaseController{
   function editForm(){
     extract($_GET);
     $d_cinema   = new CinemaDao();
-    $cinema     = $d_cinema->getById($id);
-    include("views/cinemaForm.php");
+    $this->render("cinemaForm",
+      array(
+        'cinema' => $d_cinema->getById($id)
+      )
+    );
   }
 
   function create(){
@@ -54,8 +60,7 @@ class CinemaController extends BaseController{
       $ticketValue
     );
     $d_cinema->add($new_cinema);
-    $redirect = new RedirectResponse('/cines');
-    return $redirect->send();
+    $this->redirect('/cines');
   }
 
 
@@ -73,16 +78,14 @@ class CinemaController extends BaseController{
       $id
     );
     $d_cinema->update($id,$new_cinema);
-    $redirect = new RedirectResponse('/cines');
-    return $redirect->send();
+    $this->redirect('/cines');
   }
 
   function delete(){
     extract($_POST);
     $d_cinema   = new CinemaDao();
     $d_cinema->delete($id);
-    $redirect = new RedirectResponse('/cines');
-    return $redirect->send();
+    $this->redirect('/cines');
   }
 
 
