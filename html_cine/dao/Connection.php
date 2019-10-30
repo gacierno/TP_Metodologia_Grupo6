@@ -94,5 +94,10 @@
                     $this->pdoStatement->bindParam($i, $parameters[$parameterName]);
             }
         }
+
+
+        public function getLastId( $param = null ){
+            return $this->pdo->lastInsertId( $param ); 
+        }
     }
 ?>

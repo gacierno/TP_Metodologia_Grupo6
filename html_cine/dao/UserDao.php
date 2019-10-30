@@ -9,6 +9,7 @@ namespace dao;
 use dao\BaseDao  as BaseDao;
 use dao\ProfileDao as ProfileDao;
 use dao\RoleDao as RoleDao;
+use dao\Connection as Conection;
 
 use model\User as User;
 
@@ -51,10 +52,13 @@ class UserDao extends BaseDao
 	}
 
 	public function add( $obj ){
-		// $profileDAO = new ProfileDao();
-		// $profileDAO->add($obj->getProfile());
-		// $profiles = $profileDAO->getList();
-		// $obj->setProfile($profiles[0]);
+		$profileDAO = new ProfileDao();
+		$profileDAO->add($obj->getProfile());
+
+		$connection = Connection::GetInstance();
+		$id = $connection->getLastId();
+
+		$obj->setProfile( $profileDAO->getById( $id ) );
 		parent::add($obj);
 	}
 }
