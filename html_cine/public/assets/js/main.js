@@ -45,17 +45,14 @@ $(document).ready(function(){
     if($('.dropdown').length > 0){
         $('.dropdown').each(function(){
             var dropId = '#' + $(this).attr('id');
-            var height = $(dropId + ' .selLabel').first().outerHeight();
+            var height = $(dropId + ' #moviefilter__select--date').first().outerHeight();
             $(dropId + ' .selLabel').click(function () {
                 $(dropId + '.dropdown').toggleClass('active');
                 
                 if($(dropId).hasClass('active')){
-                    var amountofShows = $(dropId + ' li').length;
-                    var finalHeight = (height*(amountofShows+1)) + 'px';
-                    $(dropId + '.dropdown').css('height',finalHeight);
                     var index = 1;
                     $(dropId + ' li').each(function(){
-                        var amount = (100 * index) + '%' ;
+                        var amount = (height * index) + 'px' ;
                         $(this).css('transform','translateY(' + amount + ')');
                         index++;
                     });
@@ -66,24 +63,23 @@ $(document).ready(function(){
                         $(dropId + '.dropdown').css('height',finalHeight);
                     },250);
                     $(dropId + ' li').each(function(){
-                        $(this).css('transform','translateY(0%)');
+                        $(this).css('transform','translateY(0px)');
                     });
                 }
                 
             });
         });
     }
-    
 
     //arrows functionality are binded one time only, as they are independent
     //of the slider creation
     bindArrows();
 
     if($('#movielist__filter--outer-container').length > 0){
-        $('form #moviefilter__select--genre,form #moviefilter__select--cinema,form #moviefilter__select--date').on('change',function(event){
+        $('form #moviefilter__multiple-select--genre,form #moviefilter__select--cinema,form #moviefilter__select--date').on('change',function(event){
             event.preventDefault();
             event.stopPropagation();
-            var genre = $('#moviefilter__select--genre').val();
+            var genre = $('#moviefilter__multiple-select--genre').val();
             var date = $('#moviefilter__select--date').val();
             var cinema = $('#moviefilter__select--cinema').val();
             $(moviesSlider).css("opacity","0.5");

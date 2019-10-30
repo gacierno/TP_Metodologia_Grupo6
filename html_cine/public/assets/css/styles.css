@@ -1113,8 +1113,14 @@ input[type=date]::-webkit-calendar-picker-indicator:hover{
     margin-bottom: 50px;
 }
 
+@media all and (min-width:768px){
+    #movielist__filter--outer-container{
+        margin-bottom: 100px;
+    }
+}
+
 #movielist__filter--outer-container li{
-    margin-top: 20px;
+    margin-top: 18px;
 }
 
 #movielist__filter--outer-container li form{
@@ -1130,12 +1136,24 @@ input[type=date]#moviefilter__select--date::-webkit-calendar-picker-indicator:ho
     cursor: pointer;
 }
 
-select#moviefilter__select--genre::-ms-expand,select#moviefilter__select--cinema::-ms-expand{
+select#moviefilter__multiple-select--genre::-ms-expand,select#moviefilter__select--cinema::-ms-expand{
     display: none;
 }
 
-select#moviefilter__select--genre,select#moviefilter__select--cinema{
+select#moviefilter__multiple-select--genre,select#moviefilter__select--cinema{
     -webkit-appearance: none;
     appearance: none;
     cursor:pointer;
+}
+
+#movielist__filter--outer-container select,#movielist__filter--outer-container input{
+    height: 40px;
+}
+
+#movielist__filter--outer-container #moviefilter__multiple-select--genre{
+    height: 40px;
+}
+
+#movielist__filter--outer-container.active #moviefilter__multiple-select--genre{
+    height: 120px;
 }
