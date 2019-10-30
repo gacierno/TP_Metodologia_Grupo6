@@ -29,11 +29,11 @@ class AuthenticationController extends BaseController{
   }
 
   function loginForm(){
-    include("views/login.php");
+    $this->render("login");
   }
 
   function registerForm(){
-    include("views/userCreation.php");
+    $this->render("userCreation");
   }
 
   function login(){

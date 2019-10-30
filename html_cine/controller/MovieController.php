@@ -33,7 +33,7 @@ class MovieController extends BaseController{
     $genres   = $d_genre->getList();
     $cinemas  = $d_cinema->getList();
     $user     = $this->session->user;
-    include("views/movieList.php");
+    $this->render("movieList");
   }
 
   function detail(){
@@ -51,7 +51,7 @@ class MovieController extends BaseController{
         if(!isset($showsByCinema[$cinemaID])) $showsByCinema[$cinemaID] = array();
         array_push($showsByCinema[$cinemaID],$show);
       }
-      include("views/movieDetail.php");
+      $this->render("movieDetail");
     }
   }
 

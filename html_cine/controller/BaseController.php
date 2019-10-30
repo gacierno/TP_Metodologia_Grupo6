@@ -24,6 +24,10 @@ class BaseController{
     return;
   }
 
+  function render($name){
+    include("views/$name.php");
+  }
+
   function redirect($path){
     $queryString = "?";
     foreach(array('passSuccessMessage','passErrorMessage') as $attr){

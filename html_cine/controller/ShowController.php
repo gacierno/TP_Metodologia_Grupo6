@@ -20,7 +20,7 @@ class ShowController extends BaseController{
   function index(){
     $d_show   = new ShowDao();
     $shows    = $d_show->getList();
-    include("views/showsAdmin.php");
+    $this->render("showsAdmin");
   }
 
   function editShow(){
@@ -34,7 +34,7 @@ class ShowController extends BaseController{
         $show = $shows[0];
       }
     }
-    include("views/showsForm.php");
+    $this->render("showsForm");
   }
 
   function newShow(){
@@ -42,7 +42,7 @@ class ShowController extends BaseController{
     $cinemas     = $d_cinema->getList();
     $d_movie     = new MovieDao();
     $movies      = $d_movie->getList();
-    include("views/showsForm.php");
+    $this->render("showsForm");
   }
 
   function create(){
