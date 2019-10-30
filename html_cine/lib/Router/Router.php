@@ -58,7 +58,7 @@ class Router {
   }
 
   private function evaluateRoute(Request $req,$route){
-    $pattern = '/' . $route['regexp'] . '/';
+    $pattern = '/^' . $route['regexp'] . '$/';
     if(preg_match($pattern,$req->path())){
       $object = $route['callback'][0];
       $method = $route['callback'][1];

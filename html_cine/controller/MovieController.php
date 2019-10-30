@@ -1,5 +1,6 @@
 <?php namespace Controller;
 
+use Request\Request           as Request;
 use Controller\BaseController as BaseController;
 
 use DAO\MovieDao             	as MovieDao;
@@ -26,10 +27,12 @@ class MovieController extends BaseController{
     $d_movie  = new MovieDao();
     $d_genre  = new GenreDao();
     $d_cinema = new CinemaDao();
+    $req      = new Request();
     if(!isset($genero)) $genero = "";
     $movies   = $genero == "" ? $d_movie->getList() : $d_movie->getByGenre($genero);
     $genres   = $d_genre->getList();
     $cinemas  = $d_cinema->getList();
+    $user     = $this->session->user;
     include("views/movieList.php");
   }
 

@@ -18,13 +18,12 @@ class AuthenticationController extends BaseController{
 
   function authenticate(){
     $req = new Request();
-    extract($_SESSION);
     $includesLogin = preg_match("/^\/login/",$req->path());
     $includesUser  = preg_match("/^\/user/",$req->path());
-    if(($includesLogin || $includesUser) && isset($user)){
+    if(($includesLogin || $includesUser) && $this->session->user){
       return $this->redirect("/");
     }
-    if(!isset($user) && !($includesLogin || $includesUser)){
+    if(!$this->session->user && !($includesLogin || $includesUser)){
       return $this->redirect("/login");
     }
   }
@@ -47,16 +46,14 @@ class AuthenticationController extends BaseController{
     ));
 
     if(count($users) > 0){
-      $_SESSION['user'] = $users[0];
+      $this->session->user = $users[0];
     }
     $this->redirect("/");
   }
 
 
   function logout(){
-    if(isset($_SESSION['user'])){
-      unset($_SESSION['user']);
-    }
+    $this->session->unset('user');
     return $this->redirect("/");
   }
 
