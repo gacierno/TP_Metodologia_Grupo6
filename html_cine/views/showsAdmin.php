@@ -30,7 +30,7 @@
                     </div>
                 </div>
                 <div class="col-sm-12 col-lg-2">
-                    <form method="POST" action="/admin/funciones/update">
+                    <form method="POST" action="/admin/funciones/actualizar">
                         <input type="number" name="show_id" value="<?php echo($show->getId()); ?>" hidden>
                         <input type="text" name="show_day" value="<?php echo($show->getDay()); ?>" hidden>
                         <input type="text" name="show_time" value="<?php echo($show->getTime()); ?>" hidden>
@@ -39,7 +39,7 @@
                         <button id="funcion-update" type="submit" class="showlist__button--primary">Actualizar</button>
                     </form>
 
-                    <form method="POST" action="/admin/funciones/delete">
+                    <form method="POST" action="/admin/funciones/eliminar">
                         <input type="text" name="id" value="<?php echo($show->getId()); ?>" hidden>
                         <button id="funcion-delete" type="submit" class="showlist__button--secondary" onclick="return confirm('Estas Seguro?');">Eliminar</button>
                     </form>
