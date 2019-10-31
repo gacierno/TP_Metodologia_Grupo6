@@ -60,8 +60,9 @@ class ShowDao extends BaseDao
 		return array(
 			'show_time' => $obj->getTime(),
 			'show_date' => $obj->getDay(),
-			'movie_id' 	=> $obj->getMovie()->getId(),
-			'cinema_id' => $obj->getCinema()->getId()
+			'movie_id' => $obj->getMovie()->getId(),
+			'cinema_id' => $obj->getCinema()->getId(),
+			'show_available' => $obj->getAbailability()
 		);
 	}
 

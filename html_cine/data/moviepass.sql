@@ -240,3 +240,5 @@ ALTER TABLE `Cinemas` ADD `cinema_available` BOOLEAN NULL DEFAULT TRUE;
 ALTER TABLE `Movies` ADD `movie_description` VARCHAR(500);
 
 ALTER TABLE `Users` ADD `user_available` BOOLEAN NULL DEFAULT TRUE AFTER `profile_id`;
+ALTER TABLE `Shows` ADD `show_available` BOOLEAN NULL DEFAULT TRUE;
+ALTER TABLE `Movies` ADD `movie_available` BOOLEAN NULL DEFAULT TRUE;

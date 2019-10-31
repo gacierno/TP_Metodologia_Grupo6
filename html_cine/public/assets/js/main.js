@@ -40,6 +40,11 @@ var placeholder;
 //new movies/create new slider with jquery.Load() method
 $(document).ready(function(){
 
+    //give nav menu behaviour
+    $('.some').on('click',function(){
+        $(this).toggleClass('open');
+    });
+
 
     //give movie detail show dropdown individual functionality
     if($('.dropdown').length > 0){
