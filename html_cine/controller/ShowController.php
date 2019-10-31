@@ -19,11 +19,7 @@ class ShowController extends BaseController{
 
   function index(){
     $d_show   = new ShowDao();
-    $this->render("showsAdmin",
-      array(
-        'shows' => $d_show->getList()
-      )
-    );
+    $this->render("showsAdmin", array('shows' => $d_show->getList()) );
   }
 
   function editShow(){
@@ -37,11 +33,7 @@ class ShowController extends BaseController{
         $show = $shows[0];
       }
     }
-    $this->render("showsForm",
-      array(
-        'show' => $show
-      )
-    );
+    $this->render("showsForm", array('show' => $show) );
   }
 
   function newShow(){

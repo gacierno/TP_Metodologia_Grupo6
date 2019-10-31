@@ -34,8 +34,7 @@ class MovieController extends BaseController{
       array(
         'movies'  => $movies,
         'genres'  => $d_genre->getList(),
-        'cinemas' => $d_cinema->getList(),
-        'user'    => $this->session->user
+        'cinemas' => $d_cinema->getList()
       )
     );
   }
@@ -58,8 +57,7 @@ class MovieController extends BaseController{
       $this->render("movieDetail",
         array(
           'movie'   => $movie,
-          'showsByCinema'   => $showsByCinema,
-          'user'    => $this->session->user
+          'showsByCinema'   => $showsByCinema
         )
       );
     }

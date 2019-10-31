@@ -13,12 +13,7 @@ class CinemaController extends BaseController{
 
   function index(){
     $d_cinema = new CinemaDao();
-    $this->render("cinemaList",
-      array(
-        'cinemas' => $d_cinema->getList(),
-        'user' => $this->session->user
-      )
-    );
+    $this->render("cinemaList", array('cinemas' => $d_cinema->getList()) );
   }
 
   function createForm(){
@@ -41,11 +36,7 @@ class CinemaController extends BaseController{
   function editForm(){
     extract($_GET);
     $d_cinema   = new CinemaDao();
-    $this->render("cinemaForm",
-      array(
-        'cinema' => $d_cinema->getById($id)
-      )
-    );
+    $this->render("cinemaForm", array('cinema' => $d_cinema->getById($id)) );
   }
 
   function create(){

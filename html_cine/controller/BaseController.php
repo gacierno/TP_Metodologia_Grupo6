@@ -24,8 +24,9 @@ class BaseController{
     return;
   }
 
-  function render($name,$params){
+  function render($name,$params = array()){
     extract($params);
+    if(!isset($user) && $this->session->user) $user = $this->session->user;
     include("views/$name.php");
   }
 
