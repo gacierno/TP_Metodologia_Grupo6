@@ -12,6 +12,7 @@
     <?php foreach ($shows as $show) :
     $movie = $show->getMovie();
     $cinema = $show->getCinema();
+    $availability = $show->getAvailability();
     ?>
 
     <div class="row">
@@ -24,7 +25,7 @@
                 <div class="showlist__item--separator showlist__movie--details col-sm-12 col-lg-7">
                     <h2><?php echo($movie->getName()); ?></h2>
                     <small><?php echo($movie->getLanguage()); ?> </small>
-                    <?php if($show->getAvailability()) : ?>
+                    <?php if($availability) : ?>
                       <span class="badge badge-primary">
                         Activa
                       </span>
@@ -48,9 +49,9 @@
                         <button id="funcion-update" type="submit" class="showlist__button--primary">Actualizar</button>
                     </form>
 
-                    <form method="POST" action="/admin/funciones/eliminar">
+                    <form id="show-delete-form" method="POST" action="">
                         <input type="text" name="show_id" value="<?php echo($show->getId()); ?>" hidden>
-                        <button id="funcion-delete" type="submit" class="showlist__button--secondary" onclick="return confirm('Estas Seguro?');">Eliminar</button>
+                        <button id="funcion-delete" type="submit" available="<?php echo($availability); ?>" class="showlist__button--secondary" onclick="return confirm('Estas Seguro?');"><?php if($availability) : echo ("Eliminar"); else : echo("Activar"); endif; ?></button>
                     </form>
                 </div>
             </div>

@@ -45,6 +45,18 @@ $(document).ready(function(){
         $(this).toggleClass('open');
     });
 
+    //give show form endpoint behaviour on delete button click
+    if($('#funcion-delete').length > 0){
+        $('#funcion-delete').on('click',function(){
+            if($(this).attr('available') == true){
+                $('#show-delete-form').attr('action','/admin/funciones/desactivar');
+            }
+            else{
+                $('#show-delete-form').attr('action','/admin/funciones/activar');
+            }
+        });
+    }
+
 
     //give movie detail show dropdown individual functionality
     if($('.dropdown').length > 0){
