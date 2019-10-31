@@ -364,7 +364,6 @@ body{
 
 
 .movielist__card--container{
-    height: 80vh;
     width: 90%;
     margin: 0 auto;
     position: relative;
@@ -404,12 +403,6 @@ body{
     vertical-align: middle;
 }
 
-.moviecard__info--container{
-    position: absolute;
-    top: 40%;
-    
-}
-
 .moviecard__info--container h2,.moviecard__info--container h4{
     opacity: 0.6;
 }
@@ -441,6 +434,8 @@ body{
 .owl-item.active.center:hover .movielist__card--overlay{
     opacity: 1;
     visibility: visible;
+    align-items: center;
+    justify-content: center;
 }
 
 .moviecard__name--container{
@@ -800,7 +795,6 @@ body{
 
 .movie-detail__banner--container img{
     width: 100%;
-    max-height: 60vh;
     object-fit: cover;
     object-position: center;
     border:2px solid;
@@ -872,7 +866,7 @@ body{
       } 
 }
 .dropdown.active ul{
-    z-index: 999999999999;
+    z-index: 10;
 }
 .dropdown.active .selLabel:after {
   content: '\25B2';
@@ -1066,6 +1060,10 @@ body{
 .showlist__submit-button--container{
     width: 100%;
     text-align: right;
+}
+
+.cinemalist__main-container{
+    text-align:center;
 }
 
 .showlist__main-container h1,.cinemalist__main-container h1{

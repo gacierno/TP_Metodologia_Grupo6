@@ -6,33 +6,13 @@ var builtCarousel = buildCarousel(moviesSlider,false);
 
 //bind event to change action in cinema-form when delete button's clicked
 $('#cinema-delete').on('click',function(){
-    $('#cinema-form').attr('action','/admin/cines/eliminar');
+    if($(this).attr('availability') == true){
+        $('#cinema-form').attr('action','/admin/cines/desactivar');
+    }
+    else{
+        $('#cinema-form').attr('action','/admin/cines/activar');
+    }
 });
-
-//on ready and resize event, executes a setMovieInfoCenter() to keep
-//the movie info on hover centered dinamically
-if($('.moviecard__info--container').length > 0){
-    $(document).ready(setMovieInfoCenter);
-    $(window).on('resize',function(){
-        setMovieInfoCenter();
-    });
-}
-
-function setMovieInfoCenter(){
-    setTimeout(function(){
-        $('.moviecard__info--container').each(function(){
-            var infoWidth = parseInt($(this).width());
-            var containerWidth = parseInt($(this).closest('.movielist__card--overlay').outerWidth());
-            if(containerWidth>0){
-                var leftPercentage = ((infoWidth*100)/containerWidth);
-                leftPercentage = (100 - leftPercentage)/2;
-                leftPercentage += '%';
-                $(this).css('left',leftPercentage);
-            }
-        });
-    },300);
-}
-
 
 
 var placeholder;
@@ -47,14 +27,12 @@ $(document).ready(function(){
 
     //give show form endpoint behaviour on delete button click
     if($('#funcion-delete').length > 0){
-        $('#funcion-delete').on('click',function(){
-            if($(this).attr('available') == true){
-                $('#show-delete-form').attr('action','/admin/funciones/desactivar');
-            }
-            else{
-                $('#show-delete-form').attr('action','/admin/funciones/activar');
-            }
-        });
+        if($('#funcion-delete').attr('available') == true){
+            $('#show-delete-form').attr('action','/admin/funciones/desactivar');
+        }
+        else{
+            $('#show-delete-form').attr('action','/admin/funciones/activar');
+        }
     }
 
 
@@ -148,7 +126,7 @@ $(document).ready(function(){
             event.preventDefault();
             event.stopPropagation();
             var genre = $('#moviefilter__multiple-select--genre').val();
-            if(genre == ""){
+            if(genre.indexOf("all") >=0){
                 genre = null;
             }
             var date = $('#moviefilter__select--date').val();
@@ -192,7 +170,6 @@ $(document).ready(function(){
               if(newSlider.find('.item').length > 0){
                 $('#movies__not-found-row').css('display','none');
                 builtCarousel = buildCarousel(moviesSlider,true);
-                setMovieInfoCenter();
                 $(moviesSlider).css("opacity","1.0");
               }
               else{
