@@ -8,7 +8,7 @@
 
 <div class="main-container container-fluid cinemalist__main-container">
     <h1><?php if($isCinemaSet) : echo('Modificación del'); else : echo('Creación de'); endif; ?> Cine <?php if($isCinemaSet) : echo($cinema->getName()); endif; ?></h1>
-    <?php if($isCinemaSet && $availability) : ?>
+    <?php if($isCinemaSet) : if($availability) : ?>
         <span class="badge badge-primary">
             Activa
         </span>
@@ -16,7 +16,7 @@
     <span class="badge badge-danger">
         Inactivo
     </span>
-<?php endif; ?>
+<?php endif; endif; ?>
     <div class="row cinema__form--container">
 
         <form id="cinema-form" class="cinema__form" method="POST" action="<?php if($isCinemaSet) : echo('/admin/cines/actualizar'); else : echo('/admin/cines/nuevo'); endif; ?>">
