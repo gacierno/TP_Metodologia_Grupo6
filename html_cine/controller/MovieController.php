@@ -30,8 +30,26 @@ class MovieController extends BaseController{
     $d_genre  = new GenreDao();
     $d_cinema = new CinemaDao();
     $req      = new Request();
-    if(!isset($genero)) $genero = "";
-    $movies   = $genero == "" ? $d_movie->getList() : $d_movie->getByGenre($genero);
+    $movies   = array();
+    // IF GENERO IS EMPTY UNSET IT
+    if(isset($genero) && $genero == "") unset($genero);
+    // FILTER BY GENERO AND DATE
+    if(isset($genero,$fecha)){
+      $movies = $d_movie->getMoviesByGenresAndDate(
+        explode(",",$genero),
+        $fecha
+      );
+    // FILTER BY GENERO
+    }else if(isset($genero)){
+      $movies = $d_movie->getMoviesByGenres(explode(",",$genero));
+    // FILTER BY DATE
+    }else if(isset($fecha)){
+      $movies = $d_movie->getMoviesByDate($fecha);
+    // RETURN THE ENTIRE LIST
+    }else{
+      $movies = $d_movie->getList();
+    }
+    // echo $fecha;
     $this->render("movieList",
       array(
         'movies'  => $movies,

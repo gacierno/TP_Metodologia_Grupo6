@@ -81,7 +81,7 @@ class MovieDao extends BaseDao implements IApiConnector
 					$genreToSave['genre_id'] = $genre['id'];
 					$genreToSave['movie_id'] = $dataToSave['movie_id'];
 					GenresOnMoviesDao::add( $genreToSave );
-					
+
 				}
 
 			}
@@ -127,7 +127,7 @@ class MovieDao extends BaseDao implements IApiConnector
 	 */
 
 	// this hash is set only to save data on database
-	
+
 	public function parseToHash( $obj ){
 		return array(
 			'movie_title' => $obj->getName(),
@@ -208,5 +208,3 @@ class MovieDao extends BaseDao implements IApiConnector
 
 
  ?>
-
-
