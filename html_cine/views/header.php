@@ -23,7 +23,10 @@
       </a>
     </div>
   </div>
-  <div class="nav__container nav__links--container col-3">
-    <a target="_self" href="/cines">Cines</a>
+  <div class="nav__container nav__links--container col-3 nav__menu--desktop">
+    <div class="some">MENU</div>
+  </div>
+  <div class="nav__container nav__links--container col-3 nav__menu--mobile">
+    <div class=>mobile</div>
   </div>
 </div>
