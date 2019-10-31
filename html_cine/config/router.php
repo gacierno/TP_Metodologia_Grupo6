@@ -30,6 +30,7 @@ $router->post('\/admin\/cines\/actualizar',  array( new CinemaController(),'upda
 
 // SHOWS ============================================================================
 $router->get('\/admin\/funciones\/nuevo',         array( new ShowController(),'newShow' ) );
+$router->get('\/admin\/funciones\/editar',        array( new ShowController(),'editShow' ) );
 $router->get('\/admin\/funciones',                array( new ShowController(),'index' ) );
 
 $router->post('\/admin\/funciones\/nuevo',        array( new ShowController(),'create' ) );
