@@ -2,7 +2,7 @@
 
 
 <div class="main-container container-fluid">
-    
+
 <?php include_once('partials/customMessage.php'); ?>
 
 <div class="row">
@@ -37,7 +37,7 @@
 
         <button id="user-update" type="button" class="cinemaform__button--primary">Actualizar</button>
 
-        <button id="user-delete" type="button" class="cinemaform__button--secondary">Eliminar Usuario</button>
+        <button id="user-delete" type="button" class="cinemaform__button--secondary">Desactivar Mi Cuenta</button>
 
         </form>
 
