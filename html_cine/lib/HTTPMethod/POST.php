@@ -1,12 +1,16 @@
 <?php namespace HTTPMethod;
 
-class POST{
+use HTTPMethod\HTTPMethod as HTTPMethod;
+
+class POST extends HTTPMethod{
 
   private static $instance;
-  private $method = array();
+  protected $methodMap = array();
 
   private function __construct(){
-    $method = $_POST;
+    foreach( $_POST as $key => $value){
+      $this->methodMap[$key] = $value;
+    }
   }
 
   static function getInstance(){
@@ -15,26 +19,6 @@ class POST{
     }
 
     return self::$instance;
-  }
-
-  function map(){
-    return $method;
-  }
-
-  function __get($attr){
-    if(isset($method[$attr])){
-      return $method[$attr];
-    }
-  }
-
-  function __set($attr,$value){
-    $method[$attr] = $value;
-  }
-
-  function unset($attr){
-    if(isset($method[$attr])){
-      unset($method[$attr]);
-    }
   }
 
 }
