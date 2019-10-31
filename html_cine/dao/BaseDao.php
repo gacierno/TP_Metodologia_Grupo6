@@ -19,7 +19,7 @@ abstract class BaseDao{
         $query = "select * from ".$this->tableName;
 
         if( sizeof( $criteria ) != 0 ){
-     
+
             $query .= " where ";
 
             $i = 0;

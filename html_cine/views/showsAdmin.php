@@ -6,14 +6,14 @@
 <div class="main-container container-fluid">
     <div class="row">
         <div class="showlist__button--container col-12">
-            <a target="_self" href="/funciones/nuevo">Agregar Funcion</a>
+            <a target="_self" href="/admin/shows/nuevo">Agregar Funcion</a>
         </div>
     </div>
-    <?php foreach ($shows as $show) : 
+    <?php foreach ($shows as $show) :
     $movie = $show->getMovie();
-    $cinema = $show->getCinema();    
+    $cinema = $show->getCinema();
     ?>
-    
+
     <div class="row">
         <div class="showlist__show--container col-12">
             <div class="row">
@@ -30,24 +30,24 @@
                     </div>
                 </div>
                 <div class="col-sm-12 col-lg-2">
-                    <form method="POST" action="/funciones/update">
+                    <form method="POST" action="/admin/funciones/update">
                         <input type="number" name="show_id" value="<?php echo($show->getId()); ?>" hidden>
                         <input type="text" name="show_day" value="<?php echo($show->getDay()); ?>" hidden>
                         <input type="text" name="show_time" value="<?php echo($show->getTime()); ?>" hidden>
                         <input type="number" name="movie_id" value="<?php echo($movie->getId()); ?>" hidden>
                         <input type="number" name="cinema_id" value="<?php echo($cinema->getId()); ?>" hidden>
-                        <button id="funcion-update" type="submit" class="showlist__button--primary">Update</button>
+                        <button id="funcion-update" type="submit" class="showlist__button--primary">Actualizar</button>
                     </form>
 
-                    <form method="POST" action="/funciones/delete">
+                    <form method="POST" action="/admin/funciones/delete">
                         <input type="text" name="id" value="<?php echo($show->getId()); ?>" hidden>
-                        <button id="funcion-delete" type="submit" class="showlist__button--secondary" onclick="return confirm('Estas Seguro?');">Delete</button>
+                        <button id="funcion-delete" type="submit" class="showlist__button--secondary" onclick="return confirm('Estas Seguro?');">Eliminar</button>
                     </form>
                 </div>
             </div>
         </div>
-    </div> 
-    
+    </div>
+
     <?php endforeach; ?>
 
 </div>

@@ -3,8 +3,7 @@
 use Controller\BaseController as BaseController;
 use DAO\CinemaDao             as CinemaDao;
 use Model\Cinema              as Cinema;
-use Response\RedirectResponse as RedirectResponse;
-use Response\ErrorResponse    as ErrorResponse;
+
 
 class CinemaController extends BaseController{
 
@@ -14,12 +13,11 @@ class CinemaController extends BaseController{
 
   function index(){
     $d_cinema = new CinemaDao();
-    $cinemas = $d_cinema->getList();
-    include("views/cinemaList.php");
+    $this->render("cinemaList", array('cinemas' => $d_cinema->getList()) );
   }
 
   function createForm(){
-    include("views/cinemaForm.php");
+    $this->render("cinemaForm");
   }
 
   function validCinema($data){
@@ -38,14 +36,12 @@ class CinemaController extends BaseController{
   function editForm(){
     extract($_GET);
     $d_cinema   = new CinemaDao();
-    $cinema     = $d_cinema->getById($id);
-    include("views/cinemaForm.php");
+    $this->render("cinemaForm", array('cinema' => $d_cinema->getById($id)) );
   }
 
   function create(){
     if(!$this->validCinema($_POST)){
-      echo new ErrorResponse("Informacion de cinema invalida");
-      return;
+      return $this->throw("Informacion de cinema invalida");
     }
     extract($_POST);
     $d_cinema   = new CinemaDao();
@@ -56,16 +52,14 @@ class CinemaController extends BaseController{
       $ticketValue
     );
     $d_cinema->add($new_cinema);
-    $redirect = new RedirectResponse('/cines');
-    return $redirect->send();
+    $this->redirect('/cines');
   }
 
 
   function update(){
     extract($_POST);
     if(!$this->validCinema($_POST) || !isset($id)){
-      echo new ErrorResponse("Informacion de cinema invalida");
-      return;
+      return $this->throw("Informacion de cinema invalida");
     }
     $d_cinema   = new CinemaDao();
     $new_cinema = new Cinema(
@@ -76,16 +70,14 @@ class CinemaController extends BaseController{
       $id
     );
     $d_cinema->update($id,$new_cinema);
-    $redirect = new RedirectResponse('/cines');
-    return $redirect->send();
+    $this->redirect('/cines');
   }
 
   function delete(){
     extract($_POST);
     $d_cinema   = new CinemaDao();
     $d_cinema->delete($id);
-    $redirect = new RedirectResponse('/cines');
-    return $redirect->send();
+    $this->redirect('/cines');
   }
 
 

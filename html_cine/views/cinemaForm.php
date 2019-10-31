@@ -10,7 +10,7 @@
     <h1><?php if($isCinemaSet) : echo('Modificación'); else : echo('Creación'); endif; ?> de Cine</h1>
     <div class="row cinema__form--container">
 
-        <form id="cinema-form" class="cinema__form" method="POST" action="<?php if($isCinemaSet) : echo('/cines/actualizar'); else : echo('/cines/nuevo'); endif; ?>">
+        <form id="cinema-form" class="cinema__form" method="POST" action="<?php if($isCinemaSet) : echo('/admin/cines/actualizar'); else : echo('/admin/cines/nuevo'); endif; ?>">
         <?php if($isCinemaSet) : ?>
         <label style="display:none;">
             <input type="text"  name="id" value="<?php echo($cinema->getId()); ?>">
@@ -35,9 +35,9 @@
         </label>
 
         <div class="cinemaform__button--container">
-            <button type="submit" class="cinemaform__button--primary">Submit</button>
+            <button type="submit" class="cinemaform__button--primary">Enviar</button>
             <?php if($isCinemaSet) : ?>
-            <button id="cinema-delete" type="submit" class="cinemaform__button--secondary" onclick="return confirm('Estas Seguro?');">Delete</button>
+            <button id="cinema-delete" type="submit" class="cinemaform__button--secondary" onclick="return confirm('Estas Seguro?');">Eliminar</button>
             <?php endif; ?>
         </div>
 
