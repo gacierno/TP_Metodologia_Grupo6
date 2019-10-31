@@ -1230,7 +1230,7 @@ select#moviefilter__multiple-select--genre,select#moviefilter__select--cinema{
 
   }
 
-  div.some:hover::before{
+  div.some.open:hover::before{
       left: 100%;
   }
   
@@ -1251,7 +1251,7 @@ select#moviefilter__multiple-select--genre,select#moviefilter__select--cinema{
     transition: all 0.2s ease-in-out;
   }
 
-  div.some:hover::after{
+  div.some.open:hover::after{
     right: 100%;
 }
 
@@ -1284,13 +1284,13 @@ select#moviefilter__multiple-select--genre,select#moviefilter__select--cinema{
     left:0;
 }
 
-.nav__menu--desktop .some:hover .nav__desktop--menu-container{
+.nav__menu--desktop .some.open .nav__desktop--menu-container{
     display: block;
     top: 200%;
     z-index: 9999999999999999;
 }
 
-.nav__menu--desktop .some:hover .nav__desktop--menu-container ul{
+.nav__menu--desktop .some.open .nav__desktop--menu-container ul{
     width: 100%;
     padding: 10px;
     background-color: rgb(20, 20, 20);
