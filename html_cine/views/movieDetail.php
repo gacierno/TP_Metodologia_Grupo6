@@ -1,8 +1,8 @@
 <?php include_once('header.php');
 
-if(sizeof($shows) > 0) {
-    $movie = $shows[0]->getMovie();
-}
+// if(sizeof($shows) > 0) {
+//     $movie = $shows[0]->getMovie();
+// }
 
 $cines = [];
 $cinemaids = [];

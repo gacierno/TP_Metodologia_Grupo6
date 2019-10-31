@@ -1,13 +1,13 @@
-<?php 
+<?php
 
 	namespace model;
 
 	/**
-	 * 
+	 *
 	 */
 	class Movie
 	{
-		
+
 		private $id;
 		private $name;
 		private $duration;
@@ -23,7 +23,11 @@
 			$this->setGenres( 	(isset($options['movie_genres'] ) ) 	?$options['movie_genres']: array() );
 			$this->setId( 		(isset($options['movie_id'] ) )		?$options['movie_id']: null );
 		}
-	
+
+		function getDescription(){
+			return "";
+		}
+
 		/**
 		 * @return mixed
 		 */

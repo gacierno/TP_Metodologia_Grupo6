@@ -13,24 +13,24 @@
         <form id="cinema-form" class="cinema__form" method="POST" action="<?php if($isCinemaSet) : echo('/admin/cines/actualizar'); else : echo('/admin/cines/nuevo'); endif; ?>">
         <?php if($isCinemaSet) : ?>
         <label style="display:none;">
-            <input type="text"  name="id" value="<?php echo($cinema->getId()); ?>">
+            <input type="text"  name="cinema_id" value="<?php echo($cinema->getId()); ?>">
         </label>
         <?php endif; ?>
 
         <label>
-            <input class="inputText" type="text" name="name" value="<?php if($isCinemaSet) : echo($cinema->getName()); endif; ?>" required>
+            <input class="inputText" type="text" name="cinema_name" value="<?php if($isCinemaSet) : echo($cinema->getName()); endif; ?>" required>
             <span class="floating-label">Nombre del Cine</span>
         </label>
         <label>
-            <input class="inputText" type="text"  name="address" value="<?php if($isCinemaSet) : echo($cinema->getAddress()); endif; ?>" required>
+            <input class="inputText" type="text"  name="cinema_address" value="<?php if($isCinemaSet) : echo($cinema->getAddress()); endif; ?>" required>
             <span class="floating-label">Direccion del Cine</span>
         </label>
         <label>
-            <input class="inputText" type="text" name="capacity" value="<?php if($isCinemaSet) : echo($cinema->getCapacity()); endif; ?>" required>
+            <input class="inputText" type="text" name="cinema_capacity" value="<?php if($isCinemaSet) : echo($cinema->getCapacity()); endif; ?>" required>
             <span class="floating-label">Capacidad del Cine</span>
         </label>
         <label>
-            <input class="inputText" type="text"  name="ticketValue" value="<?php if($isCinemaSet) : echo($cinema->getTicketValue()); endif; ?>" required>
+            <input class="inputText" type="text"  name="cinema_ticketValue" value="<?php if($isCinemaSet) : echo($cinema->getTicketValue()); endif; ?>" required>
             <span class="floating-label">Valor del ticket del Cine</span>
         </label>
 
