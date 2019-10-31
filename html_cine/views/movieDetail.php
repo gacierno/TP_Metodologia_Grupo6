@@ -1,26 +1,5 @@
 <?php include_once('header.php');
 
-// if(sizeof($shows) > 0) {
-//     $movie = $shows[0]->getMovie();
-// }
-
-$cines = [];
-$cinemaids = [];
-
-foreach($shows as $show){
-    $cinemaName = $show->getCinema()->getName();
-    if(!isset($cines[$cinemaName])){
-        $cines[$cinemaName] = [];
-        $cinemaids[$cinemaName] = $show->getCinema()->getId();
-    }
-    $showData = [];
-    $showData["day"] = $show->getDay();
-    $showData["time"] = $show->getTime();
-    $showData["ID"] = $show->getId();
-    array_push($cines[$cinemaName],$showData);
-}
-
-
 ?>
 
 <!-- voiy a tener un array de funciones que tienen un objeto movie y un cine y fecha y hora -->
@@ -34,9 +13,7 @@ foreach($shows as $show){
             <small><?php echo($movie->getLanguage()); ?> / <?php echo($movie->getDuration()); ?></small>
             <div class="movie-detail__categories--container">
                 <?php $genres = $movie->getGenres();
-                foreach($genres as $genre) :
-
-                ?>
+                foreach($genres as $genre) : ?>
 
                 <div class="badge badge-secondary"><?php echo($genre->getName()); ?></div>
 
@@ -44,14 +21,14 @@ foreach($shows as $show){
             </div>
             <p><?php echo($movie->getDescription()); ?></p>
             <div class="movie-detail__shows--container">
-                <?php foreach($cines as $key => $value) : ?>
-                <div id="cinema-<?php echo $cinesId[$key]; ?>" class="dropdown">
-                    <span class="selLabel"><?php echo($key); ?></span>
+                <?php foreach($showsByCinema as $cinema) : ?>
+                <div id="cinema-<?php echo $cinema["cinema"]->getId(); ?>" class="dropdown">
+                    <span class="selLabel"><?php echo($cinema["cinema"]->getName()); ?></span>
                     <input type="hidden" name="cd-dropdown">
                     <ul class="dropdown-list">
-                        <?php foreach($value as $show) : ?>
-                        <li data-value="<?php echo($show["ID"]); ?>">
-                            <a href="/funciones?id=<?php echo($show["ID"]); ?>"><?php echo($show["day"]); ?> <?php echo($show["time"]); ?></a>
+                        <?php foreach($cinema["shows"] as $show) : ?>
+                        <li data-value="<?php echo($show->getId()); ?>">
+                            <a href="/funciones?id=<?php echo($show->getId()); ?>"><?php echo($show->getDay()); ?> <?php echo($show->getTime()); ?></a>
                         </li>
                         <?php endforeach; ?>
                     </ul>
