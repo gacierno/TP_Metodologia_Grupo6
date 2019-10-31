@@ -1,16 +1,26 @@
 <?php include_once('header.php'); ?>
 
-<?php if(isset($cinema)) : $isCinemaSet = true; else : $isCinemaSet = false; endif; ?>
+<?php if(isset($cinema)) : $isCinemaSet = true; $availability = $cinema->getAvailability(); else : $isCinemaSet = false; endif; ?>
 
 
 <?php include_once('partials/customMessage.php'); ?>
 
 
 <div class="main-container container-fluid cinemalist__main-container">
-    <h1><?php if($isCinemaSet) : echo('Modificación'); else : echo('Creación'); endif; ?> de Cine</h1>
+    <h1><?php if($isCinemaSet) : echo('Modificación del'); else : echo('Creación de'); endif; ?> Cine <?php if($isCinemaSet) : echo($cinema->getName()); endif; ?></h1>
+    <?php if($isCinemaSet && $availability) : ?>
+        <span class="badge badge-primary">
+            Activa
+        </span>
+    <?php else: ?>
+    <span class="badge badge-danger">
+        Inactivo
+    </span>
+<?php endif; ?>
     <div class="row cinema__form--container">
 
         <form id="cinema-form" class="cinema__form" method="POST" action="<?php if($isCinemaSet) : echo('/admin/cines/actualizar'); else : echo('/admin/cines/nuevo'); endif; ?>">
+        
         <?php if($isCinemaSet) : ?>
         <label style="display:none;">
             <input type="text"  name="cinema_id" value="<?php echo($cinema->getId()); ?>">
@@ -37,7 +47,7 @@
         <div class="cinemaform__button--container">
             <button type="submit" class="cinemaform__button--primary">Enviar</button>
             <?php if($isCinemaSet) : ?>
-            <button id="cinema-delete" type="submit" class="cinemaform__button--secondary" onclick="return confirm('Estas Seguro?');">Eliminar</button>
+            <button id="cinema-delete" type="submit" available="<?php echo($availability); ?>" class="cinemaform__button--secondary" onclick="return confirm('Estas Seguro?');"><?php if($availability) : echo("Eliminar"); else : echo("Activar"); endif; ?></button>
             <?php endif; ?>
         </div>
 
