@@ -69,8 +69,11 @@ class ShowController extends BaseController{
 
   }
 
-  function delete(){
-
+  function disable(){
+    $post = POST::getInstance();
+    if($post->show_id){
+      $d_show = new ShowDao();
+    }
   }
 
 }
