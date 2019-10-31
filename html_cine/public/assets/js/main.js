@@ -137,7 +137,37 @@ $(document).ready(function(){
             var date = $('#moviefilter__select--date').val();
             var cinema = $('#moviefilter__select--cinema').val();
             $(moviesSlider).css("opacity","0.5");
-            var url = "/peliculas"+ (genre ? "?genero="+genre : "") + (date ? "?fecha="+ date : "") + (cinema ? "?cine="+ cinema : "");
+            var url = "/peliculas";
+            if(genre || date || cinema){
+                
+                var first = true;
+                if(genre){
+                    url += "?";
+                    url+= "genero=" + genre;
+                    first = false;
+                }
+                if(date){
+                    if(!first){
+                        url+= "&";
+                    }
+                    else{
+                        url+= "?";
+                        first = false;
+                    }
+                    url+= "fecha=" + date;
+                }
+                if(cinema){
+                    if(!first){
+                        url+= "&";
+                    }
+                    else{
+                        url+= "?";
+                        first = false;
+                    }
+                    url+= "cine=" + cinema;
+                }
+            }
+
             history.pushState({ genre : genre , date : date , cinema : cinema}, "Peliculas", url );
     
             $('#movielist-slider-container').load( url +" #movielist-slider",function(data){
