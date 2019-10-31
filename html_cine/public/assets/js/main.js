@@ -51,6 +51,9 @@ $(document).ready(function(){
                 
                 if($(dropId).hasClass('active')){
                     var index = 1;
+                    var amountofSels = $(dropId + ' li').length + 1;
+                    var finale = (height * amountofSels) + 'px';
+                    $(dropId + '.dropdown:not(.height-non-mod)').css('height',finale);
                     $(dropId + ' li').each(function(){
                         var amount = (height * index) + 'px' ;
                         $(this).css('transform','translateY(' + amount + ')');
