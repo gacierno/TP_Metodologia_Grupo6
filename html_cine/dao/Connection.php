@@ -37,9 +37,9 @@
             try
             {
                 $this->Prepare($query);
-                
+
                 $this->BindParameters($parameters, $queryType);
-                
+
                 $this->pdoStatement->execute();
 
                 return $this->pdoStatement->fetchAll();
@@ -49,13 +49,13 @@
                 throw $ex;
             }
         }
-        
+
         public function ExecuteNonQuery($query, $parameters = array(), $queryType = QueryType::Query)
-	    {            
+	    {
             try
             {
                 $this->Prepare($query);
-                
+
                 $this->BindParameters($parameters, $queryType);
 
                 $this->pdoStatement->execute();
@@ -65,9 +65,9 @@
             catch(Exception $ex)
             {
                 throw $ex;
-            }        	    	
+            }
         }
-        
+
         private function Prepare($query)
         {
             try
@@ -79,13 +79,13 @@
                 throw $ex;
             }
         }
-        
+
         private function BindParameters($parameters = array(), $queryType = QueryType::Query)
         {
             $i = 0;
 
             foreach($parameters as $parameterName => $value)
-            {                
+            {
                 $i++;
 
                 if($queryType == QueryType::Query)
@@ -100,7 +100,7 @@
          *  needed when a composition is saved on a database and has a foreign key
          */
         public function getLastId( $param = null ){
-            return $this->pdo->lastInsertId( $param ); 
+            return $this->pdo->lastInsertId( $param );
         }
     }
 ?>

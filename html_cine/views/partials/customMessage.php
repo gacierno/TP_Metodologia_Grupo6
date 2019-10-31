@@ -1,4 +1,3 @@
-
 <?php if($this->errorMessage) : ?>
 
     <div class="custom-msg__container error-msg__container">

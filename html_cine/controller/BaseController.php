@@ -16,8 +16,8 @@ class BaseController{
 
   function __construct(){
     $get = GET::getInstance();
-    if(isset($get->passSuccessMessage)) $this->successMessage = $get->passSuccessMessage;
-    if(isset($get->passErrorMessage))   $this->errorMessage = $get->passErrorMessage;
+    if($get->passSuccessMessage) $this->successMessage = $get->passSuccessMessage;
+    if($get->passErrorMessage)   $this->errorMessage = $get->passErrorMessage;
     $this->session = Session::getInstance();
   }
 

@@ -66,7 +66,7 @@ class UserDao extends BaseDao
 
 		$obj->setProfile( $profileDAO->getById( $id ) );
 
-		parent::add($obj);
+		return parent::add($obj);
 	}
 }
 

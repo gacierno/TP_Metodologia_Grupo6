@@ -66,6 +66,7 @@ abstract class BaseDao{
 
 
     public function add( $obj ){
+        $created = false;
         if( is_null( $obj->getId() ) || !$this->getById( $obj->getId() ) ){
 
             $options = $this->getFields( $obj );
@@ -76,7 +77,7 @@ abstract class BaseDao{
 
             try {
                 $this->connection = Connection::GetInstance();
-                return $this->connection->ExecuteNonQuery( $query, $params );
+                $created = $this->connection->ExecuteNonQuery( $query, $params );
 
             } catch (PDOException $e) {
                 throw $e;
@@ -85,7 +86,7 @@ abstract class BaseDao{
             }
 
         }
-        return false;
+        return $created;
 
     }
 

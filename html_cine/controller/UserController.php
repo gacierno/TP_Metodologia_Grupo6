@@ -52,7 +52,7 @@ class UserController extends BaseController{
       $this->passErrorMessage = $errorMessage;
     }
 
-    $this->redirect("/login/create");
+    $this->redirect("/login");
   }
 
 }
