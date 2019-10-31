@@ -40,7 +40,7 @@
                     </form>
 
                     <form method="POST" action="/admin/funciones/eliminar">
-                        <input type="text" name="id" value="<?php echo($show->getId()); ?>" hidden>
+                        <input type="text" name="show_id" value="<?php echo($show->getId()); ?>" hidden>
                         <button id="funcion-delete" type="submit" class="showlist__button--secondary" onclick="return confirm('Estas Seguro?');">Eliminar</button>
                     </form>
                 </div>
