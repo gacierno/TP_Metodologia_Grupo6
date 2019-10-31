@@ -1,19 +1,20 @@
-<?php 
+<?php
 
 	namespace model;
 
 	/**
-	 * 
+	 *
 	 */
 	class Movie
 	{
-		
+
 		private $id;
 		private $name;
 		private $duration;
 		private $language;
 		private $image;
 		private $genres;
+		private $description;
 
 		function __construct( $options ){
 			$this->setName( 	(isset($options['movie_title'] ) ) 	?$options['movie_title']: '' );
@@ -22,8 +23,9 @@
 			$this->setImage( 	(isset($options['movie_image'] ) ) 	?$options['movie_image']: '' );
 			$this->setGenres( 	(isset($options['movie_genres'] ) ) 	?$options['movie_genres']: array() );
 			$this->setId( 		(isset($options['movie_id'] ) )		?$options['movie_id']: null );
+			$this->setDescription( (isset($options['movie_description'])) ?$options['movie_description'] : '' );
 		}
-	
+
 		/**
 		 * @return mixed
 		 */
@@ -117,7 +119,7 @@
 	     */
 	    public function setGenres( $genres )
 	    {
-	        return $this->genres = $genres;
+	        $this->genres = $genres;
 	    }
 
 	    /**
@@ -125,6 +127,21 @@
 	    */
 	    public function addGenre( $genre ){
 	    	array_push($this->genres, $genre );
+	    }
+
+	    /**
+	     * @param $description : string
+	     */
+	    public function setDescription( $description )
+	    {
+	         $this->description = $description;
+	    }
+
+	    /**
+	    *	@return string
+	    */
+	    public function getDescription( ){
+	    	return $this->description;
 	    }
 
 	}

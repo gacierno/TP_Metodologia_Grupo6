@@ -48,7 +48,9 @@ class ShowController extends BaseController{
   }
 
   function create(){
-
+    $d_show   = new ShowDao();
+    $newShow  = new Show($_POST);
+    $d_show->add($newShow);
   }
 
   function update(){

@@ -95,7 +95,10 @@
             }
         }
 
-
+        /*
+         *  this function returns the last record id for the current session
+         *  needed when a composition is saved on a database and has a foreign key
+         */
         public function getLastId( $param = null ){
             return $this->pdo->lastInsertId( $param ); 
         }

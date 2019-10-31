@@ -70,9 +70,6 @@ class GenresOnMoviesDao
 
 
 
-
-
-
 	public static function getGenresByMovieId( $id ){
 		$query = "select * from Genres_on_Movies where movie_id = $id;";
 		$output = array();
@@ -89,6 +86,32 @@ class GenresOnMoviesDao
 		}
 		return $output;
 	}
+
+
+
+
+
+
+
+
+	public static function getMoviesByGenreId( $id ){
+		$query = "select * from Genres_on_Movies where genre_id = $id;";
+		$output = array();
+
+		try {
+		    $connection = Connection::GetInstance();
+		    $output = $connection->Execute( $query );
+		} catch (PDOException $e) {
+		    throw $e;
+		    return false;
+		} catch (Exception $e) {
+		    throw $e;
+		    return false;
+		}
+		return $output;
+	}
+
+
 
 }
  ?>

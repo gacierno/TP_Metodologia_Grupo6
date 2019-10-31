@@ -67,6 +67,7 @@ create table Users(
 	user_password varchar(20) not null,
 	role_id int not null,
 	profile_id int not null,
+	user_available boolean default 1,
 	constraint pk_user primary key (user_id),
 	constraint unq_user_email unique (user_email),
 	constraint fk_user_role foreign key (role_id) references Roles(role_id) on update cascade,
@@ -234,3 +235,8 @@ INSERT INTO `Shows` (`show_id`, `show_date`, `show_time`, `movie_id`, `cinema_id
 -- Volcado de datos para la tabla `Roles`
 --
 INSERT INTO `Roles` (`role_id`, `role_name`, `role_description`) VALUES (NULL, 'cliente', '');
+
+ALTER TABLE `Cinemas` ADD `cinema_available` BOOLEAN NULL DEFAULT TRUE;
+ALTER TABLE `Movies` ADD `movie_description` VARCHAR(500);
+
+ALTER TABLE `Users` ADD `user_available` BOOLEAN NULL DEFAULT TRUE AFTER `profile_id`;

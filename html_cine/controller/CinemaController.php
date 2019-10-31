@@ -24,9 +24,9 @@ class CinemaController extends BaseController{
     $valid = true;
     extract($data);
     if(
-      !isset($name,$address,$capacity,$ticketValue) ||
-      $capacity < 1 ||
-      $ticketValue < 1
+      !isset($cinema_name,$cinema_address,$cinema_capacity,$cinema_ticketValue) ||
+      $cinema_capacity < 1 ||
+      $cinema_ticketValue < 1
     ){
       $valid = false;
     }
@@ -40,35 +40,29 @@ class CinemaController extends BaseController{
   }
 
   function create(){
+    $created = false;
     if(!$this->validCinema($_POST)){
       return $this->throw("Informacion de cinema invalida");
     }
-    extract($_POST);
     $d_cinema   = new CinemaDao();
-    $new_cinema = new Cinema(
-      $name,
-      $address,
-      $capacity,
-      $ticketValue
-    );
-    $d_cinema->add($new_cinema);
-    $this->redirect('/cines');
+    $new_cinema = new Cinema($_POST);
+    $created = $d_cinema->add($new_cinema);
+    // print_r($new_cinema);
+    if($created){
+      $this->passSuccessMessage = "Cine creado correctamente";
+    }else{
+      $this->passErrorMessage = "Hubo un error, el cine no pudo ser creado";
+    }
+    $this->redirect('/admin/cines/nuevo');
   }
 
 
   function update(){
-    extract($_POST);
     if(!$this->validCinema($_POST) || !isset($id)){
       return $this->throw("Informacion de cinema invalida");
     }
     $d_cinema   = new CinemaDao();
-    $new_cinema = new Cinema(
-      $name,
-      $address,
-      $capacity,
-      $ticketValue,
-      $id
-    );
+    $new_cinema = new Cinema($_POST);
     $d_cinema->update($id,$new_cinema);
     $this->redirect('/cines');
   }

@@ -30,7 +30,7 @@ class MovieController extends BaseController{
     $req      = new Request();
     if(!isset($genero)) $genero = "";
     $movies   = $genero == "" ? $d_movie->getList() : $d_movie->getByGenre($genero);
-    $this->render("movieDetail",
+    $this->render("movieList",
       array(
         'movies'  => $movies,
         'genres'  => $d_genre->getList(),
@@ -38,6 +38,7 @@ class MovieController extends BaseController{
       )
     );
   }
+
 
   function detail(){
     extract($_GET);
@@ -51,12 +52,17 @@ class MovieController extends BaseController{
       $showsByCinema = array();
       foreach($shows as $show){
         $cinemaID = $show->getCinema()->getId();
-        if(!isset($showsByCinema[$cinemaID])) $showsByCinema[$cinemaID] = array();
-        array_push($showsByCinema[$cinemaID],$show);
+        if(!isset($showsByCinema[$cinemaID])){
+          $showsByCinema[$cinemaID] = array(
+            'cinema' => $show->getCinema(),
+            'shows'  => array()
+          );
+        }
+        array_push($showsByCinema[$cinemaID]['shows'],$show);
       }
       $this->render("movieDetail",
         array(
-          'movie'   => $movie,
+          'movie'           => $movie,
           'showsByCinema'   => $showsByCinema
         )
       );
