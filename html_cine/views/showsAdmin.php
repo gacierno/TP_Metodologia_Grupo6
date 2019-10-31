@@ -30,7 +30,7 @@
                     </div>
                 </div>
                 <div class="col-sm-12 col-lg-2">
-                    <form method="POST" action="/admin/funciones/actualizar">
+                    <form method="GET" action="/admin/funciones/editar">
                         <input type="number" name="show_id" value="<?php echo($show->getId()); ?>" hidden>
                         <input type="text" name="show_day" value="<?php echo($show->getDay()); ?>" hidden>
                         <input type="text" name="show_time" value="<?php echo($show->getTime()); ?>" hidden>
