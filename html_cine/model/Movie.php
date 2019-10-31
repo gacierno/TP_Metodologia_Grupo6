@@ -146,6 +146,22 @@
 	    	return $this->description;
 	    }
 
+	    /**
+	     * @param mixed $available
+	     */
+	    public function setAbailability($available)
+	    {
+	        $this->available = $available;
+	    }
+
+	    /**
+	     * @return mixed
+	     */
+	    public function getAbailability()
+	    {
+	        return $this->available;
+	    }
+
 	}
 
  ?>
