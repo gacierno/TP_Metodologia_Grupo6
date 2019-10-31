@@ -45,7 +45,7 @@ $(document).ready(function(){
     if($('.dropdown').length > 0){
         $('.dropdown').each(function(){
             var dropId = '#' + $(this).attr('id');
-            var height = $(dropId + ' #moviefilter__select--date').first().outerHeight();
+            var height = $(dropId + ' #moviefilter__select--date').outerHeight();
             $(dropId + ' .selLabel').click(function () {
                 $(dropId + '.dropdown').toggleClass('active');
                 
@@ -60,7 +60,7 @@ $(document).ready(function(){
                 else{
                     setTimeout(function(){
                         var finalHeight = (height) + 'px';
-                        $(dropId + '.dropdown').css('height',finalHeight);
+                        $(dropId + '.dropdown:not(.movielist__filter--container)').css('height',finalHeight);
                     },250);
                     $(dropId + ' li').each(function(){
                         $(this).css('transform','translateY(0px)');
