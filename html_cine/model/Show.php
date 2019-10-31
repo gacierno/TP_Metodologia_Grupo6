@@ -8,9 +8,9 @@ class Show
 	private $id;
 	private $day;
 	private $time;
-    private $movie;  // Object : Movie
-    private $cinema; // Object : Cinema
-    private $available;
+  private $movie;  // Object : Movie
+  private $cinema; // Object : Cinema
+  private $available;
 
 	function __construct( $options )
 	{
@@ -19,7 +19,7 @@ class Show
 				$this->setDay( (isset($options['show_date']) ) ? $options['show_date'] : null );
         $this->setMovie( (isset($options['show_movie']) ) ? $options['show_movie'] : null );
         $this->setCinema( (isset($options['show_cinema']) ) ? $options['show_cinema'] : null );
-        $this->setAbailability( ( isset($options['show_available']) ) ? $options['show_available'] : 1 );
+        $this->setAvailability( ( isset($options['show_available']) ) ? $options['show_available'] : 1 );
 	}
 
     /**
@@ -105,7 +105,7 @@ class Show
     /**
      * @param mixed $available
      */
-    public function setAbailability($available)
+    public function setAvailability($available)
     {
         $this->available = $available;
     }
@@ -113,7 +113,7 @@ class Show
     /**
      * @return mixed
      */
-    public function getAbailability()
+    public function getAvailability()
     {
         return $this->available;
     }

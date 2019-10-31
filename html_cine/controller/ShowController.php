@@ -82,8 +82,8 @@ class ShowController extends BaseController{
     $post         = POST::getInstance();
     $d_show       = new ShowDao();
     $show         = $d_show->getById($post->show_id);
-    $show->setAbailability(0);
-    $d_show->update($updatedShow);
+    $show->setAvailability(0);
+    $d_show->update($show);
     $this->redirect("/admin/funciones");
   }
 

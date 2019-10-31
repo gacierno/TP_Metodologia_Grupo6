@@ -24,7 +24,7 @@
                 <div class="showlist__item--separator showlist__movie--details col-sm-12 col-lg-7">
                     <h2><?php echo($movie->getName()); ?></h2>
                     <small><?php echo($movie->getLanguage()); ?> </small>
-                    <?php if($show->getAbailability()) : ?>
+                    <?php if($show->getAvailability()) : ?>
                       <span class="badge badge-primary">
                         Activa
                       </span>
