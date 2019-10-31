@@ -112,8 +112,9 @@ $(document).ready(function(){
             else{
                 $(this).text('Enviar');
                 $(this).addClass('readyToSend');
-                $('#user-detail-form input:not([type=hidden])').each(function(){
+                $('#user-detail-form input:not([type=hidden]):not(#user_email)').each(function(){
                     $(this).addClass('user-input__readyToSend');
+                    $('.user-detail__toggle-pass img').css('background','white').css('border-radius','50%');
                     $(this).prop('disabled',false);
                 });
             }
