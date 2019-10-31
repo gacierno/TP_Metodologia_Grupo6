@@ -11,6 +11,7 @@ use dao\BaseDao  as BaseDao;
 use dao\IApiConnector as IApiConnector;
 use dao\GenreDao as GenreDao;
 use dao\GenresOnMoviesDao as GenresOnMoviesDao;
+use dao\Conection as Conection;
 
 class MovieDao extends BaseDao implements IApiConnector
 {
@@ -141,40 +142,71 @@ class MovieDao extends BaseDao implements IApiConnector
 
 	public function getMoviesByGenres( $genres = array() ){
 
+		$movies = array();
+
+		$query = "select M.movie_id as movie_id, M.movie_image as movie_image, M.movie_language as movie_language, M.movie_title as movie_title, M.movie_runtime as movie_runtime, M.movie_description as movie_description from Movies M inner join Genres_on_Movies GM on GM.movie_id = M.movie_id  where GM.genre_id in (";
+		$query .= preg_replace( "/[ \[ \] \" ]/", "", json_encode($genres) ). ") group by M.movie_id;";
+
+		try {
+			$connection = Connection::GetInstance();
+			$movies = parent::parseToObjects( $connection->Execute( $query ) );
+		} catch (Exception $e) {
+			throw $e;
+		}catch (Exception $e) {
+			throw $e;
+		}
+
+		return $movies;
+
 	}
 
-	public function getMoviesByDate( $date ){
+	public function getMoviesByDate( $date = "1980-10-20" ){
+
+		$movies = array();
+
+		$query = "select 	M.movie_id as movie_id, M.movie_image as movie_image, M.movie_language as movie_language, M.movie_title as movie_title, M.movie_runtime as movie_runtime, M.movie_description as movie_description from Movies M inner join Shows S on S.movie_id = M.movie_id where S.show_date = '";
+		$query .= $date; //date format "YYYY-MM-DD"
+		$query .= "' group by M.movie_id;";
+
+		try {
+			$connection = Connection::GetInstance();
+			$movies = parent::parseToObjects( $connection->Execute( $query ) );
+		} catch (Exception $e) {
+			throw $e;
+		}catch (Exception $e) {
+			throw $e;
+		}
+
+		return $movies;
 
 	}
 
 
 
-	public function getMoviesBy( $genres, $date ){
+	public function getMoviesByGenresAndDate( $genres = array(), $date = "1980-10-20" ){
 
+		$movies = array();
 
-		// select * from Movies M
-		// inner join Genres_on_Movies GM
-		// on GM.movie_id = M.movie_id
-		// inner join Shows S
-		// on S.movie_id = M.movie_id
-		// where S.show_date = "2019-10-20"
-		// AND GM.genre_id in ( 12, 13, 16, 45, 88 );
+		$query = "select 	M.movie_id as movie_id, M.movie_image as movie_image, M.movie_language as movie_language, M.movie_title as movie_title, M.movie_runtime as movie_runtime, M.movie_description as movie_description from Movies M inner join Genres_on_Movies GM on GM.movie_id = M.movie_id inner join Shows S on S.movie_id = M.movie_id where S.show_date = '";
+		$query .= $date; //date format "YYYY-MM-DD"
+		$query .= "' and GM.genre_id in (";
+		$query .= preg_replace( "/[ \[ \] \" ]/", "", json_encode($genres) ). ") group by M.movie_id;";
 
+		try {
+			$connection = Connection::GetInstance();
+			$movies = parent::parseToObjects( $connection->Execute( $query ) );
+		} catch (Exception $e) {
+			throw $e;
+		}catch (Exception $e) {
+			throw $e;
+		}
 
-
-		$query = "";
-
-
-
+		return $movies;
 	}
 
 }
 
-/*================================
 
-	get movies By genres
-	get movies By date
-	combined
-
-================================*/
  ?>
+
+

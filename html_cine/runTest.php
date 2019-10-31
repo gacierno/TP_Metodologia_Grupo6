@@ -31,8 +31,10 @@ include_once './views/header.php';
 	<pre style="color: white"><?php // print_r( dao\GenresOnMoviesDao::getGenresByMovieId( 338967 ) ) ?></pre>
 	<pre style="color: white"><?php // print_r( $testShow ) ?></pre>
 	<pre style="color: white"><?php // print_r( $testShowDao->getList() ) ?></pre>
-	<pre style="color: white"><?php  print_r( $testMovieDao->getList( $args ) ) ?></pre>
-	
+	<pre style="color: white"><?php // print_r( $newTest->getMoviesByGenresAndDate( array( 18, 16, 12, 99, 767), "2019-10-20" ) ) ?></pre>
+	<pre style="color: white"><?php // print_r( $newTest->getMoviesByDate( "2019-10-20" ) ) ?></pre>
+
+	<pre style="color: white"><?php  print_r( $newTest->getMoviesByGenres( array( 18, 16, 12, 99, 767) ) ) ?></pre>
 	
 	
 		</section>
