@@ -45,7 +45,12 @@ $(document).ready(function(){
     if($('.dropdown').length > 0){
         $('.dropdown').each(function(){
             var dropId = '#' + $(this).attr('id');
-            var height = $(dropId + ' #moviefilter__select--date').outerHeight();
+            if($(this).hasClass('movielist__filter--container')){
+                var height = $(dropId + ' #moviefilter__select--date').outerHeight();
+            }
+            else{
+                var height = $(dropId + ' .selLabel').outerHeight();
+            }
             $(dropId + ' .selLabel').click(function () {
                 $(dropId + '.dropdown').toggleClass('active');
                 

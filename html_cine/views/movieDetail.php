@@ -10,7 +10,7 @@
         </div>
         <div class="col-sm-12 col-md-8 movie-detail__desc--container">
             <h1><?php echo($movie->getName()); ?></h1>
-            <small><?php echo($movie->getLanguage()); ?> / <?php echo($movie->getDuration()); ?></small>
+            <small><?php echo($movie->getLanguage()); ?> / <?php echo($movie->getDuration()." minutos"); ?></small>
             <div class="movie-detail__categories--container">
                 <?php $genres = $movie->getGenres();
                 foreach($genres as $genre) : ?>
