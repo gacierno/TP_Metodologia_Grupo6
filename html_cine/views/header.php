@@ -25,12 +25,22 @@
   </div>
   <div class="nav__container nav__links--container col-3 nav__menu--desktop">
     <div class="some">MENU
-
+    <?php $role = $user->getRole()->getName(); ?>
     <div class="nav__desktop--menu-container">
       <ul>
-        <li>asd</li>
-        <li>asd</li>
-        <li>asd</li>
+        <li class="nav__desktop--inner-link"><a class="no-border" href="/cines">Cines</a></li>
+        <hr class="rgb-divider">
+        <?php if ($role === 'admin') : ?>
+        <li class="nav__desktop--inner-link"><a class="no-border" href="/admin/cines">Administrar Cines</a></li>
+        <hr class="rgb-divider">
+        <?php endif; ?>
+        <li class="nav__desktop--inner-link"><a class="no-border" href="/peliculas">Funciones</a></li>
+        <hr class="rgb-divider">
+        <?php if ($role === 'admin') : ?>
+        <li class="nav__desktop--inner-link"><a class="no-border" href="/admin/funciones">Administrar Funciones</a></li>
+        <hr class="rgb-divider">
+        <?php endif; ?>
+        <li class="nav__desktop--inner-link"><a class="no-border" href="/usuario">Perfil</a></li>
       </ul>
     </div>
     </div>
