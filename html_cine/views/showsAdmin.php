@@ -23,7 +23,16 @@
                 </div>
                 <div class="showlist__item--separator showlist__movie--details col-sm-12 col-lg-7">
                     <h2><?php echo($movie->getName()); ?></h2>
-                    <small><?php echo($movie->getLanguage()); ?></small>
+                    <small><?php echo($movie->getLanguage()); ?> </small>
+                    <?php if($show->getAbailability()) : ?>
+                      <span class="badge badge-primary">
+                        Activa
+                      </span>
+                    <?php else: ?>
+                      <span class="badge badge-danger">
+                        Inactivo
+                      </span>
+                    <?php endif; ?>
                     <div class="d-lg-none">
                         <div class="showlist__show--date-time"><p><?php echo($show->getDay()); ?> / <?php echo($show->getTime()); ?></p></div>
                         <div class="showlist__show--cinema"><p><?php echo($cinema->getName()); ?></p></div>
