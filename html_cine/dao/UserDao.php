@@ -9,7 +9,7 @@ namespace dao;
 use dao\BaseDao  as BaseDao;
 use dao\ProfileDao as ProfileDao;
 use dao\RoleDao as RoleDao;
-use dao\Connection as Conection;
+use dao\Connection as Connection;
 
 use model\User as User;
 
