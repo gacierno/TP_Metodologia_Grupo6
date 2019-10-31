@@ -3,6 +3,8 @@
 use Controller\BaseController as BaseController;
 use DAO\CinemaDao             as CinemaDao;
 use Model\Cinema              as Cinema;
+use HTTPMethod\GET            as GET;
+use HTTPMethod\POST           as POST;
 
 
 class CinemaController extends BaseController{
@@ -34,18 +36,18 @@ class CinemaController extends BaseController{
   }
 
   function editForm(){
-    extract($_GET);
+    extract(GET::getInstance()->map());
     $d_cinema   = new CinemaDao();
     $this->render("cinemaForm", array('cinema' => $d_cinema->getById($id)) );
   }
 
   function create(){
     $created = false;
-    if(!$this->validCinema($_POST)){
+    if(!$this->validCinema(POST::getInstance()->map())){
       return $this->throw("Informacion de cinema invalida");
     }
     $d_cinema   = new CinemaDao();
-    $new_cinema = new Cinema($_POST);
+    $new_cinema = new Cinema(POST::getInstance()->map());
     $created = $d_cinema->add($new_cinema);
     // print_r($new_cinema);
     if($created){
@@ -58,17 +60,19 @@ class CinemaController extends BaseController{
 
 
   function update(){
-    if(!$this->validCinema($_POST) || !isset($id)){
+    $post = POST::getInstance();
+    extract($post->map());
+    if(!$this->validCinema($post->map()) || !isset($id)){
       return $this->throw("Informacion de cinema invalida");
     }
     $d_cinema   = new CinemaDao();
-    $new_cinema = new Cinema($_POST);
+    $new_cinema = new Cinema($post->map());
     $d_cinema->update($id,$new_cinema);
     $this->redirect('/cines');
   }
 
   function delete(){
-    extract($_POST);
+    extract(POST::getInstance()->map());
     $d_cinema   = new CinemaDao();
     $d_cinema->delete($id);
     $this->redirect('/cines');

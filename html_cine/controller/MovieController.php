@@ -15,6 +15,8 @@ use Model\Show                as Show;
 use DAO\CinemaDao             as CinemaDao;
 use Model\Cinema              as Cinema;
 
+use HTTPMethod\GET            as GET;
+
 
 class MovieController extends BaseController{
 
@@ -23,7 +25,7 @@ class MovieController extends BaseController{
   }
 
   function index(){
-		extract($_GET);
+		extract(GET::getInstance()->map());
     $d_movie  = new MovieDao();
     $d_genre  = new GenreDao();
     $d_cinema = new CinemaDao();
@@ -41,7 +43,7 @@ class MovieController extends BaseController{
 
 
   function detail(){
-    extract($_GET);
+    extract(GET::getInstance()->map());
     if(isset($id)){
       $shows    = array();
       $d_movie  = new MovieDao();

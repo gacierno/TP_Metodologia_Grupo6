@@ -11,6 +11,9 @@ use Model\Cinema              as Cinema;
 use DAO\MovieDao             	as MovieDao;
 use Model\Movie               as Movie;
 
+use HTTPMethod\GET            as GET;
+use HTTPMethod\POST           as POST;
+
 class ShowController extends BaseController{
 
   function __construct(){
@@ -23,7 +26,7 @@ class ShowController extends BaseController{
   }
 
   function editShow(){
-    extract($_GET);
+    extract(GET::getInstance()->map());
     if(isset($id)){
       $d_show   = new ShowDao();
       $shows    = $d_show->getList(array( 'show_id' => $id ));
@@ -48,16 +51,18 @@ class ShowController extends BaseController{
   }
 
   function create(){
+    $post         = POST::getInstance();
     $d_show       = new ShowDao();
     $d_cinema     = new CinemaDao();
     $d_movie      = new MovieDao();
-    $newShowData  = $_POST;
-    $movie        = $d_movie->getById($_POST['show_movie']);
-    $cinema       = $d_cinema->getById($_POST['show_cinema']);
+    $newShowData  = $post->map();
+    $movie        = $d_movie->getById($post->show_movie);
+    $cinema       = $d_cinema->getById($post->show_cinema);
     $newShowData['show_cinema'] = $cinema;
     $newShowData['show_movie']  = $movie;
     $newShow  = new Show($newShowData);
     $d_show->add($newShow);
+    $this->redirect("/admin/funciones");
   }
 
   function update(){

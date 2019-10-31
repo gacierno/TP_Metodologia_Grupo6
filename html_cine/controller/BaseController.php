@@ -4,6 +4,7 @@ use Response\RedirectResponse as RedirectResponse;
 use Response\ErrorResponse    as ErrorResponse;
 use Request\Request           as Request;
 use Session\Session           as Session;
+use HTTPMethod\GET            as GET;
 
 class BaseController{
 
@@ -14,8 +15,9 @@ class BaseController{
   private $session;
 
   function __construct(){
-    if(isset($_GET['passSuccessMessage'])) $this->successMessage = $_GET['passSuccessMessage'];
-    if(isset($_GET['passErrorMessage']))   $this->errorMessage = $_GET['passErrorMessage'];
+    $get = GET::getInstance();
+    if(isset($get->passSuccessMessage)) $this->successMessage = $get->passSuccessMessage;
+    if(isset($get->passErrorMessage))   $this->errorMessage = $get->passErrorMessage;
     $this->session = Session::getInstance();
   }
 

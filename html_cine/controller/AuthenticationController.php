@@ -10,6 +10,8 @@ use dao\UserDao               as UserDao;
 use model\User                as User;
 use model\Profile             as Profile;
 
+use HTTPMethod\POST           as POST;
+
 class AuthenticationController extends BaseController{
 
   function __construct(){
@@ -37,7 +39,7 @@ class AuthenticationController extends BaseController{
   }
 
   function login(){
-    extract($_POST);
+    extract(POST::getInstance()->map());
     if(!isset($username,$password)) return "Error: no user or pass";
     $userDao = new UserDao();
     $users = $userDao->getList(array(
