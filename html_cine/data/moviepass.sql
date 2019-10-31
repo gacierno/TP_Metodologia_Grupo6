@@ -237,5 +237,6 @@ INSERT INTO `Shows` (`show_id`, `show_date`, `show_time`, `movie_id`, `cinema_id
 INSERT INTO `Roles` (`role_id`, `role_name`, `role_description`) VALUES (NULL, 'cliente', '');
 
 ALTER TABLE `Cinemas` ADD `cinema_available` BOOLEAN NULL DEFAULT TRUE;
+ALTER TABLE `Movies` ADD `movie_description` VARCHAR(500);
 
 ALTER TABLE `Users` ADD `user_available` BOOLEAN NULL DEFAULT TRUE AFTER `profile_id`;

@@ -40,12 +40,22 @@ var placeholder;
 //new movies/create new slider with jquery.Load() method
 $(document).ready(function(){
 
+    //give nav menu behaviour
+    $('.some').on('click',function(){
+        $(this).toggleClass('open');
+    });
+
 
     //give movie detail show dropdown individual functionality
     if($('.dropdown').length > 0){
         $('.dropdown').each(function(){
             var dropId = '#' + $(this).attr('id');
-            var height = $(dropId + ' #moviefilter__select--date').first().outerHeight();
+            if($(this).hasClass('movielist__filter--container')){
+                var height = $(dropId + ' #moviefilter__select--date').outerHeight();
+            }
+            else{
+                var height = $(dropId + ' .selLabel').outerHeight();
+            }
             $(dropId + ' .selLabel').click(function () {
                 $(dropId + '.dropdown').toggleClass('active');
                 
@@ -60,7 +70,7 @@ $(document).ready(function(){
                 else{
                     setTimeout(function(){
                         var finalHeight = (height) + 'px';
-                        $(dropId + '.dropdown').css('height',finalHeight);
+                        $(dropId + '.dropdown:not(.movielist__filter--container)').css('height',finalHeight);
                     },250);
                     $(dropId + ' li').each(function(){
                         $(this).css('transform','translateY(0px)');
@@ -126,10 +136,43 @@ $(document).ready(function(){
             event.preventDefault();
             event.stopPropagation();
             var genre = $('#moviefilter__multiple-select--genre').val();
+            if(genre == ""){
+                genre = null;
+            }
             var date = $('#moviefilter__select--date').val();
             var cinema = $('#moviefilter__select--cinema').val();
             $(moviesSlider).css("opacity","0.5");
-            var url = "/peliculas"+ (genre ? "?genero="+genre : "") + (date ? "?fecha="+ date : "") + (cinema ? "?cine="+ cinema : "");
+            var url = "/peliculas";
+            if(genre || date || cinema){
+                
+                var first = true;
+                if(genre){
+                    url += "?";
+                    url+= "genero=" + genre;
+                    first = false;
+                }
+                if(date){
+                    if(!first){
+                        url+= "&";
+                    }
+                    else{
+                        url+= "?";
+                        first = false;
+                    }
+                    url+= "fecha=" + date;
+                }
+                if(cinema){
+                    if(!first){
+                        url+= "&";
+                    }
+                    else{
+                        url+= "?";
+                        first = false;
+                    }
+                    url+= "cine=" + cinema;
+                }
+            }
+
             history.pushState({ genre : genre , date : date , cinema : cinema}, "Peliculas", url );
     
             $('#movielist-slider-container').load( url +" #movielist-slider",function(data){

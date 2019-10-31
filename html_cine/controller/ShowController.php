@@ -11,6 +11,9 @@ use Model\Cinema              as Cinema;
 use DAO\MovieDao             	as MovieDao;
 use Model\Movie               as Movie;
 
+use HTTPMethod\GET            as GET;
+use HTTPMethod\POST           as POST;
+
 class ShowController extends BaseController{
 
   function __construct(){
@@ -23,10 +26,10 @@ class ShowController extends BaseController{
   }
 
   function editShow(){
-    extract($_GET);
-    if(isset($id)){
+    extract(GET::getInstance()->map());
+    if(isset($show_id)){
       $d_show   = new ShowDao();
-      $shows    = $d_show->getList(array( 'show_id' => $id ));
+      $shows    = $d_show->getList(array( 'show_id' => $show_id ));
       if(count($shows) < 1){
         $this->errorMessage = "El show no existe";
       }else{
@@ -48,15 +51,29 @@ class ShowController extends BaseController{
   }
 
   function create(){
-
+    $post         = POST::getInstance();
+    $d_show       = new ShowDao();
+    $d_cinema     = new CinemaDao();
+    $d_movie      = new MovieDao();
+    $newShowData  = $post->map();
+    $movie        = $d_movie->getById($post->show_movie);
+    $cinema       = $d_cinema->getById($post->show_cinema);
+    $newShowData['show_cinema'] = $cinema;
+    $newShowData['show_movie']  = $movie;
+    $newShow  = new Show($newShowData);
+    $d_show->add($newShow);
+    $this->redirect("/admin/funciones");
   }
 
   function update(){
 
   }
 
-  function delete(){
-
+  function disable(){
+    $post = POST::getInstance();
+    if($post->show_id){
+      $d_show = new ShowDao();
+    }
   }
 
 }

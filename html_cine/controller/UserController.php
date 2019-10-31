@@ -8,6 +8,8 @@ use dao\UserDao               as UserDao;
 use model\User                as User;
 use model\Profile             as Profile;
 
+use HTTPMethod\POST           as POST;
+
 class UserController extends BaseController{
 
   function __construct(){
@@ -20,12 +22,13 @@ class UserController extends BaseController{
     // Default error message
     $errorMessage = "Hubo un error creando el usuario";
     // Parse POST data into objects
+    $post    = POST::getInstance();
     $userDao = new UserDao();
-    $newUserProfile = new Profile($_POST);
+    $newUserProfile = new Profile($post->map());
     $roleDao = new RoleDao();
     $roles = $roleDao->getList(array( 'role_name' => 'cliente' ));
     $newUserRole = (count($roles) > 0) ? $roles[0] : null;
-    $newUserData = $_POST;
+    $newUserData = $post->map();
     // Assign role and profile
     $newUserData['user_profile'] = $newUserProfile;
     $newUserData['user_role'] = $newUserRole;

@@ -34,7 +34,8 @@
 
 .nav__links--container{
     text-align: end;
-    padding-top: 25px ;
+    align-items: center;
+    justify-content: center;
 }
 
 .nav__links--container a,.cinemalist__button--container a,.showlist__button--container a{
@@ -48,35 +49,15 @@
     position:relative;
     transition:800ms ease all;
     outline:none;
-    border-right: 2px solid;
-    border-left: 2px solid;
+    border: 2px solid;
     border-image-source: linear-gradient(-70deg, rgba(250, 124, 48, 0.7) 30%, rgba(0, 255, 255,0.7) 50%,rgba(138, 43, 226, 0.7) 75%, rgba(0, 255, 0, 0.7) 100%);
     border-image-slice: 1;
 }
 
-.nav__links--container a:hover,.cinemalist__button--container a:hover,.showlist__button--container a:hover{
+.cinemalist__button--container a:hover,.showlist__button--container a:hover{
+    background-color:black;
     color:white;
 }
-.nav__links--container a:before,.nav__links--container a:after,.cinemalist__button--container a:before,.cinemalist__button--container a:after,.showlist__button--container a:before, .showlist__button--container a:after{
-    content:'';
-    position:absolute;
-    top:0;
-    right:0;
-    height:2px;
-    width:0;
-    background: linear-gradient(-70deg, rgba(250, 124, 48, 0.7) 30%, rgba(0, 255, 255,0.7) 50%,rgba(138, 43, 226, 0.7) 75%, rgba(0, 255, 0, 0.7) 100%);
-    transition:400ms ease all;
-  }
-  .nav__links--container a:after,.cinemalist__button--container a:after,.showlist__button--container a:after{
-    right:inherit;
-    top:inherit;
-    left:0;
-    bottom:0;
-  }
-  .nav__links--container a:hover:before,.nav__links--container a:hover:after,.cinemalist__button--container a:hover:before,.cinemalist__button--container a:hover:after,.showlist__button--container a:hover:before, .showlist__button--container a:hover:after{
-    width:100%;
-    transition:800ms ease all;
-  }
 
 .nav__logo--container{
     vertical-align: middle;
@@ -1220,6 +1201,99 @@ select#moviefilter__multiple-select--genre,select#moviefilter__select--cinema{
     cursor: auto;
     transition: all 0.3s ease-in-out 0s;
     background-color: black;
+    border: 1px solid;
+    border-image-source:linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    border-image-slice: 1;
+}
+  
+  div.some {
+    text-align: center;
+    width: 80px;
+    position: relative;
+    color: white;
+  }
+  
+  div.some::before {
+    content: '';
+    position: absolute;
+    left: -10px;
+    top: 50%;
+    display: block;
+    border-right: 3px solid;
+    border-bottom: 3px solid;
+    border-image-source:linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    border-image-slice: 1;
+    width: 25px;
+    height: 25px;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    transition: all 0.2s ease-in-out;
+
+  }
+
+  div.some.open:hover::before{
+      left: 100%;
+  }
+  
+  div.some::after {
+    content: '';
+    position: absolute;
+    right: -10px;
+    top: 50%;
+    display: block;
+    border-left: 3px solid;
+    border-top: 3px solid;
+    border-image-source:linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    border-image-slice: 1;
+    width: 25px;
+    height: 25px;
+    float: right;
+    transform: translate(50%, -50%) rotate(-45deg);
+    transition: all 0.2s ease-in-out;
+  }
+
+  div.some.open:hover::after{
+    right: 100%;
+}
+
+.nav__menu--desktop{
+    display: none;
+    position: relative;
+}
+
+.nav__menu--mobile{
+    display: flex;
+}
+
+@media all and (min-width:768px){
+    .nav__menu--desktop{
+        display: flex;
+    }
+
+    .nav__menu--mobile{
+        display: none;
+    }
+    
+}
+
+.nav__desktop--menu-container{
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: auto;
+    top: 0;
+    left:0;
+}
+
+.nav__menu--desktop .some.open .nav__desktop--menu-container{
+    display: block;
+    top: 200%;
+    z-index: 9999999999999999;
+}
+
+.nav__menu--desktop .some.open .nav__desktop--menu-container ul{
+    width: 100%;
+    padding: 10px;
+    background-color: rgb(20, 20, 20);
     border: 1px solid;
     border-image-source:linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
     border-image-slice: 1;

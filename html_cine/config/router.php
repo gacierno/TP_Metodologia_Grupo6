@@ -24,17 +24,18 @@ $router->get('\/admin',                      array( new RedirectResponse('/admin
 $router->get('\/cines',                      array( new CinemaController(),'index' ) );
 
 $router->post('\/admin\/cines\/nuevo',       array( new CinemaController(),'create' ) );
-$router->post('\/admin\/cines\/eliminar',    array( new CinemaController(),'delete' ) );
+$router->post('\/admin\/cines\/eliminar',    array( new CinemaController(),'disable' ) );
 $router->post('\/admin\/cines\/actualizar',  array( new CinemaController(),'update' ) );
 
 
 // SHOWS ============================================================================
-$router->get('\/admin\/shows\/nuevo',        array( new ShowController(),'newShow' ) );
-$router->get('\/admin\/shows',               array( new ShowController(),'index' ) );
+$router->get('\/admin\/funciones\/nuevo',         array( new ShowController(),'newShow' ) );
+$router->get('\/admin\/funciones\/editar',        array( new ShowController(),'editShow' ) );
+$router->get('\/admin\/funciones',                array( new ShowController(),'index' ) );
 
-$router->post('\/admin\/shows\/create',      array( new ShowController(),'create' ) );
-$router->post('\/admin\/shows\/delete',      array( new ShowController(),'delete' ) );
-$router->post('\/admin\/shows\/update',      array( new ShowController(),'update' ) );
+$router->post('\/admin\/funciones\/nuevo',        array( new ShowController(),'create' ) );
+$router->post('\/admin\/funciones\/eliminar',     array( new ShowController(),'disable' ) );
+$router->post('\/admin\/funciones\/actualizar',   array( new ShowController(),'update' ) );
 
 
 // PELICULAS =======================================================================

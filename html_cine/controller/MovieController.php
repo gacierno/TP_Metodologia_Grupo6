@@ -15,6 +15,8 @@ use Model\Show                as Show;
 use DAO\CinemaDao             as CinemaDao;
 use Model\Cinema              as Cinema;
 
+use HTTPMethod\GET            as GET;
+
 
 class MovieController extends BaseController{
 
@@ -23,13 +25,31 @@ class MovieController extends BaseController{
   }
 
   function index(){
-		extract($_GET);
+		extract(GET::getInstance()->map());
     $d_movie  = new MovieDao();
     $d_genre  = new GenreDao();
     $d_cinema = new CinemaDao();
     $req      = new Request();
-    if(!isset($genero)) $genero = "";
-    $movies   = $genero == "" ? $d_movie->getList() : $d_movie->getByGenre($genero);
+    $movies   = array();
+    // IF GENERO IS EMPTY UNSET IT
+    if(isset($genero) && $genero == "") unset($genero);
+    // FILTER BY GENERO AND DATE
+    if(isset($genero,$fecha)){
+      $movies = $d_movie->getMoviesByGenresAndDate(
+        explode(",",$genero),
+        $fecha
+      );
+    // FILTER BY GENERO
+    }else if(isset($genero)){
+      $movies = $d_movie->getMoviesByGenres(explode(",",$genero));
+    // FILTER BY DATE
+    }else if(isset($fecha)){
+      $movies = $d_movie->getMoviesByDate($fecha);
+    // RETURN THE ENTIRE LIST
+    }else{
+      $movies = $d_movie->getList();
+    }
+    // echo $fecha;
     $this->render("movieList",
       array(
         'movies'  => $movies,
@@ -39,8 +59,9 @@ class MovieController extends BaseController{
     );
   }
 
+
   function detail(){
-    extract($_GET);
+    extract(GET::getInstance()->map());
     if(isset($id)){
       $shows    = array();
       $d_movie  = new MovieDao();
@@ -51,12 +72,17 @@ class MovieController extends BaseController{
       $showsByCinema = array();
       foreach($shows as $show){
         $cinemaID = $show->getCinema()->getId();
-        if(!isset($showsByCinema[$cinemaID])) $showsByCinema[$cinemaID] = array();
-        array_push($showsByCinema[$cinemaID],$show);
+        if(!isset($showsByCinema[$cinemaID])){
+          $showsByCinema[$cinemaID] = array(
+            'cinema' => $show->getCinema(),
+            'shows'  => array()
+          );
+        }
+        array_push($showsByCinema[$cinemaID]['shows'],$show);
       }
       $this->render("movieDetail",
         array(
-          'movie'   => $movie,
+          'movie'           => $movie,
           'showsByCinema'   => $showsByCinema
         )
       );
