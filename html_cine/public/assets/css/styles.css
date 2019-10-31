@@ -1257,6 +1257,7 @@ select#moviefilter__multiple-select--genre,select#moviefilter__select--cinema{
 
 .nav__menu--desktop{
     display: none;
+    position: relative;
 }
 
 .nav__menu--mobile{
@@ -1272,4 +1273,12 @@ select#moviefilter__multiple-select--genre,select#moviefilter__select--cinema{
         display: none;
     }
     
+}
+
+.nav__desktop--menu-container{
+    position: absolute;
+    width: 100%;
+    height: auto;
+    top: 0;
+    left:0;
 }

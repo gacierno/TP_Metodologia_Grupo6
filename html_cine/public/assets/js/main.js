@@ -131,6 +131,9 @@ $(document).ready(function(){
             event.preventDefault();
             event.stopPropagation();
             var genre = $('#moviefilter__multiple-select--genre').val();
+            if(genre == ""){
+                genre = null;
+            }
             var date = $('#moviefilter__select--date').val();
             var cinema = $('#moviefilter__select--cinema').val();
             $(moviesSlider).css("opacity","0.5");
