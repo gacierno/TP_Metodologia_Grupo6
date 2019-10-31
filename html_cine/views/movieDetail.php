@@ -1,5 +1,6 @@
 <?php include_once('header.php');
 
+<<<<<<< Updated upstream
 if(sizeof($shows) > 0) {
     $movie = $shows[0]->getMovie();
 }
@@ -21,6 +22,8 @@ foreach($shows as $show){
 }
 
 
+=======
+>>>>>>> Stashed changes
 ?>
 
 <!-- voiy a tener un array de funciones que tienen un objeto movie y un cine y fecha y hora -->
@@ -34,9 +37,7 @@ foreach($shows as $show){
             <small><?php echo($movie->getLanguage()); ?> / <?php echo($movie->getDuration()); ?></small>
             <div class="movie-detail__categories--container">
                 <?php $genres = $movie->getGenres();
-                foreach($genres as $genre) :
-
-                ?>
+                foreach($genres as $genre) : ?>
 
                 <div class="badge badge-secondary"><?php echo($genre->getName()); ?></div>
 

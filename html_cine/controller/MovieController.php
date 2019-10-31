@@ -30,7 +30,7 @@ class MovieController extends BaseController{
     $req      = new Request();
     if(!isset($genero)) $genero = "";
     $movies   = $genero == "" ? $d_movie->getList() : $d_movie->getByGenre($genero);
-    $this->render("movieList",
+    $this->render("movieDetail",
       array(
         'movies'  => $movies,
         'genres'  => $d_genre->getList(),
