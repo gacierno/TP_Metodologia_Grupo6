@@ -1,13 +1,13 @@
-<?php 
+<?php
 
 	namespace model;
 
 	/**
-	 * 
+	 *
 	 */
 	class Movie
 	{
-		
+
 		private $id;
 		private $name;
 		private $duration;
@@ -15,6 +15,7 @@
 		private $image;
 		private $genres;
 		private $description;
+		private $available;
 
 		function __construct( $options ){
 			$this->setName( 	(isset($options['movie_title'] ) ) 	?$options['movie_title']: '' );
@@ -24,8 +25,9 @@
 			$this->setGenres( 	(isset($options['movie_genres'] ) ) 	?$options['movie_genres']: array() );
 			$this->setId( 		(isset($options['movie_id'] ) )		?$options['movie_id']: null );
 			$this->setDescription( (isset($options['movie_description'])) ?$options['movie_description'] : '' );
+			$this->setAbailability( ( isset($options['movie_available']) ) ? $options['movie_available'] : 1 );
 		}
-	
+
 		/**
 		 * @return mixed
 		 */

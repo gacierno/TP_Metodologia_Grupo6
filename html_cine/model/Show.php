@@ -1,7 +1,7 @@
-<?php 
+<?php
 namespace model;
 /**
- * 
+ *
  */
 class Show
 {
@@ -10,6 +10,7 @@ class Show
 	private $time;
     private $movie;  // Object : Movie
     private $cinema; // Object : Cinema
+    private $available;
 
 	function __construct( $options )
 	{
@@ -18,6 +19,7 @@ class Show
 		$this->setDay( (isset($options['show_date']) ) ? $options['show_date'] : null );
         $this->setMovie( (isset($options['show_movie']) ) ? $options['show_movie'] : null );
         $this->setCinema( (isset($options['show_cinema']) ) ? $options['show_cinema'] : null );
+        $this->setAbailability( ( isset($options['show_available']) ) ? $options['show_available'] : 1 );
 	}
 
     /**
@@ -98,6 +100,22 @@ class Show
     public function setCinema($cinema)
     {
         $this->cinema = $cinema;
+    }
+
+    /**
+     * @param mixed $available
+     */
+    public function setAbailability($available)
+    {
+        $this->available = $available;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAbailability()
+    {
+        return $this->available;
     }
 
 }
