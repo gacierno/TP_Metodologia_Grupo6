@@ -90,8 +90,8 @@ abstract class BaseDao{
     }
 
 
-    public function update( $id , $obj ){
-
+    public function update( $obj ){
+        $id   = $obj->getId();
         $hash = $this->parseToHash($obj);
 
         foreach ( $hash as $key => $value ) {

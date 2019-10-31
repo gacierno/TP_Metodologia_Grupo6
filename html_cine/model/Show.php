@@ -14,8 +14,8 @@ class Show
 	function __construct( $options )
 	{
         $this->setId( (isset($options['show_id']) ) ? $options['show_id'] : null );
-		$this->setTime( (isset($options['show_time']) ) ? $options['show_time'] : null );
-		$this->setDay( (isset($options['show_date']) ) ? $options['show_date'] : null );
+				$this->setTime( (isset($options['show_time']) ) ? $options['show_time'] : null );
+				$this->setDay( (isset($options['show_date']) ) ? $options['show_date'] : null );
         $this->setMovie( (isset($options['show_movie']) ) ? $options['show_movie'] : null );
         $this->setCinema( (isset($options['show_cinema']) ) ? $options['show_cinema'] : null );
 	}

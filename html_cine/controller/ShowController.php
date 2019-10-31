@@ -66,14 +66,25 @@ class ShowController extends BaseController{
   }
 
   function update(){
-
+    $post         = POST::getInstance();
+    $d_show       = new ShowDao();
+    $d_cinema     = new CinemaDao();
+    $d_movie      = new MovieDao();
+    $show         = $d_show->getById($post->show_id);
+    $updatedShow  = new Show($post->map());
+    $updatedShow->setMovie($show->getMovie());
+    $updatedShow->setCinema($show->getCinema());
+    $d_show->update($updatedShow);
+    $this->redirect("/admin/funciones/editar?show_id=$post->show_id");
   }
 
   function disable(){
-    $post = POST::getInstance();
-    if($post->show_id){
-      $d_show = new ShowDao();
-    }
+    $post         = POST::getInstance();
+    $d_show       = new ShowDao();
+    $show         = $d_show->getById($post->show_id);
+    $show->setAbailability(0);
+    $d_show->update($updatedShow);
+    $this->redirect("/admin/funciones");
   }
 
 }
