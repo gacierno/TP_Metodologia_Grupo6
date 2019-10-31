@@ -11,6 +11,7 @@ class User
 	private $pass;
 	private $role;     // Object : Role
 	private $profile;  // Object : Profile
+    private $available;
 
 	function __construct( $options )
 	{
@@ -19,6 +20,8 @@ class User
 		$this->setPass( (isset($options['user_password']) ) ? $options['user_password'] : '' );
 		$this->setProfile( (isset($options['user_profile']) ) ? $options['user_profile'] : null );
 		$this->setRole( (isset($options['user_role']) ) ? $options['user_role'] : null );
+        $this->setAbailability( ( isset($options['user_available']) ) ? $options['user_available'] : 1 );
+
 	}
 
 
@@ -101,5 +104,22 @@ class User
     {
         $this->profile = $profile;
     }
+
+    /**
+     * @param mixed $available
+     */
+    public function setAbailability($available)
+    {
+        $this->available = $available;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAbailability()
+    {
+        return $this->available;
+    }
+
 }
  ?>

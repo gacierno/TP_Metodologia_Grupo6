@@ -76,22 +76,18 @@ abstract class BaseDao{
 
             try {
                 $this->connection = Connection::GetInstance();
-                $this->connection->ExecuteNonQuery( $query, $params );
+                return $this->connection->ExecuteNonQuery( $query, $params );
 
             } catch (PDOException $e) {
                 throw $e;
-                return false;
             } catch (Exception $e) {
                 throw $e;
-                return false;
             }
 
-            return true;
         }
         return false;
+
     }
-
-
 
 
     public function update( $id , $obj ){
