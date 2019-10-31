@@ -47,14 +47,12 @@ $(document).ready(function(){
 
     //give show form endpoint behaviour on delete button click
     if($('#funcion-delete').length > 0){
-        $('#funcion-delete').on('click',function(){
-            if($(this).attr('available') == true){
-                $('#show-delete-form').attr('action','/admin/funciones/desactivar');
-            }
-            else{
-                $('#show-delete-form').attr('action','/admin/funciones/activar');
-            }
-        });
+        if($('#funcion-delete').attr('available') == true){
+            $('#show-delete-form').attr('action','/admin/funciones/desactivar');
+        }
+        else{
+            $('#show-delete-form').attr('action','/admin/funciones/activar');
+        }
     }
 
 
@@ -148,7 +146,7 @@ $(document).ready(function(){
             event.preventDefault();
             event.stopPropagation();
             var genre = $('#moviefilter__multiple-select--genre').val();
-            if(genre == ""){
+            if(genre.indexOf("all") >=0){
                 genre = null;
             }
             var date = $('#moviefilter__select--date').val();

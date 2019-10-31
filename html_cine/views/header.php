@@ -31,10 +31,11 @@
     <?php $role = $user->getRole()->getName(); ?>
     <div class="nav__desktop--menu-container">
       <ul>
-        <li class="nav__desktop--inner-link"><a class="no-border" href="/cines">Cines</a></li>
-        <hr class="rgb-divider">
         <?php if ($role === 'admin') : ?>
         <li class="nav__desktop--inner-link"><a class="no-border" href="/admin/cines">Administrar Cines</a></li>
+        <hr class="rgb-divider">
+        <?php else : ?>
+        <li class="nav__desktop--inner-link"><a class="no-border" href="/cines">Cines</a></li>
         <hr class="rgb-divider">
         <?php endif; ?>
         <li class="nav__desktop--inner-link"><a class="no-border" href="/peliculas">Funciones</a></li>

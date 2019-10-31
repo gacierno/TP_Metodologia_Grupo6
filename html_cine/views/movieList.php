@@ -30,7 +30,7 @@ $genero = isset($_GET['genero']) ? $_GET['genero'] : "";
             <li>
             <form id="genre-filter-form" method="GET" action="/peliculas">
                 <select id="moviefilter__multiple-select--genre" name="genre" multiple class="form-control form-control-md movielist__filter-select" value="">
-                    <option id="filter-genre-reset"  value="">Todos los Generos</option>
+                    <option id="filter-genre-reset"  value="all">Todos los Generos</option>
                     <?php foreach ($genres as $genre) : ?>
                     <option value="<?php echo($genre->getId()); ?>"><?php echo($genre->getName()); ?></option>
                     <?php endforeach; ?>
