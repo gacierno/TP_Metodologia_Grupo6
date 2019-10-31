@@ -861,7 +861,7 @@ body{
 }
 @media all and (min-width:768px){
     .dropdown {
-        width: 50%;
+        width: 75%;
         position: relative;
       } 
 }
@@ -920,6 +920,7 @@ body{
   top: 0px;
   width: 100%;
 }
+
 .dropdown-list li {
   display: block;
   list-style: none;
@@ -943,13 +944,29 @@ body{
   -webkit-touch-callout: none;
   user-select: none;
   width: 100%;
-  font-size: 18px;
+  font-size: 15px;
   line-height: 60px;
   padding: 0 30px;
   display: block;
   color: #fff;
   cursor: pointer;
   letter-spacing: 2px;
+  text-decoration: none;
+}
+
+.dropdown-list li a:after{
+  content: '\25BA';
+  position: absolute;
+  right: 0px;
+  top: 15%;
+  width: 50px;
+  text-align: center;
+  font-size: 12px;
+  padding: 10px;
+  height: 70%;
+  line-height: 24px;
+  border-left: 1px solid #ddd;
+  cursor: pointer;
 }
 
 .showlist__button--primary,.showlist__button--secondary{

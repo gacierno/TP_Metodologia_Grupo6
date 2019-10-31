@@ -14,7 +14,7 @@
         <input class="inputText" type="text" name="user_id" value="<?php echo($user->getId()); ?>" hidden>
 
         <label>
-            <input class="inputText" type="text" name="user_email" value="<?php echo($user->getEmail()); ?>" disabled required>
+            <input id="user_email" class="inputText" type="text" name="user_email" value="<?php echo($user->getEmail()); ?>" disabled required>
             <span class="floating-label">Correo Electronico</span>
         </label>
         <label>
