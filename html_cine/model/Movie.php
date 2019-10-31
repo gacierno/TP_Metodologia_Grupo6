@@ -26,10 +26,6 @@
 			$this->setDescription( (isset($options['movie_description'])) ?$options['movie_description'] : '' );
 		}
 
-		function getDescription(){
-			return "";
-		}
-
 		/**
 		 * @return mixed
 		 */
