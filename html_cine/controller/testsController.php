@@ -153,7 +153,7 @@
 
 	// $_POST['result'] = $testGenreDao->getById( 12 );
 	// $_POST['result'] = $testGenreDao->add( $testGenre );
-	// $testGenreDao->fetch();
+	$testGenreDao->fetch();
 	// $options = $testGenreDao->getInsertQueryParams( $testGenre );
 
 	/*
@@ -171,7 +171,7 @@
 			'movie_id' => 0
 		)
 	);
-	// $testMovieDao->fetch();
+	$testMovieDao->fetch();
 	// $testMovieDao->add( $testMovie );
 
 
@@ -232,19 +232,19 @@
 	/*
 	 * Instance UserDao for testing
 	 */
-	$testUserDao = new dao\UserDao();
-	//testeo add
-	$testUserDao->add( $testUser );
+	// $testUserDao = new dao\UserDao();
+	// //testeo add
+	// $testUserDao->add( $testUser );
 
 
-	$fafa = new model\Profile(
-		array(
-			'profile_apellido' => 'modificado ape',
-			'profile_dni' => '55',
-			'profile_id' => 1,
-			'profile_nombre' => 'modifica na'
-		)
-	);
+	// $fafa = new model\Profile(
+	// 	array(
+	// 		'profile_apellido' => 'modificado ape',
+	// 		'profile_dni' => '55',
+	// 		'profile_id' => 1,
+	// 		'profile_nombre' => 'modifica na'
+	// 	)
+	// );
 
 	// $testProfileDao->update( 1, $fafa );
 

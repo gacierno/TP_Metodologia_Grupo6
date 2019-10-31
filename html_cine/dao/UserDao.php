@@ -42,6 +42,8 @@ class UserDao extends BaseDao
 		return new User($arr);
 	}
 
+
+
 	public function parseToHash( $obj ){
 		return array(
 			'user_email' 	=> $obj->getEmail(),
@@ -51,14 +53,18 @@ class UserDao extends BaseDao
 		);
 	}
 
+
+
 	public function add( $obj ){
+		$connection = Connection::GetInstance();
+
 		$profileDAO = new ProfileDao();
 		$profileDAO->add($obj->getProfile());
 
-		$connection = Connection::GetInstance();
 		$id = $connection->getLastId();
 
 		$obj->setProfile( $profileDAO->getById( $id ) );
+
 		parent::add($obj);
 	}
 }
