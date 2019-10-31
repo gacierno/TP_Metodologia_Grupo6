@@ -60,7 +60,8 @@ class AuthenticationController extends BaseController{
 
   function logout(){
     $this->session->unset('user');
-    return $this->redirect("/");
+    $this->passSuccessMessage = "Te has deslogueado correctamente";
+    $this->redirect("/");
   }
 
 }

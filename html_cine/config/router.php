@@ -8,50 +8,55 @@ use Controller\ShowController             as ShowController;
 use Controller\CinemaController           as CinemaController;
 use Controller\MovieController            as MovieController;
 
+$cinemaController = new CinemaController();
+$showController   = new ShowController();
+$movieController  = new MovieController();
+$authenticationController = new AuthenticationController();
+$userController = new UserController();
 
 $router = new Router();
 
 
 // MIDDLEWARES ======================================================================
-$router->use('.*',                           array( new AuthenticationController(),'authenticate' ));
+$router->use('.*',                           array( $authenticationController,'authenticate' ));
 
 
 // CINES ============================================================================
-$router->get('\/admin\/cines\/nuevo',        array( new CinemaController(),'createForm' ) );
-$router->get('\/admin\/cines\/editar',       array( new CinemaController(),'editForm' ) );
-$router->get('\/admin\/cines',               array( new CinemaController(),'index' ) );
+$router->get('\/admin\/cines\/nuevo',        array( $cinemaController,'createForm' ) );
+$router->get('\/admin\/cines\/editar',       array( $cinemaController,'editForm' ) );
+$router->get('\/admin\/cines',               array( $cinemaController,'index' ) );
 $router->get('\/admin',                      array( new RedirectResponse('/admin/cines'), 'send' ));
-$router->get('\/cines',                      array( new CinemaController(),'index' ) );
+$router->get('\/cines',                      array( $cinemaController,'index' ) );
 
-$router->post('\/admin\/cines\/nuevo',       array( new CinemaController(),'create' ) );
-$router->post('\/admin\/cines\/eliminar',    array( new CinemaController(),'disable' ) );
-$router->post('\/admin\/cines\/actualizar',  array( new CinemaController(),'update' ) );
+$router->post('\/admin\/cines\/nuevo',       array( $cinemaController,'create' ) );
+$router->post('\/admin\/cines\/eliminar',    array( $cinemaController,'disable' ) );
+$router->post('\/admin\/cines\/actualizar',  array( $cinemaController,'update' ) );
 
 
 // SHOWS ============================================================================
-$router->get('\/admin\/funciones\/nuevo',         array( new ShowController(),'newShow' ) );
-$router->get('\/admin\/funciones\/editar',        array( new ShowController(),'editShow' ) );
-$router->get('\/admin\/funciones',                array( new ShowController(),'index' ) );
+$router->get('\/admin\/funciones\/nuevo',         array( $showController,'newShow' ) );
+$router->get('\/admin\/funciones\/editar',        array( $showController,'editShow' ) );
+$router->get('\/admin\/funciones',                array( $showController,'index' ) );
 
-$router->post('\/admin\/funciones\/nuevo',        array( new ShowController(),'create' ) );
-$router->post('\/admin\/funciones\/eliminar',     array( new ShowController(),'disable' ) );
-$router->post('\/admin\/funciones\/actualizar',   array( new ShowController(),'update' ) );
+$router->post('\/admin\/funciones\/nuevo',        array( $showController,'create' ) );
+$router->post('\/admin\/funciones\/eliminar',     array( $showController,'disable' ) );
+$router->post('\/admin\/funciones\/actualizar',   array( $showController,'update' ) );
 
 
 // PELICULAS =======================================================================
-$router->get('\/pelicula\/detalle',          array( new MovieController(),'detail' ) );
-$router->get('\/peliculas',                  array( new MovieController(),'index' ) );
+$router->get('\/pelicula\/detalle',          array( $movieController,'detail' ) );
+$router->get('\/peliculas',                  array( $movieController,'index' ) );
 
 
 // LOGIN ============================================================================
-$router->get('\/login\/create',              array( new AuthenticationController(), 'registerForm' ) );
-$router->get('\/login',                      array( new AuthenticationController(), 'loginForm' ) );
-$router->get('\/logout',                     array( new AuthenticationController(), 'logout' ) );
-$router->post('\/login',                     array( new AuthenticationController(), 'login' ) );
+$router->get('\/login\/create',              array( $authenticationController, 'registerForm' ) );
+$router->get('\/login',                      array( $authenticationController, 'loginForm' ) );
+$router->get('\/logout',                     array( $authenticationController, 'logout' ) );
+$router->post('\/login',                     array( $authenticationController, 'login' ) );
 
 
 // USER ============================================================================
-$router->post('\/user\/create',              array( new UserController(), 'create' ) );
+$router->post('\/user\/create',              array( $userController, 'create' ) );
 
 
 // DEFAULT ==========================================================================
