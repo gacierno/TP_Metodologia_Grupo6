@@ -27,9 +27,9 @@ class ShowController extends BaseController{
 
   function editShow(){
     extract(GET::getInstance()->map());
-    if(isset($id)){
+    if(isset($show_id)){
       $d_show   = new ShowDao();
-      $shows    = $d_show->getList(array( 'show_id' => $id ));
+      $shows    = $d_show->getList(array( 'show_id' => $show_id ));
       if(count($shows) < 1){
         $this->errorMessage = "El show no existe";
       }else{
@@ -69,8 +69,11 @@ class ShowController extends BaseController{
 
   }
 
-  function delete(){
-
+  function disable(){
+    $post = POST::getInstance();
+    if($post->show_id){
+      $d_show = new ShowDao();
+    }
   }
 
 }
