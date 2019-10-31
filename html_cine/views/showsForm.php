@@ -62,7 +62,7 @@
             endforeach; ?>
         </select>
         <div class="showlist__submit-button--container">
-            <button type="submit" class="cinemaform__button--primary">Submit</button>
+            <button type="submit" class="cinemaform__button--primary">Enviar</button>
         </div>
 
         </form>

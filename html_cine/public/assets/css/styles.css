@@ -225,13 +225,13 @@ body{
     width: 100%;
 }
 
-.cinema__form label,.login-form label{
+.cinema__form label,.login-form label,.user-detail__form label{
     width: 100%;
     margin:0;
     position: relative;
 }
 
-.cinema__form input{
+.cinema__form input,.user-detail__form input{
     padding: 10px 0;
     border: none;
     border-bottom: solid 1px black;
@@ -244,7 +244,7 @@ body{
     padding-left:5px;
 }
 
-.cinema__form input:focus,.login-form input:focus{
+.cinema__form input:focus,.login-form input:focus,.user-detail__form input:focus{
     outline:none;
 }
 
@@ -254,13 +254,16 @@ body{
 .cinema__form input:-webkit-autofill:active,.login-form input:-webkit-autofill,
 .login-form input:-webkit-autofill:hover, 
 .login-form input:-webkit-autofill:focus, 
-.login-form input:-webkit-autofill:active {
+.login-form input:-webkit-autofill:active,.user-detail__form input:-webkit-autofill,
+.user-detail__form input:-webkit-autofill:hover, 
+.user-detail__form input:-webkit-autofill:focus, 
+.user-detail__form input:-webkit-autofill:active {
     -webkit-box-shadow: linear-gradient(to right, #eea2a2 0%, #bbc1bf 19%, #57c6e1 42%, #b49fda 79%, #7ac5d8 100%);
     transition: background-color 5000s ease-in-out 0s;
     -webkit-text-fill-color: white;
 }
 
-.cinema__form label:not(:last-child){
+.cinema__form label:not(:last-child),.user-detail__form label:not(:last-child){
     margin-bottom: 40px;
 }
 
@@ -1156,4 +1159,68 @@ select#moviefilter__multiple-select--genre,select#moviefilter__select--cinema{
 
 #movielist__filter--outer-container.active #moviefilter__multiple-select--genre{
     height: 120px;
+}
+
+.user-detail__profilepic--container{
+    margin-bottom: 30px;
+}
+
+.user-detail__user-desc--container{
+    padding-top: 24px;
+}
+
+@media all and (min-width:992px){
+    .user-detail__profilepic--container{
+        margin-bottom:0px;
+    }
+}
+
+.user-detail__profilepic--container img{
+    width: 100%;
+    border: 1px solid;
+    border-image-source:linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    border-image-slice: 1;
+    padding: 10px 5px 0 5px;
+}
+
+.user-detail__form .floating-label,
+.user-detail__form input:focus ~ .floating-label,
+.user-detail__form input:not(:focus):valid ~ .floating-label{
+  top: -30px;
+  left: 0px;
+  opacity: 1;
+  color: white;
+}
+
+.user-detail__toggle-pass img{
+    width:20px;
+    height: 20px;
+}
+
+.user-detail__toggle-pass{
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    right: 5px;
+    top: 2px;
+    cursor: pointer;
+}
+
+#user-detail-form input{
+    transition: all 0.3s ease-in-out 0s;
+    cursor: not-allowed;
+}
+
+#user-detail-form input[type=number]::-webkit-inner-spin-button,
+#user-detail-form input[type=number]::-webkit-outer-spin-button{
+    -webkit-appearance: none; 
+}  
+
+#user-detail-form input.user-input__readyToSend{
+    cursor: auto;
+    transition: all 0.3s ease-in-out 0s;
+    background-color: black;
+    border: 1px solid;
+    border-image-source:linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    border-image-slice: 1;
 }

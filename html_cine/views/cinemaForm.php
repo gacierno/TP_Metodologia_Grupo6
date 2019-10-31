@@ -35,9 +35,9 @@
         </label>
 
         <div class="cinemaform__button--container">
-            <button type="submit" class="cinemaform__button--primary">Submit</button>
+            <button type="submit" class="cinemaform__button--primary">Enviar</button>
             <?php if($isCinemaSet) : ?>
-            <button id="cinema-delete" type="submit" class="cinemaform__button--secondary" onclick="return confirm('Estas Seguro?');">Delete</button>
+            <button id="cinema-delete" type="submit" class="cinemaform__button--secondary" onclick="return confirm('Estas Seguro?');">Eliminar</button>
             <?php endif; ?>
         </div>
 

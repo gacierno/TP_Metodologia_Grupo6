@@ -71,6 +71,52 @@ $(document).ready(function(){
         });
     }
 
+
+    //show or hide user password listener
+    if($('.user-detail__toggle-pass').length > 0){
+        $('.user-detail__toggle-pass img').on('click',function(){
+            var input = $(this).closest('label').find('.inputText').first();
+            if($(this).hasClass('open')){
+                $(this).removeClass('open');
+                $(this).attr('src','/public/assets/images/eye.png');
+                
+                $(input).attr('type','password');
+            }
+            else{
+                $(this).addClass('open');
+                $(this).attr('src','/public/assets/images/slashed-eye.png');
+                $(input).attr('type','text');
+            }
+        });
+    }
+
+    //change user form endpoint if erase button is confirmed clicked
+    if($('#user-delete').length > 0){
+        $('#user-delete').on('click',function(){
+            if(confirm('Estas Seguro de querer eliminar el usuario?')){
+                $('#user-detail-form').attr('action','/usuario/eliminar');
+                $('#user-detail-form').submit();
+            }
+        });
+    }
+
+    //enable user detail form fields if user wants to update them, they are disabled by default
+    if($('#user-update').length > 0){
+        $('#user-update').on('click',function(){
+            if($(this).hasClass('readyToSend')){
+                $('#user-detail-form').submit();
+            }
+            else{
+                $(this).text('Enviar');
+                $(this).addClass('readyToSend');
+                $('#user-detail-form input:not([type=hidden])').each(function(){
+                    $(this).addClass('user-input__readyToSend');
+                    $(this).prop('disabled',false);
+                });
+            }
+        });
+    }
+
     //arrows functionality are binded one time only, as they are independent
     //of the slider creation
     bindArrows();

@@ -36,12 +36,12 @@
                         <input type="text" name="show_time" value="<?php echo($show->getTime()); ?>" hidden>
                         <input type="number" name="movie_id" value="<?php echo($movie->getId()); ?>" hidden>
                         <input type="number" name="cinema_id" value="<?php echo($cinema->getId()); ?>" hidden>
-                        <button id="funcion-update" type="submit" class="showlist__button--primary">Update</button>
+                        <button id="funcion-update" type="submit" class="showlist__button--primary">Actualizar</button>
                     </form>
 
                     <form method="POST" action="/admin/funciones/delete">
                         <input type="text" name="id" value="<?php echo($show->getId()); ?>" hidden>
-                        <button id="funcion-delete" type="submit" class="showlist__button--secondary" onclick="return confirm('Estas Seguro?');">Delete</button>
+                        <button id="funcion-delete" type="submit" class="showlist__button--secondary" onclick="return confirm('Estas Seguro?');">Eliminar</button>
                     </form>
                 </div>
             </div>
