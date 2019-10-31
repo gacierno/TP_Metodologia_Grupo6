@@ -53,15 +53,18 @@ class AuthenticationController extends BaseController{
 
     if(count($users) > 0){
       $this->session->user = $users[0];
+      $this->redirect("/");
+    }else{
+      $this->passErrorMessage = "El usuario o contraseña son incorrectos";
+      $this->redirect("/login");
     }
-    $this->redirect("/");
   }
 
 
   function logout(){
     $this->session->unset('user');
     $this->passSuccessMessage = "Te has deslogueado correctamente";
-    $this->redirect("/");
+    $this->redirect("/login");
   }
 
 }
