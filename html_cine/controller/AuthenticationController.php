@@ -20,13 +20,17 @@ class AuthenticationController extends BaseController{
 
   function authenticate(){
     $req = new Request();
-    $includesLogin = preg_match("/^\/login/",$req->path());
-    $includesUser  = preg_match("/^\/user/",$req->path());
+    $includesLogin  = preg_match("/^\/login/",$req->path());
+    $includesUser   = preg_match("/^\/user/",$req->path());
+    $includesAdmin  = preg_match("/^\/admin/",$req->path());
     if(($includesLogin || $includesUser) && $this->session->user){
       return $this->redirect("/");
     }
     if(!$this->session->user && !($includesLogin || $includesUser)){
       return $this->redirect("/login");
+    }
+    if($includesAdmin && $this->session->user->getRole()->getName() !== "admin"){
+      return $this->redirect("/");
     }
   }
 
