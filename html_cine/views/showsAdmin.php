@@ -6,7 +6,7 @@
 <div class="main-container container-fluid">
     <div class="row">
         <div class="showlist__button--container col-12">
-            <a target="_self" href="/admin/shows/nuevo">Agregar Funcion</a>
+            <a target="_self" href="/admin/funciones/nuevo">Agregar Funcion</a>
         </div>
     </div>
     <?php foreach ($shows as $show) :

@@ -32,7 +32,7 @@ $router->post('\/admin\/cines\/actualizar',  array( new CinemaController(),'upda
 $router->get('\/admin\/funciones\/nuevo',         array( new ShowController(),'newShow' ) );
 $router->get('\/admin\/funciones',                array( new ShowController(),'index' ) );
 
-$router->post('\/admin\/funciones\/crear',        array( new ShowController(),'create' ) );
+$router->post('\/admin\/funciones\/nuevo',        array( new ShowController(),'create' ) );
 $router->post('\/admin\/funciones\/eliminar',     array( new ShowController(),'delete' ) );
 $router->post('\/admin\/funciones\/actualizar',   array( new ShowController(),'update' ) );
 

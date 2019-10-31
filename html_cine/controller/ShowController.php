@@ -48,8 +48,15 @@ class ShowController extends BaseController{
   }
 
   function create(){
-    $d_show   = new ShowDao();
-    $newShow  = new Show($_POST);
+    $d_show       = new ShowDao();
+    $d_cinema     = new CinemaDao();
+    $d_movie      = new MovieDao();
+    $newShowData  = $_POST;
+    $movie        = $d_movie->getById($_POST['show_movie']);
+    $cinema       = $d_cinema->getById($_POST['show_cinema']);
+    $newShowData['show_cinema'] = $cinema;
+    $newShowData['show_movie']  = $movie;
+    $newShow  = new Show($newShowData);
     $d_show->add($newShow);
   }
 

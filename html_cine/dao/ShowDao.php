@@ -55,18 +55,18 @@ class ShowDao extends BaseDao
 	 */
 
 	// this hash is set only to save data on database
-	
+
 	public function parseToHash( $obj ){
 		return array(
 			'show_time' => $obj->getTime(),
 			'show_date' => $obj->getDay(),
-			'movie_id' => ( $obj->getMovie() )->getId(),
-			'cinema_id' => ( $obj->getCinema() )->getId()
+			'movie_id' 	=> $obj->getMovie()->getId(),
+			'cinema_id' => $obj->getCinema()->getId()
 		);
 	}
 
 
-	
+
 
 }
  ?>
