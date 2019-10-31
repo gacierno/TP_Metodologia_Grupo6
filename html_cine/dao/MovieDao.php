@@ -69,7 +69,7 @@ class MovieDao extends BaseDao implements IApiConnector
 				$dataToSave['movie_runtime'] = $rawMovie['runtime'];
 				$dataToSave['movie_language'] = $rawMovie['spoken_languages'][0]['name'];
 				$dataToSave['movie_image'] = $rawMovie['poster_path'];
-				// $dataToSave['movie_genres'] = array();
+				$dataToSave['movie_description'] = $rawMovie['overview'];
 
 				$movie = new Movie($dataToSave);
 
@@ -133,34 +133,48 @@ class MovieDao extends BaseDao implements IApiConnector
 			'movie_runtime' => $obj->getDuration(),
 			'movie_language' => $obj->getLanguage(),
 			'movie_image' => $obj->getImage(),
-			'movie_id' => $obj->getId()
+			'movie_id' => $obj->getId(),
+			'movie_description' => $obj->getDescription()
 		);
 	}
 
 
-	/**
-	 * getByGenre
-	 * @param integer
-	 * @return mixed
-	 */
-	public function getByGenre( $id ){
+	public function getMoviesByGenres( $genres = array() ){
 
-		$output = array();
+	}
 
-		// THIS SENTENCE VOIDS DATA DELETIONS WHILE UPDATING LIST
-		if( sizeof($this->itemList) == 0 ) $this->itemList = $this->retrieveData();
+	public function getMoviesByDate( $date ){
 
-		foreach ($this->itemList as $movie){
-			foreach ($movie['genres'] as $genre ) {
-				if( $genre->getId() == $id ){
-					$match = new Movie( $movie );
-					array_push( $output, $match );
-				}
-			}
-		}
-		return $output;
+	}
+
+
+
+	public function getMoviesBy( $genres, $date ){
+
+
+		// select * from Movies M
+		// inner join Genres_on_Movies GM
+		// on GM.movie_id = M.movie_id
+		// inner join Shows S
+		// on S.movie_id = M.movie_id
+		// where S.show_date = "2019-10-20"
+		// AND GM.genre_id in ( 12, 13, 16, 45, 88 );
+
+
+
+		$query = "";
+
+
 
 	}
 
 }
+
+/*================================
+
+	get movies By genres
+	get movies By date
+	combined
+
+================================*/
  ?>
