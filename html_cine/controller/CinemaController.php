@@ -9,12 +9,15 @@ use HTTPMethod\POST           as POST;
 
 class CinemaController extends BaseController{
 
+  private $d_cinema;
+
   function __construct(){
     parent::__construct();
+    $this->d_cinema = new CinemaDao();
   }
 
   function index(){
-    $d_cinema = new CinemaDao();
+    $d_cinema = $this->d_cinema;
     $this->render("cinemaList", array('cinemas' => $d_cinema->getList()) );
   }
 
@@ -37,45 +40,102 @@ class CinemaController extends BaseController{
 
   function editForm(){
     extract(GET::getInstance()->map());
-    $d_cinema   = new CinemaDao();
+    $d_cinema   = $this->d_cinema;
     $this->render("cinemaForm", array('cinema' => $d_cinema->getById($id)) );
   }
 
   function create(){
     $created = false;
     if(!$this->validCinema(POST::getInstance()->map())){
-      return $this->throw("Informacion de cinema invalida");
+      $this->passErrorMessage = "La informacion del cine no es valida";
+    }else{
+      $d_cinema   = $this->d_cinema;
+      $new_cinema = new Cinema(POST::getInstance()->map());
+      $created = $d_cinema->add($new_cinema);
     }
-    $d_cinema   = new CinemaDao();
-    $new_cinema = new Cinema(POST::getInstance()->map());
-    $created = $d_cinema->add($new_cinema);
-    // print_r($new_cinema);
+
     if($created){
       $this->passSuccessMessage = "Cine creado correctamente";
     }else{
       $this->passErrorMessage = "Hubo un error, el cine no pudo ser creado";
     }
+
     $this->redirect('/admin/cines/nuevo');
   }
 
 
   function update(){
     $post = POST::getInstance();
-    extract($post->map());
-    if(!$this->validCinema($post->map()) || !isset($id)){
-      return $this->throw("Informacion de cinema invalida");
+    $updated = false;
+    $d_cinema = $this->d_cinema;
+    $cinema = $d_cinema->getById($post->cinema_id);
+    if(!$this->validCinema($post->map()) || !$cinema){
+      $this->passErrorMessage = "Informacion de cinema invalida";
+    }else{
+      $new_cinema = new Cinema($post->map());
+      $new_cinema->setId($cinema->getId());
+      try{
+        $updated = $d_cinema->update($new_cinema);
+      }catch(Exception $ex){
+        // NOTHING
+      }
+      if($updated){
+        $this->passSuccessMessage = "Cine actualizado correctamente";
+      }else{
+        $this->passErrorMessage = "Hubo un error, el cine no pudo ser actualizado";
+      }
     }
-    $d_cinema   = new CinemaDao();
-    $new_cinema = new Cinema($post->map());
-    $d_cinema->update($id,$new_cinema);
-    $this->redirect('/cines');
+    $this->redirect('/admin/cines/editar', array('id' => $post->cinema_id ));
   }
 
-  function delete(){
-    extract(POST::getInstance()->map());
-    $d_cinema   = new CinemaDao();
-    $d_cinema->delete($id);
-    $this->redirect('/cines');
+
+  function disable(){
+    $updated      = false;
+    $post         = POST::getInstance();
+    $d_cinema     = $this->d_cinema;
+    $cinema       = $d_cinema->getById($post->cinema_id);
+
+    if($cinema){
+      $cinema->setAvailability(0);
+      try{
+        $updated = $d_cinema->update($cinema);
+      }catch(Exception $ex){
+        // NOTHING
+      }
+    }
+
+    if($updated){
+      $this->passSuccessMessage = "Cine desactivado correctamente";
+    }else{
+      $this->passErrorMessage = "Hubo un error, el cine no pudo ser desactivado";
+    }
+
+    $this->redirect('/admin/cines/editar', array('id' => $post->cinema_id ));
+  }
+
+
+  function enable(){
+    $updated      = false;
+    $post         = POST::getInstance();
+    $d_cinema     = $this->d_cinema;
+    $cinema       = $d_cinema->getById($post->cinema_id);
+
+    if($cinema){
+      $cinema->setAvailability(1);
+      try{
+        $updated = $d_cinema->update($cinema);
+      }catch(Exception $ex){
+        // NOTHING
+      }
+    }
+
+    if($updated){
+      $this->passSuccessMessage = "Cine activado correctamente";
+    }else{
+      $this->passErrorMessage = "Hubo un error, el cine no pudo ser activado";
+    }
+
+    $this->redirect('/admin/cines/editar', array('id' => $post->cinema_id ));
   }
 
 

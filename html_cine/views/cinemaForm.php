@@ -20,7 +20,7 @@
     <div class="row cinema__form--container">
 
         <form id="cinema-form" class="cinema__form" method="POST" action="<?php if($isCinemaSet) : echo('/admin/cines/actualizar'); else : echo('/admin/cines/nuevo'); endif; ?>">
-        
+
         <?php if($isCinemaSet) : ?>
         <label style="display:none;">
             <input type="text"  name="cinema_id" value="<?php echo($cinema->getId()); ?>">
