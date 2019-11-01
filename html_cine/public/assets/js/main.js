@@ -20,7 +20,7 @@ var placeholder;
 //on document ready,hide filter input placeholder and to load
 //new movies/create new slider with jquery.Load() method
 $(document).ready(function(){
-    
+
     //make body unscrollable when mobile menu deployed
     $('.sidebarIconToggle').on('click',function(){
         $('body').toggleClass('open');
@@ -55,7 +55,7 @@ $(document).ready(function(){
             }
             $(dropId + ' .selLabel').click(function () {
                 $(dropId + '.dropdown').toggleClass('active');
-                
+
                 if($(dropId).hasClass('active')){
                     var index = 1;
                     var amountofSels = $(dropId + ' li').length + 1;
@@ -76,7 +76,7 @@ $(document).ready(function(){
                         $(this).css('transform','translateY(0px)');
                     });
                 }
-                
+
             });
         });
     }
@@ -89,7 +89,7 @@ $(document).ready(function(){
             if($(this).hasClass('open')){
                 $(this).removeClass('open');
                 $(this).attr('src','/public/assets/images/eye.png');
-                
+
                 $(input).attr('type','password');
             }
             else{
@@ -145,7 +145,7 @@ $(document).ready(function(){
             $(moviesSlider).css("opacity","0.5");
             var url = "/peliculas";
             if(genre || date || cinema){
-                
+
                 var first = true;
                 if(genre){
                     url += "?";
@@ -175,7 +175,7 @@ $(document).ready(function(){
             }
 
             history.pushState({ genre : genre , date : date , cinema : cinema}, "Peliculas", url );
-    
+
             $('#movielist-slider-container').load( url +" #movielist-slider",function(data){
               var newSlider = $(data).find('#movielist-slider');
               if(newSlider.find('.item').length > 0){
@@ -186,15 +186,15 @@ $(document).ready(function(){
               else{
                 $('#movies__not-found-row').css('display','table');
               }
-    
+
               checkArrowsVisibility();
-    
+
             });
-    
+
             return false;
         });
     }
-    
+
 });
 
 

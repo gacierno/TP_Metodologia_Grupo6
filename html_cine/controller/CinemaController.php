@@ -90,6 +90,7 @@ class CinemaController extends BaseController{
 
 
   function disable(){
+
     $updated      = false;
     $post         = POST::getInstance();
     $d_cinema     = $this->d_cinema;
@@ -130,9 +131,9 @@ class CinemaController extends BaseController{
     }
 
     if($updated){
-      $this->passSuccessMessage = "Cine activado correctamente";
+      $this->passSuccessMessage = "Cine desactivado correctamente";
     }else{
-      $this->passErrorMessage = "Hubo un error, el cine no pudo ser activado";
+      $this->passErrorMessage = "Hubo un error, el cine no pudo ser desactivado";
     }
 
     $this->redirect('/admin/cines/editar', array('id' => $post->cinema_id ));
