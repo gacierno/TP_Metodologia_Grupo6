@@ -20,7 +20,7 @@ class User
 		$this->setPass( (isset($options['user_password']) ) ? $options['user_password'] : '' );
 		$this->setProfile( (isset($options['user_profile']) ) ? $options['user_profile'] : null );
 		$this->setRole( (isset($options['user_role']) ) ? $options['user_role'] : null );
-        $this->setAbailability( ( isset($options['user_available']) ) ? $options['user_available'] : 1 );
+    $this->setAvailability( ( isset($options['user_available']) ) ? $options['user_available'] : 1 );
 
 	}
 
@@ -108,7 +108,7 @@ class User
     /**
      * @param mixed $available
      */
-    public function setAbailability($available)
+    public function setAvailability($available)
     {
         $this->available = $available;
     }
@@ -116,7 +116,7 @@ class User
     /**
      * @return mixed
      */
-    public function getAbailability()
+    public function getAvailability()
     {
         return $this->available;
     }

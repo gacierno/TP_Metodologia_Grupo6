@@ -68,12 +68,11 @@ class ShowController extends BaseController{
   function update(){
     $post         = POST::getInstance();
     $d_show       = new ShowDao();
-    $d_cinema     = new CinemaDao();
-    $d_movie      = new MovieDao();
     $show         = $d_show->getById($post->show_id);
     $updatedShow  = new Show($post->map());
     $updatedShow->setMovie($show->getMovie());
     $updatedShow->setCinema($show->getCinema());
+    $updatedShow->setId($show->getId());
     $d_show->update($updatedShow);
     $this->redirect("/admin/funciones/editar?show_id=$post->show_id");
   }

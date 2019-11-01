@@ -254,7 +254,7 @@
 
 	// $dada = $testCinemaDao->getById( 2 );
 
-	// $dada->setAbailability( 1 );
+	// $dada->setAvailability( 1 );
 
 	// $testCinemaDao->update( 2, $dada );
 

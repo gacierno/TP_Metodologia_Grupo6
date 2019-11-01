@@ -50,7 +50,7 @@ class UserDao extends BaseDao
 			'user_password' => $obj->getPass(),
 			'role_id'		=> ( $obj->getRole() )->getId(),
 			'profile_id' 	=> ( $obj->getProfile() )->getId(),
-			'user_available' => $obj->getAbailability()
+			'user_available' => $obj->getAvailability()
 		);
 	}
 

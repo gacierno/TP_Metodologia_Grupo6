@@ -25,7 +25,7 @@
 			$this->setGenres( 	(isset($options['movie_genres'] ) ) 	?$options['movie_genres']: array() );
 			$this->setId( 		(isset($options['movie_id'] ) )		?$options['movie_id']: null );
 			$this->setDescription( (isset($options['movie_description'])) ?$options['movie_description'] : '' );
-			$this->setAbailability( ( isset($options['movie_available']) ) ? $options['movie_available'] : 1 );
+			$this->setAvailability( ( isset($options['movie_available']) ) ? $options['movie_available'] : 1 );
 		}
 
 		/**
@@ -149,7 +149,7 @@
 	    /**
 	     * @param mixed $available
 	     */
-	    public function setAbailability($available)
+	    public function setAvailability($available)
 	    {
 	        $this->available = $available;
 	    }
@@ -157,7 +157,7 @@
 	    /**
 	     * @return mixed
 	     */
-	    public function getAbailability()
+	    public function getAvailability()
 	    {
 	        return $this->available;
 	    }

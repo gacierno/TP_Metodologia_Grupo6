@@ -56,7 +56,12 @@ $router->post('\/login',                     array( $authenticationController, '
 
 
 // USER ============================================================================
-$router->post('\/user\/create',              array( $userController, 'create' ) );
+$router->get('\/usuario',                    array( $userController, 'detail' ) );
+
+$router->post('\/usuario\/nuevo',            array( $userController, 'create' ) );
+$router->post('\/usuario\/actualizar',       array( $userController, 'update' ) );
+$router->post('\/usuario\/activar',          array( $userController, 'enable' ) );
+$router->post('\/usuario\/desactivar',       array( $userController, 'disable' ) );
 
 
 // DEFAULT ==========================================================================
