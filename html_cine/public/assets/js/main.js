@@ -7,10 +7,10 @@ var builtCarousel = buildCarousel(moviesSlider,false);
 
 //bind event to change action in cinema-form when delete button's clicked
 $('#cinema-delete').on('click',function(){
-    if($(this).attr('availability') == true){
+    if($(this).attr('available') !== undefined){
         $('#cinema-form').attr('action','/admin/cines/desactivar');
     }
-    else{
+    else if($(this).attr('available') === undefined){
         $('#cinema-form').attr('action','/admin/cines/activar');
     }
 });
