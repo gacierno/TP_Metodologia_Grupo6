@@ -4,6 +4,7 @@ var moviesSlider = '.owl-carousel.owl-movielist';
 var builtCarousel = buildCarousel(moviesSlider,false);
 
 
+
 //bind event to change action in cinema-form when delete button's clicked
 $('#cinema-delete').on('click',function(){
     if($(this).attr('availability') == true){
@@ -19,6 +20,12 @@ var placeholder;
 //on document ready,hide filter input placeholder and to load
 //new movies/create new slider with jquery.Load() method
 $(document).ready(function(){
+    
+    //make body unscrollable when mobile menu deployed
+    $('.sidebarIconToggle').on('click',function(){
+        $('body').toggleClass('open');
+    });
+
 
     //give nav menu behaviour
     $('.some').on('click',function(){
@@ -97,7 +104,7 @@ $(document).ready(function(){
     if($('#user-delete').length > 0){
         $('#user-delete').on('click',function(){
             if(confirm('Estas Seguro de querer eliminar el usuario?')){
-                $('#user-detail-form').attr('action','/usuario/eliminar');
+                $('#user-detail-form').attr('action','/usuario/desactivar');
                 $('#user-detail-form').submit();
             }
         });
