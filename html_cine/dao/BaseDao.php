@@ -92,6 +92,7 @@ abstract class BaseDao{
 
 
     public function update( $obj ){
+        $updated = false;
         $id   = $obj->getId();
         $hash = $this->parseToHash($obj);
 
@@ -101,7 +102,7 @@ abstract class BaseDao{
 
             try {
                 $this->connection = Connection::GetInstance();
-                return $this->connection->ExecuteNonQuery( $query );
+                $updated = $this->connection->ExecuteNonQuery( $query );
             } catch (PDOException $e) {
                 throw $e;
             } catch (Exception $e) {
@@ -109,6 +110,8 @@ abstract class BaseDao{
             }
 
         }
+
+        return $updated;
 
     }
 
