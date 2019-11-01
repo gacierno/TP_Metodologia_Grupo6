@@ -113,12 +113,14 @@ class CinemaController extends BaseController{
   }
 
   function disable(){
+    $post = POST::getInstance();
     $this->setCinemaAvailability(0);
     $this->redirect('/admin/cines/editar', array('id' => $post->cinema_id ));
   }
 
 
   function enable(){
+    $post = POST::getInstance();
     $this->setCinemaAvailability(1);
     $this->redirect('/admin/cines/editar', array('id' => $post->cinema_id ));
   }

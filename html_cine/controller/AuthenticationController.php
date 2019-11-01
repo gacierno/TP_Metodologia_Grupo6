@@ -25,23 +25,52 @@ class AuthenticationController extends BaseController{
       $d_user = new UserDao();
       $this->session->user = $d_user->getById($this->session->user->getId());
     }
-    $includesLogin  = preg_match("/^\/login/",$req->path());
-    $includesUser   = preg_match("/^\/user/",$req->path());
-    $includesAdmin  = preg_match("/^\/admin/",$req->path());
-    if(($includesLogin || $includesUser) && $this->session->user){
-      return $this->redirect("/");
-    }
-    if(!$this->session->user && !($includesLogin || $includesUser)){
+    $includesLogin        = preg_match("/^\/login/",$req->path());
+    $includesNewUserForm  = preg_match("/^\/usuario$/",$req->path());
+    $includesUserRegister = preg_match("/^\/usuario\/nuevo$/",$req->path());
+    $includesAdmin        = preg_match("/^\/admin/",$req->path());
+
+    // IF USER IS NOT LOGGED IN, REJECT UNLESS IT IS TRYING TO LOGIN OR REGISTER
+    if(
+      !$this->session->user &&
+      !(
+        $includesLogin ||
+        $includesNewUserForm ||
+        $includesUserRegister
+      )
+    ){
+      // echo "Auth code 0";
       return $this->redirect("/login");
     }
+
+    // IF NON ADMIN USER TRIES TO ACCESS ADMIN ENDPOINTS
     if(
       $this->session->user &&
+      $this->session->user->getAvailability() &&
       $includesAdmin &&
       $this->session->user->getRole()->getName() !== "admin"
     ){
+      // echo "Auth code 1";
       return $this->redirect("/");
     }
+
+    // IF LOGGED USER IS NOT ACTIVE
     if(  $this->session->user && !$this->session->user->getAvailability()){
+      // echo "Auth code 2";
+      return $this->redirect("/logout");
+    }
+
+    // USER IS LOGGED IN AND TRYING TO ACCESS LOGIN PAGE
+    if(
+      $this->session->user &&
+      $this->session->user->getAvailability() &&
+      (
+        $includesLogin ||
+        $includesNewUserForm ||
+        $includesUserRegister
+      )
+    ){
+      // echo "Auth code 3";
       return $this->redirect("/");
     }
   }
@@ -60,7 +89,8 @@ class AuthenticationController extends BaseController{
     $userDao = new UserDao();
     $users = $userDao->getList(array(
       'user_email' => $username,
-      'user_password' => $password
+      'user_password' => $password,
+      'user_available' => 1
     ));
 
     if(count($users) > 0){

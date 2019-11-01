@@ -54,7 +54,7 @@ class UserController extends BaseController{
     if(isset($user)){
       $user->setAvailability($value);
       try{
-        $d_user->update($user);
+        $this->d_user->update($user);
         $updated = true;
       }catch(Exception $ex){
         // NOTHING
