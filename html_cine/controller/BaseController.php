@@ -32,13 +32,15 @@ class BaseController{
     include("views/$name.php");
   }
 
-  function redirect($path){
+  function redirect($path,$params = array()){
     $queryString = "?";
     foreach(array('passSuccessMessage','passErrorMessage') as $attr){
-      if(isset($this->$attr)) $queryString .= $attr . "=" . $this->$attr . "&";
+      if(isset($this->$attr)) $params[$attr] = $this->$attr;
     }
-    if($queryString == "?") $queryString = "";
-    $response = new RedirectResponse($path . $queryString);
+    foreach($params as $key => $value){
+      $queryString .= "$key=$value&";
+    }
+    $response = new RedirectResponse($path . substr_replace($queryString ,"",-1) );
     return $response->send();
   }
 
