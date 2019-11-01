@@ -6,7 +6,7 @@ $genero = isset($_GET['genero']) ? $_GET['genero'] : "";
 
 <div class="main-container container-fluid">
 
-    <div id="movielist__filter--outer-container" class="movielist__filter--container dropdown">
+    <div id="movielist__filter--outer-container" class="height-non-mod movielist__filter--container dropdown">
         <span class="selLabel">Filtrar peliculas</span>
         <input type="hidden" name="cd-dropdown">
         <ul class="dropdown-list">
