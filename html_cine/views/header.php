@@ -15,7 +15,8 @@
 <body>
 
 
-<div class="nav row container-fluid">
+<div id="nav" class="nav row container-fluid">
+  <div class="overlay"></div>
 <div class="nav__container col-3"></div>
   <div class="nav__container col-6">
     <div class="nav__logo--container ">
@@ -52,6 +53,29 @@
   </div>
 
   <div class="nav__container nav__links--container col-3 nav__menu--mobile">
-    <div class=>mobile</div>
+  <input type="checkbox" class="openSidebarMenu" id="openSidebarMenu">
+  <label for="openSidebarMenu" class="sidebarIconToggle">
+    <div class="spinner diagonal part-1"></div>
+    <div class="spinner horizontal"></div>
+    <div class="spinner diagonal part-2"></div>
+  </label>
+  <div id="sidebarMenu">
+  <ul>
+        <?php if ($role === 'admin') : ?>
+        <li class="nav__desktop--inner-link"><a class="no-border" href="/admin/cines">Administrar Cines</a></li>
+        <hr class="rgb-divider">
+        <?php else : ?>
+        <li class="nav__desktop--inner-link"><a class="no-border" href="/cines">Cines</a></li>
+        <hr class="rgb-divider">
+        <?php endif; ?>
+        <li class="nav__desktop--inner-link"><a class="no-border" href="/peliculas">Funciones</a></li>
+        <hr class="rgb-divider">
+        <?php if ($role === 'admin') : ?>
+        <li class="nav__desktop--inner-link"><a class="no-border" href="/admin/funciones">Administrar Funciones</a></li>
+        <hr class="rgb-divider">
+        <?php endif; ?>
+        <li class="nav__desktop--inner-link"><a class="no-border" href="/usuario">Perfil</a></li>
+      </ul>
+  </div>
   </div>
 </div>
