@@ -48,28 +48,40 @@ class UserController extends BaseController{
     }
   }
 
-  function enable(){
+  function setUserAvailable($value){
+    $updated = false;
     $user = $this->prepareUserForUpdate();
     if(isset($user)){
-      $user->setAvailability(1);
-      $d_user->update($user);
-      $this->passSuccessMessage = "El usuario se ha activado con exito";
+      $user->setAvailability($value);
+      try{
+        $d_user->update($user);
+        $updated = true;
+      }catch(Exception $ex){
+        // NOTHING
+      }
     }
+
+    if($updated){
+      $this->passSuccessMessage = "El usuario se ha ". ($value ? "activado" : "desactivado") ." con exito";
+    }else{
+      $this->passErrorMessage = "Hubo un error al intentar actualizar los datos";
+    }
+
+  }
+
+  function enable(){
+    $this->setUserAvailable(1);
     $this->redirect("/usuario");
   }
 
   function disable(){
-    $user = $this->prepareUserForUpdate();
-    if(isset($user)){
-      $user->setAvailability(0);
-      $d_user->update($user);
-      $this->passSuccessMessage = "El usuario se ha desactivado con exito";
-    }
+    $this->setUserAvailable(0);
     $this->redirect("/logout");
   }
 
 
   function update(){
+    $updated = false;
     $user = $this->prepareUserForUpdate();
     $d_user = $this->d_user;
     $d_profile = new ProfileDao();
@@ -85,9 +97,19 @@ class UserController extends BaseController{
       $updatedUser->setRole($user->getRole());
       $updatedUser->setProfile($updatedProfile);
       // SAVE
-      $d_profile->update($updatedProfile);
-      $d_user->update($updatedUser);
-      $this->passSuccessMessage = "El ha sido actualizado con exito";
+      try{
+        $profile_updated = $d_profile->update($updatedProfile);
+        $user_updated = $d_user->update($updatedUser);
+        $updated = true; // $profile_updated && $user_updated;
+      }catch(Exception $ex){
+        // NOTHING
+      }
+    }
+
+    if($updated){
+      $this->passSuccessMessage = "Los datos se han actualizado con exito";
+    }else{
+      $this->passErrorMessage = "Hubo un error al intentar actualizar los datos";
     }
 
     $this->redirect("/usuario");
