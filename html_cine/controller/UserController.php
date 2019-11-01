@@ -16,6 +16,43 @@ class UserController extends BaseController{
     parent::__construct();
   }
 
+  function verifyOwnership($user){
+    $sessionUser = $this->session->user;
+    $verified = false;
+    if(
+      $sessionUser &&
+      (
+        $sessionUser->getRole()->getName() == "admin" ||
+        $user->getId() == $sessionUser->getId()
+      )
+    ){
+      $verified = true;
+    }
+    return $verified;
+  }
+
+  function enable(){
+    if($this->verifyOwnership()){
+
+    }
+  }
+
+  function disable(){
+    if($this->verifyOwnership()){
+
+    }
+  }
+
+  function update(){
+    if($this->verifyOwnership()){
+
+    }
+  }
+
+  function detail(){
+    $this->render('userDetail');
+  }
+
   function create(){
     // Flag
     $created = false;
