@@ -48,7 +48,7 @@ class UserController extends BaseController{
     }
   }
 
-  function setUserAvailable($value){
+  function setUserAvailability($value){
     $updated = false;
     $user = $this->prepareUserForUpdate();
     if(isset($user)){
@@ -70,12 +70,12 @@ class UserController extends BaseController{
   }
 
   function enable(){
-    $this->setUserAvailable(1);
+    $this->setUserAvailability(1);
     $this->redirect("/usuario");
   }
 
   function disable(){
-    $this->setUserAvailable(0);
+    $this->setUserAvailability(0);
     $this->redirect("/logout");
   }
 

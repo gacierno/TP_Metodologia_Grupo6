@@ -88,8 +88,7 @@ class CinemaController extends BaseController{
     $this->redirect('/admin/cines/editar', array('id' => $post->cinema_id ));
   }
 
-
-  function disable(){
+  function setCinemaAvailability($value){
 
     $updated      = false;
     $post         = POST::getInstance();
@@ -97,7 +96,7 @@ class CinemaController extends BaseController{
     $cinema       = $d_cinema->getById($post->cinema_id);
 
     if($cinema){
-      $cinema->setAvailability(0);
+      $cinema->setAvailability($value);
       try{
         $updated = $d_cinema->update($cinema);
       }catch(Exception $ex){
@@ -106,36 +105,21 @@ class CinemaController extends BaseController{
     }
 
     if($updated){
-      $this->passSuccessMessage = "Cine desactivado correctamente";
+      $this->passSuccessMessage = "Cine ". ($value ? "activado" : "desactivado") ." correctamente";
     }else{
-      $this->passErrorMessage = "Hubo un error, el cine no pudo ser desactivado";
+      $this->passErrorMessage = "Hubo un error, el cine no pudo ser actualizado";
     }
 
+  }
+
+  function disable(){
+    $this->setCinemaAvailability(0);
     $this->redirect('/admin/cines/editar', array('id' => $post->cinema_id ));
   }
 
 
   function enable(){
-    $updated      = false;
-    $post         = POST::getInstance();
-    $d_cinema     = $this->d_cinema;
-    $cinema       = $d_cinema->getById($post->cinema_id);
-
-    if($cinema){
-      $cinema->setAvailability(1);
-      try{
-        $updated = $d_cinema->update($cinema);
-      }catch(Exception $ex){
-        // NOTHING
-      }
-    }
-
-    if($updated){
-      $this->passSuccessMessage = "Cine desactivado correctamente";
-    }else{
-      $this->passErrorMessage = "Hubo un error, el cine no pudo ser desactivado";
-    }
-
+    $this->setCinemaAvailability(1);
     $this->redirect('/admin/cines/editar', array('id' => $post->cinema_id ));
   }
 
