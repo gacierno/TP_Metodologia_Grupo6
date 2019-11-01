@@ -69,6 +69,7 @@ class MovieController extends BaseController{
       $movies   = $d_movie->getList(array( 'movie_id' => $id ));
       $movie    = count($movies) > 0 ? $movies[0] : null;
       $shows    = $d_show->getList(array( 'movie_id' => $id ));
+      usort($shows, function($a, $b) {return strcmp($a->getDay(), $b->getDay());});
       $showsByCinema = array();
       foreach($shows as $show){
         $cinemaID = $show->getCinema()->getId();

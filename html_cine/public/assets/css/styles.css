@@ -860,10 +860,13 @@ body{
   position: relative;
 }
 @media all and (min-width:768px){
-    .dropdown {
-        width: 75%;
+    .dropdown.movielist__filter--container {
+        width: 50%;
         position: relative;
       } 
+      .dropdown{
+          width: 75%;
+      }
 }
 .dropdown.active ul{
     z-index: 10;
@@ -955,18 +958,18 @@ body{
 }
 
 .dropdown-list li a:after{
-  content: '\25BA';
+  content: '\2192';
   position: absolute;
   right: 0px;
   top: 15%;
   width: 50px;
   text-align: center;
-  font-size: 12px;
+  font-size: 24px;
   padding: 10px;
-  height: 70%;
+  height: 0%;
   line-height: 24px;
-  border-left: 1px solid #ddd;
   cursor: pointer;
+  height: 70%;
 }
 
 .showlist__button--primary,.showlist__button--secondary{
