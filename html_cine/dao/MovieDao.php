@@ -136,7 +136,7 @@ class MovieDao extends BaseDao implements IApiConnector
 			'movie_image' => $obj->getImage(),
 			'movie_id' => $obj->getId(),
 			'movie_description' => $obj->getDescription(),
-			'movie_available' => $obj->getAbailability()
+			'movie_available' => $obj->getAvailability()
 		);
 	}
 

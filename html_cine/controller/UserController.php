@@ -4,6 +4,7 @@ use Controller\BaseController as BaseController;
 
 use dao\RoleDao               as RoleDao;
 use dao\UserDao               as UserDao;
+use dao\ProfileDao            as ProfileDao;
 
 use model\User                as User;
 use model\Profile             as Profile;
@@ -40,7 +41,7 @@ class UserController extends BaseController{
       $this->passErrorMessage = "Debe especificar un usuario";
     }else{
       $d_user = $this->d_user;
-      $user = $userDao->getById($post->user_id);
+      $user = $d_user->getById($post->user_id);
       if($this->verifyOwnership($user)){
         return $user;
       }
@@ -64,20 +65,31 @@ class UserController extends BaseController{
       $d_user->update($user);
       $this->passSuccessMessage = "El usuario se ha desactivado con exito";
     }
-    $this->redirect("/usuario");
+    $this->redirect("/logout");
   }
 
 
   function update(){
     $user = $this->prepareUserForUpdate();
+    $d_user = $this->d_user;
+    $d_profile = new ProfileDao();
     if(isset($user)){
       $post = POST::getInstance();
+      // UPDATE PROFILE
+      $updatedProfile = new Profile($post->map());
+      $updatedProfile->setId($user->getProfile()->getId());
+      // UPDATE USER
       $updatedUser = new User($post->map());
       $updatedUser->setId($user->getId());
       $updatedUser->setEmail($user->getEmail());
-      $d_user->update($user);
+      $updatedUser->setRole($user->getRole());
+      $updatedUser->setProfile($updatedProfile);
+      // SAVE
+      $d_profile->update($updatedProfile);
+      $d_user->update($updatedUser);
       $this->passSuccessMessage = "El ha sido actualizado con exito";
     }
+
     $this->redirect("/usuario");
   }
 
@@ -125,6 +137,6 @@ class UserController extends BaseController{
 
     $this->redirect("/login");
   }
-  
+
 
 }

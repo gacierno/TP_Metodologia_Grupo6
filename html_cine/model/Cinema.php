@@ -20,7 +20,7 @@ class Cinema
 		$this->setName(       ( isset($options['cinema_name']) )     ? $options['cinema_name'] : '' );
 		$this->setTicketValue( ( isset($options['cinema_ticketValue']) )? $options['cinema_ticketValue'] : 0);
         $this->setId(         ( isset($options['cinema_id']) )       ? $options['cinema_id'] : null );
-        $this->setAbailability( ( isset($options['cinema_available']) )       ? $options['cinema_available'] : 1 );
+        $this->setAvailability( ( isset($options['cinema_available']) )       ? $options['cinema_available'] : 1 );
 	}
 
     /**
@@ -114,7 +114,7 @@ class Cinema
     /**
      * @param mixed $available
      */
-    public function setAbailability($available)
+    public function setAvailability($available)
     {
         $this->available = $available;
     }
@@ -122,7 +122,7 @@ class Cinema
     /**
      * @return mixed
      */
-    public function getAbailability()
+    public function getAvailability()
     {
         return $this->available;
     }

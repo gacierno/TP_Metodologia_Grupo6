@@ -43,7 +43,7 @@ class CinemaDao extends BaseDao
 			'cinema_address' 	=> $obj->getAddress(),
 			'cinema_capacity'	=> $obj->getCapacity(),
 			'cinema_ticketValue' => $obj->getTicketValue(),
-			'cinema_available' => $obj->getAbailability()
+			'cinema_available' => $obj->getAvailability()
 		);
 	}
 

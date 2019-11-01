@@ -7,7 +7,7 @@
 
     <div class="login__overlay"></div>
         <div class="col-sm-10 col-md-8 col-lg-4 login__container">
-        <form method="POST" action="/user/create" class="login-form">
+        <form method="POST" action="/usuario/nuevo" class="login-form">
             <label>
                 <input class="inputText" type="email" name="user_email" required autocomplete="off">
                 <span class="floating-label">Ingrese Correo Electronico</span>
