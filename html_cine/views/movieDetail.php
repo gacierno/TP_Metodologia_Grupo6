@@ -28,7 +28,10 @@
                     <ul class="dropdown-list">
                         <?php foreach($cinema["shows"] as $show) : ?>
                         <li data-value="<?php echo($show->getId()); ?>">
-                            <a href="/funciones?id=<?php echo($show->getId()); ?>"><?php echo($show->getDay()); ?> <?php echo($show->getTime()); ?></a>
+                            <?php $originalDate = $show->getDay();
+                            $newDate = str_replace('-','/',date('d-m-Y',strtotime($originalDate)));
+                            ?>
+                            <a href="/funciones?id=<?php echo($show->getId()); ?>"><?php echo($newDate); ?> <?php echo($show->getTime()); ?></a>
                         </li>
                         <?php endforeach; ?>
                     </ul>
