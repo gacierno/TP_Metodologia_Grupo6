@@ -47,7 +47,7 @@
         <div class="cinemaform__button--container">
             <button type="submit" class="cinemaform__button--primary">Enviar</button>
             <?php if($isCinemaSet) : ?>
-            <button id="cinema-delete" type="submit" <?php if($availability) : echo("available"); else : echo("not-available"); endif; ?> class="cinemaform__button--secondary" onclick="return confirm('Estas Seguro?');"><?php if($availability) : echo("Eliminar"); else : echo("Activar"); endif; ?></button>
+            <button id="cinema-delete" type="submit" <?php if($availability) : echo("available"); else : echo("not-available"); endif; ?> class="cinemaform__button--secondary" onclick="return confirm('Estas Seguro?');"><?php if($availability) : echo("Desactivar"); else : echo("Activar"); endif; ?></button>
             <?php endif; ?>
         </div>
 
