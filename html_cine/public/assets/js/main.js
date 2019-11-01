@@ -10,7 +10,7 @@ $('#cinema-delete').on('click',function(){
     if($(this).attr('available') !== undefined){
         $('#cinema-form').attr('action','/admin/cines/desactivar');
     }
-    else if($(this).attr('available') === undefined){
+    else if($(this).attr('not-available') !== undefined){
         $('#cinema-form').attr('action','/admin/cines/activar');
     }
 });
