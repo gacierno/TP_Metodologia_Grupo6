@@ -58,6 +58,18 @@ body.open .overlay{
     justify-content: center;
 }
 
+@media all and (min-width:768px){
+    .nav__links--container{
+        justify-content: start;
+    }
+}
+
+@media all and (min-width:992px){
+    .nav__links--container{
+        justify-content: center;
+    }
+}
+
 .nav__links--container a,.cinemalist__button--container a,.showlist__button--container a{
     text-decoration: none;
     cursor:pointer;
@@ -1479,5 +1491,4 @@ select#moviefilter__multiple-select--genre,select#moviefilter__select--cinema{
     border-image-source:linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
     border-image-slice: 1;
 }
-  
   

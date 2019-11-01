@@ -21,17 +21,21 @@ var placeholder;
 //new movies/create new slider with jquery.Load() method
 $(document).ready(function(){
 
+    //give nav menu behaviour
+    $(document).on('click',function(e){
+        if(e.target.id === 'desktop__menu'){
+            $('.some').toggleClass('open');
+        }
+        else if($('.some').hasClass('open')){
+            $('.some').removeClass('open');
+        }
+    });
+
     //make body unscrollable when mobile menu deployed
     $('.sidebarIconToggle').on('click',function(){
         $('body').toggleClass('open');
     });
-
-
-    //give nav menu behaviour
-    $('.some').on('click',function(){
-        $(this).toggleClass('open');
-    });
-
+    
     //give show form endpoint behaviour on delete button click
     if($('#funcion-delete').length > 0){
         if($('#funcion-delete').attr('available') == true){
@@ -272,16 +276,15 @@ function checkArrowsVisibility(){
 }
 
 
-
+//variables and functions to give behaviour to nav when scrolled, not handled
+//by classes because the mobile nav is position fixed too, and they
+//relocate on base on the other if both are position fixed when the page loads
 window.onscroll = function() {headerReadapt()};
 
-// Get the header
 var header = document.getElementById("nav");
 
-// Get the offset position of the navbar
 var sticky = header.offsetTop;
 
-// Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
 function headerReadapt() {
     
         if (window.pageYOffset > sticky) {

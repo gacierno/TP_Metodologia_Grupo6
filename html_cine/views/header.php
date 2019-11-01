@@ -28,7 +28,7 @@
 
   <div class="nav__container nav__links--container col-3 nav__menu--desktop">
     <?php if(isset($user)) : ?>
-    <div class="some">MENU
+    <div id="desktop__menu" class="some">MENU
     <?php $role = $user->getRole()->getName(); ?>
     <div class="nav__desktop--menu-container">
       <ul>
