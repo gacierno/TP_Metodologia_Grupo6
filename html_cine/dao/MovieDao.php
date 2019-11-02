@@ -141,68 +141,52 @@ class MovieDao extends BaseDao implements IApiConnector
 	}
 
 
-	public function getMoviesByGenres( $genres = array() ){
+	public function getMoviesBy( $args = array() ){
+		$outout = array();
 
-		$movies = array();
+		//	set the elements needed for a movie instance
+		$query = "select M.movie_id as movie_id, M.movie_image as movie_image, M.movie_language as movie_language, M.movie_title as movie_title, M.movie_runtime as movie_runtime, M.movie_description as movie_description from Shows S inner join Movies M on M.movie_id = S.movie_id inner join Genres_on_Movies GM on GM.movie_id = M.movie_id where S.show_available = 1 and S.show_date >= '";
 
-		$query = "select M.movie_id as movie_id, M.movie_image as movie_image, M.movie_language as movie_language, M.movie_title as movie_title, M.movie_runtime as movie_runtime, M.movie_description as movie_description from Movies M inner join Genres_on_Movies GM on GM.movie_id = M.movie_id  where GM.genre_id in (";
-		$query .= preg_replace( "/[ \[ \] \" ]/", "", json_encode($genres) ). ") group by M.movie_id;";
+		if( isset( $args['date'] ) ){
+			$query .= $args['date']. "' ";
+		}else{
+			$query .= date("Y-m-d"). "' ";
+		}
+
+		if( isset( $args['cinema'] ) || isset( $args['genres'] ) ){
+			$query .= "and ";
+		}
+
+
+		//	if genres is set add the filter to the query
+		if( isset( $args['genres'] ) ){
+			$query .= "GM.genre_id in (";
+			$query .= preg_replace( "/[ \[ \] \" ]/", "", json_encode( $args['genres'] ) ). ") ";
+			// adds the connector and in case more params where set
+			if( isset( $args['cinema'] ) ){
+				$query .= "and ";
+			}
+		}
+
+		//	if cinema is set add the filter to the query
+		if( isset( $args['cinema'] ) ){
+			$query .= "S.cinema_id = ".$args['cinema']. " ";
+		}
+
+		$query .= "group by M.movie_id;";
+
+		echo $query;
 
 		try {
 			$connection = Connection::GetInstance();
-			$movies = parent::parseToObjects( $connection->Execute( $query ) );
+			$outout = parent::parseToObjects( $connection->Execute( $query ) );
 		} catch (Exception $e) {
 			throw $e;
 		}catch (Exception $e) {
 			throw $e;
 		}
 
-		return $movies;
-
-	}
-
-	public function getMoviesByDate( $date = "1980-10-20" ){
-
-		$movies = array();
-
-		$query = "select 	M.movie_id as movie_id, M.movie_image as movie_image, M.movie_language as movie_language, M.movie_title as movie_title, M.movie_runtime as movie_runtime, M.movie_description as movie_description from Movies M inner join Shows S on S.movie_id = M.movie_id where S.show_date = '";
-		$query .= $date; //date format "YYYY-MM-DD"
-		$query .= "' group by M.movie_id;";
-
-		try {
-			$connection = Connection::GetInstance();
-			$movies = parent::parseToObjects( $connection->Execute( $query ) );
-		} catch (Exception $e) {
-			throw $e;
-		}catch (Exception $e) {
-			throw $e;
-		}
-
-		return $movies;
-
-	}
-
-
-
-	public function getMoviesByGenresAndDate( $genres = array(), $date = "1980-10-20" ){
-
-		$movies = array();
-
-		$query = "select 	M.movie_id as movie_id, M.movie_image as movie_image, M.movie_language as movie_language, M.movie_title as movie_title, M.movie_runtime as movie_runtime, M.movie_description as movie_description from Movies M inner join Genres_on_Movies GM on GM.movie_id = M.movie_id inner join Shows S on S.movie_id = M.movie_id where S.show_date = '";
-		$query .= $date; //date format "YYYY-MM-DD"
-		$query .= "' and GM.genre_id in (";
-		$query .= preg_replace( "/[ \[ \] \" ]/", "", json_encode($genres) ). ") group by M.movie_id;";
-
-		try {
-			$connection = Connection::GetInstance();
-			$movies = parent::parseToObjects( $connection->Execute( $query ) );
-		} catch (Exception $e) {
-			throw $e;
-		}catch (Exception $e) {
-			throw $e;
-		}
-
-		return $movies;
+		return $outout;
 	}
 
 }
