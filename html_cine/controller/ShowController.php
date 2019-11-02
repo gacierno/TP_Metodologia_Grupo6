@@ -166,12 +166,14 @@ class ShowController extends BaseController{
   }
 
   function validate($existing_show = false){
+    $show_id = false;
     $post    = POST::getInstance();
     extract($post->map());
-    $show_id = false;
 
-
-    if($existing_show){
+    if(
+      $existing_show &&
+      $this->d_show->getById($existing_show->getId())
+    ){
       $show_date      = $existing_show->getDay();
       $show_movie     = $existing_show->getMovie()->getId();
       $show_cinema    = $existing_show->getCinema()->getId();
@@ -237,21 +239,31 @@ class ShowController extends BaseController{
   function update(){
     $updated = false;
     $post    = POST::getInstance();
-    $show    = $this->d_show->getById($post->show_id);
-    if($this->validate($show)){
 
-      $d_show       = $this->d_show;
-      if($show){
-        $updatedShow  = new Show($post->map());
-        $updatedShow->setMovie($show->getMovie());
-        $updatedShow->setCinema($show->getCinema());
-        $updatedShow->setId($show->getId());
+    $d_cinema     = new CinemaDao();
+    $d_movie      = new MovieDao();
+    $show         = $this->d_show->getById($post->show_id);
+    $movie        = $d_movie->getById($post->show_movie);
+    $cinema       = $d_cinema->getById($post->show_cinema);
+
+    if($movie && $cinema && $show){
+
+      $updatedShow = new Show($post->map());
+      $updatedShow->setMovie($movie);
+      $updatedShow->setCinema($cinema);
+      $updatedShow->setId($show->getId());
+      $updatedShow->setAvailability($show->getAvailability());
+
+
+      if($this->validate($updatedShow)){
+
         try{
-          $d_show->update($updatedShow);
+          $this->d_show->update($updatedShow);
           $updated = true;
         }catch(Exception $ex){
           // NOTHING
         }
+
       }
     }
 
