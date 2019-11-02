@@ -180,15 +180,16 @@
 	// $testShowDao = new dao\ShowDao();
 	// $testShow = new model\Show(
 	// 	array(
-	// 		'show_id' => 0,
-	// 		'show_time' => '18:00:00',		// HH:MM:SS
+	// 		'show_id' => 2,
+	// 		'show_time' => '20:00:00',		// HH:MM:SS
 	// 		'show_date' => '2019-10-20',	// YYYY-MM-DD
 	// 		'show_movie' => $testMovie,
-	// 		'show_cinema' => $testCine
+	// 		'show_cinema' => $testCine,
+	// 		'show-available' => 1
 	// 	)
 	// );
 
-	// $testShowDao->add( $testShow );
+	// $testShowDao->update( $testShow );
 
 	// $testRoleDao = new dao\RoleDao();
 	/*
@@ -307,7 +308,7 @@
 
 	// $fafa = $genDao->getById(15);
 
-	$newTest = new dao\MovieDao();
+	// $newTest = new dao\MovieDao();
 
 	$movieArgs = array(
 		'cinema' => 2,
