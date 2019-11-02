@@ -37,13 +37,18 @@ $(document).ready(function(){
     });
     
     //give show form endpoint behaviour on delete button click
-    if($('#funcion-delete').length > 0){
-        if($('#funcion-delete').attr('available') == true){
-            $('#show-delete-form').attr('action','/admin/funciones/desactivar');
-        }
-        else{
-            $('#show-delete-form').attr('action','/admin/funciones/activar');
-        }
+    if($('.funcion-delete').length > 0){
+        $('.funcion-delete').each(function(){
+            if($(this).attr('available') == true){
+                console.log($(this).closest('.show-delete-form'));
+                $(this).closest('.show-delete-form').attr('action','/admin/funciones/desactivar');
+            }
+            else{
+                console.log($(this).closest('.show-delete-form'));
+                $(this).closest('.show-delete-form').attr('action','/admin/funciones/activar');
+            }
+        });
+        
     }
 
 
@@ -279,8 +284,7 @@ function checkArrowsVisibility(){
 //variables and functions to give behaviour to nav when scrolled, not handled
 //by classes because the mobile nav is position fixed too, and they
 //relocate on base on the other if both are position fixed when the page loads
-window.onscroll = function() {headerReadapt()};
-
+window.onscroll = function() {headerReadapt();closeMenu();};
 var header = document.getElementById("nav");
 
 var sticky = header.offsetTop;
@@ -297,4 +301,10 @@ function headerReadapt() {
             header.style.zIndex = 10;
           }
  
+}
+//close the menu when the user scrolls
+function closeMenu(){
+    if($('.some').hasClass('open')){
+        $('.some').toggleClass('open');
+    }
 }
