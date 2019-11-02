@@ -62,7 +62,7 @@ class ShowController extends BaseController{
   }
 
 
-  function validateShowTime($date,$time,$cine){
+  function validateShowTime($date,$time,$cine,$existing_show = false){
     $timeArray = explode(":",$time);
     if(count($timeArray) == 1){
       array_push($timeArray,"00","00");
@@ -77,34 +77,45 @@ class ShowController extends BaseController{
     $dt->sub(DateInterval::createFromDateString('30 minutes'));
     $minRange = $dt->format('H:i:s');
 
-    $shows  = $this->d_show->getListWhere(
+    $query = array(
       array(
-        array(
-          'column' => "show_date",
-          'operator' => "=",
-          'condition' => "and",
-          'value' => $date
-        ),
-        array(
-          'column' => "cinema_id",
-          'operator' => "=",
-          'condition' => "and",
-          'value' => $cine
-        ),
-        array(
-          'column' => "show_time",
-          'operator' => ">=",
-          'condition' => "and",
-          'value' => $minRange
-        ),
-        array(
-          'column' => "show_time",
-          'operator' => "<=",
-          'condition' => "and",
-          'value' => $maxRange
-        )
+        'column' => "show_date",
+        'operator' => "=",
+        'condition' => "and",
+        'value' => $date
+      ),
+      array(
+        'column' => "cinema_id",
+        'operator' => "=",
+        'condition' => "and",
+        'value' => $cine
+      ),
+      array(
+        'column' => "show_time",
+        'operator' => ">=",
+        'condition' => "and",
+        'value' => $minRange
+      ),
+      array(
+        'column' => "show_time",
+        'operator' => "<=",
+        'condition' => "and",
+        'value' => $maxRange
       )
     );
+
+    if($existing_show){
+      array_push($query,
+        array(
+          'column' => "show_id",
+          'operator' => "!=",
+          'condition' => "and",
+          'value' => $existing_show
+        )
+      );
+    }
+
+    $shows = $this->d_show->getListWhere($query);
 
     return !($shows && count($shows) > 0);
   }
@@ -142,17 +153,16 @@ class ShowController extends BaseController{
     return isset($show_date,$show_time,$show_cinema,$show_movie);
   }
 
-
-  function create(){
-    $created = false;
+  function validate($existing_show = false){
     $post    = POST::getInstance();
-    if(
+    return (
       $this->validateShowCreationData($post->map()) &&
       // VALIDATE THAT PREVIOUS AND NEXT FUNCTION IS 15 MINUTES AWAY
       $this->validateShowTime(
         $post->show_date,
         $post->show_time,
-        $post->show_cinema
+        $post->show_cinema,
+        $existing_show
       ) &&
       // VALIDATE THAT A MOVIE CAN ONLY BELONG TO A SINGLE CINEMA EACH DAY
       $this->validateMovieOwnership(
@@ -160,7 +170,14 @@ class ShowController extends BaseController{
         $post->show_movie,
         $post->show_cinema
       )
-    ){
+    );
+  }
+
+
+  function create(){
+    $created = false;
+    $post    = POST::getInstance();
+    if($this->validate()){
 
       $d_cinema     = new CinemaDao();
       $d_movie      = new MovieDao();
@@ -181,7 +198,7 @@ class ShowController extends BaseController{
     }
 
     if($created){
-      $this->passSuccessMessage = "Funcion creado correctamente";
+      $this->passSuccessMessage = "La funcion fue creada correctamente";
       $this->redirect("/admin/funciones");
     }else{
       $this->passErrorMessage = "Hubo un error, la funcion no pudo ser creada";
@@ -191,15 +208,33 @@ class ShowController extends BaseController{
   }
 
   function update(){
-    $post         = POST::getInstance();
-    $d_show       = $this->d_show;
-    $show         = $d_show->getById($post->show_id);
-    $updatedShow  = new Show($post->map());
-    $updatedShow->setMovie($show->getMovie());
-    $updatedShow->setCinema($show->getCinema());
-    $updatedShow->setId($show->getId());
-    $d_show->update($updatedShow);
-    $this->redirect("/admin/funciones/editar?show_id=$post->show_id");
+    $updated = false;
+    $post    = POST::getInstance();
+    if($this->validate($post->show_id)){
+
+      $d_show       = $this->d_show;
+      $show         = $d_show->getById($post->show_id);
+      if($show){
+        $updatedShow  = new Show($post->map());
+        $updatedShow->setMovie($show->getMovie());
+        $updatedShow->setCinema($show->getCinema());
+        $updatedShow->setId($show->getId());
+        try{
+          $d_show->update($updatedShow);
+          $updated = true;
+        }catch(Exception $ex){
+          // NOTHING
+        }
+      }
+    }
+
+    if($updated){
+      $this->passSuccessMessage = "La funcion fue actualizada correctamente";
+    }else{
+      $this->passErrorMessage = "Hubo un error, la funcion no pudo ser actualizada";
+    }
+
+    $this->redirect("/admin/funciones/editar", array('show_id' => $post->show_id));
   }
 
   function disable(){
