@@ -19,7 +19,7 @@ include_once './views/header.php';
 				</li>
 			</ul>
 
-	<pre style="color: white"><?php // print_r($options) ?></pre>
+	<pre style="color: white"><?php echo sizeof( $movieArgs ) ?></pre>
 	<pre style="color: white"><?php // print_r( $testGenreDao->getById( 18 ) ) ?></pre>
 	<pre style="color: white"><?php // echo $testGenreDao->getFields( $testGenre ) ?></pre>
 	<pre style="color: white"><?php // print_r( $testMovie ) ?></pre>
@@ -29,13 +29,17 @@ include_once './views/header.php';
 	<pre style="color: white"><?php // print_r( $testGenreDao->getList() ) ?></pre>
 	<pre style="color: white"><?php // print_r( $testCinemaDao->getList() ) ?></pre>
 	<pre style="color: white"><?php // print_r( dao\GenresOnMoviesDao::getGenresByMovieId( 338967 ) ) ?></pre>
-	<pre style="color: white"><?php // print_r( $testShow ) ?></pre>
+	<pre style="color: white"><?php  print_r( $testShow ) ?></pre>
 	<pre style="color: white"><?php // print_r( $testShowDao->getList() ) ?></pre>
+
+
 	<pre style="color: white"><?php // print_r( $newTest->getMoviesByGenresAndDate( array( 18, 16, 12, 99, 767), "2019-10-20" ) ) ?></pre>
 	<pre style="color: white"><?php // print_r( $newTest->getMoviesByDate( "2019-10-20" ) ) ?></pre>
 
-	<pre style="color: white"><?php  print_r( $newTest->getMoviesByGenres( array( 18, 16, 12, 99, 767) ) ) ?></pre>
+	<pre style="color: white"><?php // print_r( $newTest->getMoviesByGenres( array( 18, 16, 12, 99, 767) ) ) ?></pre>
 	
+
+	<pre style="color: white"><?php // print_r( $newTest->getMoviesBy( $movieArgs) ) ?></pre>
 	
 		</section>
  	</div>

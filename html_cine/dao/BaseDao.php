@@ -96,19 +96,27 @@ abstract class BaseDao{
         $id   = $obj->getId();
         $hash = $this->parseToHash($obj);
 
+        $query = "update ". $this->tableName ." set ";
+
+        $i = 0;
         foreach ( $hash as $key => $value ) {
+            $query .= $key." = '".$value."'";
+            $i++;
+            $query .= ( $i < sizeof($hash) )? ", " : " ";
+        }
 
-            $query = "update ". $this->tableName ." set ".$key." = '".$value."' where ".$this->singleType."_id = ".$id.";";
 
-            try {
-                $this->connection = Connection::GetInstance();
-                $updated = $this->connection->ExecuteNonQuery( $query );
-            } catch (PDOException $e) {
-                throw $e;
-            } catch (Exception $e) {
-                throw $e;
-            }
+        $query.= "where ".$this->singleType."_id = ".$id.";";
 
+        echo $query;
+
+        try {
+            $this->connection = Connection::GetInstance();
+            $updated = $this->connection->ExecuteNonQuery( $query );
+        } catch (PDOException $e) {
+            throw $e;
+        } catch (Exception $e) {
+            throw $e;
         }
 
         return $updated;
