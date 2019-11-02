@@ -101,6 +101,12 @@ class ShowController extends BaseController{
         'operator' => "<=",
         'condition' => "and",
         'value' => $maxRange
+      ),
+      array(
+        'column' => "show_available",
+        'operator' => "=",
+        'condition' => "and",
+        'value' => 1
       )
     );
 
@@ -140,6 +146,12 @@ class ShowController extends BaseController{
           'operator' => "=",
           'condition' => "and",
           'value' => $movie
+        ),
+        array(
+          'column' => "show_available",
+          'operator' => "=",
+          'condition' => "and",
+          'value' => 1
         )
       )
     );
@@ -155,20 +167,35 @@ class ShowController extends BaseController{
 
   function validate($existing_show = false){
     $post    = POST::getInstance();
+    extract($post->map());
+    $show_id = false;
+
+
+    if($existing_show){
+      $show_date      = $existing_show->getDay();
+      $show_movie     = $existing_show->getMovie()->getId();
+      $show_cinema    = $existing_show->getCinema()->getId();
+      $show_time      = $existing_show->getTime();
+      $show_id        = $existing_show->getId();
+    }
+
     return (
-      $this->validateShowCreationData($post->map()) &&
+      (
+        $existing_show ||
+        $this->validateShowCreationData($post->map())
+      ) &&
       // VALIDATE THAT PREVIOUS AND NEXT FUNCTION IS 15 MINUTES AWAY
       $this->validateShowTime(
-        $post->show_date,
-        $post->show_time,
-        $post->show_cinema,
-        $existing_show
+        $show_date,
+        $show_time,
+        $show_cinema,
+        $show_id
       ) &&
       // VALIDATE THAT A MOVIE CAN ONLY BELONG TO A SINGLE CINEMA EACH DAY
       $this->validateMovieOwnership(
-        $post->show_date,
-        $post->show_movie,
-        $post->show_cinema
+        $show_date,
+        $show_movie,
+        $show_cinema
       )
     );
   }
@@ -210,10 +237,10 @@ class ShowController extends BaseController{
   function update(){
     $updated = false;
     $post    = POST::getInstance();
-    if($this->validate($post->show_id)){
+    $show    = $this->d_show->getById($post->show_id);
+    if($this->validate($show)){
 
       $d_show       = $this->d_show;
-      $show         = $d_show->getById($post->show_id);
       if($show){
         $updatedShow  = new Show($post->map());
         $updatedShow->setMovie($show->getMovie());
@@ -237,12 +264,46 @@ class ShowController extends BaseController{
     $this->redirect("/admin/funciones/editar", array('show_id' => $post->show_id));
   }
 
-  function disable(){
+
+  function setShowAvailability($value){
+    $updated      = false;
     $post         = POST::getInstance();
-    $d_show       = $this->d_show;
-    $show         = $d_show->getById($post->show_id);
-    $show->setAvailability(0);
-    $d_show->update($show);
+    $show         = $this->d_show->getById($post->show_id);
+
+    if($show){
+
+      $show->setAvailability($value);
+      try{
+        $this->d_show->update($show);
+        $updated = true;
+      }catch(Exception $ex){
+        // NOTHING
+      }
+    }
+
+    if($updated){
+      $this->passSuccessMessage = "Show ". ($value ? "activado" : "desactivado") ." correctamente";
+    }else{
+      $this->passErrorMessage = "Hubo un error, el show no pudo ser actualizado";
+    }
+  }
+
+
+  function disable(){
+    $post    = POST::getInstance();
+    $this->setShowAvailability(0);
+    $this->redirect("/admin/funciones");
+  }
+
+
+  function enable(){
+    $post    = POST::getInstance();
+    $show    = $this->d_show->getById($post->show_id);
+    if($this->validate($show)){
+      $this->setShowAvailability(1);
+    }else{
+      $this->passErrorMessage = "Hubo un error, el show no pudo ser actualizado";
+    }
     $this->redirect("/admin/funciones");
   }
 
