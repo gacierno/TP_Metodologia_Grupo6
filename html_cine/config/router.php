@@ -40,8 +40,9 @@ $router->get('\/admin\/funciones\/editar',        array( $showController,'editSh
 $router->get('\/admin\/funciones',                array( $showController,'index' ) );
 
 $router->post('\/admin\/funciones\/nuevo',        array( $showController,'create' ) );
-$router->post('\/admin\/funciones\/eliminar',     array( $showController,'disable' ) );
 $router->post('\/admin\/funciones\/actualizar',   array( $showController,'update' ) );
+$router->post('\/admin\/funciones\/desactivar',   array( $showController,'disable' ) );
+$router->post('\/admin\/funciones\/activar',      array( $showController,'enable' ) );
 
 
 // PELICULAS =======================================================================
