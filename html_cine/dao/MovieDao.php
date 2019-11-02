@@ -175,7 +175,7 @@ class MovieDao extends BaseDao implements IApiConnector
 
 		$query .= "group by M.movie_id;";
 
-		echo $query;
+		// echo $query;
 
 		try {
 			$connection = Connection::GetInstance();
