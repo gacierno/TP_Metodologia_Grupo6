@@ -26,7 +26,7 @@ class AuthenticationController extends BaseController{
       $this->session->user = $d_user->getById($this->session->user->getId());
     }
     $includesLogin        = preg_match("/^\/login/",$req->path());
-    $includesNewUserForm  = preg_match("/^\/usuario$/",$req->path());
+    $includesNewUserForm  = preg_match("/^\/login\/create$/",$req->path());
     $includesUserRegister = preg_match("/^\/usuario\/nuevo$/",$req->path());
     $includesAdmin        = preg_match("/^\/admin/",$req->path());
 
@@ -39,7 +39,6 @@ class AuthenticationController extends BaseController{
         $includesUserRegister
       )
     ){
-      // echo "Auth code 0";
       return $this->redirect("/login");
     }
 
@@ -50,13 +49,11 @@ class AuthenticationController extends BaseController{
       $includesAdmin &&
       $this->session->user->getRole()->getName() !== "admin"
     ){
-      // echo "Auth code 1";
       return $this->redirect("/");
     }
 
     // IF LOGGED USER IS NOT ACTIVE
     if(  $this->session->user && !$this->session->user->getAvailability()){
-      // echo "Auth code 2";
       return $this->redirect("/logout");
     }
 
@@ -70,7 +67,6 @@ class AuthenticationController extends BaseController{
         $includesUserRegister
       )
     ){
-      // echo "Auth code 3";
       return $this->redirect("/");
     }
   }
