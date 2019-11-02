@@ -49,9 +49,9 @@
                         <button id="funcion-update" type="submit" class="showlist__button--primary">Actualizar</button>
                     </form>
 
-                    <form id="show-delete-form" method="POST" action="">
+                    <form class="show-delete-form" method="POST" action="">
                         <input type="text" name="show_id" value="<?php echo($show->getId()); ?>" hidden>
-                        <button id="funcion-delete" type="submit" available="<?php echo($availability); ?>" class="showlist__button--secondary" onclick="return confirm('Estas Seguro?');"><?php if($availability) : echo ("Eliminar"); else : echo("Activar"); endif; ?></button>
+                        <button type="submit" available="<?php echo($availability); ?>" class="funcion-delete showlist__button--secondary" onclick="return confirm('Estas Seguro?');"><?php if($availability) : echo ("Desactivar"); else : echo("Activar"); endif; ?></button>
                     </form>
                 </div>
             </div>
