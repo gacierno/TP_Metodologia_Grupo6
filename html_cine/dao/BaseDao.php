@@ -138,7 +138,6 @@ abstract class BaseDao{
 
         $query.= "where ".$this->singleType."_id = ".$id.";";
 
-        echo $query;
 
         try {
             $this->connection = Connection::GetInstance();
