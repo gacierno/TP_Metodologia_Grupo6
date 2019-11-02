@@ -309,6 +309,12 @@
 
 	$newTest = new dao\MovieDao();
 
+	$movieArgs = array(
+		'cinema' => 2,
+		'date' => '2019-10-20',
+		'genres' => array(18, 16, 12, 99, 767)
+	)
+
 
 
  ?>
