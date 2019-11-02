@@ -45,6 +45,36 @@ abstract class BaseDao{
 
     }
 
+    public function getListWhere( $criteria = array() ){
+
+        $output = array();
+        $query = "select * from ".$this->tableName;
+
+        if( sizeof( $criteria ) != 0 ){
+
+            $query .= " where 1 ";
+
+            foreach($criteria as $line){
+              $query .= " " . $line['condition'] . " " . $line['column'] . " " . $line['operator'] . " '" . $line['value'] . "'";
+            }
+
+            $query .= ";";
+
+
+        }
+
+        try {
+            $this->connection = Connection::GetInstance();
+            $output = $this->connection->Execute( $query );
+        } catch (PDOException $e) {
+            throw $e;
+        } catch (Exception $e) {
+            throw $e;
+        }
+        return $this->parseToObjects( $output );
+
+    }
+
     public function getById( $id ){
         $result = array();
         $query = "select * from ". $this->tableName . " where ". strtolower( $this->singleType ) ."_id = ". $id.";";
