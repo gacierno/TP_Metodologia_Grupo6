@@ -46,6 +46,8 @@
         <hr class="rgb-divider">
         <?php endif; ?>
         <li class="nav__desktop--inner-link"><a class="no-border" href="/usuario">Perfil</a></li>
+        <hr class="rgb-divider">
+        <li class="nav__desktop--inner-link"><a class="no-border" href="/logout">Cerrar Sesión</a></li>
       </ul>
     </div>
     </div>
@@ -75,6 +77,8 @@
         <hr class="rgb-divider">
         <?php endif; ?>
         <li class="nav__desktop--inner-link"><a class="no-border" href="/usuario">Perfil</a></li>
+        <hr class="rgb-divider">
+        <li class="nav__desktop--inner-link"><a class="no-border" href="/logout">Cerrar Sesión</a></li>
       </ul>
   </div>
   </div>
