@@ -82,7 +82,8 @@
         <li class="nav__desktop--inner-link"><a class="no-border" href="/logout">Cerrar Sesión</a></li>
       </ul>
   </div>
-  </div>
   <?php endif; ?>
+
+  </div>
 
 </div>
