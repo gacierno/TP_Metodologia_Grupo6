@@ -1430,9 +1430,12 @@ select#moviefilter__multiple-select--genre,select#moviefilter__select--cinema{
     height: 40px;
 }
 
-#movielist__filter--outer-container.active #moviefilter__multiple-select--genre{
-    height: 120px;
+@media all and (min-width:768px){
+    #movielist__filter--outer-container.active #moviefilter__multiple-select--genre{
+        height: 120px;
+    }
 }
+
 
 .user-detail__profilepic--container{
     margin-bottom: 30px;
