@@ -1024,6 +1024,11 @@ body{
     text-align: center;
 }
 
+ .login__create--container p{
+    color:white;
+}
+
+
 .user-creation__row{
     padding: 35px;
 }
