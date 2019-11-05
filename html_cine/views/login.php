@@ -17,7 +17,7 @@
             </label>
             <div class="login__button--container">
                 <button class="login__button glow-on-hover" type="submit">INGRESAR</button>
-                <button class="fb-login__button glow-blue-on-hover">INGRESAR CON FACEBOOK</button>
+                <button style="display:none" class="fb-login__button glow-blue-on-hover">INGRESAR CON FACEBOOK</button>
             </div>
         </form>
         <div class="login__create--container">
