@@ -284,27 +284,27 @@ function checkArrowsVisibility(){
 //variables and functions to give behaviour to nav when scrolled, not handled
 //by classes because the mobile nav is position fixed too, and they
 //relocate on base on the other if both are position fixed when the page loads
-window.onscroll = function() {headerReadapt();closeMenu();};
-var header = document.getElementById("nav");
+// window.onscroll = function() {headerReadapt();closeMenu();};
+// var header = document.getElementById("nav");
 
-var sticky = header.offsetTop;
+// var sticky = header.offsetTop;
 
-function headerReadapt() {
+// function headerReadapt() {
     
-        if (window.pageYOffset > sticky) {
-            header.style.position = 'fixed';
-            header.style.zIndex = '9999999999999999';
-            header.style.width = '100%';
-            header.style.top = 0;
-          } else {
-            header.style.position = 'static';
-            header.style.zIndex = 10;
-          }
+//         if (window.pageYOffset > sticky) {
+//             header.style.position = 'fixed';
+//             header.style.zIndex = '9999999999999999';
+//             header.style.width = '100%';
+//             header.style.top = 0;
+//           } else {
+//             header.style.position = 'static';
+//             header.style.zIndex = 10;
+//           }
  
-}
-//close the menu when the user scrolls
-function closeMenu(){
-    if($('.some').hasClass('open')){
-        $('.some').toggleClass('open');
-    }
-}
+// }
+// //close the menu when the user scrolls
+// function closeMenu(){
+//     if($('.some').hasClass('open')){
+//         $('.some').toggleClass('open');
+//     }
+// }
