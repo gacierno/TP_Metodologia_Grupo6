@@ -1293,7 +1293,7 @@ body{
 }
 
 .showlist__show--cinema p{
-    color:rgb(20, 20, 20);
+    color:red;
     font-size:14px;
     font-family: 'Roboto',sans-serif;
     margin:0;   
