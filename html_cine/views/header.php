@@ -55,6 +55,7 @@
   </div>
 
   <div class="nav__container nav__links--container col-3 nav__menu--mobile">
+  <?php if(isset($user)) : ?>
   <input type="checkbox" class="openSidebarMenu" id="openSidebarMenu">
   <label for="openSidebarMenu" class="sidebarIconToggle">
     <div class="spinner diagonal part-1"></div>
@@ -82,4 +83,6 @@
       </ul>
   </div>
   </div>
+  <?php endif; ?>
+
 </div>
