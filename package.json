@@ -4,7 +4,8 @@
   "description": "none",
   "main": "index.js",
   "scripts": {
-    "test": "test"
+    "test": "test",
+    "sync": "browser-sync start --proxy \"http://localhost:8080\" --files \"*\""
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/gacierno/TP_Metodologia_Grupo6/issues"
   },
-  "homepage": "https://github.com/gacierno/TP_Metodologia_Grupo6#readme"
+  "homepage": "https://github.com/gacierno/TP_Metodologia_Grupo6#readme",
+  "devDependencies": {
+    "browser-sync": "^2.26.7"
+  }
 }
