@@ -91,7 +91,7 @@ class Router {
 
 
   function execute(){
-    $req = new Request();
+    $req = Request::getInstance();
     $output = $this->runMiddlewares($req);
     if(isset($output)) return $output;
     return $this->findRoute($req);

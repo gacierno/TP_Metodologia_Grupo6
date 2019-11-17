@@ -1,8 +1,9 @@
 <?php namespace HTTPMethod;
 
 use HTTPMethod\HTTPMethod as HTTPMethod;
+use Interfaces\Singleton as Singleton;
 
-class GET extends HTTPMethod{
+class GET extends HTTPMethod implements Singleton{
 
   private static $instance;
   protected $methodMap = array();

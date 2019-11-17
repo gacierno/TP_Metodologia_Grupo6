@@ -1,6 +1,8 @@
 <?php namespace Session;
 
-class Session{
+use Interfaces\Singleton as Singleton;
+
+class Session implements Singleton{
 
   private static $instance;
 
