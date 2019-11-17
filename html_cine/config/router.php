@@ -6,9 +6,11 @@ use Controller\AuthenticationController   as AuthenticationController;
 use Controller\UserController             as UserController;
 use Controller\ShowController             as ShowController;
 use Controller\CinemaController           as CinemaController;
+use Controller\CinemaRoomsController      as CinemaRoomsController;
 use Controller\MovieController            as MovieController;
 
 $cinemaController           = new CinemaController();
+$cinemaRoomController       = new CinemaRoomController();
 $showController             = new ShowController();
 $movieController            = new MovieController();
 $authenticationController   = new AuthenticationController();
@@ -40,6 +42,17 @@ $router->post('\/admin\/cines\/nuevo',            array( $cinemaController,'crea
 $router->post('\/admin\/cines\/actualizar',       array( $cinemaController,'update' ) );
 $router->post('\/admin\/cines\/desactivar',       array( $cinemaController,'disable' ) );
 $router->post('\/admin\/cines\/activar',          array( $cinemaController,'enable' ) );
+
+
+// CINEMA ROOMS ============================================================================
+$router->get('\/admin\/cines\/salas\/nuevo',      array( $cinemaRoomController,'createForm' ) );
+$router->get('\/admin\/cines\/salas\/editar',     array( $cinemaRoomController,'editForm' ) );
+$router->get('\/admin\/cines\/salas',             array( $cinemaRoomController,'index' ) );
+
+$router->post('\/admin\/cines\/salas\/nuevo',     array( $cinemaRoomController,'create' ) );
+$router->post('\/admin\/cines\/salas\/actualizar',array( $cinemaRoomController,'update' ) );
+$router->post('\/admin\/cines\/salas\/desactivar',array( $cinemaRoomController,'disable' ) );
+$router->post('\/admin\/cines\/salas\/activar',   array( $cinemaRoomController,'enable' ) );
 
 
 // SHOWS ============================================================================
