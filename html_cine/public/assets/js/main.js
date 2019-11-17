@@ -25,9 +25,11 @@ $(document).ready(function(){
     $(document).on('click',function(e){
         if(e.target.id === 'desktop__menu'){
             $('.some').toggleClass('open');
+            $(".right-arrow").toggleClass("d-none");
         }
         else if($('.some').hasClass('open')){
             $('.some').removeClass('open');
+            $(".right-arrow").toggleClass("d-none");
         }
     });
 
