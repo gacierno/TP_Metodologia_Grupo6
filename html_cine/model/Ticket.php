@@ -1,21 +1,21 @@
 <?php 
 namespace model;
 /**
- * 
+-  id: int
+-  qrCode: string
+-  show: Object : Show
  */
 class Ticket
 {
 	private $id;
 	private $qrCode;
-	private $purchase;
 	private $show;     // Object : Show
 
 	function __construct( $options )
 	{
-		$this->setId( (isset($options['id']) ) ? $options['id'] : null );
-		$this->setQrCode( (isset($options['qrCode']) ) ? $options['qrCode'] : null );
-		$this->setPurchase( (isset($options['purchase']) ) ? $options['purchase'] : null );
-		$this->setShow( (isset($options['show']) ) ? $options['show'] : null );
+		$this->setId( (isset($options['ticket_id']) ) ? $options['ticket_id'] : null );
+		$this->setQrCode( (isset($options['ticket_qrCode']) ) ? $options['ticket_qrCode'] : null );
+		$this->setShow( (isset($options['ticket_show']) ) ? $options['ticket_show'] : null );
 
 	}
 
@@ -49,24 +49,6 @@ class Ticket
     public function setQrCode($qrCode)
     {
         $this->qrCode = $qrCode;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getPurchase()
-    {
-        return $this->purchase;
-    }
-
-    /**
-     * @param mixed $purchase
-     *
-     * @return self
-     */
-    public function setPurchase($purchase)
-    {
-        $this->purchase = $purchase;
     }
 
     /**

@@ -8,17 +8,17 @@ class Show
 	private $id;
 	private $day;
 	private $time;
-  private $movie;  // Object : Movie
-  private $cinema; // Object : Cinema
-  private $available;
+    private $movie;  // Object : Movie
+    private $cinemaroom; // Object : CinemaRoom
+    private $available;
 
 	function __construct( $options )
 	{
         $this->setId( (isset($options['show_id']) ) ? $options['show_id'] : null );
-				$this->setTime( (isset($options['show_time']) ) ? $options['show_time'] : null );
-				$this->setDay( (isset($options['show_date']) ) ? $options['show_date'] : null );
+		$this->setTime( (isset($options['show_time']) ) ? $options['show_time'] : null );
+		$this->setDay( (isset($options['show_date']) ) ? $options['show_date'] : null );
         $this->setMovie( (isset($options['show_movie']) ) ? $options['show_movie'] : null );
-        $this->setCinema( (isset($options['show_cinema']) ) ? $options['show_cinema'] : null );
+        $this->setCinemaRoom( (isset($options['show_cinemaroom']) ) ? $options['show_cinemaroom'] : null );
         $this->setAvailability( ( isset($options['show_available']) ) ? $options['show_available'] : 1 );
 	}
 
@@ -89,7 +89,7 @@ class Show
     /**
      * @return mixed
      */
-    public function getCinema()
+    public function getCinemaRoom()
     {
         return $this->cinema;
     }
@@ -97,9 +97,9 @@ class Show
     /**
      * @param mixed $cinema
      */
-    public function setCinema($cinema)
+    public function setCinemaRoom($cinemaroom)
     {
-        $this->cinema = $cinema;
+        $this->cinema = $cinemaroom;
     }
 
     /**

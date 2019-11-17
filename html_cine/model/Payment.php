@@ -1,26 +1,32 @@
 <?php 
 namespace model;
 /**
-  * 
+-  id: int
+-  authentification_code: int
+-  date: string
+-  amount: float
+-  count: object: Count
   */
  class Payment
  {
 
  	private $id;
- 	private $authCode;
+ 	private $authentification_code;
  	private $date;
  	private $amount;
  	private $count;	
  	
  	function __construct( $options )
  	{
- 		$this->setId(        ( isset($options['id']) )       ? $options['id'] : null );
- 		$this->setAmount(    ( isset($options['amount']) )   ? $options['amount'] : 0 );
- 		$this->setCount(     ( isset($options['count']) )    ? $options['count'] : null );
- 		$this->setDate(      ( isset($options['date']) )     ? $options['date'] : null );
- 		$this->setAuthCode(  ( isset($options['authCode']) ) ? $options['authCode'] : null );
+ 		$this->setId(        ( isset($options['payment_id']) )   ? $options['payment_id'] : null );
+ 		$this->setAuthentificationCode(  ( isset($options['payment_amount']) ) ? $options['payment_amount'] : 0 );
+ 		$this->setDate(     ( isset($options['payment_date']) )     ? $options['payment_date'] : null );
+        $this->setAmount(   ( isset($options['payment_amount']) )     ? $options['payment_amount'] : null );
+        $this->setCount(    ( isset($options['payment_count']) )    ? $options['payment_count'] : null );
  	}
  
+
+
     /**
      * @return mixed
      */
@@ -31,26 +37,34 @@ namespace model;
 
     /**
      * @param mixed $id
+     *
+     * @return self
      */
     public function setId($id)
     {
         $this->id = $id;
+
+        return $this;
     }
 
     /**
      * @return mixed
      */
-    public function getAuthCode()
+    public function getAuthentificationCode()
     {
-        return $this->authCode;
+        return $this->authentification_code;
     }
 
     /**
-     * @param mixed $authCode
+     * @param mixed $authentification_code
+     *
+     * @return self
      */
-    public function setAuthCode($authCode)
+    public function setAuthentificationCode($authentification_code)
     {
-        $this->authCode = $authCode;
+        $this->authentification_code = $authentification_code;
+
+        return $this;
     }
 
     /**
@@ -63,10 +77,14 @@ namespace model;
 
     /**
      * @param mixed $date
+     *
+     * @return self
      */
     public function setDate($date)
     {
         $this->date = $date;
+
+        return $this;
     }
 
     /**
@@ -79,10 +97,14 @@ namespace model;
 
     /**
      * @param mixed $amount
+     *
+     * @return self
      */
     public function setAmount($amount)
     {
         $this->amount = $amount;
+
+        return $this;
     }
 
     /**
@@ -95,10 +117,14 @@ namespace model;
 
     /**
      * @param mixed $count
+     *
+     * @return self
      */
     public function setCount($count)
     {
         $this->count = $count;
+
+        return $this;
     }
 } 
  ?>
