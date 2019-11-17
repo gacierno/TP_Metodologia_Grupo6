@@ -117,6 +117,7 @@ class UserController extends BaseController{
     }
 
     if($updated){
+      $this->session->user      = $updatedUser;
       $this->passSuccessMessage = "Los datos se han actualizado con exito";
     }else{
       $this->passErrorMessage = "Hubo un error al intentar actualizar los datos";
