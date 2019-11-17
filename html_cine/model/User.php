@@ -1,7 +1,12 @@
 <?php
 namespace model;
 /**
- *
+-  id: int
+-  email: string
+-  password: string
+-  role:  object : Role
+-  profile:  object : Profile
+-  available: boolean
  */
 class User
 {

@@ -1,7 +1,10 @@
 <?php
 namespace model;
 /**
- *
+-  id: int
+-  nombre: string
+-  apellido: string
+-  dni: string
  */
 class Profile
 {
