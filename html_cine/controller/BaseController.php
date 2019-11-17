@@ -4,7 +4,6 @@ use Response\RedirectResponse as RedirectResponse;
 use Response\ErrorResponse    as ErrorResponse;
 use Request\Request           as Request;
 use Session\Session           as Session;
-use HTTPMethod\GET            as GET;
 
 class BaseController{
 
@@ -13,24 +12,35 @@ class BaseController{
   private $passSuccessMessage;
   private $passErrorMessage;
   private $session;
+  private $params;
+  private $request;
+
+
 
   function __construct(){
-    $get = GET::getInstance();
-    if($get->passSuccessMessage) $this->successMessage = $get->passSuccessMessage;
-    if($get->passErrorMessage)   $this->errorMessage = $get->passErrorMessage;
+    $this->request = Request::getInstance();
+    $this->params  = $this->request->params;
     $this->session = Session::getInstance();
+    if($this->params->passSuccessMessage) $this->successMessage = $get->passSuccessMessage;
+    if($this->params->passErrorMessage)   $this->errorMessage = $get->passErrorMessage;
   }
+
+
 
   function throw($message){
     echo new ErrorResponse($message);
     return;
   }
 
+
+
   function render($name,$params = array()){
     extract($params);
     if(!isset($user) && $this->session->user) $user = $this->session->user;
     include("views/$name.php");
   }
+
+
 
   function redirect($path,$params = array()){
     $queryString = "?";
@@ -44,12 +54,24 @@ class BaseController{
     return $response->send();
   }
 
+
+
   function __get($attr){
-    $readable_attributes = array('session','successMessage','errorMessage','passSuccessMessage','passErrorMessage');
+    $readable_attributes = array(
+      'session',
+      'successMessage',
+      'errorMessage',
+      'passSuccessMessage',
+      'passErrorMessage',
+      'params',
+      'request'
+    );
     if(in_array( $attr, $readable_attributes)){
       return $this->$attr;
     };
   }
+
+
 
   function __set($attr,$value){
     $writeable_attributes = array('successMessage','errorMessage','passSuccessMessage','passErrorMessage');

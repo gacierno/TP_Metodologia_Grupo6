@@ -1,6 +1,5 @@
 <?php namespace Controller;
 
-use Request\Request           as Request;
 use Controller\BaseController as BaseController;
 
 use DAO\MovieDao             	as MovieDao;
@@ -15,21 +14,22 @@ use Model\Show                as Show;
 use DAO\CinemaDao             as CinemaDao;
 use Model\Cinema              as Cinema;
 
-use HTTPMethod\GET            as GET;
-
 
 class MovieController extends BaseController{
+
+
 
   function __construct(){
     parent::__construct();
   }
 
+
+
   function index(){
-		extract(GET::getInstance()->map());
+		extract($this->params->map());
     $d_movie  = new MovieDao();
     $d_genre  = new GenreDao();
     $d_cinema = new CinemaDao();
-    $req      = new Request();
     $movies   = array();
 
     $filter   = array();
@@ -58,8 +58,10 @@ class MovieController extends BaseController{
   }
 
 
+
+
   function detail(){
-    extract(GET::getInstance()->map());
+    extract($this->params->map());
     if(isset($id)){
       $shows    = array();
       $d_movie  = new MovieDao();

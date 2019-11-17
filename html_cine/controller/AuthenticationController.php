@@ -2,7 +2,6 @@
 
 use Controller\BaseController as BaseController;
 use Response\RedirectResponse as RedirectResponse;
-use Request\Request           as Request;
 
 use dao\RoleDao               as RoleDao;
 use dao\UserDao               as UserDao;
@@ -10,25 +9,26 @@ use dao\UserDao               as UserDao;
 use model\User                as User;
 use model\Profile             as Profile;
 
-use HTTPMethod\POST           as POST;
-
 class AuthenticationController extends BaseController{
+
+
 
   function __construct(){
     parent::__construct();
   }
 
+
+
   function authenticate(){
-    $req = new Request();
     // GET UPDATED USER FROM DB
     if($this->session->user){
       $d_user = new UserDao();
       $this->session->user = $d_user->getById($this->session->user->getId());
     }
-    $includesLogin        = preg_match("/^\/login/",$req->path());
-    $includesNewUserForm  = preg_match("/^\/login\/create$/",$req->path());
-    $includesUserRegister = preg_match("/^\/usuario\/nuevo$/",$req->path());
-    $includesAdmin        = preg_match("/^\/admin/",$req->path());
+    $includesLogin        = preg_match("/^\/login/",$this->request->path());
+    $includesNewUserForm  = preg_match("/^\/login\/create$/",$this->request->path());
+    $includesUserRegister = preg_match("/^\/usuario\/nuevo$/",$this->request->path());
+    $includesAdmin        = preg_match("/^\/admin/",$this->request->path());
 
     // IF USER IS NOT LOGGED IN, REJECT UNLESS IT IS TRYING TO LOGIN OR REGISTER
     if(
@@ -71,16 +71,22 @@ class AuthenticationController extends BaseController{
     }
   }
 
+
+
   function loginForm(){
     $this->render("login");
   }
+
+
 
   function registerForm(){
     $this->render("userCreation");
   }
 
+
+
   function login(){
-    extract(POST::getInstance()->map());
+    extract($this->params->map());
     if(!isset($username,$password)) return "Error: no user or pass";
     $userDao = new UserDao();
     $users = $userDao->getList(array(
@@ -97,6 +103,8 @@ class AuthenticationController extends BaseController{
       $this->redirect("/login");
     }
   }
+
+
 
 
   function logout(){

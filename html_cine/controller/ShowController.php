@@ -14,13 +14,11 @@ use Model\Cinema              as Cinema;
 use DAO\MovieDao             	as MovieDao;
 use Model\Movie               as Movie;
 
-use HTTPMethod\GET            as GET;
-use HTTPMethod\POST           as POST;
-
 
 class ShowController extends BaseController{
 
   private $d_show;
+
 
 
   function __construct(){
@@ -29,14 +27,16 @@ class ShowController extends BaseController{
   }
 
 
+
   function index(){
     $d_show   = $this->d_show;
     $this->render("showsAdmin", array('shows' => $d_show->getList()) );
   }
 
 
+
   function editShow(){
-    extract(GET::getInstance()->map());
+    extract($this->params->map());
     if(isset($show_id)){
       $d_show   = $this->d_show;
       $shows    = $d_show->getList(array( 'show_id' => $show_id ));
@@ -50,6 +50,7 @@ class ShowController extends BaseController{
   }
 
 
+
   function newShow(){
     $d_cinema    = new CinemaDao();
     $d_movie     = new MovieDao();
@@ -60,6 +61,7 @@ class ShowController extends BaseController{
       )
     );
   }
+
 
 
   function validateShowTime($date,$time,$cine,$existing_show = false){
@@ -126,6 +128,7 @@ class ShowController extends BaseController{
     return !($shows && count($shows) > 0);
   }
 
+
   function validateMovieOwnership($date,$movie,$cine){
     $shows  = $this->d_show->getListWhere(
       array(
@@ -160,15 +163,16 @@ class ShowController extends BaseController{
   }
 
 
+
   function validateShowCreationData($data){
     extract($data);
     return isset($show_date,$show_time,$show_cinema,$show_movie);
   }
 
+
   function validate($existing_show = false){
     $show_id = false;
-    $post    = POST::getInstance();
-    extract($post->map());
+    extract($this->params->map());
 
     if(
       $existing_show &&
@@ -184,7 +188,7 @@ class ShowController extends BaseController{
     return (
       (
         $existing_show ||
-        $this->validateShowCreationData($post->map())
+        $this->validateShowCreationData($this->params->map())
       ) &&
       // VALIDATE THAT PREVIOUS AND NEXT FUNCTION IS 15 MINUTES AWAY
       $this->validateShowTime(
@@ -203,18 +207,18 @@ class ShowController extends BaseController{
   }
 
 
+
   function create(){
     $created = false;
-    $post    = POST::getInstance();
     if($this->validate()){
 
       $d_cinema     = new CinemaDao();
       $d_movie      = new MovieDao();
-      $movie        = $d_movie->getById($post->show_movie);
-      $cinema       = $d_cinema->getById($post->show_cinema);
+      $movie        = $d_movie->getById($this->params->show_movie);
+      $cinema       = $d_cinema->getById($this->params->show_cinema);
 
       if($movie && $cinema){
-        $newShowData  = $post->map();
+        $newShowData  = $this->params->map();
         $newShowData['show_cinema'] = $cinema;
         $newShowData['show_movie']  = $movie;
         $newShow  = new Show($newShowData);
@@ -236,19 +240,19 @@ class ShowController extends BaseController{
 
   }
 
+
   function update(){
     $updated = false;
-    $post    = POST::getInstance();
 
     $d_cinema     = new CinemaDao();
     $d_movie      = new MovieDao();
-    $show         = $this->d_show->getById($post->show_id);
-    $movie        = $d_movie->getById($post->show_movie);
-    $cinema       = $d_cinema->getById($post->show_cinema);
+    $show         = $this->d_show->getById($this->params->show_id);
+    $movie        = $d_movie->getById($this->params->show_movie);
+    $cinema       = $d_cinema->getById($this->params->show_cinema);
 
     if($movie && $cinema && $show){
 
-      $updatedShow = new Show($post->map());
+      $updatedShow = new Show($this->params->map());
       $updatedShow->setMovie($movie);
       $updatedShow->setCinema($cinema);
       $updatedShow->setId($show->getId());
@@ -273,14 +277,14 @@ class ShowController extends BaseController{
       $this->passErrorMessage = "Hubo un error, la funcion no pudo ser actualizada";
     }
 
-    $this->redirect("/admin/funciones/editar", array('show_id' => $post->show_id));
+    $this->redirect("/admin/funciones/editar", array('show_id' => $this->params->show_id));
   }
+
 
 
   function setShowAvailability($value){
     $updated      = false;
-    $post         = POST::getInstance();
-    $show         = $this->d_show->getById($post->show_id);
+    $show         = $this->d_show->getById($this->params->show_id);
 
     if($show){
 
@@ -301,16 +305,16 @@ class ShowController extends BaseController{
   }
 
 
+
   function disable(){
-    $post    = POST::getInstance();
     $this->setShowAvailability(0);
     $this->redirect("/admin/funciones");
   }
 
 
+
   function enable(){
-    $post    = POST::getInstance();
-    $show    = $this->d_show->getById($post->show_id);
+    $show    = $this->d_show->getById($this->params->show_id);
     if($this->validate($show)){
       $this->setShowAvailability(1);
     }else{

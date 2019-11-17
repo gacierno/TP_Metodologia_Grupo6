@@ -9,16 +9,18 @@ use dao\ProfileDao            as ProfileDao;
 use model\User                as User;
 use model\Profile             as Profile;
 
-use HTTPMethod\POST           as POST;
-
 class UserController extends BaseController{
 
   private $d_user;
+
+
 
   function __construct(){
     parent::__construct();
     $this->d_user = new UserDao();
   }
+
+
 
   function verifyOwnership(User $user){
     $sessionUser = $this->session->user;
@@ -35,18 +37,21 @@ class UserController extends BaseController{
     return $verified;
   }
 
+
+
   function prepareUserForUpdate(){
-    $post = POST::getInstance();
-    if(!$post->user_id){
+    if(!$this->params->user_id){
       $this->passErrorMessage = "Debe especificar un usuario";
     }else{
       $d_user = $this->d_user;
-      $user = $d_user->getById($post->user_id);
+      $user = $d_user->getById($this->params->user_id);
       if($this->verifyOwnership($user)){
         return $user;
       }
     }
   }
+
+
 
   function setUserAvailability($value){
     $updated = false;
@@ -69,15 +74,21 @@ class UserController extends BaseController{
 
   }
 
+
+
   function enable(){
     $this->setUserAvailability(1);
     $this->redirect("/usuario");
   }
 
+
+
   function disable(){
     $this->setUserAvailability(0);
     $this->redirect("/logout");
   }
+
+
 
 
   function update(){
@@ -86,12 +97,11 @@ class UserController extends BaseController{
     $d_user = $this->d_user;
     $d_profile = new ProfileDao();
     if(isset($user)){
-      $post = POST::getInstance();
       // UPDATE PROFILE
-      $updatedProfile = new Profile($post->map());
+      $updatedProfile = new Profile($this->params->map());
       $updatedProfile->setId($user->getProfile()->getId());
       // UPDATE USER
-      $updatedUser = new User($post->map());
+      $updatedUser = new User($this->params->map());
       $updatedUser->setId($user->getId());
       $updatedUser->setEmail($user->getEmail());
       $updatedUser->setRole($user->getRole());
@@ -116,9 +126,13 @@ class UserController extends BaseController{
   }
 
 
+
+
   function detail(){
     $this->render('userDetail');
   }
+
+
 
 
   function create(){
@@ -127,13 +141,12 @@ class UserController extends BaseController{
     // Default error message
     $errorMessage = "Hubo un error creando el usuario";
     // Parse POST data into objects
-    $post    = POST::getInstance();
     $userDao = $this->d_user;
-    $newUserProfile = new Profile($post->map());
+    $newUserProfile = new Profile($this->params->map());
     $roleDao = new RoleDao();
     $roles = $roleDao->getList(array( 'role_name' => 'cliente' ));
     $newUserRole = (count($roles) > 0) ? $roles[0] : null;
-    $newUserData = $post->map();
+    $newUserData = $this->params->map();
     // Assign role and profile
     $newUserData['user_profile'] = $newUserProfile;
     $newUserData['user_role'] = $newUserRole;
