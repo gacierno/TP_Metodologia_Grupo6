@@ -46,6 +46,8 @@
         <hr class="rgb-divider">
         <?php endif; ?>
         <li class="nav__desktop--inner-link"><a class="no-border" href="/usuario">Perfil</a></li>
+        <hr class="rgb-divider">
+        <li class="nav__desktop--inner-link"><a class="no-border" href="/logout">Cerrar Sesión</a></li>
       </ul>
     </div>
     </div>
@@ -53,6 +55,7 @@
   </div>
 
   <div class="nav__container nav__links--container col-3 nav__menu--mobile">
+  <?php if(isset($user)) : ?>
   <input type="checkbox" class="openSidebarMenu" id="openSidebarMenu">
   <label for="openSidebarMenu" class="sidebarIconToggle">
     <div class="spinner diagonal part-1"></div>
@@ -75,7 +78,12 @@
         <hr class="rgb-divider">
         <?php endif; ?>
         <li class="nav__desktop--inner-link"><a class="no-border" href="/usuario">Perfil</a></li>
+        <hr class="rgb-divider">
+        <li class="nav__desktop--inner-link"><a class="no-border" href="/logout">Cerrar Sesión</a></li>
       </ul>
   </div>
+  <?php endif; ?>
+
   </div>
+
 </div>

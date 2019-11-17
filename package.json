@@ -1,0 +1,23 @@
+{
+  "name": "tp_metologia_grupo6",
+  "version": "1.0.0",
+  "description": "none",
+  "main": "index.js",
+  "scripts": {
+    "test": "test",
+    "sync": "browser-sync start --proxy \"http://localhost:8080\" --files \"*\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gacierno/TP_Metodologia_Grupo6.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gacierno/TP_Metodologia_Grupo6/issues"
+  },
+  "homepage": "https://github.com/gacierno/TP_Metodologia_Grupo6#readme",
+  "devDependencies": {
+    "browser-sync": "^2.26.7"
+  }
+}

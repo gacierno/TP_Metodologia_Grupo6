@@ -2,7 +2,7 @@
 
 ?>
 
-<!-- voiy a tener un array de funciones que tienen un objeto movie y un cine y fecha y hora -->
+<!-- voy a tener un array de funciones que tienen un objeto movie y un cine y fecha y hora , y la sala -->
 <div class="main-container container-fluid">
 <div class="row movie-detail__container">
         <div class="col-sm-12 col-md-4 movie-detail__banner--container">
@@ -31,7 +31,20 @@
                             <?php $originalDate = $show->getDay();
                             $newDate = str_replace('-','/',date('d-m-Y',strtotime($originalDate)));
                             ?>
-                            <a href="/funciones?id=<?php echo($show->getId()); ?>"><?php echo($newDate); ?> <?php echo($show->getTime()); ?></a>
+                            <a href="/funciones?id=<?php echo($show->getId()); ?>"><p class="showitem__dat--format"><?php echo($newDate); ?> <?php echo($show->getTime()); ?></p><p class="showitem__cinemaroom-name--format">asdasds</p>
+                            <div class="form-group">
+                                <label>Quantity: </label>
+                                <div class="input-group">
+                                    <div class="input-group-btn">
+                                        <button id="down" class="btn btn-default" onclick=" down('0')"><span class="glyphicon glyphicon-minus"></span></button>
+                                    </div>
+                                    <input type="text" id="myNumber" class="form-control input-number" value="1" />
+                                    <div class="input-group-btn">
+                                        <button id="up" class="btn btn-default" onclick="up('10')"><span class="glyphicon glyphicon-plus"></span></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
                         </li>
                         <?php endforeach; ?>
                     </ul>
@@ -42,5 +55,21 @@
 
     </div>
 </div>
+
+
+<script>
+function up(max) {
+    document.getElementById("myNumber").value = parseInt(document.getElementById("myNumber").value) + 1;
+    if (document.getElementById("myNumber").value >= parseInt(max)) {
+        document.getElementById("myNumber").value = max;
+    }
+}
+function down(min) {
+    document.getElementById("myNumber").value = parseInt(document.getElementById("myNumber").value) - 1;
+    if (document.getElementById("myNumber").value <= parseInt(min)) {
+        document.getElementById("myNumber").value = min;
+    }
+}
+</script>
 
 <?php include_once('footer.php'); ?>
