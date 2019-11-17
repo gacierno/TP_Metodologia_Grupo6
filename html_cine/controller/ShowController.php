@@ -126,7 +126,7 @@ class ShowController extends BaseController{
 
       |show_time|...|show_end_time|
                   |$minRange||show_time|...|show_end_time\|$maxRange|
-                                        
+
     */
 
     $shows = $this->d_show->getListWhere($query);
@@ -214,6 +214,16 @@ class ShowController extends BaseController{
 
 
 
+  function updateShowEndTime(Show $show){
+    $timeArray = explode(":",$show->getTime());
+    $dt = new DateTime();
+    $dt->setTime($timeArray[0],$timeArray[1],$timeArray[2]);
+    $dt->add(DateInterval::createFromDateString($show->getMovie()->getDuration() . ' minutes'));
+    $show->setEndTime($dt->format('H:i:s'));
+  }
+
+
+
   function create(){
     $created = false;
     if($this->validate()){
@@ -245,6 +255,7 @@ class ShowController extends BaseController{
     }
 
   }
+
 
 
   function update(){
