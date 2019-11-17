@@ -1143,9 +1143,6 @@ body{
         width: 50%;
         position: relative;
       } 
-      .dropdown{
-          width: 75%;
-      }
 }
 .dropdown.active ul{
     z-index: 10;
@@ -1521,3 +1518,25 @@ select#moviefilter__multiple-select--genre,select#moviefilter__select--cinema{
         font-size: 32px;
     }  
 }
+
+.showitem__cinemaroom-name--format{
+    display: inline-block;
+    font-size:12px;
+    color: red;
+    letter-spacing: 1px;
+    font-family: 'Roboto', sans-serif;
+    text-transform: capitalize;
+    margin-left: 10px;
+    margin-bottom: 0;
+}
+
+.showitem__dat--format{
+    display: inline-block;
+    margin-bottom: 0px;
+    margin-top: 10px;
+}
+
+.form-group .glyphicon{
+	color: #95d7fc;
+}
+

@@ -27,6 +27,7 @@ $('#cinemaRoom-delete').on('click',function(){
 
 
 var placeholder;
+var height
 //on document ready,hide filter input placeholder and to load
 //new movies/create new slider with jquery.Load() method
 $(document).ready(function(){
@@ -69,10 +70,11 @@ $(document).ready(function(){
         $('.dropdown').each(function(){
             var dropId = '#' + $(this).attr('id');
             if($(this).hasClass('movielist__filter--container')){
-                var height = $(dropId + ' #moviefilter__select--date').outerHeight();
+                height = $(dropId + ' #moviefilter__select--date').outerHeight();
             }
             else{
-                var height = $(dropId + ' .selLabel').outerHeight();
+                height = $(dropId + ' ul.dropdown-list li').outerHeight();
+                $(dropId + ' .selLabel').height(height);
             }
             $(dropId + ' .selLabel').click(function () {
                 $(dropId + '.dropdown').toggleClass('active');
@@ -219,6 +221,32 @@ $(document).ready(function(){
 });
 
 
+//resizes dropdown size in case one line turns into two
+$(window).resize(function(){
+    if(($('.dropdown').length > 0)&&(!($('.dropdown').hasClass('movielist__filter--container')))){
+        $('.dropdown').each(function(){
+            var dropId = '#' + $(this).attr('id');
+            if(!($(this).hasClass('movielist__filter--container'))){
+                height = $(dropId + ' ul.dropdown-list li').outerHeight();
+                $(dropId).height(height);
+                $(dropId + ' .selLabel').height(height);
+            }
+            if($(dropId).hasClass('active')){
+                var index = 1;
+                var amountofSels = $(dropId + ' li').length + 1;
+                var finale = (height * amountofSels) + 'px';
+                $(dropId + '.dropdown:not(.height-non-mod)').css('height',finale);
+                $(dropId + ' li').each(function(){
+                    var amount = (height * index) + 'px' ;
+                    $(this).css('transform','translateY(' + amount + ')');
+                    index++;
+                });
+            }
+        });
+    }
+});
+
+
 //bind filter functionality
 $("#inpt_search,#inpt_search_label").on('focus mouseover', function () {
     $('#inpt_search').attr('placeholder',placeholder);
@@ -322,3 +350,5 @@ function closeMenu(){
         $('.some').toggleClass('open');
     }
 }
+
+
