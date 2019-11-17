@@ -8,14 +8,13 @@ use Controller\ShowController             as ShowController;
 use Controller\CinemaController           as CinemaController;
 use Controller\MovieController            as MovieController;
 
-$cinemaController = new CinemaController();
-$showController   = new ShowController();
-$movieController  = new MovieController();
-$authenticationController = new AuthenticationController();
-$userController = new UserController();
+$cinemaController           = new CinemaController();
+$showController             = new ShowController();
+$movieController            = new MovieController();
+$authenticationController   = new AuthenticationController();
+$userController             = new UserController();
 
-$router = new Router();
-
+$router                     = new Router();
 
 // MIDDLEWARES ======================================================================
 // -- IF USER IN SESSION AUTHENTICATE
