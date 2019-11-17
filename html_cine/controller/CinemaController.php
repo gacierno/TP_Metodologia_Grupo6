@@ -49,7 +49,7 @@ class CinemaController extends BaseController{
   function editForm(){
     extract($this->params->map());
     $d_cinema   = $this->d_cinema;
-    $this->render("cinemaForm", array('cinema' => $d_cinema->getById($id)) );
+    $this->render("cinemaRoomForm", array('cinema' => $d_cinema->getById($id)) );
   }
 
 
