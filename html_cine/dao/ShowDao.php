@@ -1,4 +1,12 @@
 <?php
+
+/*
+FEATURE REQUEST FROM GASPAR:
+Un metodo que reciba un rango de fechas (principio y fin) y un id de show.
+Que devuelva un listado de shows que se transmitan en ese rango de fechas.
+EXCLUYENDO cualquier show que tenga el id show que se pasa por parametro.
+
+*/
 namespace dao;
 /**
  *
