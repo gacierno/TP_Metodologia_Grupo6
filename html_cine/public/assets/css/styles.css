@@ -70,7 +70,7 @@ body.open .overlay{
     }
 }
 
-.nav__links--container a,.cinemalist__button--container a,.showlist__button--container a{
+.nav__links--container a,.cinemalist__button--container a,.showlist__button--container a,.cinemaRoomlist__button--container a{
     text-decoration: none;
     cursor:pointer;
     color: white;
@@ -86,7 +86,7 @@ body.open .overlay{
     border-image-slice: 1;
 }
 
-.cinemalist__button--container a:hover,.showlist__button--container a:hover{
+.cinemalist__button--container a:hover,.showlist__button--container a:hover,.cinemaRoomlist__button--container a:hover{
     background-color:black;
     color:white;
 }
@@ -386,13 +386,13 @@ body{
 
 }
 
-.cinemacard__container{
+.cinemacard__container,.cinemaRoomcard__container{
     justify-content: center;
     padding:0;
     margin-bottom: 30px;
 }
 
-.cinemacard__inner-container{
+.cinemacard__inner-container,.cinemaRoomcard__inner-container{
     position: relative;
     width: 85%;
     justify-content: center;
@@ -407,7 +407,7 @@ body{
     border-image-slice: 1;
 }
 
-.cinemacard__overlay{
+.cinemacard__overlay ,.cinemaRoomcard__overlay{
     position: absolute;
     top: 0;
     left: 0;
@@ -418,12 +418,12 @@ body{
     background:  linear-gradient(-70deg, rgba(250, 124, 48, 0.6) 30%, rgba(0, 255, 255, 0.6) 50%,rgba(138, 43, 226, 0.6) 75%, rgba(0, 255, 0, 0.6) 100%);
 }
 
-.cinemacard__inner-container:hover{
+.cinemacard__inner-container:hover ,.cinemaRoomcard__inner-container:hover{
     transition: all .2s ease-in-out;
     transform: scale(1.1);
 }
 
-.cinemacard__inner-container:hover .cinemacard__overlay{
+.cinemacard__inner-container:hover .cinemacard__overlay ,.cinemaRoomcard__inner-container:hover .cinemaRoomcard__overlay{
     display: flex;
     justify-content: center;
 }
@@ -433,15 +433,15 @@ body{
     text-align: center;
 }
 
-.cinemalist__row{
+.cinemalist__row,.cinemaRoomlist__row{
     justify-content: space-around;
 }
 
-.cinemacard__image img{
+.cinemacard__image img ,.cinemaRoomcard__image img{
     width: 100%;
 }
 
-.cinemacard__info{
+.cinemacard__info ,.cinemaRoomcard__info{
     padding:20px 10px;
     background:white;
     text-align: center;
@@ -449,17 +449,17 @@ body{
     font-family: Roboto,sans-serif;
 }
 
-.cinemacard__name{
+.cinemacard__name,.cinemaRoomcard__name{
     font-size:28px;
 }
 
-.cinemacard__container hr{
+.cinemacard__container hr ,.cinemaRoomcard__container hr{
     border: 0;
     height: 1px;
     background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
 }
 
-.cinema__form--container{
+.cinema__form--container ,.cinemaRoom__form--container{
     position: relative;
     width: 100%;
     background:white;
@@ -470,17 +470,17 @@ body{
     border-image-slice: 1;
 }
 
-.cinema__form{
+.cinema__form , .cinemaRoom__form{
     width: 100%;
 }
 
-.cinema__form label,.login-form label,.user-detail__form label{
+.cinema__form label,.login-form label,.user-detail__form label,.cinemaRoom__form label{
     width: 100%;
     margin:0;
     position: relative;
 }
 
-.cinema__form input,.user-detail__form input{
+.cinema__form input,.user-detail__form input,.cinemaRoom__form input{
     padding: 10px 0;
     border: none;
     border-bottom: solid 1px black;
@@ -506,21 +506,25 @@ body{
 .login-form input:-webkit-autofill:active,.user-detail__form input:-webkit-autofill,
 .user-detail__form input:-webkit-autofill:hover, 
 .user-detail__form input:-webkit-autofill:focus, 
-.user-detail__form input:-webkit-autofill:active {
+.user-detail__form input:-webkit-autofill:active,
+.cinemaRoom__form input:-webkit-autofill,
+.cinemaRoom__form input:-webkit-autofill:hover, 
+.cinemaRoom__form input:-webkit-autofill:focus, 
+.cinemaRoom__form input:-webkit-autofill:active {
     -webkit-box-shadow: linear-gradient(to right, #eea2a2 0%, #bbc1bf 19%, #57c6e1 42%, #b49fda 79%, #7ac5d8 100%);
     transition: background-color 5000s ease-in-out 0s;
     -webkit-text-fill-color: white;
 }
 
-.cinema__form label:not(:last-child),.user-detail__form label:not(:last-child){
+.cinema__form label:not(:last-child),.user-detail__form label:not(:last-child),.cinemaRoom__form label:not(:last-child){
     margin-bottom: 40px;
 }
 
-.cinemaform__button--primary,.cinemaform__button--secondary{
+.cinemaform__button--primary,.cinemaform__button--secondary,.cinemaRoomform__button--primary,.cinemaRoomform__button--secondary{
     border: 2px solid;
 }
 
-.cinemaform__button--primary{
+.cinemaform__button--primary,.cinemaRoomform__button--primary{
     background:rgb(20, 20, 20);
     color:#fff;
     border:none;
@@ -532,11 +536,11 @@ body{
     transition:800ms ease all;
     outline:none;
   }
-  .cinemaform__button--primary:hover{
+  .cinemaform__button--primary:hover,.cinemaRoomform__button--primary:hover{
     background:white;
     color:cyan;
   }
-  .cinemaform__button--primary:before,.cinemaform__button--primary:after{
+  .cinemaform__button--primary:before,.cinemaform__button--primary:after,.cinemaRoomform__button--primary:before,.cinemaRoomform__button--primary:after{
     content:'';
     position:absolute;
     top:0;
@@ -546,22 +550,22 @@ body{
     background-image: linear-gradient(to right, #eea2a2 0%, #bbc1bf 19%, #57c6e1 42%, #b49fda 79%, #7ac5d8 100%);
     transition:400ms ease all;
   }
-  .cinemaform__button--primary:after{
+  .cinemaform__button--primary:after,.cinemaRoomform__button--primary:after{
     right:inherit;
     top:inherit;
     left:0;
     bottom:0;
   }
-  .cinemaform__button--primary:hover:before,.cinemaform__button--primary:hover:after{
+  .cinemaform__button--primary:hover:before,.cinemaform__button--primary:hover:after,.cinemaRoomform__button--primary:hover:before,.cinemaRoomform__button--primary:hover:after{
     width:100%;
     transition:800ms ease all;
   }
 
-  .cinemaform__button--container{
+  .cinemaform__button--container,.cinemaRoomform__button--container{
       text-align: end;
   }
 
-  .cinemaform__button--secondary{
+  .cinemaform__button--secondary,.cinemaRoomform__button--secondary{
     margin-left:10px;
     background:red;
     color:#fff;
@@ -574,11 +578,11 @@ body{
     transition:800ms ease all;
     outline:none;
   }
-  .cinemaform__button--secondary:hover{
+  .cinemaform__button--secondary:hover,.cinemaRoomform__button--secondary:hover{
     background:white;
     color:red;
   }
-  .cinemaform__button--secondary:before,.cinemaform__button--secondary:after{
+  .cinemaform__button--secondary:before,.cinemaform__button--secondary:after,.cinemaRoomform__button--secondary:before,.cinemaRoomform__button--secondary:after{
     content:'';
     position:absolute;
     top:0;
@@ -588,25 +592,27 @@ body{
     background-image: linear-gradient(to right, #eea2a2 0%, #bbc1bf 19%, #57c6e1 42%, #b49fda 79%, #7ac5d8 100%);
     transition:400ms ease all;
   }
-  .cinemaform__button--secondary:after{
+  .cinemaform__button--secondary:after,.cinemaRoomform__button--secondary:after{
     right:inherit;
     top:inherit;
     left:0;
     bottom:0;
   }
-  .cinemaform__button--secondary:hover:before,.cinemaform__button--secondary:hover:after{
+  .cinemaform__button--secondary:hover:before,.cinemaform__button--secondary:hover:after,.cinemaRoomform__button--secondary:hover:before,.cinemaRoomform__button--secondary:hover:after{
     width:100%;
     transition:800ms ease all;
   }
 
   @media all and (min-width:768px){
-    .cinemaform__button--primary,.cinemaform__button--secondary{
+    .cinemaform__button--primary,.cinemaform__button--secondary,.cinemaRoomform__button--primary,.cinemaRoomform__button--secondary{
         font-size:24px;
     }
   }
 
 .cinema__form input:focus ~ .floating-label,
-.cinema__form input:not(:focus):valid ~ .floating-label{
+.cinema__form input:not(:focus):valid ~ .floating-label,
+.cinemaRoom__form input:focus ~ .floating-label,
+.cinemaRoom__form input:not(:focus):valid ~ .floating-label{
   top: -30px;
   left: 0px;
   opacity: 1;
@@ -829,7 +835,7 @@ body{
     -webkit-text-fill-color: white;
 }
 
-.cinemalist__button--container,.showlist__button--container{
+.cinemalist__button--container,.showlist__button--container,.cinemaRoomlist__button--container{
     text-align: center;
     margin-bottom: 40px;
 }
@@ -1356,11 +1362,11 @@ body{
     text-align: right;
 }
 
-.cinemalist__main-container{
+.cinemalist__main-container ,.cinemaRoomlist__main-container{
     text-align:center;
 }
 
-.showlist__main-container h1,.cinemalist__main-container h1{
+.showlist__main-container h1,.cinemalist__main-container h1 ,.cinemaRoomlist__main-container h1{
     font-size: 24px;
     font-family: 'Roboto',sans-serif;
     text-align: center;
@@ -1368,7 +1374,7 @@ body{
 }
 
 @media all and (min-width:768px){
-    .showlist__main-container h1,.cinemalist__main-container h1{
+    .showlist__main-container h1,.cinemalist__main-container h1,.cinemaRoomlist__main-container h1{
         font-size: 32px;
     }
 }
@@ -1501,3 +1507,17 @@ select#moviefilter__multiple-select--genre,select#moviefilter__select--cinema{
     border-image-slice: 1;
 }
   
+.cinemaRoomlist__title--format{
+    display: block;
+    color: white;
+    font-size: 24px;
+    font-family: 'Roboto', sans-serif;
+    margin: 50px auto;
+    letter-spacing: 1px;
+}
+
+@media all and (min-width:768px){
+    .cinemaRoomlist__title--format{
+        font-size: 32px;
+    }  
+}

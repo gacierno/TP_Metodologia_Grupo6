@@ -15,6 +15,16 @@ $('#cinema-delete').on('click',function(){
     }
 });
 
+//bind event to change action in cinemaRoom-form when delete button's clicked
+$('#cinemaRoom-delete').on('click',function(){
+    if($(this).attr('available') !== undefined){
+        $('#cinemaRoom-form').attr('action','/admin/cines/desactivar');
+    }
+    else if($(this).attr('not-available') !== undefined){
+        $('#cinemaRoom-form').attr('action','/admin/cines/activar');
+    }
+});
+
 
 var placeholder;
 //on document ready,hide filter input placeholder and to load

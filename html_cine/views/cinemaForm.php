@@ -1,3 +1,7 @@
+<!-- COMENTARIO PARA GASPU :
+Esta vista va a hacer getSalas() del objeto $cinema para renderizarlas -->
+
+
 <?php include_once('header.php'); ?>
 
 <?php if(isset($cinema)) : $isCinemaSet = true; $availability = $cinema->getAvailability(); else : $isCinemaSet = false; endif; ?>
@@ -54,5 +58,50 @@
         </form>
 
     </div>
+    <div class="cinemaRoomcard__list">
+    <h2 class="cinemaRoomlist__title--format">Listado de Salas</h2>
+        <div class="cinemaRoomlist__button--container col-12">
+            <a target="_self" href="/admin/cines/salas/nuevo">Agregar Sala</a>
+        </div>
+    <div class="row cinemaRoomlist__row">
+<?php 
+$cinemaRooms = $cinema->getCinemaRooms();
+
+foreach($cinemaRooms as $cinemaRoom) :
+    
+$availability = $cinemaRoom->getAvailability();
+    
+?>
+
+        <div id="cinemaRoom-<?php echo($cinemaRoom->getId()); ?>" class="cinemaRoomcard__container col-sm-12 col-md-6 col-lg-4 col-xl-4">
+            <div class="cinemaRoomcard__inner-container">
+                <div class="cinemaRoomcard__image">
+                    <img src="/public/assets/images/sala.jpg" alt="salacard">
+                </div>
+                <div class="cinemaRoomcard__info">
+                    <div class="cinemaRoomcard__name"><?php echo($cinemaRoom->getName()); ?></div>
+                    <?php if($availability) : ?>
+                      <span class="badge badge-primary">
+                        Activa
+                      </span>
+                    <?php else : ?>
+                      <span class="badge badge-danger">
+                        Inactivo
+                      </span>
+                    <?php endif; ?>
+                    <hr>
+                    <div class="cinemacard__capacity"><?php echo('Capacidad : '.$cinemaRoom->getCapacity() .' personas'); ?></div>
+                    <div class="cinemacard__value"><?php echo('Valor de ticket : $'.$cinemaRoom->getTicketValue() ); ?></div>
+                </div>
+                <?php 
+                $idcinemaRoom = $cinemaRoom->getId();
+                ?>
+                <a href="/admin/cines/salas/editar?id=<?php echo($idcinemaRoom); ?>" class="cinemaRoomcard__overlay"><img src="/public/assets/images/edit.svg" alt=""></a>
+            </div>
+        </div>
+                    <?php endforeach; ?>
+    </div>
+    </div>
+
 </div>
 <?php include_once('footer.php'); ?>
