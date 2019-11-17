@@ -6,7 +6,7 @@ use Controller\AuthenticationController   as AuthenticationController;
 use Controller\UserController             as UserController;
 use Controller\ShowController             as ShowController;
 use Controller\CinemaController           as CinemaController;
-use Controller\CinemaRoomsController      as CinemaRoomsController;
+use Controller\CinemaRoomController       as CinemaRoomController;
 use Controller\MovieController            as MovieController;
 
 $cinemaController           = new CinemaController();

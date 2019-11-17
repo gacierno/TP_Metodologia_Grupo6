@@ -1,8 +1,8 @@
 <?php namespace Controller;
 
 use Controller\BaseController as BaseController;
-use DAO\CinemaRoomDao             as CinemaRoomDao;
-use Model\CinemaRoom              as CinemaRoom;
+use DAO\CinemaRoomDao         as CinemaRoomDao;
+use Model\CinemaRoom          as CinemaRoom;
 
 
 class CinemaRoomController extends BaseController{
@@ -13,7 +13,7 @@ class CinemaRoomController extends BaseController{
 
   function __construct(){
     parent::__construct();
-    $this->d_cinemaRoom = new CinemaRoomDao();
+    // $this->d_cinemaRoom = new CinemaRoomDao();
   }
 
 
@@ -35,7 +35,7 @@ class CinemaRoomController extends BaseController{
     $valid = true;
     extract($data);
     if(
-      !isset($cinemaRoom_name,$cinemaRoom_address,$cinemaRoom_capacity,$cinemaRoom_ticketValue) ||
+      !isset($cinemaRoom_name,$cinemaRoom_capacity,$cinemaRoom_ticketValue) ||
       $cinemaRoom_capacity < 1 ||
       $cinemaRoom_ticketValue < 1
     ){

@@ -93,7 +93,7 @@ class ShowController extends BaseController{
         'value' => $cine
       ),
       array(
-        'column' => "show_time",
+        'column' => "show_end_time",
         'operator' => ">=",
         'condition' => "and",
         'value' => $minRange
@@ -122,6 +122,12 @@ class ShowController extends BaseController{
         )
       );
     }
+    /*
+
+      |show_time|...|show_end_time|
+                  |$minRange||show_time|...|show_end_time\|$maxRange|
+                                        
+    */
 
     $shows = $this->d_show->getListWhere($query);
 
