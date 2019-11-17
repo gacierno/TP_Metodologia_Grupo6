@@ -8,6 +8,7 @@ class Show
 	private $id;
 	private $day;
 	private $time;
+    private $end_time
     private $movie;  // Object : Movie
     private $cinemaroom; // Object : CinemaRoom
     private $available;
@@ -16,6 +17,7 @@ class Show
 	{
         $this->setId( (isset($options['show_id']) ) ? $options['show_id'] : null );
 		$this->setTime( (isset($options['show_time']) ) ? $options['show_time'] : null );
+        $this->setEndTime( (isset($options['show_end_time']) ) ? $options['show_end_time'] : null );
 		$this->setDay( (isset($options['show_date']) ) ? $options['show_date'] : null );
         $this->setMovie( (isset($options['show_movie']) ) ? $options['show_movie'] : null );
         $this->setCinemaRoom( (isset($options['show_cinemaroom']) ) ? $options['show_cinemaroom'] : null );
@@ -68,6 +70,22 @@ class Show
     public function setTime($time)
     {
         $this->time = $time;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEndTime()
+    {
+        return $this->end_time;
+    }
+
+    /**
+     * @param mixed $time
+     */
+    public function setEndTime($end_time)
+    {
+        $this->end_time = $end_time;
     }
 
     /**
