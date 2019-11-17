@@ -35,7 +35,7 @@ class AuthenticationController extends BaseController{
       $dbUser = $d_user->getById($loggedUser->getId());
       if(
         $dbUser->getEmail() == $loggedUser->getEmail() &&
-        $dbUser->getPass() == $loggedUser->getPass()
+        $dbUser->getPass()  == $loggedUser->getPass()
       ){
         // USER IS VALID, UPDATE OBJECT IN SESSION
         $this->session->user = $dbUser;

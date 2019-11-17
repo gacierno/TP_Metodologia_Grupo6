@@ -18,14 +18,14 @@ $router = new Router();
 
 
 // MIDDLEWARES ======================================================================
-// -- IF USER IS NOT LOGGED IN, REJECT UNLESS IT IS TRYING TO LOGIN OR REGISTER
-$router->use('/^(?!\/login).*$/',                 array( $authenticationController, 'notLoggedIn' ));
 // -- IF USER IN SESSION AUTHENTICATE
 $router->use('/.*/',                              array( $authenticationController, 'authenticate' ));
 // -- CHECK IF USER IN SESSION IS ACTIVE
 $router->use('/.*/',                              array( $authenticationController, 'userInactive' ));
+// -- IF USER IS NOT LOGGED IN, REJECT UNLESS IT IS TRYING TO LOGIN OR REGISTER
+$router->use('/^(?!\/login).*$/',                 array( $authenticationController, 'notLoggedIn' ));
 // -- VERIFY IF USER IS ADMIN
-$router->use('/^\/admin/',                 array( $authenticationController, 'notAdmin' ));
+$router->use('/^\/admin/',                        array( $authenticationController, 'notAdmin' ));
 // -- USER IS LOGGED IN AND TRYING TO ACCESS LOGIN PAGE
 $router->use('/^\/login/',                        array( $authenticationController, 'preventDoubleLogin' ));
 
