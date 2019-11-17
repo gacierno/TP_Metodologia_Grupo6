@@ -18,7 +18,16 @@ $router = new Router();
 
 
 // MIDDLEWARES ======================================================================
-$router->use('.*',                                array( $authenticationController,'authenticate' ));
+// -- IF USER IS NOT LOGGED IN, REJECT UNLESS IT IS TRYING TO LOGIN OR REGISTER
+$router->use('/^(?!\/login).*$/',                 array( $authenticationController, 'notLoggedIn' ));
+// -- IF USER IN SESSION AUTHENTICATE
+$router->use('/.*/',                              array( $authenticationController, 'authenticate' ));
+// -- CHECK IF USER IN SESSION IS ACTIVE
+$router->use('/.*/',                              array( $authenticationController, 'userInactive' ));
+// -- VERIFY IF USER IS ADMIN
+$router->use('/^\/admin/',                 array( $authenticationController, 'notAdmin' ));
+// -- USER IS LOGGED IN AND TRYING TO ACCESS LOGIN PAGE
+$router->use('/^\/login/',                        array( $authenticationController, 'preventDoubleLogin' ));
 
 
 // CINES ============================================================================
@@ -54,6 +63,7 @@ $router->get('\/peliculas',                       array( $movieController,'index
 $router->get('\/login\/create',                   array( $authenticationController, 'registerForm' ) );
 $router->get('\/login',                           array( $authenticationController, 'loginForm' ) );
 $router->get('\/logout',                          array( $authenticationController, 'logout' ) );
+
 $router->post('\/login',                          array( $authenticationController, 'login' ) );
 
 

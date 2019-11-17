@@ -17,6 +17,7 @@ class Router {
     if(!isset($this->map[$methodName])){
       $this->map[$methodName] = array();
     }
+    if($methodName !== "use") $regexp = '/^' . $regexp . '$/';
     if(!isset($callback[1])) $callback[1] = false;
     if(!isset($callback[2])) $callback[2] = array();
     array_push(
@@ -58,14 +59,14 @@ class Router {
   }
 
   private function evaluateRoute(Request $req,$route){
-    $pattern = '/^' . $route['regexp'] . '$/';
+    $pattern = $route['regexp'];
     if(preg_match($pattern,$req->path())){
       $object = $route['callback'][0];
       $method = $route['callback'][1];
       $params = $route['callback'][2];
       return call_user_func_array(array($object,$method), $params);
     }
-    return "NotMatchFound";
+    return "NoMatchFound";
   }
 
 
@@ -76,7 +77,7 @@ class Router {
     $method = array_merge( $httpMethodArray, $allMethodArray );
     foreach( $method as $route ){
       $output = $this->evaluateRoute($req,$route);
-      if($output != "NotMatchFound") return $output;
+      if($output != "NoMatchFound") return $output;
     }
   }
 
@@ -85,13 +86,13 @@ class Router {
     $httpMethodArray = isset($this->map['use']) ? $this->map['use'] : array();
     foreach( $httpMethodArray as $route ){
       $output = $this->evaluateRoute($req,$route);
-      if(isset($output)) return $output;
+      if(isset($output) && $output != "NoMatchFound") return $output;
     }
   }
 
 
   function execute(){
-    $req = Request::getInstance();
+    $req    = Request::getInstance();
     $output = $this->runMiddlewares($req);
     if(isset($output)) return $output;
     return $this->findRoute($req);
