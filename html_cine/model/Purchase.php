@@ -17,9 +17,9 @@
 		private $discount;
 		private $date;
 		private $amount;
-		private $tickets	
+		private $tickets
 		private $user;
-		private $payment;		
+		private $payment;	
 
 		
 		function __construct( $options )
