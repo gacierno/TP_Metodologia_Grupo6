@@ -21,8 +21,8 @@ class BaseController{
     $this->request = Request::getInstance();
     $this->params  = $this->request->params;
     $this->session = Session::getInstance();
-    if($this->params->passSuccessMessage) $this->successMessage = $get->passSuccessMessage;
-    if($this->params->passErrorMessage)   $this->errorMessage = $get->passErrorMessage;
+    if($this->params->passSuccessMessage) $this->successMessage = $this->params->passSuccessMessage;
+    if($this->params->passErrorMessage)   $this->errorMessage = $this->params->passErrorMessage;
   }
 
 

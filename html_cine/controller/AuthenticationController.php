@@ -19,57 +19,63 @@ class AuthenticationController extends BaseController{
 
 
 
+  function notLoggedIn(){
+    if( !$this->session->user ){
+      return $this->redirect("/login");
+    }
+  }
+
+
+
   function authenticate(){
     // GET UPDATED USER FROM DB
     if($this->session->user){
       $d_user = new UserDao();
-      $this->session->user = $d_user->getById($this->session->user->getId());
+      $loggedUser = $this->session->user;
+      $dbUser = $d_user->getById($loggedUser->getId());
+      if(
+        $dbUser->getEmail() == $loggedUser->getEmail() &&
+        $dbUser->getPass()  == $loggedUser->getPass()
+      ){
+        // USER IS VALID, UPDATE OBJECT IN SESSION
+        $this->session->user = $dbUser;
+      }else{
+        // USER IN SESSION IS OUTDATED
+        $this->session->unset('user');
+      }
     }
-    $includesLogin        = preg_match("/^\/login/",$this->request->path());
-    $includesNewUserForm  = preg_match("/^\/login\/create$/",$this->request->path());
-    $includesUserRegister = preg_match("/^\/usuario\/nuevo$/",$this->request->path());
-    $includesAdmin        = preg_match("/^\/admin/",$this->request->path());
+  }
 
-    // IF USER IS NOT LOGGED IN, REJECT UNLESS IT IS TRYING TO LOGIN OR REGISTER
-    if(
-      !$this->session->user &&
-      !(
-        $includesLogin ||
-        $includesNewUserForm ||
-        $includesUserRegister
-      )
-    ){
-      return $this->redirect("/login");
+
+
+  function userInactive(){
+    // IF LOGGED USER IS NOT ACTIVE
+    if(  $this->session->user && !$this->session->user->getAvailability()){
+      return $this->redirect("/logout");
     }
+  }
+
+
+  function notAdmin(){
 
     // IF NON ADMIN USER TRIES TO ACCESS ADMIN ENDPOINTS
     if(
       $this->session->user &&
-      $this->session->user->getAvailability() &&
-      $includesAdmin &&
       $this->session->user->getRole()->getName() !== "admin"
     ){
       return $this->redirect("/");
     }
 
-    // IF LOGGED USER IS NOT ACTIVE
-    if(  $this->session->user && !$this->session->user->getAvailability()){
-      return $this->redirect("/logout");
-    }
+  }
 
-    // USER IS LOGGED IN AND TRYING TO ACCESS LOGIN PAGE
-    if(
-      $this->session->user &&
-      $this->session->user->getAvailability() &&
-      (
-        $includesLogin ||
-        $includesNewUserForm ||
-        $includesUserRegister
-      )
-    ){
+
+
+  function preventDoubleLogin(){
+    if( $this->session->user ){
       return $this->redirect("/");
     }
   }
+
 
 
 
