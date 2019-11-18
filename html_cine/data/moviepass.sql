@@ -19,7 +19,7 @@ create table CinemaRooms(
 	cinema_id int not null,
 	constraint pk_cinemaroom primary key (cinemaroom_id),
 	constraint fk_cinemarrom_cinema foreign key (cinema_id) references Cinemas(cinema_id)
-)
+);
 
 create table Genres(
 	genre_id int not null,
@@ -90,9 +90,7 @@ create table Payments(
 	payment_auth_code int,
 	payment_date date,
 	payment_amount float,
-	count_id int,
-	constraint pk_payment primary key (payment_id),
-	constraint fk_payment_count foreign key (count_id) references Counts(count_id) on update cascade
+	constraint pk_payment primary key (payment_id)
 );
 
 create table Purchases(
@@ -128,12 +126,6 @@ create table Tickets(
 insert into Roles (role_name, role_description) values ( 'cliente', 'usuario del sistema'), ('administrador', 'administradores del sistema');
 
 
-
-/*
-
-	RECOVER UPLOADED MOVIES
-
-*/
 
 
 
