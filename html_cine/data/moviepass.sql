@@ -115,3 +115,27 @@ create table Tickets(
 	constraint fk_ticket_show foreign key (show_id) references Shows(show_id) on update cascade
 );
 
+
+
+
+/*
+
+	CREATE ROLES FOR USERS
+
+*/
+
+
+insert into Roles (role_name, role_description) values ( 'cliente', 'usuario del sistema'), ('administrador', 'administradores del sistema');
+
+
+
+/*
+
+	RECOVER UPLOADED MOVIES
+
+*/
+
+
+
+
+

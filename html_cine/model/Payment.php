@@ -5,7 +5,6 @@ namespace model;
 -  authentification_code: int
 -  date: string
 -  amount: float
--  count: object: Count
   */
  class Payment
  {
@@ -14,15 +13,15 @@ namespace model;
  	private $authentification_code;
  	private $date;
  	private $amount;
- 	private $count;	
+    private $method;	
  	
  	function __construct( $options )
  	{
  		$this->setId(        ( isset($options['payment_id']) )   ? $options['payment_id'] : null );
- 		$this->setAuthentificationCode(  ( isset($options['payment_amount']) ) ? $options['payment_amount'] : 0 );
+ 		$this->setAuthentificationCode(  ( isset($options['payment_auth_code']) ) ? $options['payment_auth_code'] : '' );
  		$this->setDate(     ( isset($options['payment_date']) )     ? $options['payment_date'] : null );
         $this->setAmount(   ( isset($options['payment_amount']) )     ? $options['payment_amount'] : null );
-        $this->setCount(    ( isset($options['payment_count']) )    ? $options['payment_count'] : null );
+        $this->setMethod(   ( isset($options['payment_method']) )     ? $options['payment_method'] : null );
  	}
  
 
@@ -37,14 +36,10 @@ namespace model;
 
     /**
      * @param mixed $id
-     *
-     * @return self
      */
     public function setId($id)
     {
         $this->id = $id;
-
-        return $this;
     }
 
     /**
@@ -57,14 +52,10 @@ namespace model;
 
     /**
      * @param mixed $authentification_code
-     *
-     * @return self
      */
     public function setAuthentificationCode($authentification_code)
     {
         $this->authentification_code = $authentification_code;
-
-        return $this;
     }
 
     /**
@@ -77,14 +68,10 @@ namespace model;
 
     /**
      * @param mixed $date
-     *
-     * @return self
      */
     public function setDate($date)
     {
         $this->date = $date;
-
-        return $this;
     }
 
     /**
@@ -97,34 +84,27 @@ namespace model;
 
     /**
      * @param mixed $amount
-     *
-     * @return self
      */
     public function setAmount($amount)
     {
         $this->amount = $amount;
-
-        return $this;
     }
 
     /**
      * @return mixed
      */
-    public function getCount()
+    public function getMethod()
     {
-        return $this->count;
+        return $this->method;
     }
 
     /**
-     * @param mixed $count
-     *
-     * @return self
+     * @param mixed $method
      */
-    public function setCount($count)
+    public function setMethod($method)
     {
-        $this->count = $count;
-
-        return $this;
+        $this->method = $method;
     }
+
 } 
  ?>
