@@ -2,8 +2,9 @@
 namespace dao;
 
 use dao\Connection as Connection;
+use dao\IArud as IArud
 
-abstract class BaseDao{
+abstract class BaseDao implements IArud{
 
     protected $itemList = array();
     protected $tableName;
@@ -12,6 +13,19 @@ abstract class BaseDao{
 
     public $resultado_query;
 
+    public function readAll(){
+        $output = array();
+        $query = "select * from ".$this->tableName.";";
+        try {
+            $this->connection = Connection::GetInstance();
+            $output = $this->connection->Execute( $query );
+        } catch (PDOException $e) {
+            throw $e;
+        } catch (Exception $e) {
+            throw $e;
+        }
+        return $this->parseToObjects( $output );
+    }
 
     public function getList( $criteria = array() , $conector = 'AND', $logical = '=' ){
 
