@@ -73,7 +73,7 @@ class ShowDao extends BaseDao
 	        'show_end_time' => $obj->getEndTime(),
 			'show_date' => $obj->getDay(),
 	        'show_movie' => $obj->getMovie(),
-	        'show_cinemaroom' => $obj->getCinemaRoom(),
+	        'cinemaroom_id' => $obj->getCinemaRoom()->getId(),
 	        'show_available' => $obj->getAvailability()
 
 		);
