@@ -43,7 +43,8 @@ class ProfileDao extends BaseDao
 		return array( 
 			'profile_apellido' => $obj->getApellido(),
 			'profile_dni' =>      $obj->getDni(),
-			'profile_nombre' =>   $obj->getNombre()
+			'profile_nombre' =>   $obj->getNombre(),
+			'profile_id' =>		  $obj->getId()
 		);
 	}
 

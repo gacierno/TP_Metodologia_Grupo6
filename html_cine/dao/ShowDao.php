@@ -17,6 +17,7 @@ namespace dao;
 use model\Show as Show;
 use dao\BaseDao  as BaseDao;
 use dao\MovieDao as MovieDao;
+use dao\CinemaRoomDao as CinemaRoomDao;
 
 class ShowDao extends BaseDao
 {
@@ -47,11 +48,11 @@ class ShowDao extends BaseDao
 		$m_dao = new MovieDao();
 		$new_movie = $m_dao->getById( $arr['movie_id'] );
 
-		$c_dao = new CinemaDao();
-		$new_cinema = $c_dao->getById( $arr['cinema_id'] );
+		$c_dao = new CinemaRoomDao();
+		$new_cinemaroom = $c_dao->getById( $arr['cinemaroom_id'] );
 
 		$arr['show_movie'] = $new_movie;
-		$arr['show_cinema'] = $new_cinema;
+		$arr['show_cinemaroom'] = $new_cinemaroom;
 
 		$show = new Show($arr);
 		return $show;
@@ -66,11 +67,15 @@ class ShowDao extends BaseDao
 
 	public function parseToHash( $obj ){
 		return array(
+
+	        'show_id' => $obj->getId(),
 			'show_time' => $obj->getTime(),
+	        'show_end_time' => $obj->getEndTime(),
 			'show_date' => $obj->getDay(),
-			'movie_id' => $obj->getMovie()->getId(),
-			'cinema_id' => $obj->getCinema()->getId(),
-			'show_available' => $obj->getAvailability()
+	        'show_movie' => $obj->getMovie(),
+	        'show_cinemaroom' => $obj->getCinemaRoom(),
+	        'show_available' => $obj->getAvailability()
+
 		);
 	}
 

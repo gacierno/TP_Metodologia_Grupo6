@@ -42,7 +42,8 @@ class RoleDao extends BaseDao
 	public function parseToHash( $obj ){
 		return array(
 			'role_description' 	=> $obj->getDescription(),
-			'role_name'			=> $obj->getName()
+			'role_name'			=> $obj->getName(),
+			'role_id'			=> $obj->getId()
 		);
 	}
 
