@@ -108,7 +108,6 @@ abstract class BaseDao{
             try {
                 $this->connection = Connection::GetInstance();
                 $created = $this->connection->ExecuteNonQuery( $query, $params );
-
             } catch (PDOException $e) {
                 throw $e;
             } catch (Exception $e) {
