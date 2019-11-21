@@ -42,11 +42,43 @@ class CinemaDao extends BaseDao
 
 			'cinema_address' => $obj->getAddress(),
 			'cinema_name' => $obj->getName(),
-	        'cinema_id' => $obj->getId(),
 	        'cinema_available' => $obj->getAvailability()
 
 		);
 	}
+
+
+
+
+
+
+	/*
+	*
+	*
+	*
+	*/
+
+	// public function getCinemasByCinemarrom( $cinemaroom ){
+
+	// 	// lo q tengo es el id del cinemarrom
+
+
+
+	// 	$query = "";
+
+
+	// 	try {
+	// 	    $this->connection = Connection::GetInstance();
+	// 	    $output = $this->connection->Execute( $query );
+	// 	} catch (PDOException $e) {
+	// 	    throw $e;
+	// 	} catch (Exception $e) {
+	// 	    throw $e;
+	// 	}
+
+	// 	return $this->parseToObjects( $output );
+
+	// }
 
 }
 
