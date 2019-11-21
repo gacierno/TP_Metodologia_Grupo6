@@ -8,17 +8,17 @@ class Show
 	private $id;
 	private $day;
 	private $time;
-    private $end_time
-    private $movie;  // Object : Movie
-    private $cinemaroom; // Object : CinemaRoom
-    private $available;
+  private $end_time;
+  private $movie;  // Object : Movie
+  private $cinemaroom; // Object : CinemaRoom
+  private $available;
 
 	function __construct( $options )
 	{
         $this->setId( (isset($options['show_id']) ) ? $options['show_id'] : null );
-		$this->setTime( (isset($options['show_time']) ) ? $options['show_time'] : null );
+				$this->setTime( (isset($options['show_time']) ) ? $options['show_time'] : null );
         $this->setEndTime( (isset($options['show_end_time']) ) ? $options['show_end_time'] : null );
-		$this->setDay( (isset($options['show_date']) ) ? $options['show_date'] : null );
+				$this->setDay( (isset($options['show_date']) ) ? $options['show_date'] : null );
         $this->setMovie( (isset($options['show_movie']) ) ? $options['show_movie'] : null );
         $this->setCinemaRoom( (isset($options['show_cinemaroom']) ) ? $options['show_cinemaroom'] : null );
         $this->setAvailability( ( isset($options['show_available']) ) ? $options['show_available'] : 1 );
@@ -107,7 +107,7 @@ class Show
     /**
      * @return mixed
      */
-    public function getCinemaRoom()
+    public function getCinema()
     {
         return $this->cinema;
     }

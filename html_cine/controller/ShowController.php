@@ -65,13 +65,7 @@ class ShowController extends BaseController{
 
 
   function validateShowTime($date,$time,$cine,$existing_show = false){
-    $timeArray = explode(":",$time);
-    if(count($timeArray) == 1){
-      array_push($timeArray,"00","00");
-    }else if(count($timeArray) == 2){
-      array_push($timeArray,"00");
-    }
-    if(count($timeArray) != 3) return false;
+    $timeArray = explode(":",$this->sanitizeTime($time));
     $dt = new DateTime();
     $dt->setTime($timeArray[0],$timeArray[1],$timeArray[2]);
     $dt->add(DateInterval::createFromDateString('15 minutes'));
@@ -93,7 +87,7 @@ class ShowController extends BaseController{
         'value' => $cine
       ),
       array(
-        'column' => "show_time",
+        'column' => "show_end_time",
         'operator' => ">=",
         'condition' => "and",
         'value' => $minRange
@@ -112,6 +106,7 @@ class ShowController extends BaseController{
       )
     );
 
+
     if($existing_show){
       array_push($query,
         array(
@@ -122,8 +117,15 @@ class ShowController extends BaseController{
         )
       );
     }
+    /*
+
+      |show_time|...|show_end_time|
+                  |$minRange||show_time|...|show_end_time\|$maxRange|
+
+    */
 
     $shows = $this->d_show->getListWhere($query);
+
 
     return !($shows && count($shows) > 0);
   }
@@ -208,6 +210,29 @@ class ShowController extends BaseController{
 
 
 
+  function updateShowEndTime(Show $show){
+    $timeArray = explode(":",$show->getTime());
+    $dt = new DateTime();
+    $dt->setTime($timeArray[0],$timeArray[1],$timeArray[2]);
+    $dt->add(DateInterval::createFromDateString($show->getMovie()->getDuration() . ' minutes'));
+    $show->setEndTime($dt->format('H:i:s'));
+    return $show;
+  }
+
+  function sanitizeTime($timeString){
+    $timeArray = explode(":",$timeString);
+    if(count($timeArray) == 1){
+      array_push($timeArray,"00","00");
+    }else if(count($timeArray) == 2){
+      array_push($timeArray,"00");
+    }else if(count($timeArray) == 0){
+      $timeArray = ["00","00","00"];
+    }
+    return implode(":",$timeArray);
+  }
+
+
+
   function create(){
     $created = false;
     if($this->validate()){
@@ -222,6 +247,8 @@ class ShowController extends BaseController{
         $newShowData['show_cinema'] = $cinema;
         $newShowData['show_movie']  = $movie;
         $newShow  = new Show($newShowData);
+        $newShow->setTime($this->sanitizeTime($newShow->getTime()));
+        $newShow  = $this->updateShowEndTime($newShow);
         try{
           $created = $this->d_show->add($newShow);
         }catch(Exception $ex){
@@ -239,6 +266,7 @@ class ShowController extends BaseController{
     }
 
   }
+
 
 
   function update(){
@@ -260,7 +288,8 @@ class ShowController extends BaseController{
 
 
       if($this->validate($updatedShow)){
-
+        $updatedShow->setTime($this->sanitizeTime($updatedShow->getTime()));
+        $updatedShow = $this->updateShowEndTime($updatedShow);
         try{
           $this->d_show->update($updatedShow);
           $updated = true;
