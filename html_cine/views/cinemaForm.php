@@ -39,14 +39,7 @@ Esta vista va a hacer getSalas() del objeto $cinema para renderizarlas -->
             <input class="inputText" type="text"  name="cinema_address" value="<?php if($isCinemaSet) : echo($cinema->getAddress()); endif; ?>" required>
             <span class="floating-label">Direccion del Cine</span>
         </label>
-        <label>
-            <input class="inputText" type="text" name="cinema_capacity" value="<?php if($isCinemaSet) : echo($cinema->getCapacity()); endif; ?>" required>
-            <span class="floating-label">Capacidad del Cine</span>
-        </label>
-        <label>
-            <input class="inputText" type="text"  name="cinema_ticketValue" value="<?php if($isCinemaSet) : echo($cinema->getTicketValue()); endif; ?>" required>
-            <span class="floating-label">Valor del ticket del Cine</span>
-        </label>
+        
 
         <div class="cinemaform__button--container">
             <button type="submit" class="cinemaform__button--primary">Enviar</button>
