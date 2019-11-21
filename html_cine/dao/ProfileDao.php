@@ -1,8 +1,8 @@
-<?php 
+<?php
 namespace dao;
 
 /**
- * 
+ *
  */
 
 use model\Profile as Profile;
@@ -13,7 +13,7 @@ use dao\BaseDao as BaseDao;
 
 class ProfileDao extends BaseDao
 {
-	
+
 	function __construct(){
 		parent::setTableName( 'Profiles' );
 		parent::setSingleType( 'profile' );
@@ -40,11 +40,10 @@ class ProfileDao extends BaseDao
 	}
 
 	public function parseToHash( $obj ){
-		return array( 
+		return array(
 			'profile_apellido' => $obj->getApellido(),
 			'profile_dni' =>      $obj->getDni(),
-			'profile_nombre' =>   $obj->getNombre(),
-			'profile_id' =>		  $obj->getId()
+			'profile_nombre' =>   $obj->getNombre()
 		);
 	}
 

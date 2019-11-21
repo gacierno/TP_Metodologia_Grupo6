@@ -37,14 +37,24 @@ class CinemaRoomDao extends BaseDao
 		return new Cinema( $arr );
 	}
 
+	/*
+		Get Cinema for which a CinemRoom belongs.
+		AKA Get Cinema parent.
+	*/
+
 	public function parseToHash( $obj ){
+		/*
+			Pseudo Código:
+
+			$cinema = DAOCinemas.getCinemaForCinemaRoom($cinemaRoom);
+		*/
 		return array(
 
     		'cinemaroom_capacity' => $obj->getCapacity(),
     		'cinemaroom_name' => $obj->getName(),
     		'cinemaroom_ticketValue' => $obj->getTicketValue(),
-            'cinemaroom_id' => $obj->getId(),
-            'cinemaroom_available' => $obj->getAvailability()
+        'cinema_id' => $obj->getCinema()->getId(),
+        'cinemaroom_available' => $obj->getAvailability()
 
 		);
 	}
