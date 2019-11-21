@@ -31,8 +31,6 @@ $availability = $cinema->getAvailability();
                     <?php endif; ?>
                     <hr>
                     <div class="cinemacard__address"><?php echo($cinema->getAddress()); ?></div>
-                    <div class="cinemacard__capacity"><?php echo('Capacidad : '.$cinema->getCapacity() .' personas'); ?></div>
-                    <div class="cinemacard__value"><?php echo('Valor de ticket : $'.$cinema->getTicketValue() ); ?></div>
                 </div>
                 <?php 
                 $idCinema = $cinema->getId();
