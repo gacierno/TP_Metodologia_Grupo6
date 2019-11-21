@@ -8,6 +8,7 @@ use Controller\ShowController             as ShowController;
 use Controller\CinemaController           as CinemaController;
 use Controller\CinemaRoomController       as CinemaRoomController;
 use Controller\MovieController            as MovieController;
+use Controller\PaymentController          as PaymentController;
 
 $cinemaController           = new CinemaController();
 $cinemaRoomController       = new CinemaRoomController();
@@ -15,6 +16,7 @@ $showController             = new ShowController();
 $movieController            = new MovieController();
 $authenticationController   = new AuthenticationController();
 $userController             = new UserController();
+$paymentController          = new PaymentController();
 
 $router                     = new Router();
 
@@ -30,6 +32,8 @@ $router->use('/^\/admin/',                        array( $authenticationControll
 // -- USER IS LOGGED IN AND TRYING TO ACCESS LOGIN PAGE
 $router->use('/^\/login/',                        array( $authenticationController, 'preventDoubleLogin' ));
 
+// PAYMENTS
+$router->get('\/test-payment' , array($paymentController , 'test' ));
 
 // CINES ============================================================================
 $router->get('\/admin\/cines\/nuevo',             array( $cinemaController,'createForm' ) );
