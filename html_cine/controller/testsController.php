@@ -280,7 +280,7 @@
           
 	// $query = "create database moviepass;";
          
- //    $query = "select * from ". "Genres";
+ 	// $query = "select * from ". "Genres";
 
 	// $connection = dao\Connection::GetInstance();
 

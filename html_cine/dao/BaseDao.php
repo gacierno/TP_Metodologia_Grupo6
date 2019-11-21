@@ -2,8 +2,9 @@
 namespace dao;
 
 use dao\Connection as Connection;
+use dao\ICrud as ICrud;
 
-abstract class BaseDao{
+abstract class BaseDao implements ICrud{
 
     protected $itemList = array();
     protected $tableName;
@@ -73,6 +74,22 @@ abstract class BaseDao{
         }
         return $this->parseToObjects( $output );
 
+    }
+
+    public function readAll(){
+
+        $output = array();
+        $query = "select * from ".$this->tableName. ";";
+
+        try {
+            $this->connection = Connection::GetInstance();
+            $output = $this->connection->Execute( $query );
+        } catch (PDOException $e) {
+            throw $e;
+        } catch (Exception $e) {
+            throw $e;
+        }
+        return $this->parseToObjects( $output );
     }
 
     public function getById( $id ){
