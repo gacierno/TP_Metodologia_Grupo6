@@ -13,7 +13,6 @@ class Cinema
 	private $name;
 	private $address;
     private $available;
-    private $cinemarooms;
 
 
 	function __construct( $options )
@@ -22,7 +21,6 @@ class Cinema
 		$this->setName(       ( isset($options['cinema_name']) )     ? $options['cinema_name'] : '' );
         $this->setId(         ( isset($options['cinema_id']) )       ? $options['cinema_id'] : null );
         $this->setAvailability( ( isset($options['cinema_available']) )     ? $options['cinema_available'] : 1 );
-        $this->setCinemaRooms(  ( isset($options['cinema_cinemarooms']) )   ? $options['cinema_cinemarooms']: array() );
 	}
 
     /**
@@ -96,23 +94,6 @@ class Cinema
     {
         return $this->available;
     }
-
-    /**
-     * @param mixed $cinemarooms
-     */
-    public function setCinemaRooms($cinemarooms)
-    {
-        $this->cinemarooms = $cinemarooms;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getCinemaRooms()
-    {
-        return $this->cinemarooms;
-    }
-
     
 }
  ?>

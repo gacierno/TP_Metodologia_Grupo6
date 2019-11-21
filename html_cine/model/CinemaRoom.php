@@ -9,6 +9,9 @@ namespace model;
 -  available: boolean
 
 */
+
+use model\Cinema as Cinema;
+
 class CinemaRoom
 {
     private $id;
@@ -16,6 +19,7 @@ class CinemaRoom
 	private $capacity;
 	private $ticketValue;
     private $available;
+    private $cinema; //object Cinema
 
 
 	function __construct( $options )
@@ -25,6 +29,7 @@ class CinemaRoom
 		$this->setTicketValue( ( isset($options['cinemaroom_ticketValue']) )? $options['cinemaroom_ticketValue'] : 0);
         $this->setId(         ( isset($options['cinemaroom_id']) )       ? $options['cinemaroom_id'] : null );
         $this->setAvailability( ( isset($options['cinemaroom_available']) ) ? $options['cinemaroom_available'] : 1 );
+        $this->setCinema(       ( isset($options['cinemarrom_cinema'])    ) ? $options['cinemarrom_cinema']    : null );
 	}
 
     /**
@@ -129,6 +134,22 @@ class CinemaRoom
     public function getAvailability()
     {
         return $this->available;
+    }
+
+    /**
+     * @return class Cinema
+     */
+    public function getCinema()
+    {
+        return $this->cinema;
+    }
+
+    /**
+     * @param mixed $cinema
+     */
+    public function setCinema($cinema)
+    {
+        $this->cinema = $cinema;
     }
 
 }
