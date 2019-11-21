@@ -1,7 +1,7 @@
-<?php 
+<?php
 namespace dao;
 
-interface ICrud{
+interface IArud{
 
 	function add( $obj );
 	function readAll();

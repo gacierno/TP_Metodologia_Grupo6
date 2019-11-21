@@ -2,7 +2,7 @@
 namespace dao;
 
 use dao\Connection as Connection;
-use dao\IArud as IArud
+use dao\IArud as IArud;
 
 abstract class BaseDao implements IArud{
 
