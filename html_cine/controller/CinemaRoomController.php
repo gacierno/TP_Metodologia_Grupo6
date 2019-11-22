@@ -146,7 +146,7 @@ class CinemaRoomController extends BaseController{
 
   function disable(){
     $this->setCinemaRoomAvailability(0);
-    $this->redirect('/admin/cines/editar', array('id' => $this->params->cinemaroom_id ));
+    $this->redirect('/admin/cines/salas/editar', array('id' => $this->params->cinemaroom_id ));
   }
 
 
@@ -154,7 +154,7 @@ class CinemaRoomController extends BaseController{
 
   function enable(){
     $this->setCinemaRoomAvailability(1);
-    $this->redirect('/admin/cines/editar', array('id' => $this->params->cinemaroom_id ));
+    $this->redirect('/admin/cines/salas/editar', array('id' => $this->params->cinemaroom_id ));
   }
 
 

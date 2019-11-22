@@ -11,6 +11,9 @@ use Model\Show                as Show;
 use DAO\CinemaDao             as CinemaDao;
 use Model\Cinema              as Cinema;
 
+use DAO\CinemaRoomDao         as CinemaRoomDao;
+use Model\CinemaRoom          as CinemaRoom;
+
 use DAO\MovieDao             	as MovieDao;
 use Model\Movie               as Movie;
 
@@ -52,12 +55,12 @@ class ShowController extends BaseController{
 
 
   function newShow(){
-    $d_cinema    = new CinemaDao();
+    $d_cinemaRoom    = new CinemaRoomDao();
     $d_movie     = new MovieDao();
     $this->render("showsForm",
       array(
         'movies'  => $d_movie->getList(),
-        'cinemas' => $d_cinema->getList()
+        'cinemaRooms' => $d_cinemaRoom->getList()
       )
     );
   }
@@ -168,7 +171,7 @@ class ShowController extends BaseController{
 
   function validateShowCreationData($data){
     extract($data);
-    return isset($show_date,$show_time,$show_cinema,$show_movie);
+    return isset($show_date,$show_time,$show_cinemaroom,$show_movie);
   }
 
 
@@ -180,11 +183,11 @@ class ShowController extends BaseController{
       $existing_show &&
       $this->d_show->getById($existing_show->getId())
     ){
-      $show_date      = $existing_show->getDay();
-      $show_movie     = $existing_show->getMovie()->getId();
-      $show_cinema    = $existing_show->getCinema()->getId();
-      $show_time      = $existing_show->getTime();
-      $show_id        = $existing_show->getId();
+      $show_date          = $existing_show->getDay();
+      $show_movie         = $existing_show->getMovie()->getId();
+      $show_cinemaroom    = $existing_show->getCinemaRoom()->getId();
+      $show_time          = $existing_show->getTime();
+      $show_id            = $existing_show->getId();
     }
 
     return (
@@ -196,14 +199,14 @@ class ShowController extends BaseController{
       $this->validateShowTime(
         $show_date,
         $show_time,
-        $show_cinema,
+        $show_cinemaroom,
         $show_id
       ) &&
       // VALIDATE THAT A MOVIE CAN ONLY BELONG TO A SINGLE CINEMA EACH DAY
       $this->validateMovieOwnership(
         $show_date,
         $show_movie,
-        $show_cinema
+        $show_cinemaroom
       )
     );
   }
@@ -237,16 +240,16 @@ class ShowController extends BaseController{
     $created = false;
     if($this->validate()){
 
-      $d_cinema     = new CinemaDao();
-      $d_movie      = new MovieDao();
-      $movie        = $d_movie->getById($this->params->show_movie);
-      $cinema       = $d_cinema->getById($this->params->show_cinema);
+      $d_cinemaRoom   = new CinemaRoomDao();
+      $d_movie        = new MovieDao();
+      $movie          = $d_movie->getById($this->params->show_movie);
+      $cinemaRoom     = $d_cinemaRoom->getById($this->params->show_cinemaroom);
 
-      if($movie && $cinema){
+      if($movie && $cinemaRoom){
         $newShowData  = $this->params->map();
-        $newShowData['show_cinema'] = $cinema;
-        $newShowData['show_movie']  = $movie;
         $newShow  = new Show($newShowData);
+        $newShow->setCinemaRoom($cinemaRoom);
+        $newShow->setMovie($movie);
         $newShow->setTime($this->sanitizeTime($newShow->getTime()));
         $newShow  = $this->updateShowEndTime($newShow);
         try{

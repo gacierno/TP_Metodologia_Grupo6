@@ -43,21 +43,18 @@
             endforeach; ?>
         </select>
 
-        <select name="show_cinema" class="form-control form-control-md showlist__cinema--select" required>
-            <option value="<?php if($isShowSet) : echo($cinema->getId()); endif; ?>" selected><?php if($isShowSet) : echo($cinema->getName()); else : echo("Seleccione Sala de Cine"); endif; ?></option>
+        <select name="show_cinemaroom" class="form-control form-control-md showlist__cinema--select" required>
+            <option value="<?php if($isShowSet) : echo($cinema->getId()); endif; ?>" selected><?php if($isShowSet) : echo($cinema->getName()); else : echo("Seleccione sala de cine"); endif; ?></option>
 
             <?php
-            $selectedCinema = "";
-            if(isset($cinema)){
-                $selectedCinema = $cinema->getName();
+            $selectedCinemaRoom = "";
+            if(isset($cinemaRoom)){
+                $selectedCinema = $cinemaRoom->getName();
             }
-            foreach ($cinemas as $cin) :
-                if($cin->getName() !== $selectedCinema) :
+            foreach ($cinemaRooms as $cinemaRoom) :
             ?>
-            <option value="<?php echo($cin->getId()); ?>"><?php echo($cin->getName()); ?></option>
-            <?php
-                endif;
-            endforeach; ?>
+            <option value="<?= $cinemaRoom->getId(); ?>"><?= $cinemaRoom->getCinema()->getName() . ' - ' .$cinemaRoom->getName(); ?></option>
+            <?php endforeach; ?>
         </select>
         <div class="showlist__submit-button--container">
             <button type="submit" class="cinemaform__button--primary">Enviar</button>

@@ -107,9 +107,9 @@ class Show
     /**
      * @return mixed
      */
-    public function getCinema()
+    public function getCinemaRoom()
     {
-        return $this->cinema;
+        return $this->cinemaroom;
     }
 
     /**
@@ -117,7 +117,7 @@ class Show
      */
     public function setCinemaRoom($cinemaroom)
     {
-        $this->cinema = $cinemaroom;
+        $this->cinemaroom = $cinemaroom;
     }
 
     /**
