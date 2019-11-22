@@ -20,14 +20,6 @@ class PaymentDao extends BaseDao
 	}
 
 
-	/*
-	+------------------------------------------------+
-	|											     |
-	|	METHODS THAT CONNECT THE JSON STORED DATA    |
-	|										     	 |
-	+------------------------------------------------+
-	*/
-
 
 	/**
 	 * parseToObject
@@ -36,16 +28,16 @@ class PaymentDao extends BaseDao
 	 */
 
 	public function parseToObject( $arr ){
-		return new Profile( $arr );
+		return new Payment( $arr );
 	}
 
 	public function parseToHash( $obj ){
 		return array( 
-			'payment_id' => $obj->getId(),
 			'payment_auth_code' => $obj->getAuthentificationCode(),
 			'payment_date' => $obj->getDate(),
 			'payment_amount' => $obj->getAmount(),
-			'payment_method' => $obj->getMethod()
+			'payment_method' => $obj->getMethod(),
+			'purchase_id' => $obj->getPurchaseId()  // as a payment can't exist without a purchase
 		);
 	}
 

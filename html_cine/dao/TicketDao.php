@@ -4,19 +4,12 @@ namespace dao;
  * 
  */
 
-use dao\BaseDao as BaseDao;
+use dao\ShowDao as ShowDao;
 use model\Ticket as Ticket;
 
-class TicketDao extends BaseDao
+class TicketDao
 {
 	
-	function __construct(argument)
-	{
-		parent::setTableName( 'Tickets' );
-		parent::setSingleType( 'ticket' );
-	}
-
-
 	/**
 	 * parseToObject
 	 * @param hashMap
@@ -24,19 +17,120 @@ class TicketDao extends BaseDao
 	 */
 
 	public function parseToObject( $arr ){
+
+		$d_show = new ShowDao();
+		$show = $d_show->getById( $arr['show_id'] );
+
+		$arr['ticket_show'] = $show;
+
 		return new Ticket( $arr );
 	}
 
 
-	public function parseToHash( $obj, $relational = array() ){
+	public function parseToHash( $obj ){
 		return array(
 
-			'purchase_id' => $relational['purchase_id'],
 			'ticket_qrCode' => $obj->getQrCode(),
 			'show_id' => $obj->getShow()->getId(),
 
 		);
 	}
+
+
+
+	/*
+	 * getTableFields
+	 */
+	public static function getFields( $arr ){
+
+	    $output = array(
+	        'keys'      => array(),
+	        'values'    => array()
+
+	    );
+
+
+	    foreach ($arr as $key => $value ) {
+	        array_push( $output['keys'], $key );
+	        array_push( $output['values'], ":".$key );
+	    }
+
+	    return 
+	        " (".
+	        preg_replace( "/[ \[ \] \" ]/", "", json_encode( $output['keys'] ) )
+	        .") values (".
+	        preg_replace( "/[ \[ \] \" ]/", "", json_encode( $output['values'] ) )
+	        .")";
+	}
+
+
+	public static function add( $arr ){
+
+        $options = self::getFields( $arr );
+
+        $query = "insert into Genres_on_Movies". $options;
+
+        try {
+            $connection = Connection::GetInstance();
+            $connection->ExecuteNonQuery( $query, $arr );
+        } catch (PDOException $e) {
+            throw $e;
+            return false;
+        } catch (Exception $e) {
+            throw $e;
+            return false;
+        }
+
+        return true;
+
+	}
+
+	public static function getGenresByMovieId( $id ){
+		$query = "select * from Genres_on_Movies where movie_id = $id;";
+		$output = array();
+
+		try {
+		    $connection = Connection::GetInstance();
+		    $output = $connection->Execute( $query );
+		} catch (PDOException $e) {
+		    throw $e;
+		    return false;
+		} catch (Exception $e) {
+		    throw $e;
+		    return false;
+		}
+		return $output;
+	}
+
+
+
+
+
+
+
+
+	public static function getMoviesByGenreId( $id ){
+		$query = "select * from Genres_on_Movies where genre_id = $id;";
+		$output = array();
+
+		try {
+		    $connection = Connection::GetInstance();
+		    $output = $connection->Execute( $query );
+		} catch (PDOException $e) {
+		    throw $e;
+		    return false;
+		} catch (Exception $e) {
+		    throw $e;
+		    return false;
+		}
+		return $output;
+	}
+
+
+
+
+
+
 
 
 }
