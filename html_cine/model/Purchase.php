@@ -17,9 +17,9 @@
 		private $discount;
 		private $date;
 		private $amount;
-		private $tickets
-		private $user;
-		private $payment;	
+		private $tickets;	// array( object : Ticket )
+		private $user;		// object : User
+		private $payment;	// object : Payment
 
 		
 		function __construct( $options )
@@ -45,14 +45,10 @@
 
 	    /**
 	     * @param mixed $id
-	     *
-	     * @return self
 	     */
 	    public function setId($id)
 	    {
 	        $this->id = $id;
-
-	        return $this;
 	    }
 
 	    /**
@@ -65,8 +61,6 @@
 
 	    /**
 	     * @param mixed $ticket_qty
-	     *
-	     * @return self
 	     */
 	    public function setTicketQty($ticket_qty)
 	    {
@@ -85,8 +79,6 @@
 
 	    /**
 	     * @param mixed $discount
-	     *
-	     * @return self
 	     */
 	    public function setDiscount($discount)
 	    {
@@ -105,8 +97,6 @@
 
 	    /**
 	     * @param mixed $date
-	     *
-	     * @return self
 	     */
 	    public function setDate($date)
 	    {
@@ -125,8 +115,6 @@
 
 	    /**
 	     * @param mixed $amount
-	     *
-	     * @return self
 	     */
 	    public function setAmount($amount)
 	    {
@@ -145,14 +133,10 @@
 
 	    /**
 	     * @param mixed $user
-	     *
-	     * @return self
 	     */
 	    public function setUser($user)
 	    {
 	        $this->user = $user;
-
-	        return $this;
 	    }
 
 	    /**
@@ -165,14 +149,19 @@
 
 	    /**
 	     * @param mixed $payment
-	     *
-	     * @return self
 	     */
 	    public function setPayment($payment)
 	    {
 	        $this->payment = $payment;
+	    }
 
-	        return $this;
+	    /**
+	     * @param $ticket: Ticket
+	     */
+	    public function addTicket( $ticket ){
+	    	if( $ticket != null ){
+	    		array_push( $this->tickets, $ticket );
+	    	}
 	    }
 	}
  ?>
