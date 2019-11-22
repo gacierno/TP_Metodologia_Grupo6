@@ -43,8 +43,8 @@
             endforeach; ?>
         </select>
 
-        <select name="show_cinemaroom" class="form-control form-control-md showlist__cinema--select" required>
-            <option value="<?php if($isShowSet) : echo($cinema->getId()); endif; ?>" selected><?php if($isShowSet) : echo($cinema->getName()); else : echo("Seleccione sala de cine"); endif; ?></option>
+        <select name="cinemaroom_id" class="form-control form-control-md showlist__cinema--select" required>
+            <option value="<?php if($isShowSet) : echo($cinema->getId()); endif; ?>" selected><?php if($isShowSet) : echo($cinema->getName()); else : echo("Seleccione Sala de Cine"); endif; ?></option>
 
             <?php
             $selectedCinemaRoom = "";
