@@ -51,6 +51,7 @@ create table Shows(
 	show_date date not null,
 	show_time time not null,
 	show_end_time time not null,
+	show_available boolean default 1,
 	movie_id int not null,
 	cinemaroom_id int not null,
 	constraint pk_show primary key (show_id),
