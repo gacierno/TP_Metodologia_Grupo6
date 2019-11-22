@@ -35,14 +35,25 @@ class CinemaController extends BaseController{
     $valid = true;
     extract($data);
     if(
-      !isset($cinema_name,$cinema_address,$cinema_capacity,$cinema_ticketValue) ||
-      $cinema_capacity < 1 ||
-      $cinema_ticketValue < 1
+      !isset($cinema_name,$cinema_address)
     ){
       $valid = false;
     }
     return $valid;
   }
+
+  // function validCinema($data){
+  //   $valid = true;
+  //   extract($data);
+  //   if(
+  //     !isset($cinema_name,$cinema_address,$cinema_capacity,$cinema_ticketValue) ||
+  //     $cinema_capacity < 1 ||
+  //     $cinema_ticketValue < 1
+  //   ){
+  //     $valid = false;
+  //   }
+  //   return $valid;
+  // }
 
 
 
