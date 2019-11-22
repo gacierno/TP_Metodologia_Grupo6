@@ -20,14 +20,6 @@ class ProfileDao extends BaseDao
 	}
 
 
-	/*
-	+------------------------------------------------+
-	|											     |
-	|	METHODS THAT CONNECT THE JSON STORED DATA    |
-	|										     	 |
-	+------------------------------------------------+
-	*/
-
 
 	/**
 	 * parseToObject

@@ -5,6 +5,7 @@ namespace dao;
  */
 
 use dao\BaseDao as BaseDao;
+use dao\UserDao as UserDao;
 use model\Purchase as Purchase;
 
 class PurchaseDao extends BaseDao
@@ -22,21 +23,31 @@ class PurchaseDao extends BaseDao
 	 */
 
 	public function parseToObject( $arr ){
+
+		$d_duser = new UserDao();
+		$user = $d_duser->getById( $arr['user_id'] );
+		$arr['purchase_user'] = $user;
+
 		return new Purchase( $arr );
 	}
 
-	public function parseToHash( $obj, $relational = array() ){
+	public function parseToHash( $obj ){
 		return array(
 
-			'purchase_ticket_qty' => $obj->getTicketQty(),
-			'purchase_discount' => $obj->getDiscount(),
+			/*
+			purchase_id <PK>
+			user_id <FK>
+			purchase_date
+			purchase_amount
+			purchase_discount
+			purchase_total*/
+
+
+			'user_id' => $obj->getUser()->getId(),
 			'purchase_date' => $obj->getDate(),
 			'purchase_amount' => $obj->getAmount(),
-
-		
-
-			'purchase_user' => $obj->getUser(),
-			'purchase_payment' => $obj->getPayment()
+			'purchase_discount' => $obj->getDiscount(),
+			'purchase_total' => $obj->getPayment()
 			
 
 		);
