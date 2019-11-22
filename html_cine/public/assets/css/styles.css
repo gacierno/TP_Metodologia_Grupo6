@@ -1705,3 +1705,55 @@ select#moviefilter__multiple-select--genre,select#moviefilter__select--cinema{
     font-size:14px;
     color: white;
 }
+
+.purchase__ticket--outer-container{
+    border: 2px solid red;
+    width: 90%;
+    margin: 0 auto;
+    padding:10px;
+    background-color: rgb(20, 20, 20);
+}
+
+@media all and (min-width:768px){
+    .purchase__ticket--outer-container{
+        width: 70%;
+        padding: 10px 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+@media all and (min-width:992px){
+    .purchase__ticket--outer-container{
+        width: 50%;
+    }
+}
+
+.ticket__info--container{
+    display: block;
+    width: 100%;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+@media all and (min-width: 768px){
+    .ticket__info--container{
+        display: inline-block;
+        width: 70%;
+        margin-bottom: 0px;
+        text-align:left;
+    }
+}
+
+.ticket__qr-button--container{
+    width: 100%;
+    text-align: center;
+}
+
+@media all and (min-width: 768px){
+    .ticket__qr-button--container{
+        display: inline-block;
+        width: 30%;
+    }
+}

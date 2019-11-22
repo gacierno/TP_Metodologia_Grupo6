@@ -14,6 +14,9 @@ var height;
 //new movies/create new slider with jquery.Load() method
 $(document).ready(function(){
 
+
+    // new QRCode(document.getElementById("qrcode"), "http://jindo.dev.naver.com/collie");
+
     //bind event to change action in cinema-form when delete button's clicked
     $('#cinema-delete').on('click',function(){
         if($(this).attr('available') !== undefined){
