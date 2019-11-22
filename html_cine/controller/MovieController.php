@@ -72,10 +72,10 @@ class MovieController extends BaseController{
       usort($shows, function($a, $b) {return strcmp($a->getDay(), $b->getDay());});
       $showsByCinema = array();
       foreach($shows as $show){
-        $cinemaID = $show->getCinema()->getId();
+        $cinemaID = $show->getCinemaRoom()->getCinema()->getId();
         if(!isset($showsByCinema[$cinemaID])){
           $showsByCinema[$cinemaID] = array(
-            'cinema' => $show->getCinema(),
+            'cinema' => $show->getCinemaRoom()->getCinema(),
             'shows'  => array()
           );
         }
