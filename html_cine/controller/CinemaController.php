@@ -4,6 +4,9 @@ use Controller\BaseController as BaseController;
 use DAO\CinemaDao             as CinemaDao;
 use Model\Cinema              as Cinema;
 
+use DAO\CinemaRoomDao         as CinemaRoomDao;
+use Model\CinemaRoom          as CinemaRoom;
+
 
 class CinemaController extends BaseController{
 
@@ -42,25 +45,19 @@ class CinemaController extends BaseController{
     return $valid;
   }
 
-  // function validCinema($data){
-  //   $valid = true;
-  //   extract($data);
-  //   if(
-  //     !isset($cinema_name,$cinema_address,$cinema_capacity,$cinema_ticketValue) ||
-  //     $cinema_capacity < 1 ||
-  //     $cinema_ticketValue < 1
-  //   ){
-  //     $valid = false;
-  //   }
-  //   return $valid;
-  // }
-
 
 
   function editForm(){
     extract($this->params->map());
-    $d_cinema   = $this->d_cinema;
-    $this->render("cinemaForm", array('cinema' => $d_cinema->getById($id)) );
+    $d_cinema         = $this->d_cinema;
+    $d_cinema_rooms   = new CinemaRoomDao();
+    $cinema           = $d_cinema->getById($id);
+    $cinemaRooms      = $d_cinema_rooms->getList(
+      array(
+        'cinema_id' => $cinema->getId()
+      )
+    );
+    $this->render("cinemaForm", array( 'cinema' =>  $cinema, 'cinemaRooms' => $cinemaRooms ) );
   }
 
 

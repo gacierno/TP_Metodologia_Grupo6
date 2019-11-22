@@ -58,7 +58,7 @@ Esta vista va a hacer getSalas() del objeto $cinema para renderizarlas -->
         </div>
     <div class="row cinemaRoomlist__row">
 <?php
-$cinemaRooms = $cinema->getCinemaRooms();
+
 
 foreach($cinemaRooms as $cinemaRoom) :
 
