@@ -10,8 +10,12 @@ abstract class BaseDao implements IArud{
     protected $tableName;
     protected $singleType;
     protected $connection;
-
     public $resultado_query;
+
+
+
+
+
 
     public function readAll(){
         $output = array();
@@ -26,6 +30,12 @@ abstract class BaseDao implements IArud{
         }
         return $this->parseToObjects( $output );
     }
+
+
+
+
+
+
 
     public function getList( $criteria = array() , $conector = 'AND', $logical = '=' ){
 
@@ -59,6 +69,12 @@ abstract class BaseDao implements IArud{
 
     }
 
+
+
+
+
+
+
     public function getListWhere( $criteria = array() ){
 
         $output = array();
@@ -89,6 +105,15 @@ abstract class BaseDao implements IArud{
 
     }
 
+
+
+
+
+
+
+
+
+
     public function getById( $id ){
         $result = array();
         $query = "select * from ". $this->tableName . " where ". strtolower( $this->singleType ) ."_id = ". $id.";";
@@ -107,6 +132,15 @@ abstract class BaseDao implements IArud{
         }
         return $output;
     }
+
+
+
+
+
+
+
+
+
 
 
     public function add( $obj ){
@@ -133,6 +167,13 @@ abstract class BaseDao implements IArud{
         return $created;
 
     }
+
+
+
+
+
+
+
 
 
     public function update( $obj ){
@@ -168,6 +209,13 @@ abstract class BaseDao implements IArud{
 
 
 
+
+
+
+
+
+
+
     public function delete( $id ){
         $query = "update ". $this->tableName ." set ".$this->singleType."_available = 0 where ".$this->singleType."_id = ".$id.";";
 
@@ -183,13 +231,28 @@ abstract class BaseDao implements IArud{
     }
 
 
+
+
+
+
+
+
+
     public function setTableName( $type ){
         $this->tableName = $type;
     }
 
+
+
+
     public function setSingleType( $type ){
         $this->singleType = $type;
     }
+
+
+
+
+
 
 
     /*
@@ -219,6 +282,12 @@ abstract class BaseDao implements IArud{
     }
 
 
+
+
+
+
+
+
     /**
      * parseToObjects
      * @param Array()
@@ -236,7 +305,7 @@ abstract class BaseDao implements IArud{
 
     public function parseToObject( $hash ){ }
 
-    public function parseToHash( $obj ){ }
+    public function parseToHash( $obj, $relationalData = array() ){ }
 
 
 

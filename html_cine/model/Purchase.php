@@ -32,6 +32,7 @@
 			$this->setTickets( 	(isset($options['purchase_tickets'])	)?$options['purchase_tickets']: array() );
 			$this->setUser( 	(isset($options['purchase_user'])		)?$options['purchase_user']:null );
 			$this->setPayment( 	(isset($options['purchase_payment'])	)?$options['purchase_payment']:null );
+		
 		}
 
 

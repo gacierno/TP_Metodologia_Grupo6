@@ -7,7 +7,7 @@ namespace dao;
 use dao\BaseDao as BaseDao;
 use model\Ticket as Ticket;
 
-class ClassName extends BaseDao
+class TicketDao extends BaseDao
 {
 	
 	function __construct(argument)
@@ -31,8 +31,13 @@ class ClassName extends BaseDao
 	public function parseToHash( $obj ){
 		return array(
 
+			/*
+				FALT DEFINIR SI LE PASAMOS UN ID DE REFERENCIA AL OBJETO TICKET
+				O SI LE PONEMOS UN PARAMETRO A LA FUNCION PARA SABER QUE ID DE PURCHASE LE CORRESPONDE AL TICKET
+			*/
+
 			'ticket_qrCode' => $obj->getQrCode(),
-			'ticket_show' => $obj->getShow()
+			'show_id' => $obj->getShow()->getId(),
 
 		);
 	}
