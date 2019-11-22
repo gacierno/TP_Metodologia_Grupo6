@@ -22,9 +22,9 @@ class PaymentController extends BaseController{
 
     // Crea un ítem en la preferencia
     $item = new \MercadoPago\Item();
-    $item->title = 'Mi producto';
+    $item->title = 'Entrada sala';
     $item->quantity = 1;
-    $item->unit_price = 75.56;
+    $item->unit_price = 100;
     $preference->items = array($item);
     $preference->save();
 
@@ -32,7 +32,7 @@ class PaymentController extends BaseController{
     echo <<<EOD
     <form action="/procesar-pago" method="POST">
       <script
-       src="http://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js"
+       src="https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js"
        data-preference-id="<?php echo $preference->id; ?>">
       </script>
     </form>
