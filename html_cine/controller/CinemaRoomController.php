@@ -40,6 +40,7 @@ class CinemaRoomController extends BaseController{
 
 
   function validCinemaRoom($data){
+    print_r($data);
     $valid = true;
     extract($data);
     if(
@@ -98,7 +99,7 @@ class CinemaRoomController extends BaseController{
     $d_cinemaRoom = $this->d_cinemaRoom;
     $cinemaRoom = $d_cinemaRoom->getById($this->params->cinemaRoom_id);
     if(!$this->validCinemaRoom($this->params->map()) || !$cinemaRoom){
-      $this->passErrorMessage = "Informacion de cinemaRoom invalida";
+      $this->passErrorMessage = "La informacion de la sala es invalida";
     }else{
       $new_cinemaRoom = new CinemaRoom($this->params->map());
       $new_cinemaRoom->setId($cinemaRoom->getId());
@@ -109,11 +110,11 @@ class CinemaRoomController extends BaseController{
       }
       if($updated){
         $this->passSuccessMessage = "Cine actualizado correctamente";
-      }else{
+      }else if(!$this->passErrorMessage){
         $this->passErrorMessage = "Hubo un error, el cine no pudo ser actualizado";
       }
     }
-    $this->redirect('/admin/cines/editar', array('id' => $this->params->cinemaRoom_id ));
+    $this->redirect('/admin/cines/salas/editar', array('id' => $this->params->cinemaRoom_id ));
   }
 
 
