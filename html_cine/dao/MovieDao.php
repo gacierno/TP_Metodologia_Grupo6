@@ -165,7 +165,7 @@ class MovieDao extends BaseDao implements IApiConnector
 		where
 			S.show_available = 1
 			and
-			S.show_date >= '"
+			S.show_date >= '
 EOD;
 
 		if( isset( $args['date'] ) ){
