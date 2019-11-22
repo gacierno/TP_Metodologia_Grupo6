@@ -51,6 +51,7 @@ Esta vista va a hacer getSalas() del objeto $cinema para renderizarlas -->
         </form>
 
     </div>
+    <?php if(isset($cinemaRooms)) : ?>
     <div class="cinemaRoomcard__list">
     <h2 class="cinemaRoomlist__title--format">Listado de Salas</h2>
         <div class="cinemaRoomlist__button--container col-12">
@@ -96,6 +97,7 @@ $availability = $cinemaRoom->getAvailability();
                     <?php endforeach; ?>
     </div>
     </div>
+<?php endif; ?>
 
 </div>
 <?php include_once('footer.php'); ?>

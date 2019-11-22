@@ -23,7 +23,7 @@
             <div class="movie-detail__shows--container">
                 <?php foreach($showsByCinema as $cinema) : ?>
                 <div id="cinema-<?php echo $cinema["cinema"]->getId(); ?>" class="dropdown">
-                    <span class="selLabel"><?php echo($cinema["cinema"]->getName()); ?></span>
+                    <span class="selLabel"><p class="showitems__cinema-name--format"><?php echo($cinema["cinema"]->getName()); ?></p></span>
                     <input type="hidden" name="cd-dropdown">
                     <ul class="dropdown-list">
                         <?php foreach($cinema["shows"] as $show) : ?>
@@ -31,21 +31,32 @@
                             <?php $originalDate = $show->getDay();
                             $newDate = str_replace('-','/',date('d-m-Y',strtotime($originalDate)));
                             ?>
-                            <a href="/funciones?id=<?php echo($show->getId()); ?>"><p class="showitem__dat--format"><?php echo($newDate); ?> <?php echo($show->getTime()); ?></p><p class="showitem__cinemaroom-name--format">asdasds</p>
-                            <div class="form-group">
-                                <label>Quantity: </label>
+
+
+                            <div class="showitem__date--container form-group">
+                                <div class="showitem__date--inner-container">
+                                    <p class="showitem__date--format"><?php echo($newDate); ?> <?php echo($show->getTime()); ?></p><p class="showitem__cinemaroom-name--format"><?php echo($show->getCinemaRoom()->getName()); ?></p>
+                                </div>
                                 <div class="input-group">
-                                    <div class="input-group-btn">
-                                        <button id="down" class="btn btn-default" onclick=" down('0')"><span class="glyphicon glyphicon-minus"></span></button>
-                                    </div>
-                                    <input type="text" id="myNumber" class="form-control input-number" value="1" />
-                                    <div class="input-group-btn">
-                                        <button id="up" class="btn btn-default" onclick="up('10')"><span class="glyphicon glyphicon-plus"></span></button>
+                                    <div class="input-group__form--container">
+                                        <div class="input-group-btn">
+                                            <button id="down" class="btn btn-default" onclick=" down('0','ticketQuantity-<?php echo($show->getId()); ?>')">-</button>
+                                        </div>
+                                        <form id="pre-purchase-form" method="POST" action="/funciones/checkout">
+                                            <input type="text" hidden style="display:none" name="show_id" value="<?php echo($show->getId()); ?>">
+                                            <input type="text" id="ticketQuantity-<?php echo($show->getId()); ?>" name="ticket_quantity" class="form-control ticketQuantity" value="0" />
+                                        </form>
+                                        <div class="input-group-btn">
+                                            <button id="up" class="btn btn-default" onclick="up('<?php echo($show->getCapacityLeft()); ?>','ticketQuantity-<?php echo($show->getId()); ?>')">+</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </a>
+                            <a id="pre-purchase-button-<?php echo($show->getId()); ?>" class="pre-button button-disabled showitem__buy--button" href="javascript:void(0)">Comprar</a>
                         </li>
+
+
+                        
                         <?php endforeach; ?>
                     </ul>
                 </div>
@@ -58,17 +69,24 @@
 
 
 <script>
-function up(max) {
-    document.getElementById("myNumber").value = parseInt(document.getElementById("myNumber").value) + 1;
-    if (document.getElementById("myNumber").value >= parseInt(max)) {
-        document.getElementById("myNumber").value = max;
+function up(max,id) {
+    document.getElementById(id).value = parseInt(document.getElementById(id).value) + 1;
+    
+    if (document.getElementById(id).value >= parseInt(max)) {
+        document.getElementById(id).value = max;
     }
+    var evt = document.createEvent("HTMLEvents");
+    evt.initEvent("change", false, true);
+    document.getElementById(id).dispatchEvent(evt);
 }
-function down(min) {
-    document.getElementById("myNumber").value = parseInt(document.getElementById("myNumber").value) - 1;
-    if (document.getElementById("myNumber").value <= parseInt(min)) {
-        document.getElementById("myNumber").value = min;
+function down(min,id) {
+    document.getElementById(id).value = parseInt(document.getElementById(id).value) - 1;
+    if (document.getElementById(id).value <= parseInt(min)) {
+        document.getElementById(id).value = min;
     }
+    var evt = document.createEvent("HTMLEvents");
+    evt.initEvent("change", false, true);
+    document.getElementById(id).dispatchEvent(evt);
 }
 </script>
 
