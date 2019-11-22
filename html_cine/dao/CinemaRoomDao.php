@@ -17,16 +17,6 @@ class CinemaRoomDao extends BaseDao
 		parent::setSingleType( 'cinemaroom' );
 	}
 
-
-	/*
-	+------------------------------------------------+
-	|											     |
-	|	METHODS THAT CONNECT THE JSON STORED DATA    |
-	|										     	 |
-	+------------------------------------------------+
-	*/
-
-
 	/**
 	 * parseToObject
 	 * @param hashMap
