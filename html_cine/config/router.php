@@ -32,8 +32,9 @@ $router->use('/^\/admin/',                        array( $authenticationControll
 // -- USER IS LOGGED IN AND TRYING TO ACCESS LOGIN PAGE
 $router->use('/^\/login/',                        array( $authenticationController, 'preventDoubleLogin' ));
 
-// PAYMENTS
+// CHECKOUT ============================================================================
 $router->get('\/test-payment' , array($paymentController , 'test' ));
+
 
 // CINES ============================================================================
 $router->get('\/admin\/cines\/nuevo',             array( $cinemaController,'createForm' ) );

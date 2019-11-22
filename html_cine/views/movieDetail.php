@@ -56,7 +56,7 @@
                         </li>
 
 
-                        
+
                         <?php endforeach; ?>
                     </ul>
                 </div>
@@ -71,7 +71,7 @@
 <script>
 function up(max,id) {
     document.getElementById(id).value = parseInt(document.getElementById(id).value) + 1;
-    
+
     if (document.getElementById(id).value >= parseInt(max)) {
         document.getElementById(id).value = max;
     }
