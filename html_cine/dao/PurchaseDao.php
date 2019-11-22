@@ -25,7 +25,7 @@ class PurchaseDao extends BaseDao
 		return new Purchase( $arr );
 	}
 
-	public function parseToHash( $obj ){
+	public function parseToHash( $obj, $relational = array() ){
 		return array(
 
 			'purchase_ticket_qty' => $obj->getTicketQty(),
@@ -33,8 +33,7 @@ class PurchaseDao extends BaseDao
 			'purchase_date' => $obj->getDate(),
 			'purchase_amount' => $obj->getAmount(),
 
-			//tickets is an array
-			'purchase_tickets' => $obj->getTickets(),  
+		
 
 			'purchase_user' => $obj->getUser(),
 			'purchase_payment' => $obj->getPayment()
