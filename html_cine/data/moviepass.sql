@@ -124,7 +124,7 @@ create table Tickets(
 */
 
 
-insert into Roles (role_name, role_description) values ( 'cliente', 'usuario del sistema'), ('administrador', 'administradores del sistema');
+insert into Roles (role_name, role_description) values ( 'cliente', 'usuario del sistema'), ('admin', 'administradores del sistema');
 
 
 
