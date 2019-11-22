@@ -15,7 +15,7 @@ class PaymentController extends BaseController{
 
 
     // Agrega credenciales
-    \MercadoPago\SDK::setAccessToken('TEST-4060766969160602-062319-71b3345049fc8d45b3963b64fbbd47a9-50813606');
+    \MercadoPago\SDK::setAccessToken(MP_ACCESS_TOKEN);
 
     // Crea un objeto de preferencia
     $preference = new \MercadoPago\Preference();
@@ -33,7 +33,7 @@ class PaymentController extends BaseController{
     <form action="/procesar-pago" method="POST">
       <script
        src="https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js"
-       data-preference-id="<?php echo $preference->id; ?>">
+       data-preference-id="$preference->id">
       </script>
     </form>
 EOD;
