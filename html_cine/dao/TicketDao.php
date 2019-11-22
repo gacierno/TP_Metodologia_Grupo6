@@ -28,14 +28,10 @@ class TicketDao extends BaseDao
 	}
 
 
-	public function parseToHash( $obj ){
+	public function parseToHash( $obj, $relational = array() ){
 		return array(
 
-			/*
-				FALT DEFINIR SI LE PASAMOS UN ID DE REFERENCIA AL OBJETO TICKET
-				O SI LE PONEMOS UN PARAMETRO A LA FUNCION PARA SABER QUE ID DE PURCHASE LE CORRESPONDE AL TICKET
-			*/
-
+			'purchase_id' => $relational['purchase_id'],
 			'ticket_qrCode' => $obj->getQrCode(),
 			'show_id' => $obj->getShow()->getId(),
 
