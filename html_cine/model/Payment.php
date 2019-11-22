@@ -19,9 +19,9 @@ namespace model;
  	{
  		$this->setId(        ( isset($options['payment_id']) )   ? $options['payment_id'] : null );
  		$this->setAuthentificationCode(  ( isset($options['payment_auth_code']) ) ? $options['payment_auth_code'] : '' );
- 		$this->setDate(     ( isset($options['payment_date']) )     ? $options['payment_date'] : null );
-        $this->setAmount(   ( isset($options['payment_amount']) )     ? $options['payment_amount'] : null );
-        $this->setMethod(   ( isset($options['payment_method']) )     ? $options['payment_method'] : null );
+ 		$this->setDate(     ( isset($options['payment_date']) )     ? $options['payment_date'] : '' );
+        $this->setAmount(   ( isset($options['payment_amount']) )     ? $options['payment_amount'] : 0 );
+        $this->setMethod(   ( isset($options['payment_method']) )     ? $options['payment_method'] : '' );
  	}
  
 

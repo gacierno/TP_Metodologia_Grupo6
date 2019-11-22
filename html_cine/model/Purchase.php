@@ -29,7 +29,7 @@
 			$this->setDiscount( (isset($options['purchase_discount'])	)?$options['purchase_discount']:0 );
 			$this->setDate( 	(isset($options['purchase_date'])		)?$options['purchase_date']:'' );
 			$this->setAmount( 	(isset($options['purchase_amount'])		)?$options['purchase_amount']:0 );
-			$this->setTickets( 	(isset($options['purchase_tickets'])	)?$options['purchase_tickets']:null );
+			$this->setTickets( 	(isset($options['purchase_tickets'])	)?$options['purchase_tickets']: array() );
 			$this->setUser( 	(isset($options['purchase_user'])		)?$options['purchase_user']:null );
 			$this->setPayment( 	(isset($options['purchase_payment'])	)?$options['purchase_payment']:null );
 		}
