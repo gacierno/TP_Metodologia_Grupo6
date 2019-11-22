@@ -57,7 +57,12 @@ class CinemaRoomController extends BaseController{
   function editForm(){
     extract($this->params->map());
     $d_cinemaRoom   = $this->d_cinemaRoom;
-    $this->render("cinemaRoomForm", array('cinemaRoom' => $d_cinemaRoom->getById($id)) );
+    $cinemaRoom = $d_cinemaRoom->getById($id);
+    $this->render("cinemaRoomForm", array(
+        'cinemaRoom' => $cinemaRoom,
+        'cinema' => $cinemaRoom->getCinema()->getId()
+      )
+    );
   }
 
 
@@ -81,7 +86,7 @@ class CinemaRoomController extends BaseController{
       $this->passErrorMessage = "Hubo un error, la sala no pudo ser creado";
     }
 
-    $this->redirect('/admin/cines');
+    $this->redirect('/admin/cines/editar' , array('id' => $cinema->getId()));
   }
 
 

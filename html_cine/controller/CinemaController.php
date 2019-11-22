@@ -78,7 +78,7 @@ class CinemaController extends BaseController{
       $this->passErrorMessage = "Hubo un error, el cine no pudo ser creado";
     }
 
-    $this->redirect('/admin/cines/nuevo');
+    $this->redirect('/admin/cines');
   }
 
 

@@ -27,9 +27,9 @@ class CinemaRoom
 		$this->setCapacity(   ( isset($options['cinemaroom_capacity']) ) ? $options['cinemaroom_capacity'] : 0 );
 		$this->setName(       ( isset($options['cinemaroom_name']) )     ? $options['cinemaroom_name'] : '' );
 		$this->setTicketValue( ( isset($options['cinemaroom_ticketValue']) )? $options['cinemaroom_ticketValue'] : 0);
-        $this->setId(         ( isset($options['cinemaroom_id']) )       ? $options['cinemaroom_id'] : null );
-        $this->setAvailability( ( isset($options['cinemaroom_available']) ) ? $options['cinemaroom_available'] : 1 );
-        $this->setCinema(       ( isset($options['cinemarrom_cinema'])    ) ? $options['cinemarrom_cinema']    : null );
+    $this->setId(         ( isset($options['cinemaroom_id']) )       ? $options['cinemaroom_id'] : null );
+    $this->setAvailability( ( isset($options['cinemaroom_available']) ) ? $options['cinemaroom_available'] : 1 );
+    $this->setCinema(       ( isset($options['cinemarrom_cinema'])    ) ? $options['cinemarrom_cinema']    : null );
 	}
 
     /**
