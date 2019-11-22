@@ -1660,3 +1660,48 @@ select#moviefilter__multiple-select--genre,select#moviefilter__select--cinema{
     margin-bottom: 5px;
     margin-left:5px;
 }
+
+
+
+.purchase__list--container h1{
+    color: white;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.purchase__outer--container{
+    width: 90%;
+    margin: 0 auto;
+    text-align: center;
+    background-color: rgb(20, 20, 20);
+}
+
+@media all and (min-width:768px){
+    .purchase__outer--container{
+        width: 70%;
+        padding: 10px 20px;
+    }
+}
+
+@media all and (min-width:992px){
+    .purchase__outer--container{
+        width: 50%;
+    }
+}
+
+.purchase__item--container{
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.purchase__item--container p{
+    font-family: 'Roboto', sans-serif;
+    font-size:18px;
+    color: red;
+}
+
+.purchase__item--container span{
+    font-family: 'Roboto', sans-serif;
+    font-size:14px;
+    color: white;
+}
