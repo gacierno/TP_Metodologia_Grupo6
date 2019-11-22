@@ -27,10 +27,10 @@ $(document).ready(function(){
     //bind event to change action in cinemaRoom-form when delete button's clicked
     $('#cinemaRoom-delete').on('click',function(){
         if($(this).attr('available') !== undefined){
-            $('#cinemaRoom-form').attr('action','/admin/cines/desactivar');
+            $('#cinemaRoom-form').attr('action','/admin/cines/salas/desactivar');
         }
         else if($(this).attr('not-available') !== undefined){
-            $('#cinemaRoom-form').attr('action','/admin/cines/activar');
+            $('#cinemaRoom-form').attr('action','/admin/cines/salas/activar');
         }
     });
 
