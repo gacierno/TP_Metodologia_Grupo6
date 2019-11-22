@@ -6,7 +6,7 @@ namespace dao;
  *
  */
 
-use model\Cinema as Cinema;
+use model\CinemaRoom as CinemaRoom;
 use dao\BaseDao  as BaseDao;
 
 class CinemaRoomDao extends BaseDao
@@ -24,7 +24,7 @@ class CinemaRoomDao extends BaseDao
 	 */
 
 	public function parseToObject( $arr ){
-		return new Cinema( $arr );
+		return new CinemaRoom( $arr );
 	}
 
 	public function parseToHash( $obj ){

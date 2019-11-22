@@ -60,6 +60,7 @@ Esta vista va a hacer getSalas() del objeto $cinema para renderizarlas -->
 <?php
 
 
+
 foreach($cinemaRooms as $cinemaRoom) :
 
 $availability = $cinemaRoom->getAvailability();
