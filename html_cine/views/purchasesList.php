@@ -21,7 +21,9 @@ $purchases del usuario para renderizar los datos y generar el codigo QR con ello
 
 <div class="purchase__ticket--outer-container">
     <div class="ticket__info--container">
-        <p>asdasadsaadas</p>
+        <p class="ticket__movie-title">asdasd</p>
+        <span class="ticket__movie--date-time">10:00 / hoy</span>
+
     </div><div class="ticket__qr-button--container">
         <button type="submit" class="btn btn-info">Ver QR</button>
     </div>
