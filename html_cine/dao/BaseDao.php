@@ -4,7 +4,7 @@ namespace dao;
 use dao\Connection as Connection;
 use dao\IArud as IArud;
 
-abstract class BaseDao implements IArud{
+abstract class BaseDao implements IArud {
 
     protected $itemList = array();
     protected $tableName;
@@ -305,7 +305,7 @@ abstract class BaseDao implements IArud{
 
     public function parseToObject( $hash ){ }
 
-    public function parseToHash( $obj, $relationalData = array() ){ }
+    public function parseToHash( $obj ){ }
 
 
 
