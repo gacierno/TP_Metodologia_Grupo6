@@ -27,16 +27,6 @@ class ShowDao extends BaseDao
 		parent::setSingleType( 'show' );
 	}
 
-	/*
-	+------------------------------------------------+
-	|											     |
-	|	METHODS THAT CONNECT THE JSON STORED DATA    |
-	|										     	 |
-	+------------------------------------------------+
-	*/
-
-
-
 	/**
 	 * parseToObject
 	 * @param hashMap

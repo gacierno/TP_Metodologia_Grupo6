@@ -10,6 +10,7 @@
 
 
 	include_once dirname(__DIR__).'/dao/IApiConnector.php';
+	include_once dirname(__DIR__).'/dao/IArud.php';
 	include_once dirname(__DIR__).'/dao/BaseDao.php';
 	include_once dirname(__DIR__).'/dao/CinemaDao.php';
 	include_once dirname(__DIR__).'/dao/MovieDao.php';
@@ -145,7 +146,7 @@
 	/*
 	 * Instance CinemaDao for testing
 	//  */
-	// $testGenreDao = new dao\GenreDao();
+	$testGenreDao = new dao\GenreDao();
 	// $listGenre = $testGenreDao->getList();
 
 
@@ -153,13 +154,13 @@
 
 	// $_POST['result'] = $testGenreDao->getById( 12 );
 	// $_POST['result'] = $testGenreDao->add( $testGenre );
-	// $testGenreDao->fetch();
+	$testGenreDao->fetch();
 	// $options = $testGenreDao->getInsertQueryParams( $testGenre );
 
 	/*
 	 * Instance CinemaDao for testing
 	 */
-	// $testMovieDao = new dao\MovieDao();
+	$testMovieDao = new dao\MovieDao();
 	// $listMovie = $testMovieDao->getList();
 
 	// $testMovie = new model\Movie(
@@ -171,7 +172,7 @@
 	// 		'movie_id' => 0
 	// 	)
 	// );
-	// $testMovieDao->fetch();
+	$testMovieDao->fetch();
 	// $testMovieDao->add( $testMovie );
 
 

@@ -34,6 +34,7 @@ class AuthenticationController extends BaseController{
       $loggedUser = $this->session->user;
       $dbUser = $d_user->getById($loggedUser->getId());
       if(
+        $dbUser &&
         $dbUser->getEmail() == $loggedUser->getEmail() &&
         $dbUser->getPass()  == $loggedUser->getPass()
       ){

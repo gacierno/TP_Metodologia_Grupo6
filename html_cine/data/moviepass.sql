@@ -34,6 +34,7 @@ create table Movies(
 	movie_title varchar(50) not null,
 	movie_runtime int not null,
 	movie_description varchar(800) default '',
+	movie_available boolean default 1,
 	constraint pk_movie primary key (movie_id)
 );
 

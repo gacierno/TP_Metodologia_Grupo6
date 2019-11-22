@@ -17,9 +17,9 @@
 		private $discount;
 		private $date;
 		private $amount;
-		private $tickets
-		private $user;
-		private $payment;	
+		private $tickets;	// array( object : Ticket )
+		private $user;		// object : User
+		private $payment;	// object : Payment
 
 		
 		function __construct( $options )
@@ -29,9 +29,10 @@
 			$this->setDiscount( (isset($options['purchase_discount'])	)?$options['purchase_discount']:0 );
 			$this->setDate( 	(isset($options['purchase_date'])		)?$options['purchase_date']:'' );
 			$this->setAmount( 	(isset($options['purchase_amount'])		)?$options['purchase_amount']:0 );
-			$this->setTickets( 	(isset($options['purchase_tickets'])	)?$options['purchase_tickets']:null );
+			$this->setTickets( 	(isset($options['purchase_tickets'])	)?$options['purchase_tickets']: array() );
 			$this->setUser( 	(isset($options['purchase_user'])		)?$options['purchase_user']:null );
 			$this->setPayment( 	(isset($options['purchase_payment'])	)?$options['purchase_payment']:null );
+		
 		}
 
 
@@ -45,14 +46,10 @@
 
 	    /**
 	     * @param mixed $id
-	     *
-	     * @return self
 	     */
 	    public function setId($id)
 	    {
 	        $this->id = $id;
-
-	        return $this;
 	    }
 
 	    /**
@@ -65,8 +62,6 @@
 
 	    /**
 	     * @param mixed $ticket_qty
-	     *
-	     * @return self
 	     */
 	    public function setTicketQty($ticket_qty)
 	    {
@@ -85,8 +80,6 @@
 
 	    /**
 	     * @param mixed $discount
-	     *
-	     * @return self
 	     */
 	    public function setDiscount($discount)
 	    {
@@ -105,8 +98,6 @@
 
 	    /**
 	     * @param mixed $date
-	     *
-	     * @return self
 	     */
 	    public function setDate($date)
 	    {
@@ -125,8 +116,6 @@
 
 	    /**
 	     * @param mixed $amount
-	     *
-	     * @return self
 	     */
 	    public function setAmount($amount)
 	    {
@@ -145,14 +134,10 @@
 
 	    /**
 	     * @param mixed $user
-	     *
-	     * @return self
 	     */
 	    public function setUser($user)
 	    {
 	        $this->user = $user;
-
-	        return $this;
 	    }
 
 	    /**
@@ -165,14 +150,19 @@
 
 	    /**
 	     * @param mixed $payment
-	     *
-	     * @return self
 	     */
 	    public function setPayment($payment)
 	    {
 	        $this->payment = $payment;
+	    }
 
-	        return $this;
+	    /**
+	     * @param $ticket: Ticket
+	     */
+	    public function addTicket( $ticket ){
+	    	if( $ticket != null ){
+	    		array_push( $this->tickets, $ticket );
+	    	}
 	    }
 	}
  ?>
