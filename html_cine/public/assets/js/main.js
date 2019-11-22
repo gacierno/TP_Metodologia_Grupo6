@@ -15,7 +15,29 @@ var height;
 $(document).ready(function(){
 
 
-    // new QRCode(document.getElementById("qrcode"), "http://jindo.dev.naver.com/collie");
+    if($('.qr-button').length > 0){
+
+        var QrCode = new QRCode(document.getElementById("qrcode"), {
+            text: "no-data",
+            colorDark : "#000000",
+            colorLight : "#ffffff"
+        });
+
+        $('.qr-button').on('click',function(){
+            if(!($(this).hasClass('open'))){
+                QrCode.clear();
+                var infoContainer = $(this).closest('.purchase__ticket--outer-container').find('.ticket__info--container');
+                var info = $(infoContainer).first().find(' .ticket__movie-title').text() + " / " + $(infoContainer).first().find(' .ticket__movie--date-time').text() + " / " + $(infoContainer).first().find(' .ticket__movie-cinemaroom').text();
+                QrCode.makeCode(info);
+            }
+            $('.qr-code--container').toggleClass('open');
+        });
+
+
+        $('.qr-code__close-btn').on('click',function(){
+            $('.qr-code--container').toggleClass('open');
+        });
+    }
 
     //bind event to change action in cinema-form when delete button's clicked
     $('#cinema-delete').on('click',function(){
@@ -358,7 +380,7 @@ function headerReadapt() {
     
         if (window.pageYOffset > sticky) {
             header.style.position = 'fixed';
-            header.style.zIndex = '9999999999999999';
+            header.style.zIndex = '9999';
             header.style.width = '100%';
             header.style.top = 0;
             $('body').css('padding-top', $('#nav').innerHeight() + 'px');
