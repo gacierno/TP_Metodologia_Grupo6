@@ -15,9 +15,9 @@ use model\Cinema as Cinema;
 class CinemaRoom
 {
     private $id;
-	private $name;
-	private $capacity;
-	private $ticketValue;
+  	private $name;
+  	private $capacity;
+  	private $ticketValue;
     private $available;
     private $cinema; //object Cinema
 

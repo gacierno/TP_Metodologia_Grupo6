@@ -39,7 +39,7 @@ class CinemaRoomController extends BaseController{
 
 
 
-  function validcinemaRoom($data){
+  function validCinemaRoom($data){
     $valid = true;
     extract($data);
     if(
@@ -63,26 +63,25 @@ class CinemaRoomController extends BaseController{
 
 
   function create(){
-    $created = false;
-    if(!$this->validcinemaRoom($this->params->map())){
-      $this->passErrorMessage = "La informacion del cine no es valida";
-    }else{
+    $created  = false;
+    $d_cinema = new CinemaDao();
+    $cinema   = $d_cinema->getById($this->params->cinema_id);
+    if($this->validCinemaRoom($this->params->map()) && $cinema){
       $d_cinemaRoom   = $this->d_cinemaRoom;
       $new_cinemaRoom = new CinemaRoom($this->params->map());
+      $new_cinemaRoom->setCinema($cinema);
       $created = $d_cinemaRoom->add($new_cinemaRoom);
+    }else{
+      $this->passErrorMessage = "La informacion de la sala no es valida";
     }
-    /*
-      - Set Cinema to Room
-      - Add $cinema object to create form for sala
-    */
 
     if($created){
-      $this->passSuccessMessage = "Cine creado correctamente";
-    }else{
-      $this->passErrorMessage = "Hubo un error, el cine no pudo ser creado";
+      $this->passSuccessMessage = "Sala creada correctamente";
+    }else if(!$this->passErrorMessage){
+      $this->passErrorMessage = "Hubo un error, la sala no pudo ser creado";
     }
 
-    $this->redirect('/admin/cines/nuevo');
+    $this->redirect('/admin/cines');
   }
 
 
@@ -92,7 +91,7 @@ class CinemaRoomController extends BaseController{
     $updated = false;
     $d_cinemaRoom = $this->d_cinemaRoom;
     $cinemaRoom = $d_cinemaRoom->getById($this->params->cinemaRoom_id);
-    if(!$this->validcinemaRoom($this->params->map()) || !$cinemaRoom){
+    if(!$this->validCinemaRoom($this->params->map()) || !$cinemaRoom){
       $this->passErrorMessage = "Informacion de cinemaRoom invalida";
     }else{
       $new_cinemaRoom = new CinemaRoom($this->params->map());
