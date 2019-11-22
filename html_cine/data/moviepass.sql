@@ -10,7 +10,7 @@ create table Cinemas(
 	constraint pk_cinema primary key (cinema_id)
 );
 
-create table CinemaRooms( 
+create table CinemaRooms(
 	cinemaroom_id int auto_increment,
 	cinemaroom_name varchar(50) not null,
 	cinemaroom_capacity int not null,
@@ -124,11 +124,4 @@ create table Tickets(
 */
 
 
-insert into Roles (role_name, role_description) values ( 'cliente', 'usuario del sistema'), ('administrador', 'administradores del sistema');
-
-
-
-
-
-
-
+insert into Roles (role_name, role_description) values ( 'cliente', 'usuario del sistema'), ('admin', 'administradores del sistema');
