@@ -1,6 +1,6 @@
 <?php include_once('header.php'); ?>
 <!-- NECESITA ARRAY DE $MOVIES / $CINEMAS , SI ES /ACTUALIZAR NECESITO EL OBJETO $SHOW INSTANCIADO -->
-<?php if(isset($show)) : $isShowSet = true; $movie = $show->getMovie(); $cinema = $show->getCinema(); else : $isShowSet = false; endif; ?>
+<?php if(isset($show)) : $isShowSet = true; $movie = $show->getMovie(); $cinemaRoom = $show->getCinemaRoom(); else : $isShowSet = false; endif; ?>
 
 <?php include_once('partials/customMessage.php'); ?>
 
@@ -44,16 +44,12 @@
         </select>
 
         <select name="show_cinemaroom" class="form-control form-control-md showlist__cinema--select" required>
-            <option value="<?php if($isShowSet) : echo($cinema->getId()); endif; ?>" selected><?php if($isShowSet) : echo($cinema->getName()); else : echo("Seleccione sala de cine"); endif; ?></option>
+            <option value="<?php if($isShowSet) : echo($cinemaRoom->getId()); endif; ?>" selected><?php if($isShowSet) : echo( $cinemaRoom->getCinema()->getName() . ' - ' . $cinemaRoom->getName()); else : echo("Seleccione sala de cine"); endif; ?></option>
 
             <?php
-            $selectedCinemaRoom = "";
-            if(isset($cinemaRoom)){
-                $selectedCinema = $cinemaRoom->getName();
-            }
-            foreach ($cinemaRooms as $cinemaRoom) :
+            foreach ($cinemaRooms as $cr) :
             ?>
-            <option value="<?= $cinemaRoom->getId(); ?>"><?= $cinemaRoom->getCinema()->getName() . ' - ' .$cinemaRoom->getName(); ?></option>
+            <option value="<?= $cr->getId(); ?>"><?= $cr->getCinema()->getName() . ' - ' . $cr->getName(); ?></option>
             <?php endforeach; ?>
         </select>
         <div class="showlist__submit-button--container">
