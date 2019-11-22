@@ -1155,10 +1155,10 @@ body{
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
   width: 100%;
   height: 60px;
-  line-height: 60px;
   color: #fff;
   font-size: 18px;
   letter-spacing: 2px;
+  line-height: 60px;
   background: rgb(20, 20, 20);
   display: block;
   padding: 0 50px 0 30px;
@@ -1179,14 +1179,19 @@ body{
   content: '\25BC';
   position: absolute;
   right: 0px;
-  top: 15%;
+  top: 41%;
   width: 50px;
   text-align: center;
   font-size: 12px;
   padding: 10px;
   height: 70%;
   line-height: 24px;
-  border-left: 1px solid #ddd;
+}
+
+@media all and (min-width:768px){
+    .dropdown > span:after {
+        top:37%;
+    }
 }
 .dropdown > span:active {
   transform: rotateX(45deg);
@@ -1222,7 +1227,7 @@ body{
   -webkit-backface-visibility: hidden;
   -webkit-touch-callout: none;
   user-select: none;
-  width: 100%;
+  width: 30%;
   font-size: 15px;
   line-height: 60px;
   padding: 0 30px;
@@ -1233,11 +1238,18 @@ body{
   text-decoration: none;
 }
 
-.dropdown-list li a:after{
-  content: '\2192';
+/* .dropdown-list li a:after{
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  font-family: "Font Awesome 5 Free"; 
+  content: '\f07a';
+  font-weight: 900;
   position: absolute;
   right: 0px;
-  top: 15%;
+  top: 25%;
   width: 50px;
   text-align: center;
   font-size: 24px;
@@ -1246,7 +1258,7 @@ body{
   line-height: 24px;
   cursor: pointer;
   height: 70%;
-}
+} */
 
 .showlist__button--primary,.showlist__button--secondary{
     width:100%;
@@ -1530,13 +1542,121 @@ select#moviefilter__multiple-select--genre,select#moviefilter__select--cinema{
     margin-bottom: 0;
 }
 
-.showitem__dat--format{
+.showitem__date--format{
     display: inline-block;
     margin-bottom: 0px;
     margin-top: 10px;
 }
 
-.form-group .glyphicon{
-	color: #95d7fc;
+#up,#down{
+    color:red;
+    font-size:16px;
+    font-weight: bold;
 }
 
+.showitem__buy--button,.showitem__date--container{
+    display:inline-block;
+}
+
+.showitem__buy--button{
+    text-align: center;
+
+}
+
+.showitem__date--container{
+    margin-bottom: 0;
+    width: 100%;
+}
+
+.showitem__date--inner-container{
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+
+
+.ticketQuantity{
+    text-align: center;
+}
+
+.movie-detail__shows--container .showitems__cinema-name--format{
+    margin:0;
+    color: #fff;
+    font-size: 18px;
+    letter-spacing: 2px;
+}   
+
+.movie-detail__shows--container{
+    width: 100%;
+}
+
+@media all and (min-width:768px){
+    .movie-detail__shows--container{
+        width: 80%;
+    }
+}
+@media all and (min-width:992px){
+    .movie-detail__shows--container{
+        width: 60%;
+    }
+}
+
+.dropdown:not(.movielist__filter--container) span.selLabel{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.input-group form,.input-group-btn{
+    display: inline-block;
+}
+
+.input-group{
+    justify-content: center;
+}
+
+.pre-button.button-disabled{
+    background-color: rgba(255, 0, 0, 0.4);
+    cursor: not-allowed;
+    opacity: 0.4;
+}
+
+
+.pre-button{
+    background-color: rgba(255, 0, 0, 1);
+    margin: 10px auto;
+    border: 1px solid red;
+    transition: 0.3s ease all;
+
+}
+
+.pre-button:not(.button-disabled):hover{
+    background-color: black;
+    border: 1px solid;
+    border-image-source:linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    border-image-slice: 1;
+}
+
+.red-label{
+    color:red;
+    font-weight: bold;
+    opacity: 1;
+}
+
+.purchase__fixed--data{
+    font-size: 16px;
+    text-align: left;
+    font-weight: bold;
+    color: black;
+    margin-bottom: 5px;
+    margin-left:5px;
+}
+
+.cc__select--label{
+    text-align:left;
+}
+
+.cc__select--label span.red-label{
+    margin-bottom: 5px;
+    margin-left:5px;
+}

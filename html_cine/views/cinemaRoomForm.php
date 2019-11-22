@@ -27,20 +27,20 @@ Esta vista cuenta con un objeto $cinemaRoom para renderizar los datos necesarios
 
         <?php if($iscinemaRoomSet) : ?>
         <label style="display:none;">
-            <input type="text"  name="cinemaRoom_id" value="<?php echo($cinemaRoom->getId()); ?>">
+            <input type="text"  name="cinemaroom_id" value="<?php echo($cinemaRoom->getId()); ?>">
         </label>
         <?php endif; ?>
 
         <label>
-            <input class="inputText" type="text" name="cinemaRoom_name" value="<?php if($iscinemaRoomSet) : echo($cinemaRoom->getName()); endif; ?>" required>
+            <input class="inputText" type="text" name="cinemaroom_name" value="<?php if($iscinemaRoomSet) : echo($cinemaRoom->getName()); endif; ?>" required>
             <span class="floating-label">Nombre de la sala</span>
         </label>
         <label>
-            <input class="inputText" type="text" name="cinemaRoom_capacity" value="<?php if($iscinemaRoomSet) : echo($cinemaRoom->getCapacity()); endif; ?>" required>
+            <input class="inputText" type="text" name="cinemaroom_capacity" value="<?php if($iscinemaRoomSet) : echo($cinemaRoom->getCapacity()); endif; ?>" required>
             <span class="floating-label">Capacidad de la sala</span>
         </label>
         <label>
-            <input class="inputText" type="text"  name="cinemaRoom_ticketValue" value="<?php if($iscinemaRoomSet) : echo($cinemaRoom->getTicketValue()); endif; ?>" required>
+            <input class="inputText" type="text"  name="cinemaroom_ticketValue" value="<?php if($iscinemaRoomSet) : echo($cinemaRoom->getTicketValue()); endif; ?>" required>
             <span class="floating-label">Valor del ticket de la sala</span>
         </label>
 

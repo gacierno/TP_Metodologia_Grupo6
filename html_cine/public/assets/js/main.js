@@ -5,32 +5,54 @@ var builtCarousel = buildCarousel(moviesSlider,false);
 
 
 
-//bind event to change action in cinema-form when delete button's clicked
-$('#cinema-delete').on('click',function(){
-    if($(this).attr('available') !== undefined){
-        $('#cinema-form').attr('action','/admin/cines/desactivar');
-    }
-    else if($(this).attr('not-available') !== undefined){
-        $('#cinema-form').attr('action','/admin/cines/activar');
-    }
-});
 
-//bind event to change action in cinemaRoom-form when delete button's clicked
-$('#cinemaRoom-delete').on('click',function(){
-    if($(this).attr('available') !== undefined){
-        $('#cinemaRoom-form').attr('action','/admin/cines/desactivar');
-    }
-    else if($(this).attr('not-available') !== undefined){
-        $('#cinemaRoom-form').attr('action','/admin/cines/activar');
-    }
-});
 
 
 var placeholder;
-var height
+var height;
 //on document ready,hide filter input placeholder and to load
 //new movies/create new slider with jquery.Load() method
 $(document).ready(function(){
+
+    //bind event to change action in cinema-form when delete button's clicked
+    $('#cinema-delete').on('click',function(){
+        if($(this).attr('available') !== undefined){
+            $('#cinema-form').attr('action','/admin/cines/desactivar');
+        }
+        else if($(this).attr('not-available') !== undefined){
+            $('#cinema-form').attr('action','/admin/cines/activar');
+        }
+    });
+
+    //bind event to change action in cinemaRoom-form when delete button's clicked
+    $('#cinemaRoom-delete').on('click',function(){
+        if($(this).attr('available') !== undefined){
+            $('#cinemaRoom-form').attr('action','/admin/cines/desactivar');
+        }
+        else if($(this).attr('not-available') !== undefined){
+            $('#cinemaRoom-form').attr('action','/admin/cines/activar');
+        }
+    });
+
+    //listener that enables each buy button when the ticket quantity is greater than 0
+    //and disables it when it is.
+    $('.ticketQuantity').change(function(){
+        var ticketId = '#' + $(this).attr('id');
+        var container = $(ticketId).closest('li');
+        if($(ticketId).val() > 0){
+            container.find('.pre-button').first().removeClass("button-disabled");
+        }
+        else{
+            container.find('.pre-button').first().addClass("button-disabled");
+        }
+    });
+
+    //listener to submit the form that contains the data for the purchase
+    $('.pre-button').click(function(){
+        if(!($(this).hasClass('button-disabled'))){
+            $(this).closest('li').find('form').first().submit();
+        }
+    });
 
     //give nav menu behaviour
     $(document).on('click',function(e){
