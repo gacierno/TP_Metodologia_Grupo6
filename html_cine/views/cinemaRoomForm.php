@@ -25,6 +25,7 @@ Esta vista cuenta con un objeto $cinemaRoom para renderizar los datos necesarios
 
         <form id="cinemaRoom-form" class="cinemaRoom__form" method="POST" action="<?php if($iscinemaRoomSet) : echo('/admin/cines/salas/actualizar'); else : echo('/admin/cines/salas/nuevo'); endif; ?>">
 
+        <input type="hidden" name="cinema_id" value="<?= $cinema->getId(); ?>">
         <?php if($iscinemaRoomSet) : ?>
         <label style="display:none;">
             <input type="text"  name="cinemaRoom_id" value="<?php echo($cinemaRoom->getId()); ?>">

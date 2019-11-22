@@ -29,7 +29,12 @@ class CinemaRoomController extends BaseController{
 
 
   function createForm(){
-    $this->render("cinemaRoomForm");
+    $d_cinema = new CinemaDao();
+    $this->render("cinemaRoomForm",
+      array(
+        'cinema' => $d_cinema->getById($this->params->cinema_id)
+      )
+    );
   }
 
 

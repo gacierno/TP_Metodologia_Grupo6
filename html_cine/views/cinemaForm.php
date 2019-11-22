@@ -39,7 +39,7 @@ Esta vista va a hacer getSalas() del objeto $cinema para renderizarlas -->
             <input class="inputText" type="text"  name="cinema_address" value="<?php if($isCinemaSet) : echo($cinema->getAddress()); endif; ?>" required>
             <span class="floating-label">Direccion del Cine</span>
         </label>
-        
+
 
         <div class="cinemaform__button--container">
             <button type="submit" class="cinemaform__button--primary">Enviar</button>
@@ -54,16 +54,16 @@ Esta vista va a hacer getSalas() del objeto $cinema para renderizarlas -->
     <div class="cinemaRoomcard__list">
     <h2 class="cinemaRoomlist__title--format">Listado de Salas</h2>
         <div class="cinemaRoomlist__button--container col-12">
-            <a target="_self" href="/admin/cines/salas/nuevo">Agregar Sala</a>
+            <a target="_self" href="/admin/cines/salas/nuevo?cinema_id=<?= $cinema->getId(); ?>">Agregar Sala</a>
         </div>
     <div class="row cinemaRoomlist__row">
-<?php 
+<?php
 $cinemaRooms = $cinema->getCinemaRooms();
 
 foreach($cinemaRooms as $cinemaRoom) :
-    
+
 $availability = $cinemaRoom->getAvailability();
-    
+
 ?>
 
         <div id="cinemaRoom-<?php echo($cinemaRoom->getId()); ?>" class="cinemaRoomcard__container col-sm-12 col-md-6 col-lg-4 col-xl-4">
@@ -86,7 +86,7 @@ $availability = $cinemaRoom->getAvailability();
                     <div class="cinemacard__capacity"><?php echo('Capacidad : '.$cinemaRoom->getCapacity() .' personas'); ?></div>
                     <div class="cinemacard__value"><?php echo('Valor de ticket : $'.$cinemaRoom->getTicketValue() ); ?></div>
                 </div>
-                <?php 
+                <?php
                 $idcinemaRoom = $cinemaRoom->getId();
                 ?>
                 <a href="/admin/cines/salas/editar?id=<?php echo($idcinemaRoom); ?>" class="cinemaRoomcard__overlay"><img src="/public/assets/images/edit.svg" alt=""></a>
