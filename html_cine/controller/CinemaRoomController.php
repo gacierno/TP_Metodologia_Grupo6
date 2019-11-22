@@ -4,6 +4,9 @@ use Controller\BaseController as BaseController;
 use DAO\CinemaRoomDao         as CinemaRoomDao;
 use Model\CinemaRoom          as CinemaRoom;
 
+use DAO\CinemaDao             as CinemaDao;
+use Model\Cinema              as Cinema;
+
 
 class CinemaRoomController extends BaseController{
 
@@ -13,7 +16,7 @@ class CinemaRoomController extends BaseController{
 
   function __construct(){
     parent::__construct();
-    // $this->d_cinemaRoom = new CinemaRoomDao();
+    $this->d_cinemaRoom = new CinemaRoomDao();
   }
 
 
@@ -63,6 +66,10 @@ class CinemaRoomController extends BaseController{
       $new_cinemaRoom = new CinemaRoom($this->params->map());
       $created = $d_cinemaRoom->add($new_cinemaRoom);
     }
+    /*
+      - Set Cinema to Room
+      - Add $cinema object to create form for sala
+    */
 
     if($created){
       $this->passSuccessMessage = "Cine creado correctamente";
