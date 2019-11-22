@@ -13,7 +13,8 @@ namespace model;
  	private $authentification_code;
  	private $date;
  	private $amount;
-    private $method;	
+    private $method;
+    private $purchaseId;	
  	
  	function __construct( $options )
  	{
@@ -22,6 +23,7 @@ namespace model;
  		$this->setDate(     ( isset($options['payment_date']) )     ? $options['payment_date'] : '' );
         $this->setAmount(   ( isset($options['payment_amount']) )     ? $options['payment_amount'] : 0 );
         $this->setMethod(   ( isset($options['payment_method']) )     ? $options['payment_method'] : '' );
+        $this->setPurchaseId((isset($options['purchase_id']) )      ? $options['purchase_id'] : null );
  	}
  
 
@@ -104,6 +106,14 @@ namespace model;
     public function setMethod($method)
     {
         $this->method = $method;
+    }
+
+    public function setPurchaseId( $purchaseId ){
+        $this->purchaseId = $purchaseId
+    }
+
+    public function getPurchaseId(){
+        return $this->purchaseId;
     }
 
 } 

@@ -36,7 +36,8 @@ class PaymentDao extends BaseDao
 			'payment_auth_code' => $obj->getAuthentificationCode(),
 			'payment_date' => $obj->getDate(),
 			'payment_amount' => $obj->getAmount(),
-			'payment_method' => $obj->getMethod()
+			'payment_method' => $obj->getMethod(),
+			'purchase_id' => $obj->getPurchaseId()  // as a payment can't exist without a purchase
 		);
 	}
 
