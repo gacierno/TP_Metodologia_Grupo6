@@ -43,9 +43,9 @@ class CinemaRoomController extends BaseController{
     $valid = true;
     extract($data);
     if(
-      !isset($cinemaRoom_name,$cinemaRoom_capacity,$cinemaRoom_ticketValue) ||
-      $cinemaRoom_capacity < 1 ||
-      $cinemaRoom_ticketValue < 1
+      !isset($cinemaroom_name,$cinemaroom_capacity,$cinemaroom_ticketValue) ||
+      $cinemaroom_capacity < 1 ||
+      $cinemaroom_ticketValue < 1
     ){
       $valid = false;
     }
