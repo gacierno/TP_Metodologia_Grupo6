@@ -191,7 +191,7 @@ EOD;
 
 		//	if cinema is set add the filter to the query
 		if( isset( $args['cinema'] ) ){
-			$query .= "S.cinema_id = ".$args['cinema']. " ";
+			$query .= "CR.cinema_id = ".$args['cinema']. " ";
 		}
 
 		$query .= "group by M.movie_id;";
