@@ -12,21 +12,15 @@ y un array de $shows para hacer los filtros -->
     <div class="charts__filters--inner-container">
         <div class="form-group charts__selects--container">
             <label>Peliculas
-            <select class="form-control" id="chart-movies" placeholder="select movie">
+            <select class="form-control" id="chart-movies">
                 <?php foreach($movies as $movie) : ?>
                     <option value="<?php echo($movie->getId()); ?>"><?php echo($movie->getName()); ?></option>
                 <?php endforeach; ?>
             </select>
             </label>
-
-            <label>Funciones
-            <select class="form-control" id="chart-shows" placeholder="select movie">
-                <option>1</option>
-            </select>
-            </label>
             
             <label>Cines
-            <select class="form-control" id="chart-cinemas" placeholder="select movie">
+            <select class="form-control" id="chart-cinemas">
                 <?php foreach($cinemas as $cinema) : ?>
                     <option value="<?php echo($cinema->getId()); ?>"><?php echo($cinema->getName()); ?></option>
                 <?php endforeach; ?>
