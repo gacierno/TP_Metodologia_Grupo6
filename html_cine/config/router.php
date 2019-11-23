@@ -8,7 +8,7 @@ use Controller\ShowController             as ShowController;
 use Controller\CinemaController           as CinemaController;
 use Controller\CinemaRoomController       as CinemaRoomController;
 use Controller\MovieController            as MovieController;
-use Controller\PaymentController          as PaymentController;
+use Controller\SalesController         as SalesController;
 
 $cinemaController           = new CinemaController();
 $cinemaRoomController       = new CinemaRoomController();
@@ -16,7 +16,7 @@ $showController             = new ShowController();
 $movieController            = new MovieController();
 $authenticationController   = new AuthenticationController();
 $userController             = new UserController();
-$paymentController          = new PaymentController();
+$salesController            = new SalesController();
 
 $router                     = new Router();
 
@@ -33,7 +33,9 @@ $router->use('/^\/admin/',                        array( $authenticationControll
 $router->use('/^\/login/',                        array( $authenticationController, 'preventDoubleLogin' ));
 
 // CHECKOUT ============================================================================
-$router->get('\/test-payment' , array($paymentController , 'test' ));
+$router->get('\/test-payment'         ,           array($salesController , 'test' ));
+
+$router->post('\/funciones\/checkout'  ,           array($salesController , 'checkout' ));
 
 
 // CINES ============================================================================

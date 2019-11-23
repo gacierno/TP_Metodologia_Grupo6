@@ -1,8 +1,8 @@
-<?php 
+<?php
 	namespace model;
 	/**
 	-  id: int
-	-  ticket_qty: int	
+	-  ticket_qty: int
 	-  discount: int
 	-  date: string
 	-  amount: float
@@ -21,7 +21,7 @@
 		private $user;		// object : User
 		private $payment;	// object : Payment
 
-		
+
 		function __construct( $options )
 		{
 			$this->setId( 		(isset($options['purchase_id'])			)?$options['purchase_id']:null );
@@ -32,9 +32,25 @@
 			$this->setTickets( 	(isset($options['purchase_tickets'])	)?$options['purchase_tickets']: array() );
 			$this->setUser( 	(isset($options['purchase_user'])		)?$options['purchase_user']:null );
 			$this->setPayment( 	(isset($options['purchase_payment'])	)?$options['purchase_payment']:null );
-		
+
 		}
 
+
+		/**
+		 * @return mixed
+		 */
+		public function getTickets()
+		{
+				return $this->tickets;
+		}
+
+		/**
+		 * @param mixed $tickets
+		 */
+		public function setTickets($tickets)
+		{
+				$this->tickets = $tickets;
+		}
 
 	    /**
 	     * @return mixed
