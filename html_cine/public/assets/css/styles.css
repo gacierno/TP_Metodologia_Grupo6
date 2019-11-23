@@ -1163,7 +1163,7 @@ body{
   display: block;
   padding: 0 50px 0 30px;
   position: relative;
-  z-index: 9999;
+  z-index: 9990;
   cursor: pointer;
   transform-style: preserve-3d;
   transform-origin: 50% 0%;
