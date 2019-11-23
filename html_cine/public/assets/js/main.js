@@ -10,79 +10,36 @@ var builtCarousel = buildCarousel(moviesSlider,false);
 
 var placeholder;
 var height;
+var myChart;
 //on document ready,hide filter input placeholder and to load
 //new movies/create new slider with jquery.Load() method
 $(document).ready(function(){
 
+
+    //creates an empty chart for /admin/estadisticas and execute an AJAX callback for it to be filled,
+    //and executes it everytime a filter value detect changes
     if($('#myChart').length > 0){
         var ctx = document.getElementById('myChart');
-        var myChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-                datasets: [{
-                    label: '# of Votes',
-                    data: [7, 19, 3, 5, 2, 3],
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true
-                        }
-                    }]
-                }
-            }
+        myChart = new Chart(ctx, {});
+        statisticsUpdate();
+        $('.charts__filter--container #chart-movies,#chart-cinemas,#chart-begin-date,#chart-final-date,#amount-btn,#tickets-btn').on('change',function(){
+            statisticsUpdate();
         });
-
-        setTimeout(function(){
-
-            var newData = [2, 2, 3, 5, 2, 3];
-
-            myChart.data.datasets.forEach((dataset) => {
-                console.log(dataset.data);
-                dataset.data = [];
-            });
-
-            myChart.data.datasets.forEach((dataset) => {
-                dataset.data = newData;
-            });
-            
-            
-            myChart.update();
-            
-        },2000);
-
     }
     
 
 
+    //qr code handling on tickets
     if($('.qr-button').length > 0){
 
+        //create the qr code for the first time, empty
         var QrCode = new QRCode(document.getElementById("qrcode"), {
             text: "no-data",
             colorDark : "#000000",
             colorLight : "#ffffff"
         });
 
+        //on each qr-code button click, fill the existant a QR code with the new data
         $('.qr-button').on('click',function(){
             if(!($(this).hasClass('open'))){
                 QrCode.clear();
@@ -93,7 +50,7 @@ $(document).ready(function(){
             $('.qr-code--container').toggleClass('open');
         });
 
-
+        //handler for closing QR popup
         $('.qr-code__close-btn').on('click',function(){
             $('.qr-code--container').toggleClass('open');
         });
@@ -459,3 +416,77 @@ function closeMenu(){
 }
 
 
+
+
+function statisticsUpdate(){
+
+    var movie = $('#chart-movies').val();
+    var cinema = $('#chart-cinemas').val();
+    var beginDate = ($('#chart-begin-date').val() === "") ? null : $('#chart-begin-date').val();
+    var finalDate = ($('#chart-final-date').val() === "") ? null : $('#chart-final-date').val();
+    var amount = $('#amount-btn').is(':checked');
+    var tickets = $('#tickets-btn').is(':checked');
+
+    var values = {};
+
+    values["movie"] = movie;
+    values["cinema"] = cinema;
+    values["beginDate"] = beginDate;
+    values["finalDate"] = finalDate;
+    values["amount"] = amount;
+    values["tickets"] = tickets;
+
+    $.ajax({
+        url: "/admin/estadisticas",
+        data : values,
+        // method : 'POST',
+        success : function(data){
+          buildChart(data);
+        },
+        error : function(){
+          $('#chart-container').html("<h1 style='text-align:center;'>No Results Found<h1>");
+        }
+    });
+
+    buildChart();
+    
+}
+
+
+function buildChart(data){
+
+    var finalLabels = ["cine uno","cine dos","cine tres","cine cuatro","cine cinco","cine seis","cine siete"];
+    var dataset = "# of tickets";
+    var d = [1,2,3,4,5,6,1];
+    var bgColor = [];
+    d.forEach(() => {
+        bgColor.push(getRandomColor());
+    });
+
+    setTimeout(function(){
+        myChart.data.labels.pop();
+        myChart.data.labels.push(finalLabels);
+        
+        myChart.data.datasets.forEach((dataset) => {
+            dataset.data = [];
+        });
+
+        myChart.data.datasets.forEach((dataset) => {
+            dataset.data = d;
+        });
+        
+        
+        myChart.update();
+        
+    },2000);
+}
+
+
+function getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}

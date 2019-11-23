@@ -1055,7 +1055,8 @@ body{
 }
 
 .custom-msg__container h2{
-    font-size: 16px;
+    font-size: 20px;
+    color: white;
 }
 
 .error-msg__container{
@@ -1905,6 +1906,7 @@ select#moviefilter__multiple-select--genre,select#moviefilter__select--cinema{
     justify-content: space-around;
     align-items: center;
     width: 40%;
+    margin-bottom: 0px;
 }
 
 .charts__dates--container input{
