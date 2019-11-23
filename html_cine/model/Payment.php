@@ -30,7 +30,7 @@ namespace model;
   private $mp_processing_mode;
   private $mp_merchant_account_id;
 
- 	function __construct( $options )
+ 	function __construct( $options = array() )
  	{
     extract($options);
  		$this->setId(        ( isset($options['payment_id']) )   ? $options['payment_id'] : null );
@@ -43,7 +43,7 @@ namespace model;
     $this->setMPPreferenceId(isset($mp_preference_id) ? $mp_preference_id : '');
     $this->setMPPaymentId(isset($mp_payment_id) ? $mp_payment_id : '');
     $this->setMPPaymentStatus(isset($mp_payment_status) ? $mp_payment_status : '');
-    $this->setMPPaymentStatusDetail(isset($mp_payment_status_detail) $mp_payment_status_detail ? : '');
+    $this->setMPPaymentStatusDetail(isset($mp_payment_status_detail) ? $mp_payment_status_detail  : '');
     $this->setMPMerchantOrderId(isset($mp_merchant_order_id) ? $mp_merchant_order_id : '');
     $this->setMPProcessingMode(isset($mp_processing_mode) ? $mp_processing_mode : '');
     $this->setMPMerchantAccountId(isset($mp_merchant_account_id) ? $mp_merchant_account_id : '');
@@ -132,7 +132,7 @@ namespace model;
     }
 
     public function setPurchaseId( $purchaseId ){
-        $this->purchaseId = $purchaseId
+        $this->purchaseId = $purchaseId;
     }
 
     public function getPurchaseId(){
@@ -142,48 +142,48 @@ namespace model;
 
     public function  getMPPreferenceId(){
       return $this->mp_preference_id;
-    };
+    }
     public function  getMPPaymentId(){
       return $this->mp_payment_id;
-    };
+    }
     public function  getMPPaymentStatus(){
       return $this->mp_payment_status;
-    };
+    }
     public function  getMPPaymentStatusDetail(){
       return $this->mp_payment_status_detail;
-    };
+    }
     public function  getMPMerchantOrderId(){
       return $this->mp_merchant_order_id;
-    };
+    }
     public function  getMPProcessingMode(){
       return $this->mp_processing_mode;
-    };
+    }
     public function  getMPMerchantAccountId(){
       return $this->mp_merchant_account_id;
-    };
+    }
 
 
     public function  setMPPreferenceId($value){
       return $this->mp_preference_id = $value;
-    };
+    }
     public function  setMPPaymentId($value){
       return $this->mp_payment_id = $value;
-    };
+    }
     public function  setMPPaymentStatus($value){
       return $this->mp_payment_status = $value;
-    };
+    }
     public function  setMPPaymentStatusDetail($value){
       return $this->mp_payment_status_detail = $value;
-    };
+    }
     public function  setMPMerchantOrderId($value){
       return $this->mp_merchant_order_id = $value;
-    };
+    }
     public function  setMPProcessingMode($value){
       return $this->mp_processing_mode = $value;
-    };
+    }
     public function  setMPMerchantAccountId($value){
       return $this->mp_merchant_account_id = $value;
-    };
+    }
 
 }
  ?>
