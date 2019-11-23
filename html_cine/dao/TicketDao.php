@@ -64,29 +64,31 @@ class TicketDao
 	}
 
 
-	public static function add( $arr ){
+	// public static function add( $arr ){
 
-        $options = self::getFields( $arr );
+ //        $options = self::getFields( $arr );
 
-        $query = "insert into Genres_on_Movies". $options;
+ //        $query = "insert into Genres_on_Movies". $options;
 
-        try {
-            $connection = Connection::GetInstance();
-            $connection->ExecuteNonQuery( $query, $arr );
-        } catch (PDOException $e) {
-            throw $e;
-            return false;
-        } catch (Exception $e) {
-            throw $e;
-            return false;
-        }
+ //        try {
+ //            $connection = Connection::GetInstance();
+ //            $connection->ExecuteNonQuery( $query, $arr );
+ //        } catch (PDOException $e) {
+ //            throw $e;
+ //            return false;
+ //        } catch (Exception $e) {
+ //            throw $e;
+ //            return false;
+ //        }
 
-        return true;
+ //        return true;
 
-	}
+	// }
 
-	public static function getGenresByMovieId( $id ){
-		$query = "select * from Genres_on_Movies where movie_id = $id;";
+
+
+	public static function getTicketsByPurchaseId( $id ){
+		$query = "select * from Tickets where purchase_id = $id;";
 		$output = array();
 
 		try {
@@ -109,8 +111,8 @@ class TicketDao
 
 
 
-	public static function getMoviesByGenreId( $id ){
-		$query = "select * from Genres_on_Movies where genre_id = $id;";
+	public static function getTicketsByShowId( $id ){
+		$query = "select * from Tickets where show_id = $id;";
 		$output = array();
 
 		try {
