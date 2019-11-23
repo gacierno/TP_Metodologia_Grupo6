@@ -85,10 +85,13 @@ abstract class BaseDao implements IArud {
             $query .= " where 1 ";
 
             foreach($criteria as $line){
-              $query .= " " . $line['condition'] . " " . $line['column'] . " " . $line['operator'] . " '" . $line['value'] . "'";
+              extract($line);
+              $query .= " " . $condition . " " . $column . " " . $operator .
+              (is_array($value) ? " (" . implode(",",$value) . ")" : " '" . $value . "'");
             }
 
             $query .= ";";
+
 
 
         }

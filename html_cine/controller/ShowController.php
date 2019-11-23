@@ -136,19 +136,20 @@ class ShowController extends BaseController{
 
     $shows = $this->d_show->getListWhere($query);
 
-
-    return !($shows && count($shows) > 0);
+    $valid = !($shows && count($shows) > 0);
+    if(!$valid) $this->passErrorMessage = "Error, el horario de la pelicula se superpone con el de otra funcion.";
+    return $valid;
   }
 
 
-  function validateMovieOwnership($date,$movie,$cinemaroom_ids){
+  function validateMovieOwnership($date,$movie,$cinemaroom_id){
     $shows  = $this->d_show->getListWhere(
       array(
         array(
           'column' => "cinemaroom_id",
-          'operator' => "NOT IN",
+          'operator' => "!=",
           'condition' => "and",
-          'value' => $cinemaroom_ids
+          'value' => $cinemaroom_id
         ),
         array(
           'column' => "show_date",
@@ -170,8 +171,9 @@ class ShowController extends BaseController{
         )
       )
     );
-
-    return !($shows && count($shows) > 0);
+    $valid = !($shows && count($shows) > 0);
+    if(!$valid) $this->passErrorMessage = "Error, la pelicula se transmite en otra sala este día";
+    return $valid;
   }
 
 
@@ -185,6 +187,7 @@ class ShowController extends BaseController{
   function validate($existing_show = false){
     $show_id = false;
     extract($this->params->map());
+    $d_cinemaroom = new CinemaRoomDao();
 
     if(
       $existing_show &&
@@ -197,6 +200,7 @@ class ShowController extends BaseController{
       $show_id            = $existing_show->getId();
     }
 
+    // VALIDATE
     return (
       (
         $existing_show ||
@@ -271,7 +275,7 @@ class ShowController extends BaseController{
       $this->passSuccessMessage = "La funcion fue creada correctamente";
       $this->redirect("/admin/funciones");
     }else{
-      $this->passErrorMessage = "Hubo un error, la funcion no pudo ser creada";
+      if(!$this->passErrorMessage) $this->passErrorMessage = "Hubo un error, la funcion no pudo ser creada";
       $this->redirect("/admin/funciones/nuevo");
     }
 
@@ -312,7 +316,7 @@ class ShowController extends BaseController{
 
     if($updated){
       $this->passSuccessMessage = "La funcion fue actualizada correctamente";
-    }else{
+    }else if(!$this->passErrorMessage){
       $this->passErrorMessage = "Hubo un error, la funcion no pudo ser actualizada";
     }
 
@@ -338,7 +342,7 @@ class ShowController extends BaseController{
 
     if($updated){
       $this->passSuccessMessage = "Show ". ($value ? "activado" : "desactivado") ." correctamente";
-    }else{
+    }else if(!$this->passErrorMessage){
       $this->passErrorMessage = "Hubo un error, el show no pudo ser actualizado";
     }
   }
@@ -356,7 +360,7 @@ class ShowController extends BaseController{
     $show    = $this->d_show->getById($this->params->show_id);
     if($this->validate($show)){
       $this->setShowAvailability(1);
-    }else{
+    }else if(!$this->passErrorMessage){
       $this->passErrorMessage = "Hubo un error, el show no pudo ser actualizado";
     }
     $this->redirect("/admin/funciones");
