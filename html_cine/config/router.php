@@ -8,7 +8,8 @@ use Controller\ShowController             as ShowController;
 use Controller\CinemaController           as CinemaController;
 use Controller\CinemaRoomController       as CinemaRoomController;
 use Controller\MovieController            as MovieController;
-use Controller\SalesController         as SalesController;
+use Controller\SalesController            as SalesController;
+use Controller\DataController             as DataController;
 
 $cinemaController           = new CinemaController();
 $cinemaRoomController       = new CinemaRoomController();
@@ -17,6 +18,7 @@ $movieController            = new MovieController();
 $authenticationController   = new AuthenticationController();
 $userController             = new UserController();
 $salesController            = new SalesController();
+$dataController             = new DataController();
 
 $router                     = new Router();
 
@@ -72,6 +74,10 @@ $router->post('\/admin\/funciones\/nuevo',        array( $showController,'create
 $router->post('\/admin\/funciones\/actualizar',   array( $showController,'update' ) );
 $router->post('\/admin\/funciones\/desactivar',   array( $showController,'disable' ) );
 $router->post('\/admin\/funciones\/activar',      array( $showController,'enable' ) );
+
+
+// CHARTS ============================================================================
+$router->get('\/admin\/estadisticas',             array( $dataController,'index' ) );
 
 
 // PELICULAS =======================================================================
