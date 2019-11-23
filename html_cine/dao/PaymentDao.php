@@ -33,21 +33,23 @@ class PaymentDao extends BaseDao
 
 	public function parseToHash( $obj ){
 
+
+
 		return array(
 
-			'purchase_id' => $obj->getPurchaseId(),  // as a payment can't exist without a purchase
+			'purchase_id' => $obj->getPurchaseId(),
+			'payment_auth_code' => $obj->getAuthentificationCode(),
+			'payment_date' => $obj->getDate(),
 			'payment_amount' => $obj->getAmount(),
 			'payment_method' => $obj->getMethod(),
-			'payment_date' => $obj->getDate(),
-			'payment_auth_code' => $obj->getAuthentificationCode(),
 
-			'mp_preference_id' => $obj->getMPPreferenceId(),
-			'mp_payment_id' => $obj->getMPPaymentId(),
-			'mp_payment_status' => $obj->getMPPaymentStatus(),
-			'mp_payment_status_detail' => $obj->getMPPaymentStatusDetail(),
-			'mp_merchant_order_id' => $obj->getMPMerchantOrderId(),
-			'mp_processing_mode' => $obj->getMPProcessingMode(),
-			'mp_merchant_account_id' => $obj->getMPMerchantAccountId()
+			'mp_preference_id' => (string)$obj->getMPPreferenceId(),
+			'mp_payment_id' => (string)$obj->getMPPaymentId(),
+			'mp_payment_status' => (string)$obj->getMPPaymentStatus(),
+			'mp_payment_status_detail' => (string)$obj->getMPPaymentStatusDetail(),
+			'mp_merchant_order_id' => (string)$obj->getMPMerchantOrderId(),
+			'mp_processing_mode' => (string)$obj->getMPProcessingMode(),
+			'mp_merchant_account_id' => (string)$obj->getMPMerchantAccountId()
 
 		);
 	}
