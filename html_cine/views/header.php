@@ -45,6 +45,10 @@
         <li class="nav__desktop--inner-link"><a class="no-border" href="/admin/funciones">Administrar Funciones</a></li>
         <hr class="rgb-divider">
         <?php endif; ?>
+        <li class="nav__desktop--inner-link"><a class="no-border" href="/tickets">Mis Tickets</a></li>
+        <hr class="rgb-divider">
+        <li class="nav__desktop--inner-link"><a class="no-border" href="/estadisticas">Estadisticas</a></li>
+        <hr class="rgb-divider">
         <li class="nav__desktop--inner-link"><a class="no-border" href="/usuario">Perfil</a></li>
         <hr class="rgb-divider">
         <li class="nav__desktop--inner-link"><a class="no-border" href="/logout">Cerrar Sesión</a></li>
@@ -77,6 +81,10 @@
         <li class="nav__desktop--inner-link"><a class="no-border" href="/admin/funciones">Administrar Funciones</a></li>
         <hr class="rgb-divider">
         <?php endif; ?>
+        <li class="nav__desktop--inner-link"><a class="no-border" href="/tickets">Mis Tickets</a></li>
+        <hr class="rgb-divider">
+        <li class="nav__desktop--inner-link"><a class="no-border" href="/estadisticas">Estadisticas</a></li>
+        <hr class="rgb-divider">
         <li class="nav__desktop--inner-link"><a class="no-border" href="/usuario">Perfil</a></li>
         <hr class="rgb-divider">
         <li class="nav__desktop--inner-link"><a class="no-border" href="/logout">Cerrar Sesión</a></li>

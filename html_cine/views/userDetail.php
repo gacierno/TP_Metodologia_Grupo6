@@ -37,8 +37,8 @@
             <input class="inputText" type="number"  name="profile_dni" value="<?php echo($user->getProfile()->getDni()); ?>" disabled required>
             <span class="floating-label">DNI</span>
         </label>
-        <?php endif; ?>
         <button id="user-update" type="button" class="cinemaform__button--primary">Actualizar</button>
+        <?php endif; ?>
 
         <button id="user-delete" type="button" class="cinemaform__button--secondary">Desactivar Mi Cuenta</button>
 
