@@ -1856,3 +1856,8 @@ select#moviefilter__multiple-select--genre,select#moviefilter__select--cinema{
     font-size: 36px;
     color: white;
 }
+
+.fb-login-container{
+    text-align: center;
+    margin-bottom: 10px;
+}
