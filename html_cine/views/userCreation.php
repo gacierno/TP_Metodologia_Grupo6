@@ -4,7 +4,11 @@
 
 <div class="container-fluid">
     <div class="row login__row user-creation__row">
-
+    <div class="nav-only-logo">
+      <a target="_self" href="/">
+        <img src="/public/assets/images/logo.png" >
+      </a>
+    </div>
     <div class="login__overlay"></div>
         <div class="col-sm-10 col-md-8 col-lg-4 login__container">
         <form method="POST" action="/usuario/nuevo" class="login-form">

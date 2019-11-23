@@ -423,24 +423,30 @@ function checkArrowsVisibility(){
 //variables and functions to give behaviour to nav when scrolled, not handled
 //by classes because the mobile nav is position fixed too, and they
 //relocate on base on the other if both are position fixed when the page loads
-window.onscroll = function() {headerReadapt();closeMenu();};
-var header = document.getElementById("nav");
 
-var sticky = header.offsetTop;
+if($('#nav').length > 0){
+    window.onscroll = function() {headerReadapt();closeMenu();};
+    var header = document.getElementById("nav");
+    
+    var sticky = header.offsetTop;
+}
+
 
 function headerReadapt() {
-    
+    if(header !== null){
+
         if (window.pageYOffset > sticky) {
             header.style.position = 'fixed';
             header.style.zIndex = '9999';
             header.style.width = '100%';
             header.style.top = 0;
             $('body').css('padding-top', $('#nav').innerHeight() + 'px');
-          } else {
+        } else {
             $('body').css('padding-top', '0px');
             header.style.position = 'static';
             header.style.zIndex = 10;
-          }
+        }
+    }
  
 }
 //close the menu when the user scrolls
