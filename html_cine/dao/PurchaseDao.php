@@ -1,7 +1,7 @@
 <?php
 namespace dao;
 /**
- * 
+ *
  */
 
 use dao\BaseDao as BaseDao;
@@ -10,10 +10,9 @@ use dao\PaymentDao as PaymentDao;
 
 use model\Purchase as Purchase;
 
-class PurchaseDao extends BaseDao
-{
-	
-	function __construct(argument){
+class PurchaseDao extends BaseDao{
+
+	function __construct(){
 		parent::setTableName( 'Purchases' );
 		parent::setSingleType( 'purchase' );
 	}
@@ -37,7 +36,7 @@ class PurchaseDao extends BaseDao
 			array(
 				'purchase_id' => $arr['purchase_id']
 			)
-		)
+		);
 		$arr['purchase_payment'] = ($payment) ? $payment[0] : null;
 
 		//	set purchased tickets
@@ -54,7 +53,7 @@ class PurchaseDao extends BaseDao
 			'purchase_amount' => $obj->getAmount(),
 			'purchase_discount' => $obj->getDiscount(),
 			'purchase_total' => $obj->getPayment()
-			
+
 
 		);
 	}
