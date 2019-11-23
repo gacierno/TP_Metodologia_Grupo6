@@ -289,3 +289,20 @@ INSERT INTO `Shows` (`show_id`, `show_date`, `show_time`, `show_end_time`, `show
 (2, '2019-12-25', '14:00:00', '16:32:00', 1, 501170, 1),
 (3, '2019-12-12', '18:00:00', '19:35:00', 1, 567609, 2),
 (4, '2019-12-25', '19:00:00', '22:29:00', 1, 398978, 3);
+
+
+--
+-- Volcado de datos para la tabla `Roles`
+--
+
+INSERT INTO `Roles` (`role_id`, `role_name`, `role_description`) VALUES
+(1, 'cliente', 'usuario del sistema'),
+(2, 'admin', 'administradores del sistema');
+
+--
+-- Volcado de datos para la tabla `Users`
+--
+
+INSERT INTO `Users` (`user_id`, `user_email`, `user_password`, `role_id`, `fb_id`, `profile_id`, `user_available`) VALUES
+(1, 'admin@user.com', '1234', 2, NULL, 1, 1),
+(2, 'cliente@user.com', '1234', 1, NULL, 2, 1);
