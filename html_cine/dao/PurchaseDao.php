@@ -83,7 +83,13 @@ class PurchaseDao extends BaseDao
 
 		// guarda los tickets (de a uno?)
 		foreach( $obj->getTickets() as $singleTicket ){
-			$this->d_tickets->add( $singleTicket );
+
+			$toAdd = array(
+				'show_id' => $singleTicket->getShow()->getId(),
+				'purchase_id' => $obj->getId();
+			);
+
+			$this->d_tickets->add( $toAdd );
 		}
 
 		return array(

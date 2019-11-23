@@ -5,6 +5,7 @@ namespace model;
 -  authentification_code: int
 -  date: string
 -  amount: float
+-  method: string
 -  mp_preference_id
 -  mp_payment_id
 -  mp_payment_status
@@ -20,22 +21,23 @@ namespace model;
  	private $authentification_code;
  	private $date;
  	private $amount;
-  private $method;
-  private $purchaseId;
-  private $mp_preference_id;
-  private $mp_payment_id;
-  private $mp_payment_status;
-  private $mp_payment_status_detail;
-  private $mp_merchant_order_id;
-  private $mp_processing_mode;
-  private $mp_merchant_account_id;
+    private $method;
+    private $purchaseId;
+    private $mp_preference_id;
+    private $mp_payment_id;
+    private $mp_payment_status;
+    private $mp_payment_status_detail;
+    private $mp_merchant_order_id;
+    private $mp_processing_mode;
+    private $mp_merchant_account_id;
 
  	function __construct( $options = array() )
  	{
-    extract($options);
+        extract($options);
  		$this->setId(        ( isset($options['payment_id']) )   ? $options['payment_id'] : null );
  		$this->setAuthentificationCode(  ( isset($options['payment_auth_code']) ) ? $options['payment_auth_code'] : '' );
  		$this->setDate(     ( isset($options['payment_date']) )     ? $options['payment_date'] : '' );
+
     $this->setAmount(   ( isset($options['payment_amount']) )     ? $options['payment_amount'] : 0 );
     $this->setMethod(   ( isset($options['payment_method']) )     ? $options['payment_method'] : '' );
     $this->setPurchaseId((isset($options['purchase_id']) )      ? $options['purchase_id'] : null );
@@ -47,6 +49,7 @@ namespace model;
     $this->setMPMerchantOrderId(isset($mp_merchant_order_id) ? $mp_merchant_order_id : '');
     $this->setMPProcessingMode(isset($mp_processing_mode) ? $mp_processing_mode : '');
     $this->setMPMerchantAccountId(isset($mp_merchant_account_id) ? $mp_merchant_account_id : '');
+
  	}
 
 

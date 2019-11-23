@@ -27,21 +27,12 @@ class TicketDao
 	}
 
 
-	public function parseToHash( $obj ){
-		return array(
-
-			'ticket_qrCode' => $obj->getQrCode(),
-			'show_id' => $obj->getShow()->getId(),
-
-		);
-	}
-
 
 
 	/*
 	 * getTableFields
 	 */
-	public static function getFields( $arr ){
+	public function getFields( $arr ){
 
 	    $output = array(
 	        'keys'      => array(),
@@ -64,30 +55,30 @@ class TicketDao
 	}
 
 
-	// public static function add( $arr ){
+	public function add( $arr ){
 
- //        $options = self::getFields( $arr );
+        $options = self::getFields( $arr );
 
- //        $query = "insert into Genres_on_Movies". $options;
+        $query = "insert into Tickets". $options;
 
- //        try {
- //            $connection = Connection::GetInstance();
- //            $connection->ExecuteNonQuery( $query, $arr );
- //        } catch (PDOException $e) {
- //            throw $e;
- //            return false;
- //        } catch (Exception $e) {
- //            throw $e;
- //            return false;
- //        }
+        try {
+            $connection = Connection::GetInstance();
+            $connection->ExecuteNonQuery( $query, $arr );
+        } catch (PDOException $e) {
+            throw $e;
+            return false;
+        } catch (Exception $e) {
+            throw $e;
+            return false;
+        }
 
- //        return true;
+        return true;
 
-	// }
+	}
 
 
 
-	public static function getTicketsByPurchaseId( $id ){
+	public function getTicketsByPurchaseId( $id ){
 		$query = "select * from Tickets where purchase_id = $id;";
 		$output = array();
 
@@ -111,7 +102,7 @@ class TicketDao
 
 
 
-	public static function getTicketsByShowId( $id ){
+	public function getTicketsByShowId( $id ){
 		$query = "select * from Tickets where show_id = $id;";
 		$output = array();
 
