@@ -54,7 +54,7 @@ class SalesController extends BaseController{
     $preference->save();
 
     $show_id  = $show->getId();
-    $quantity = $purchase->getTicketQty()
+    $quantity = $purchase->getTicketQty();
     $payment_button = <<<EOD
     <form action="/funciones/checkout/procesar" method="POST">
     <input style="display:none" type="text" name="show_id" value="$show_id">
