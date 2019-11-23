@@ -46,7 +46,7 @@ class SalesController extends BaseController{
     $item = new \MercadoPago\Item();
     $item->title =
       $show->getMovie()->getName() .
-      ' - ' . $show->getDay() . ', ' . $show->show_time . ' ' .
+      ' - ' . $show->getDay() . ', ' . $show->getTime() . ' ' .
       $show->getCinemaRoom()->getCinema()->getName() . ' ' . $show->getCinemaRoom()->getName();
     $item->quantity = $purchase->getTicketQty();
     $item->unit_price = $ticketValue;
