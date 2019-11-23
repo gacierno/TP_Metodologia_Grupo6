@@ -60,9 +60,9 @@ class PurchaseDao extends BaseDao
 		$arr['purchase_payment'] = ($payment) ? $payment[0] : null;
 
 		//	set purchased tickets
-		$tickets = $this->d_tickets->getTicketsByPruchaseId($arr['purchase_id']);
+		$tickets = $this->d_tickets->getTicketsByPurchaseId($arr['purchase_id']);
 
-		$arr['purchase_tickets'] = array_map( array( $d_tickets, 'parseToObject' ), $tickets );
+		$arr['purchase_tickets'] = array_map( array( $this->d_tickets, 'parseToObject' ), $tickets );
 
 
 		return new Purchase( $arr );
@@ -78,32 +78,50 @@ class PurchaseDao extends BaseDao
 
 	public function parseToHash( $obj ){
 
-		//	guarda el payment
-		$this->d_payment->add( $obj->getPayment() );
-
-		// guarda los tickets (de a uno?)
-		foreach( $obj->getTickets() as $singleTicket ){
-
-			$toAdd = array(
-				'show_id' => $singleTicket->getShow()->getId(),
-				'purchase_id' => $obj->getId()
-			);
-
-			$this->d_tickets->add( $toAdd );
-		}
-
 		return array(
 
 			'user_id' 			=> $obj->getUser()->getId(),
 			'purchase_date' 	=> $obj->getDate(),
 			'purchase_amount' 	=> $obj->getAmount(),
 			'purchase_discount' => $obj->getDiscount(),
-			'purchase_totat' 	=> $obj->getAmount() - $obj->getDiscount()
+			'purchase_total' 	=> $obj->getAmount() - $obj->getDiscount()
 
 		);
 	}
 
+	public function add( $obj ){
 
+		$connection = Connection::GetInstance();
+		$output = false;
+
+		// guarda la compra sin los objetos pero me deja acceder al id de dicha compra en la base de datos
+		
+		if( parent::add( $obj ) ){
+			$purchaseId = $connection->getLastId();
+			$obj->setId( $purchaseId );
+
+			//	guarda el payment
+			$newPayment = $obj->getPayment();
+			$newPayment->setPurchaseId( $purchaseId );
+
+			if($this->d_payment->add( $newPayment ) ){
+				// guarda los tickets (de a uno?)
+				foreach( $obj->getTickets() as $singleTicket ){
+
+					$toAdd = array(
+						'show_id' => $singleTicket->getShow()->getId(),
+						'purchase_id' => $obj->getId()
+					);
+
+					$this->d_tickets->add( $toAdd );
+				}
+				$output = true;
+			}
+		}
+
+		return $output;
+
+	}
 
 
 

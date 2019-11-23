@@ -88,21 +88,6 @@ create table Users(
 	constraint fk_user_profile foreign key (profile_id) references Profiles(profile_id) on update cascade
 );
 
-create table Payments(
-	payment_id int auto_increment,
-	payment_auth_code int,
-	payment_date date,
-	payment_amount float,
-	mp_preference_id varchar(100),
-	mp_payment_id varchar(100),
-	mp_payment_status varchar(100),
-	mp_payment_status_detail varchar(100),
-	mp_merchant_order_id varchar(100),
-	mp_processing_mode varchar(100),
-	mp_merchant_account_id varchar(100),
-	constraint pk_payment primary key (payment_id)
-);
-
 create table Purchases(
 	purchase_id int auto_increment,
 	purchase_date date,
@@ -112,6 +97,24 @@ create table Purchases(
 	user_id int,
 	constraint pk_purchase primary key (purchase_id),
 	constraint fk_purchase_user foreign key (user_id) references Users(user_id) on update cascade
+);
+
+create table Payments(
+	payment_id int auto_increment,
+	purchase_id int,
+	payment_auth_code varchar(100),
+	payment_date date,
+	payment_amount float,
+	payment_method varchar(100),
+	mp_preference_id varchar(100),
+	mp_payment_id varchar(100),
+	mp_payment_status varchar(100),
+	mp_payment_status_detail varchar(100),
+	mp_merchant_order_id varchar(100),
+	mp_processing_mode varchar(100),
+	mp_merchant_account_id varchar(100),
+	constraint pk_payment primary key (payment_id),
+	constraint fk_payment_purchase foreign key (purchase_id) references Purchases(purchase_id)
 );
 
 create table Tickets(
