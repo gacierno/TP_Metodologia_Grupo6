@@ -1849,3 +1849,10 @@ select#moviefilter__multiple-select--genre,select#moviefilter__select--cinema{
     text-align: center;
     align-items: center;
 }
+
+.profile__header--format{
+    text-align: center;
+    font-family: 'Roboto',sans-serif;
+    font-size: 36px;
+    color: white;
+}
