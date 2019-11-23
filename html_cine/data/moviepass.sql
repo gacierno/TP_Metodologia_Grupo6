@@ -68,17 +68,18 @@ create table Roles(
 
 create table Profiles(
 	profile_id int auto_increment not null,
-	profile_apellido varchar(20) not null,
-	profile_nombre varchar(20) not null,
-	profile_dni varchar(12) not null,
+	profile_apellido varchar(20) ,
+	profile_nombre varchar(20) ,
+	profile_dni varchar(12) ,
 	constraint pk_profile primary key (profile_id)
 );
 
 create table Users(
 	user_id int auto_increment not null,
-	user_email varchar(30) not null,
-	user_password varchar(20) not null,
+	user_email varchar(30),
+	user_password varchar(20),
 	role_id int not null,
+	fb_id varchar(50),
 	profile_id int not null,
 	user_available boolean default 1,
 	constraint pk_user primary key (user_id),

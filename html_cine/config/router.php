@@ -82,6 +82,7 @@ $router->get('\/login\/create',                   array( $authenticationControll
 $router->get('\/login',                           array( $authenticationController, 'loginForm' ) );
 $router->get('\/logout',                          array( $authenticationController, 'logout' ) );
 
+$router->post('\/loginFB',                        array( $authenticationController, 'loginFB' ) );
 $router->post('\/login',                          array( $authenticationController, 'login' ) );
 
 

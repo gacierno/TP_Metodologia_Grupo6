@@ -134,20 +134,18 @@ class UserController extends BaseController{
   }
 
 
-
-
-  function create(){
+  function register($params){
     // Flag
     $created = false;
     // Default error message
     $errorMessage = "Hubo un error creando el usuario";
     // Parse POST data into objects
     $userDao = $this->d_user;
-    $newUserProfile = new Profile($this->params->map());
+    $newUserProfile = new Profile($params);
     $roleDao = new RoleDao();
     $roles = $roleDao->getList(array( 'role_name' => 'cliente' ));
     $newUserRole = (count($roles) > 0) ? $roles[0] : null;
-    $newUserData = $this->params->map();
+    $newUserData = $params;
     // Assign role and profile
     $newUserData['user_profile'] = $newUserProfile;
     $newUserData['user_role'] = $newUserRole;
@@ -155,13 +153,15 @@ class UserController extends BaseController{
     $matchingUsers = $userDao->getList( array( 'user_email' => $newUser->getEmail()  ) );
     $userExists = count($matchingUsers) > 0;
 
+
     if($userExists){
       $errorMessage = "No se puede crear este usuario. El email ya se encuentra registrado";
     }else{
       try{
         $created = $userDao->add($newUser);
+        
       }catch( Exception $ex){
-        // $this->passErrorMessage = "Hubo un error creando el usuario";
+        // NOTHING
       }
     }
 
@@ -170,7 +170,12 @@ class UserController extends BaseController{
     }else{
       $this->passErrorMessage = $errorMessage;
     }
+  }
 
+
+
+  function create(){
+    $this->register($this->params->map());
     $this->redirect("/login");
   }
 
