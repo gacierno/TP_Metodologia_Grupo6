@@ -33,9 +33,8 @@ $router->use('/^\/admin/',                        array( $authenticationControll
 $router->use('/^\/login/',                        array( $authenticationController, 'preventDoubleLogin' ));
 
 // CHECKOUT ============================================================================
-$router->get('\/test-payment'         ,           array($salesController , 'test' ));
-
 $router->post('\/funciones\/checkout'  ,           array($salesController , 'checkout' ));
+$router->post('\/funciones\/checkout\/procesas'  , array($salesController , 'procesarPago' ));
 
 
 // CINES ============================================================================

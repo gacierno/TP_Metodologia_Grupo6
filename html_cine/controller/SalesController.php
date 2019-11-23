@@ -53,9 +53,12 @@ class SalesController extends BaseController{
     $preference->items = array($item);
     $preference->save();
 
-
+    $show_id  = $show->getId();
+    $quantity = $purchase->getTicketQty()
     $payment_button = <<<EOD
-    <form action="/procesar-pago" method="POST">
+    <form action="/funciones/checkout/procesar" method="POST">
+    <input style="display:none" type="text" name="show_id" value="$show_id">
+    <input style="display:none" type="number" name="ticket_qty" value="$quantity">
       <script
        src="https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js"
        data-preference-id="$preference->id">
@@ -71,6 +74,10 @@ EOD;
         'payment_button'  => $payment_button
       )
     );
+  }
+
+  function procesarPago(){
+    print_r($this->params->map());
   }
 
 }
