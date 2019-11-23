@@ -104,39 +104,50 @@ EOD;
 
 
   function procesarPago(){
-    // $d_ticket     = new TicketDao();
-    // $d_payment    = new PaymentDao();
-    // $d_purchase   = new PurchaseDao();
+    $success      = false;
+    $d_purchase   = new PurchaseDao();
     $d_show       = new ShowDao();
     $show         = $d_show->getById($this->params->show_id);
     $quantity     = $this->params->ticket_quantity;
-    // $purchase     = $this->createPurchase( $quantity, $show );
+    $purchase     = $this->createPurchase( $quantity, $show );
 
     // ============================================================================
     // =   VALIDATE PAYMENT WITH MERCADO PAGO
     // ============================================================================
-
-    // CREATE PAYMENT
-    // $payment          = new Payment();
-    // $created_payment  = $d_payment->add($payment);
-
-    // CREATE TICKETS
-    // $tickets = array();
-    // for ($i = 0; $i < $quantity; $i++) {
-    //   $ticket  = new Ticket();
-    //   $created = $d_ticket->add($ticket);
-    //   if($created){
-    //     array_push($tickets,$ticket);
-    //   }
-    // }
-    //
-    // $purchase->setPayment($payment);
-    // $purchase->setTickets($tickets);
-    //
-    //
     $validPayment = $this->validatePayment($show->getCinemaRoom()->getTicketValue(),$quantity);
-    
-    print_r($this->params->map());
+
+    if($validPayment){
+      // CREATE PAYMENT
+      $payment          = new Payment();
+      $created_payment  = $d_payment->add($payment);
+
+      // CREATE TICKETS
+      $tickets = array();
+      for ($i = 0; $i < $quantity; $i++) {
+        $ticket  = new Ticket();
+        $created = $d_ticket->add($ticket);
+        if($created){
+          array_push($tickets,$ticket);
+        }
+      }
+
+      $purchase->setPayment($payment);
+      $purchase->setTickets($tickets);
+
+      try{
+        $success = $d_purchase->add($purchase);
+      }catch(Exception $ex){
+        // NOTHING
+      }
+
+    }
+
+    if($success){
+      $this->passSuccessMessage = "Compra realizada con exito!";
+    }else{
+      $this->passErrorMessage = "Hubo un error, el pago no pudo ser procesado correctamente.";
+    }
+
   }
 
 
