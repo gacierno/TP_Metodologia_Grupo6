@@ -25,10 +25,7 @@ $show que tiene los datos a mostrar de la funcion -->
 
         <div class="purchase__item--container">
             <p class="">Valor del Ticket</p>
-            <?php $tickets = $purchase->getTickets();
-            if(sizeof($tickets) > 0 ) : ?>
-            <span><?php echo( $tickets[0]->getTicketValue() ); ?></span>
-            <?php endif; ?>
+            <span><?php echo($show->getCinemaRoom()->getTicketValue()); ?></span>
         </div>
 
         <div class="purchase__item--container">
