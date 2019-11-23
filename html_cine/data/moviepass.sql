@@ -14,7 +14,7 @@ create table CinemaRooms(
 	cinemaroom_id int auto_increment,
 	cinemaroom_name varchar(50) not null,
 	cinemaroom_capacity int not null,
-	cinemaroom_ticketValue int,
+	cinemaroom_ticketValue float,
 	cinemaroom_available boolean default 1,
 	cinema_id int not null,
 	constraint pk_cinemaroom primary key (cinemaroom_id),
@@ -91,9 +91,9 @@ create table Users(
 create table Purchases(
 	purchase_id int auto_increment,
 	purchase_date date,
-	purchase_amount int,
-	purchase_discount int default 0,
-	purchase_total int,
+	purchase_amount float,
+	purchase_discount float default 0,
+	purchase_total float,
 	user_id int,
 	constraint pk_purchase primary key (purchase_id),
 	constraint fk_purchase_user foreign key (user_id) references Users(user_id) on update cascade
