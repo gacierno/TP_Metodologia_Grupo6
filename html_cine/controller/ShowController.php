@@ -141,20 +141,20 @@ class ShowController extends BaseController{
   }
 
 
-  function validateMovieOwnership($date,$movie,$cine){
+  function validateMovieOwnership($date,$movie,$cinemaroom_ids){
     $shows  = $this->d_show->getListWhere(
       array(
+        array(
+          'column' => "cinemaroom_id",
+          'operator' => "NOT IN",
+          'condition' => "and",
+          'value' => $cinemaroom_ids
+        ),
         array(
           'column' => "show_date",
           'operator' => "=",
           'condition' => "and",
           'value' => $date
-        ),
-        array(
-          'column' => "cinema_id",
-          'operator' => "!=",
-          'condition' => "and",
-          'value' => $cine
         ),
         array(
           'column' => "movie_id",
