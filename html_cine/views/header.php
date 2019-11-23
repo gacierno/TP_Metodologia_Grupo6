@@ -17,16 +17,16 @@
 
 <div id="nav" class="nav row container-fluid">
   <div class="overlay"></div>
-<div class="nav__container col-3"></div>
   <div class="nav__container col-6">
     <div class="nav__logo--container ">
       <a target="_self" href="/">
-        <img src="/public/assets/images/logo.svg" >
+        <img src="/public/assets/images/logo.png" >
       </a>
     </div>
   </div>
 
-  <div class="nav__container nav__links--container col-3 nav__menu--desktop">
+
+  <div class="nav__container nav__links--container col-6 nav__menu--desktop">
     <?php if(isset($user)) : ?>
     <div id="desktop__menu" class="some">MENU
     <?php $role = $user->getRole()->getName(); ?>
