@@ -99,7 +99,7 @@ create table Payments(
 	mp_payment_status_detail varchar(100),
 	mp_merchant_order_id varchar(100),
 	mp_processing_mode varchar(100),
-	mp_merchant_account_i varchar(100),
+	mp_merchant_account_id varchar(100),
 	constraint pk_payment primary key (payment_id)
 );
 
