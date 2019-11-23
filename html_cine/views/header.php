@@ -47,8 +47,10 @@
         <?php endif; ?>
         <li class="nav__desktop--inner-link"><a class="no-border" href="/tickets">Mis Tickets</a></li>
         <hr class="rgb-divider">
-        <li class="nav__desktop--inner-link"><a class="no-border" href="/estadisticas">Estadisticas</a></li>
+        <?php if ($role === 'admin') : ?>
+        <li class="nav__desktop--inner-link"><a class="no-border" href="/admin/estadisticas">Estadisticas</a></li>
         <hr class="rgb-divider">
+        <?php endif; ?>
         <li class="nav__desktop--inner-link"><a class="no-border" href="/usuario">Perfil</a></li>
         <hr class="rgb-divider">
         <li class="nav__desktop--inner-link"><a class="no-border" href="/logout">Cerrar Sesión</a></li>
@@ -83,8 +85,10 @@
         <?php endif; ?>
         <li class="nav__desktop--inner-link"><a class="no-border" href="/tickets">Mis Tickets</a></li>
         <hr class="rgb-divider">
-        <li class="nav__desktop--inner-link"><a class="no-border" href="/estadisticas">Estadisticas</a></li>
+        <?php if ($role === 'admin') : ?>
+        <li class="nav__desktop--inner-link"><a class="no-border" href="/admin/estadisticas">Estadisticas</a></li>
         <hr class="rgb-divider">
+        <?php endif; ?>
         <li class="nav__desktop--inner-link"><a class="no-border" href="/usuario">Perfil</a></li>
         <hr class="rgb-divider">
         <li class="nav__desktop--inner-link"><a class="no-border" href="/logout">Cerrar Sesión</a></li>
