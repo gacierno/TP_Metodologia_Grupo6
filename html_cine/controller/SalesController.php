@@ -122,7 +122,7 @@ EOD;
       $payment->setDate($purchase->getDate());
       $payment->setAmount($purchase->getAmount());
       $payment->setMethod("Mercado Pago");
-      $payment->setMPReferenceId($this->params->preference_id);
+      $payment->setMPPreferenceId($this->params->preference_id);
       $payment->setMPPaymentId($this->params->payment_id);
       $payment->setMPPaymentStatus($this->params->status);
       $payment->setMPPaymentStatusDetail($this->params->status_detail);
@@ -134,7 +134,6 @@ EOD;
       $tickets = array();
       for ($i = 0; $i < $quantity; $i++) {
         $ticket  = new Ticket(array('show' => $show));
-        $created = $d_ticket->add($ticket);
         array_push($tickets,$ticket);
       }
 

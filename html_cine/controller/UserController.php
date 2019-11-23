@@ -5,6 +5,7 @@ use Controller\BaseController as BaseController;
 use dao\RoleDao               as RoleDao;
 use dao\UserDao               as UserDao;
 use dao\ProfileDao            as ProfileDao;
+use dao\PurchaseDao           as PurchaseDao;
 
 use model\User                as User;
 use model\Profile             as Profile;
@@ -159,7 +160,7 @@ class UserController extends BaseController{
     }else{
       try{
         $created = $userDao->add($newUser);
-        
+
       }catch( Exception $ex){
         // NOTHING
       }
@@ -177,6 +178,19 @@ class UserController extends BaseController{
   function create(){
     $this->register($this->params->map());
     $this->redirect("/login");
+  }
+
+
+
+  function tickets(){
+    $d_purchase = new PurchaseDao();
+    $this->render('purchasesList',
+      array(
+        'purchases' => $d_purchase->getList(
+          array( 'user_id' => $this->session->user->getId() )
+        )
+      )
+    );
   }
 
 
