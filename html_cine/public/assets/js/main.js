@@ -495,6 +495,20 @@ function statisticsUpdate(){
 
 
 function buildChart(data){
+    //ejemplo a borrar cuando este hecho
+    var data = {
+        output : "tickets o monto",
+        shows : [
+            show1 = {
+                name : "PELICULA 1 , SALA 1, 23/11/2019 - 21:00hs",
+                value : 2000
+            },
+            show2 = {
+                name : "PELICULA 2 , SALA 2, 24/12/2020 - 09:00hs",
+                value : 500
+            }
+        ]
+    }
 
     var ds = data["output"];
     var finalLabels = [];
