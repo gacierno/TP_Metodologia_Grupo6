@@ -13,7 +13,9 @@ y un array de $shows para hacer los filtros -->
         <div class="form-group charts__selects--container">
             <label>Peliculas
             <select class="form-control" id="chart-movies" placeholder="select movie">
-                <option>1</option>
+                <?php foreach($movies as $movie) : ?>
+                    <option value="<?php echo($movie->getId()); ?>"><?php echo($movie->getName()); ?></option>
+                <?php endforeach; ?>
             </select>
             </label>
 
@@ -25,7 +27,9 @@ y un array de $shows para hacer los filtros -->
             
             <label>Cines
             <select class="form-control" id="chart-cinemas" placeholder="select movie">
-                <option>1</option>
+                <?php foreach($cinemas as $cinema) : ?>
+                    <option value="<?php echo($cinema->getId()); ?>"><?php echo($cinema->getName()); ?></option>
+                <?php endforeach; ?>
             </select>
             </label>
         </div>
@@ -55,7 +59,9 @@ y un array de $shows para hacer los filtros -->
     </div>
 </div>
 
-<canvas id="myChart" width="100%" height="40"></canvas>
+<div class="chart-container" style="position: relative; height:100%; width:100%;">
+    <canvas id="myChart"></canvas>
+</div>
 
 
 </div>

@@ -60,7 +60,11 @@
 
 <div class="container-fluid">
     <div class="row login__row">
+    
     <div class="login__overlay"></div>
+    <video autoplay muted controls="false" loop id="loginvideo">
+      <source src="/public/assets/video/back.mp4" type="video/mp4">
+    </video>
         <div class="col-sm-10 col-md-8 col-lg-4 login__container">
         <form method="POST" action="/login" class="login-form">
             <label>

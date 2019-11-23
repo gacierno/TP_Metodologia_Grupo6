@@ -67,9 +67,8 @@ $(document).ready(function(){
             });
             
             
-
-
             myChart.update();
+            
         },2000);
 
     }

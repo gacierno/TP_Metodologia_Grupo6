@@ -872,7 +872,15 @@ body{
 }
 
 .login__row{
-    background-image: url('/public/assets/images/userCImage.jpg');
+    overflow: hidden;
+}
+
+#loginvideo{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    transform: scale(1.4);
 }
 
 .user-creation__row{
@@ -885,6 +893,7 @@ body{
     width: 100%;
     margin: auto 0;
     padding: 10% 5%;
+    z-index: 2;
 }
 
 @media all and (min-width:768px){
@@ -911,6 +920,7 @@ body{
     opacity: 0.4;
     top:0;
     left:0;
+    z-index: 1;
 }
 
 .login-form input{
