@@ -77,7 +77,7 @@
         </form>
         <form id="FB_Login" method="POST" action="/loginFB" class="login-form">
 
-            <div class="login__button--container">
+            <div class="login__button--container fb-login-container">
                 <fb:login-button
                   scope="public_profile,email"
                   onlogin="checkLoginState();"
