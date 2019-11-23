@@ -15,6 +15,10 @@
 <body>
 
 
+<?php $url = $_SERVER["REQUEST_URI"];
+$pos = strrpos($url, "login"); ?>
+
+<?php if(!$pos) : ?>
 <div id="nav" class="nav row container-fluid">
   <div class="overlay"></div>
   <div class="nav__container col-6">
@@ -95,9 +99,9 @@
       </ul>
   </div>
   <?php endif; ?>
-
   </div>
 
 </div>
 
+<?php endif; ?>
 <?php include_once('partials/customMessage.php'); ?>

@@ -35,21 +35,12 @@ body.open .overlay{
 .nav{
     background:rgb(20, 20, 20);
     justify-content: center;
-    border-bottom: 1px solid;
-    border-image-source: linear-gradient(-70deg, rgba(250, 124, 48, 0.6) 30%, rgba(0, 255, 255, 0.6) 50%,rgba(138, 43, 226, 0.6) 75%, rgba(0, 255, 0, 0.6) 100%);
-    border-image-slice: 1;
     margin: 0;
     padding: 10px;
 }
 
 .nav__container{
     padding: 0;
-}
-
-@media all and (min-width:768px){
-    .nav__container{
-        /* padding: 10px 30px; */
-    }
 }
 
 .nav__links--container{
@@ -63,6 +54,22 @@ body.open .overlay{
         justify-content: flex-end;
         padding-right: 30px;
     }
+}
+
+.nav-only-logo{
+    display: flex;
+    height: 50px;
+    background-color: transparent;
+    justify-content: start;
+    align-items: center;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 20;
+}
+
+.nav-only-logo img{
+    height: 50px;
 }
 
 
@@ -867,7 +874,7 @@ body{
     justify-content: center;
     background-size: cover;
     background-position: center;
-    min-height: 85vh;
+    min-height: 100vh;
     position: relative;
     justify-content: center;
 }
@@ -876,12 +883,17 @@ body{
     overflow: hidden;
 }
 
+.login__inner-row{
+    width: 100%;
+}
+
 #loginvideo{
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    transform: scale(1.4);
+    height: 100%;
+    transform: scale(1.6);
 }
 
 .user-creation__row{
