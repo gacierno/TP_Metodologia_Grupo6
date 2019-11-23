@@ -118,17 +118,24 @@ EOD;
 
     if($validPayment){
       // CREATE PAYMENT
-      $payment          = new Payment();
-      $created_payment  = $d_payment->add($payment);
+      $payment = new Payment();
+      $payment->setDate($purchase->getDate());
+      $payment->setAmount($purchase->getAmount());
+      $payment->setMethod("Mercado Pago");
+      $payment->setMPReferenceId($this->params->preference_id);
+      $payment->setMPPaymentId($this->params->payment_id);
+      $payment->setMPPaymentStatus($this->params->status);
+      $payment->setMPPaymentStatusDetail($this->params->status_detail);
+      $payment->setMPMerchantOrderId($this->params->merchant_order_id);
+      $payment->setMPProcessingMode($this->params->processing_mode);
+      $payment->setMPMerchantAccountId($this->params->merchant_account_id);
 
       // CREATE TICKETS
       $tickets = array();
       for ($i = 0; $i < $quantity; $i++) {
-        $ticket  = new Ticket();
+        $ticket  = new Ticket(array('show' => $show));
         $created = $d_ticket->add($ticket);
-        if($created){
-          array_push($tickets,$ticket);
-        }
+        array_push($tickets,$ticket);
       }
 
       $purchase->setPayment($payment);
@@ -144,9 +151,12 @@ EOD;
 
     if($success){
       $this->passSuccessMessage = "Compra realizada con exito!";
+      $this->redirect('/tickets');
     }else{
       $this->passErrorMessage = "Hubo un error, el pago no pudo ser procesado correctamente.";
+      $this->redirect('/pelicula/detalle' , array('id' => $show->getMovie()->getId()) );
     }
+
 
   }
 
