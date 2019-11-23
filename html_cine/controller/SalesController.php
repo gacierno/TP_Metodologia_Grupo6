@@ -113,7 +113,7 @@ EOD;
     $dt = new DateTime();
     $dt->setDate($dateArray[0],$dateArray[1],$dateArray[2]);
     $weekDay = $dt->format("N");
-    if($quantity >= 2 && $weekDay == 2 || $weekDay == 3){
+    if($quantity >= 2 && ($weekDay == 2 || $weekDay == 3) ){
       $discount = $subtotal * 0.25;
     }
     return $discount;

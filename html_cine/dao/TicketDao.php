@@ -1,15 +1,16 @@
-<?php 
+<?php
 namespace dao;
 /**
- * 
+ *
  */
 
 use dao\ShowDao as ShowDao;
+use dao\BaseDao as BaseDao;
 use model\Ticket as Ticket;
 
-class TicketDao
+class TicketDao extends BaseDao
 {
-	
+
 	/**
 	 * parseToObject
 	 * @param hashMap
@@ -46,7 +47,7 @@ class TicketDao
 	        array_push( $output['values'], ":".$key );
 	    }
 
-	    return 
+	    return
 	        " (".
 	        preg_replace( "/[ \[ \] \" ]/", "", json_encode( $output['keys'] ) )
 	        .") values (".
