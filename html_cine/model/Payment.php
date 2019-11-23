@@ -40,7 +40,7 @@ namespace model;
     $this->setMethod(   ( isset($options['payment_method']) )     ? $options['payment_method'] : '' );
     $this->setPurchaseId((isset($options['purchase_id']) )      ? $options['purchase_id'] : null );
 
-    $this->setMPReferenceId(isset($mp_preference_id) ? $mp_preference_id : '');
+    $this->setMPPreferenceId(isset($mp_preference_id) ? $mp_preference_id : '');
     $this->setMPPaymentId(isset($mp_payment_id) ? $mp_payment_id : '');
     $this->setMPPaymentStatus(isset($mp_payment_status) ? $mp_payment_status : '');
     $this->setMPPaymentStatusDetail(isset($mp_payment_status_detail) $mp_payment_status_detail ? : '');
@@ -140,7 +140,7 @@ namespace model;
     }
 
 
-    public function  getMPReferenceId(){
+    public function  getMPPreferenceId(){
       return $this->mp_preference_id;
     };
     public function  getMPPaymentId(){
@@ -163,7 +163,7 @@ namespace model;
     };
 
 
-    public function  setMPReferenceId($value){
+    public function  setMPPreferenceId($value){
       return $this->mp_preference_id = $value;
     };
     public function  setMPPaymentId($value){
