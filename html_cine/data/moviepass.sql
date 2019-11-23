@@ -93,6 +93,13 @@ create table Payments(
 	payment_auth_code int,
 	payment_date date,
 	payment_amount float,
+	mp_preference_id varchar(100),
+	mp_payment_id varchar(100),
+	mp_payment_status varchar(100),
+	mp_payment_status_detail varchar(100),
+	mp_merchant_order_id varchar(100),
+	mp_processing_mode varchar(100),
+	mp_merchant_account_i varchar(100),
 	constraint pk_payment primary key (payment_id)
 );
 
