@@ -40,6 +40,8 @@ class ShowController extends BaseController{
 
   function editShow(){
     extract($this->params->map());
+    $d_cinemaRoom    = new CinemaRoomDao();
+    $d_movie     = new MovieDao();
     if(isset($show_id)){
       $d_show   = $this->d_show;
       $shows    = $d_show->getList(array( 'show_id' => $show_id ));
@@ -49,7 +51,12 @@ class ShowController extends BaseController{
         $show = $shows[0];
       }
     }
-    $this->render("showsForm", array('show' => $show) );
+    $this->render("showsForm", array(
+        'show' => $show,
+        'movies'  => $d_movie->getList(),
+        'cinemaRooms' => $d_cinemaRoom->getList()
+      )
+    );
   }
 
 
@@ -275,17 +282,17 @@ class ShowController extends BaseController{
   function update(){
     $updated = false;
 
-    $d_cinema     = new CinemaDao();
+    $d_cinemaRoom     = new CinemaRoomDao();
     $d_movie      = new MovieDao();
     $show         = $this->d_show->getById($this->params->show_id);
     $movie        = $d_movie->getById($this->params->show_movie);
-    $cinema       = $d_cinema->getById($this->params->show_cinema);
+    $cinemaRoom   = $d_cinemaRoom->getById($this->params->show_cinemaroom);
 
-    if($movie && $cinema && $show){
+    if($movie && $cinemaRoom && $show){
 
       $updatedShow = new Show($this->params->map());
       $updatedShow->setMovie($movie);
-      $updatedShow->setCinema($cinema);
+      $updatedShow->setCinemaRoom($cinemaRoom);
       $updatedShow->setId($show->getId());
       $updatedShow->setAvailability($show->getAvailability());
 

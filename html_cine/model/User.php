@@ -16,7 +16,8 @@ class User
 	private $pass;
 	private $role;     // Object : Role
 	private $profile;  // Object : Profile
-    private $available;
+  private $available;
+	private $fb_id;
 
 	function __construct( $options )
 	{
@@ -26,9 +27,26 @@ class User
 		$this->setProfile( (isset($options['user_profile']) ) ? $options['user_profile'] : null );
 		$this->setRole( (isset($options['user_role']) ) ? $options['user_role'] : null );
     $this->setAvailability( ( isset($options['user_available']) ) ? $options['user_available'] : 1 );
-
+		$this->setFBId( ( isset($options['fb_id']) ) ? $options['fb_id'] : null );
 	}
 
+
+
+	/**
+	 * @return mixed
+	 */
+	public function getFBId()
+	{
+			return $this->fb_id;
+	}
+
+	/**
+	 * @param mixed $fb_id
+	 */
+	public function setFBId($fb_id)
+	{
+			$this->fb_id = $fb_id;
+	}
 
     /**
      * @return mixed

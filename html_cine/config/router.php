@@ -8,7 +8,7 @@ use Controller\ShowController             as ShowController;
 use Controller\CinemaController           as CinemaController;
 use Controller\CinemaRoomController       as CinemaRoomController;
 use Controller\MovieController            as MovieController;
-use Controller\PaymentController          as PaymentController;
+use Controller\SalesController         as SalesController;
 
 $cinemaController           = new CinemaController();
 $cinemaRoomController       = new CinemaRoomController();
@@ -16,7 +16,7 @@ $showController             = new ShowController();
 $movieController            = new MovieController();
 $authenticationController   = new AuthenticationController();
 $userController             = new UserController();
-$paymentController          = new PaymentController();
+$salesController            = new SalesController();
 
 $router                     = new Router();
 
@@ -32,8 +32,10 @@ $router->use('/^\/admin/',                        array( $authenticationControll
 // -- USER IS LOGGED IN AND TRYING TO ACCESS LOGIN PAGE
 $router->use('/^\/login/',                        array( $authenticationController, 'preventDoubleLogin' ));
 
-// PAYMENTS
-$router->get('\/test-payment' , array($paymentController , 'test' ));
+// CHECKOUT ============================================================================
+$router->post('\/funciones\/checkout\/procesar' , array($salesController , 'procesarPago' ));
+$router->post('\/funciones\/checkout'  ,          array($salesController , 'checkout' ));
+
 
 // CINES ============================================================================
 $router->get('\/admin\/cines\/nuevo',             array( $cinemaController,'createForm' ) );
@@ -80,6 +82,7 @@ $router->get('\/login\/create',                   array( $authenticationControll
 $router->get('\/login',                           array( $authenticationController, 'loginForm' ) );
 $router->get('\/logout',                          array( $authenticationController, 'logout' ) );
 
+$router->post('\/loginFB',                        array( $authenticationController, 'loginFB' ) );
 $router->post('\/login',                          array( $authenticationController, 'login' ) );
 
 

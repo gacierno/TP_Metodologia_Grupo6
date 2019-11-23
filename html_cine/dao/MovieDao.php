@@ -145,7 +145,28 @@ class MovieDao extends BaseDao implements IApiConnector
 		$outout = array();
 
 		//	set the elements needed for a movie instance
-		$query = "select M.movie_id as movie_id, M.movie_image as movie_image, M.movie_language as movie_language, M.movie_title as movie_title, M.movie_runtime as movie_runtime, M.movie_description as movie_description from CinemaRooms CR inner join Shows S on CR.cinemaroom_id = S.cinemaroom_id inner join Movies M on M.movie_id = S.movie_id inner join Genres_on_Movies GM on GM.movie_id = M.movie_id where S.show_available = 1 and S.show_date >= '";
+		$query = <<<EOD
+		select
+			M.*
+		from
+			CinemaRooms CR
+		inner join
+			Shows S
+			on
+			CR.cinemaroom_id = S.cinemaroom_id
+		inner join
+			Movies M
+			on
+			M.movie_id = S.movie_id
+		inner join
+			Genres_on_Movies GM
+			on
+			GM.movie_id = M.movie_id
+		where
+			S.show_available = 1
+			and
+			S.show_date >= '
+EOD;
 
 		if( isset( $args['date'] ) ){
 			$query .= $args['date']. "' ";
@@ -170,7 +191,7 @@ class MovieDao extends BaseDao implements IApiConnector
 
 		//	if cinema is set add the filter to the query
 		if( isset( $args['cinema'] ) ){
-			$query .= "S.cinema_id = ".$args['cinema']. " ";
+			$query .= "CR.cinema_id = ".$args['cinema']. " ";
 		}
 
 		$query .= "group by M.movie_id;";

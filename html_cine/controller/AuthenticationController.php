@@ -1,6 +1,7 @@
 <?php namespace Controller;
 
 use Controller\BaseController as BaseController;
+use Controller\UserController as UserController;
 use Response\RedirectResponse as RedirectResponse;
 
 use dao\RoleDao               as RoleDao;
@@ -101,12 +102,34 @@ class AuthenticationController extends BaseController{
       'user_password' => $password,
       'user_available' => 1
     ));
+    if(count($users) > 0){
+      $this->session->user = $users[0];
+      $this->redirect("/");
+    }else{
+      if(!$this->passErrorMessage) $this->passErrorMessage = "El usuario o contraseña son incorrectos";
+      $this->redirect("/login");
+    }
+  }
+
+
+  function loginFB(){
+    extract($this->params->map());
+    if(!isset($fb_id) || empty($fb_id)) return "No se pudo identificar";
+    $userDao = new UserDao();
+    $matchingFBUsers = $userDao->getList( array( 'fb_id' =>  $fb_id ) );
+    $userController = new UserController();
+    if(count($matchingFBUsers) < 1) $userController->register(array( 'fb_id' => $fb_id , 'user_email' => $fb_id ));
+    $users = $userDao->getList( array( 'fb_id' =>  $fb_id ) );
+
+    if(count($matchingFBUsers) < 1){
+      $this->passErrorMessage = "El usuario no pudo ser creado";
+    }
 
     if(count($users) > 0){
       $this->session->user = $users[0];
       $this->redirect("/");
     }else{
-      $this->passErrorMessage = "El usuario o contraseña son incorrectos";
+      if(!$this->passErrorMessage) $this->passErrorMessage = "El usuario o contraseña son incorrectos";
       $this->redirect("/login");
     }
   }

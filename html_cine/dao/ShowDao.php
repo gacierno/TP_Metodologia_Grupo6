@@ -57,15 +57,13 @@ class ShowDao extends BaseDao
 
 	public function parseToHash( $obj ){
 		return array(
-
-	        'show_id' => $obj->getId(),
+      'show_id' => $obj->getId(),
 			'show_time' => $obj->getTime(),
-	        'show_end_time' => $obj->getEndTime(),
+      'show_end_time' => $obj->getEndTime(),
 			'show_date' => $obj->getDay(),
-	        'movie_id' => $obj->getMovie()->getId(),
-	        'cinemaroom_id' => $obj->getCinemaRoom()->getId(),
-	        'show_available' => $obj->getAvailability()
-
+      'movie_id' => $obj->getMovie()->getId(),
+      'cinemaroom_id' => $obj->getCinemaRoom()->getId(),
+      'show_available' => $obj->getAvailability()
 		);
 	}
 

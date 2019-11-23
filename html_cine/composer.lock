@@ -664,12 +664,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/mercadopago/dx-php.git",
-                "reference": "615f97f577adc404e84126e121af6820e8250d38"
+                "reference": "39e3c873c87fbcaf7746991649277708e0312f46"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mercadopago/dx-php/zipball/615f97f577adc404e84126e121af6820e8250d38",
-                "reference": "615f97f577adc404e84126e121af6820e8250d38",
+                "url": "https://api.github.com/repos/mercadopago/dx-php/zipball/39e3c873c87fbcaf7746991649277708e0312f46",
+                "reference": "39e3c873c87fbcaf7746991649277708e0312f46",
                 "shasum": ""
             },
             "require": {

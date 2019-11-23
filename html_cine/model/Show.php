@@ -24,6 +24,12 @@ class Show
         $this->setAvailability( ( isset($options['show_available']) ) ? $options['show_available'] : 1 );
 	}
 
+
+	// CON EL DAO DE TICKETS HAY QUE RESTARLE LOS LUGARES OCUPADOS
+		public function getCapacityLeft(){
+			return $this->getCinemaRoom()->getCapacity();
+		}
+
     /**
      * @return mixed
      */

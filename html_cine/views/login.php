@@ -1,5 +1,61 @@
 <?php include_once('header.php'); ?>
 
+<script>
+  function statusChangeCallback(response) {  // Called with the results from FB.getLoginStatus().
+     console.log('statusChangeCallback');
+     console.log(response);                  // The current login status of the person.
+
+     if (response.status === 'connected') {   // Logged into your webpage and Facebook.
+       document.querySelector('[name="fb_id"]').value = response.authResponse.userID;
+       document.querySelector('#FB_Login').submit();
+       testAPI();
+     } else {                                 // Not logged into your webpage or we are unable to tell.
+
+     }
+   }
+
+
+  function checkLoginState() {               // Called when a person is finished with the Login Button.
+   FB.getLoginStatus(function(response) {   // See the onlogin handler
+     statusChangeCallback(response);
+   });
+  }
+
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '670465876814497',
+      cookie     : true,
+      xfbml      : true,
+      version    : 'v5.0'
+    });
+
+    FB.AppEvents.logPageView();
+
+    FB.getLoginStatus(function(response) {   // Called after the JS SDK has been initialized.
+      statusChangeCallback(response);        // Returns the login status.
+    });
+
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+
+
+
+    function testAPI() {                      // Testing Graph API after login.  See statusChangeCallback() for when this call is made.
+     console.log('Welcome!  Fetching your information.... ');
+     FB.api('/me', function(response) {
+       console.log('Successful login for: ' , response);
+
+     });
+   }
+</script>
+
 <?php include_once('partials/customMessage.php'); ?>
 
 <div class="container-fluid">
@@ -17,8 +73,19 @@
             </label>
             <div class="login__button--container">
                 <button class="login__button glow-on-hover" type="submit">INGRESAR</button>
-                <button style="display:none" class="fb-login__button glow-blue-on-hover">INGRESAR CON FACEBOOK</button>
             </div>
+        </form>
+        <form id="FB_Login" method="POST" action="/loginFB" class="login-form">
+
+            <div class="login__button--container">
+                <fb:login-button
+                  scope="public_profile,email"
+                  onlogin="checkLoginState();"
+                  data-use-continue-as="true"
+                  data-size="large">
+                </fb:login-button>
+            </div>
+            <input type="hidden" name="fb_id" value="">
         </form>
         <div class="login__create--container">
             <p>No tienes usuario? <a href="/login/create">REGISTRATE</a></p>

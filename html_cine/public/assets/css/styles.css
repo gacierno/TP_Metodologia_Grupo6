@@ -1163,7 +1163,7 @@ body{
   display: block;
   padding: 0 50px 0 30px;
   position: relative;
-  z-index: 9999;
+  z-index: 9990;
   cursor: pointer;
   transform-style: preserve-3d;
   transform-origin: 50% 0%;
@@ -1704,4 +1704,148 @@ select#moviefilter__multiple-select--genre,select#moviefilter__select--cinema{
     font-family: 'Roboto', sans-serif;
     font-size:14px;
     color: white;
+}
+
+.purchase__ticket--outer-container{
+    border: 2px solid red;
+    width: 90%;
+    margin: 0 auto;
+    padding:10px;
+    background-color: rgb(20, 20, 20);
+    margin-bottom: 20px;
+}
+
+@media all and (min-width:768px){
+    .purchase__ticket--outer-container{
+        width: 70%;
+        padding: 10px 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+@media all and (min-width:992px){
+    .purchase__ticket--outer-container{
+        width: 50%;
+    }
+}
+
+.ticket__info--container{
+    display: block;
+    width: 100%;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+@media all and (min-width: 768px){
+    .ticket__info--container{
+        display: inline-block;
+        width: 70%;
+        margin-bottom: 0px;
+        text-align:left;
+    }
+}
+
+.ticket__qr-button--container{
+    width: 100%;
+    text-align: center;
+}
+
+@media all and (min-width: 768px){
+    .ticket__qr-button--container{
+        display: inline-block;
+        width: 30%;
+    }
+}
+
+.ticket__movie-title{
+    font-family: 'Roboto', sans-serif;
+    font-size:18px;
+    color: white;
+    margin-bottom: 0;
+}
+
+.ticket__movie--date-time{
+    font-family: 'Roboto', sans-serif;
+    font-size:12px;
+    color: red;
+}
+
+.ticket__movie-cinemaroom{
+    font-family: 'Roboto', sans-serif;
+    font-size:16px;
+    color: white;
+    margin-bottom: 0;
+}
+
+@media all and (min-width:768px){
+    .ticket__movie-title{
+        font-family: 'Roboto', sans-serif;
+        font-size:24px;
+        color: white;
+        margin-bottom: 0;
+    }
+    
+    .ticket__movie--date-time{
+        font-family: 'Roboto', sans-serif;
+        font-size:14px;
+        color: red;
+    }
+    
+    .ticket__movie-cinemaroom{
+        font-family: 'Roboto', sans-serif;
+        font-size:20px;
+        color: white;
+        margin-bottom: 0;
+    }
+}
+
+.qr-code--container{
+    display:none;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+}
+
+.qr-code--container.open{
+    display: flex;
+}
+
+.qr-code__container--overlay{
+    position: absolute;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0.6;
+    z-index: 99999;
+}
+
+#qrcode{
+    z-index: 99999;
+    position: relative;
+}
+
+.qr-code__close-btn{
+    cursor: pointer;
+    font-family: 'Roboto', sans-serif;
+    font-size:24px;
+    color: white;
+    position: absolute;
+    top: -30px;
+    right: -30px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: red;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
 }
