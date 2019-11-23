@@ -37,7 +37,7 @@ $router->use('/^\/login/',                        array( $authenticationControll
 // CHECKOUT ============================================================================
 $router->get('\/tickets'                        , array( $userController , 'tickets' ) );
 
-$router->post('\/funciones\/checkout\/procesar' , array($salesController , 'procesarPago' ));
+$router->post('\/funciones\/checkout\/procesar' , array($salesController , 'processPayment' ));
 $router->post('\/funciones\/checkout'  ,          array($salesController , 'checkout' ));
 
 

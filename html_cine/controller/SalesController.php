@@ -1,5 +1,7 @@
 <?php namespace Controller;
 
+use \Datetime;
+
 use Controller\BaseController as BaseController;
 
 use DAO\ShowDao             	as ShowDao;
@@ -34,11 +36,11 @@ class SalesController extends BaseController{
     // Crea un ítem en la preferencia
     $item = new \MercadoPago\Item();
     $item->title =
-      $show->getMovie()->getName() .
+      $quantity . 'x tickets | ' . $show->getMovie()->getName() .
       ' - ' . $show->getDay() . ', ' . $show->getTime() . ' ' .
       $show->getCinemaRoom()->getCinema()->getName() . ' ' . $show->getCinemaRoom()->getName();
-    $item->quantity = $quantity;
-    $item->unit_price = $show->getCinemaRoom()->getTicketValue();
+    $item->quantity = 1;
+    $item->unit_price = $purchase->getAmount();
     $preference->items = array($item);
     $preference->save();
 
@@ -78,11 +80,13 @@ EOD;
   function createPurchase($quantity,$show){
     $purchaseDate = new \DateTime();
     $ticketValue  = $show->getCinemaRoom()->getTicketValue();
-    $amount       = $ticketValue * $quantity;
+    $subtotal     = $ticketValue * $quantity;
+    $discount     = $this->calculateDiscountValue($show,$quantity,$subtotal);
+    $amount       = $subtotal - $discount;
     return new Purchase(
       array(
         'purchase_ticket_qty' => $quantity,
-        'purchase_discount' => 0,
+        'purchase_discount' => $discount,
         'purchase_date' => $purchaseDate->format('Y-m-d'),
         'purchase_amount' => $amount,
         'purchase_tickets' => null,
@@ -94,27 +98,46 @@ EOD;
 
 
 
-  function validatePayment($value,$quantity){
+  function validatePayment($value,$quantity,$discount){
     \MercadoPago\SDK::setAccessToken(MP_ACCESS_TOKEN);
     $payment  = \MercadoPago\Payment::find_by_id($this->params->payment_id);
     return $payment->status == "approved" &&
-           $payment->transaction_amount == $quantity * $value;
+           $payment->transaction_amount == ($quantity * $value) - $discount;
   }
 
 
 
-  function procesarPago(){
+  function calculateDiscountValue($show,$quantity,$subtotal){
+    $discount = 0;
+    $dateArray = explode('-',$show->getDay());
+    $dt = new DateTime();
+    $dt->setDate($dateArray[0],$dateArray[1],$dateArray[2]);
+    $weekDay = $dt->format("N");
+    if($quantity >= 2 && $weekDay == 2 || $weekDay == 3){
+      $discount = $subtotal * 0.25;
+    }
+    return $discount;
+  }
+
+
+
+  function processPayment(){
     $success      = false;
     $d_purchase   = new PurchaseDao();
     $d_show       = new ShowDao();
     $show         = $d_show->getById($this->params->show_id);
     $quantity     = $this->params->ticket_quantity;
     $purchase     = $this->createPurchase( $quantity, $show );
+    $ticketValue  = $show->getCinemaRoom()->getTicketValue();
 
     // ============================================================================
     // =   VALIDATE PAYMENT WITH MERCADO PAGO
     // ============================================================================
-    $validPayment = $this->validatePayment($show->getCinemaRoom()->getTicketValue(),$quantity);
+    $validPayment = $this->validatePayment(
+      $ticketValue,
+      $quantity,
+      $this->calculateDiscountValue($show,$quantity,$ticketValue*$quantity)
+    );
 
     if($validPayment){
       // CREATE PAYMENT
