@@ -1879,7 +1879,7 @@ select#moviefilter__multiple-select--genre,select#moviefilter__select--cinema{
 
 .charts__selects--container{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
 }
 
@@ -1888,7 +1888,7 @@ select#moviefilter__multiple-select--genre,select#moviefilter__select--cinema{
 }
 
 .charts__selects--container label{
-    width: 30%;
+    width: 35%;
     color: white;
     font-size: 16px;
     font-family: 'Roboto',sans-serif;
