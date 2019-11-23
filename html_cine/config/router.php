@@ -33,6 +33,8 @@ $router->use('/^\/admin/',                        array( $authenticationControll
 $router->use('/^\/login/',                        array( $authenticationController, 'preventDoubleLogin' ));
 
 // CHECKOUT ============================================================================
+$router->get('\/tickets'                        , array( $userController , 'tickets' ) );
+
 $router->post('\/funciones\/checkout\/procesar' , array($salesController , 'procesarPago' ));
 $router->post('\/funciones\/checkout'  ,          array($salesController , 'checkout' ));
 
