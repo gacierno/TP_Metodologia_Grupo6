@@ -11,7 +11,7 @@ namespace model;
 -  mp_payment_status_detail
 -  mp_merchant_order_id
 -  mp_processing_mode
--  mp_merchant_account_i
+-  mp_merchant_account_id
   */
  class Payment
  {
@@ -28,16 +28,25 @@ namespace model;
   private $mp_payment_status_detail;
   private $mp_merchant_order_id;
   private $mp_processing_mode;
-  private $mp_merchant_account_i;
+  private $mp_merchant_account_id;
 
  	function __construct( $options )
  	{
+    extract($options);
  		$this->setId(        ( isset($options['payment_id']) )   ? $options['payment_id'] : null );
  		$this->setAuthentificationCode(  ( isset($options['payment_auth_code']) ) ? $options['payment_auth_code'] : '' );
  		$this->setDate(     ( isset($options['payment_date']) )     ? $options['payment_date'] : '' );
     $this->setAmount(   ( isset($options['payment_amount']) )     ? $options['payment_amount'] : 0 );
     $this->setMethod(   ( isset($options['payment_method']) )     ? $options['payment_method'] : '' );
     $this->setPurchaseId((isset($options['purchase_id']) )      ? $options['purchase_id'] : null );
+
+    $this->setMPReferenceId(isset($mp_preference_id) ? $mp_preference_id : '');
+    $this->setMPPaymentId(isset($mp_payment_id) ? $mp_payment_id : '');
+    $this->setMPPaymentStatus(isset($mp_payment_status) ? $mp_payment_status : '');
+    $this->setMPPaymentStatusDetail(isset($mp_payment_status_detail) $mp_payment_status_detail ? : '');
+    $this->setMPMerchantOrderId(isset($mp_merchant_order_id) ? $mp_merchant_order_id : '');
+    $this->setMPProcessingMode(isset($mp_processing_mode) ? $mp_processing_mode : '');
+    $this->setMPMerchantAccountId(isset($mp_merchant_account_id) ? $mp_merchant_account_id : '');
  	}
 
 
