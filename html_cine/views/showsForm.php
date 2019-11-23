@@ -2,7 +2,6 @@
 <!-- NECESITA ARRAY DE $MOVIES / $CINEMAS , SI ES /ACTUALIZAR NECESITO EL OBJETO $SHOW INSTANCIADO -->
 <?php if(isset($show)) : $isShowSet = true; $movie = $show->getMovie(); $cinemaRoom = $show->getCinemaRoom(); else : $isShowSet = false; endif; ?>
 
-<?php include_once('partials/customMessage.php'); ?>
 
 
 <div class="main-container container-fluid showlist__main-container">

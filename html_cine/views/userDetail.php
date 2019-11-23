@@ -1,6 +1,5 @@
 <?php include_once('header.php'); ?>
 
-<?php include_once('partials/customMessage.php'); ?>
 
 <div class="main-container container-fluid">
 
@@ -19,7 +18,7 @@
             <input id="user_email" class="inputText" type="text" name="user_email" value="<?php echo($user->getEmail()); ?>" disabled required>
             <span class="floating-label">Correo Electronico</span>
         </label>
-        
+
         <label>
             <input class="inputText" type="password"  name="user_password" value="<?php echo($user->getPass()); ?>" disabled required>
             <span class="floating-label">Contraseña</span>
@@ -54,4 +53,3 @@
 
 
 <?php include_once('footer.php'); ?>
-

@@ -1,7 +1,7 @@
 <?php include_once('header.php'); ?>
 <!-- uso array de $shows -->
 
-<?php include_once('partials/customMessage.php'); ?>
+
 
 <div class="main-container container-fluid">
     <div class="row">
