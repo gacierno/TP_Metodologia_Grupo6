@@ -74,28 +74,27 @@ class ShowController extends BaseController{
 
 
 
-  function validateShowTime($date,$time,$cine,$existing_show = false){
-    $timeArray = explode(":",$this->sanitizeTime($time));
-    $dt = new DateTime();
-    $dt->setTime($timeArray[0],$timeArray[1],$timeArray[2]);
-    $dt->add(DateInterval::createFromDateString('15 minutes'));
-    $maxRange = $dt->format('H:i:s');
-    $dt->sub(DateInterval::createFromDateString('30 minutes'));
-    $minRange = $dt->format('H:i:s');
+  function validateShowTime($date,$start_time,$end_time,$cinemaroom_id,$existing_show = false){
+    $startTimeArray = explode(":",$this->sanitizeTime($start_time));
+    $endTimeArray   = explode(":",$this->sanitizeTime($end_time));
+    $sdt = new DateTime();
+    $edt = new DateTime();
+    // END TIME
+    $edt->setTime($endTimeArray[0],$endTimeArray[1],$endTimeArray[2]);
+    $edt->add(DateInterval::createFromDateString( TIME_BETWEEN_SHOWS . ' minutes'));
+    $maxRange = $edt->format('H:i:s');
+    // START TIME
+    $sdt->setTime($startTimeArray[0],$startTimeArray[1],$startTimeArray[2]);
+    $sdt->sub(DateInterval::createFromDateString( TIME_BETWEEN_SHOWS . ' minutes'));
+    $minRange = $sdt->format('H:i:s');
 
     $query = array(
-      array(
-        'column' => "show_date",
-        'operator' => "=",
-        'condition' => "and",
-        'value' => $date
-      ),
-      array(
-        'column' => "cinema_id",
-        'operator' => "=",
-        'condition' => "and",
-        'value' => $cine
-      ),
+      /*
+|$minRange||show_time|...|show_end_time\|$maxRange|
+                                |show_time|...|show_end_time|
+                                            |$minRange||show_time|...|show_end_time\|$maxRange|
+
+      */
       array(
         'column' => "show_end_time",
         'operator' => ">=",
@@ -107,6 +106,19 @@ class ShowController extends BaseController{
         'operator' => "<=",
         'condition' => "and",
         'value' => $maxRange
+      ),
+
+      array(
+        'column' => "show_date",
+        'operator' => "=",
+        'condition' => "and",
+        'value' => $date
+      ),
+      array(
+        'column' => "cinemaroom_id",
+        'operator' => "=",
+        'condition' => "and",
+        'value' => $cinemaroom_id
       ),
       array(
         'column' => "show_available",
@@ -127,34 +139,30 @@ class ShowController extends BaseController{
         )
       );
     }
-    /*
 
-      |show_time|...|show_end_time|
-                  |$minRange||show_time|...|show_end_time\|$maxRange|
-
-    */
 
     $shows = $this->d_show->getListWhere($query);
 
-
-    return !($shows && count($shows) > 0);
+    $valid = !($shows && count($shows) > 0);
+    if(!$valid) $this->passErrorMessage = "Error, el horario de la pelicula se superpone con el de otra funcion.";
+    return $valid;
   }
 
 
-  function validateMovieOwnership($date,$movie,$cine){
+  function validateMovieOwnership($date,$movie,$cinemaroom_id){
     $shows  = $this->d_show->getListWhere(
       array(
+        array(
+          'column' => "cinemaroom_id",
+          'operator' => "!=",
+          'condition' => "and",
+          'value' => $cinemaroom_id
+        ),
         array(
           'column' => "show_date",
           'operator' => "=",
           'condition' => "and",
           'value' => $date
-        ),
-        array(
-          'column' => "cinema_id",
-          'operator' => "!=",
-          'condition' => "and",
-          'value' => $cine
         ),
         array(
           'column' => "movie_id",
@@ -170,8 +178,9 @@ class ShowController extends BaseController{
         )
       )
     );
-
-    return !($shows && count($shows) > 0);
+    $valid = !($shows && count($shows) > 0);
+    if(!$valid) $this->passErrorMessage = "Error, la pelicula se transmite en otra sala este día";
+    return $valid;
   }
 
 
@@ -185,6 +194,7 @@ class ShowController extends BaseController{
   function validate($existing_show = false){
     $show_id = false;
     extract($this->params->map());
+    $d_cinemaroom = new CinemaRoomDao();
 
     if(
       $existing_show &&
@@ -194,9 +204,11 @@ class ShowController extends BaseController{
       $show_movie         = $existing_show->getMovie()->getId();
       $show_cinemaroom    = $existing_show->getCinemaRoom()->getId();
       $show_time          = $existing_show->getTime();
+      $show_end_time      = $existing_show->getEndTime();
       $show_id            = $existing_show->getId();
     }
 
+    // VALIDATE
     return (
       (
         $existing_show ||
@@ -206,6 +218,7 @@ class ShowController extends BaseController{
       $this->validateShowTime(
         $show_date,
         $show_time,
+        $show_end_time,
         $show_cinemaroom,
         $show_id
       ) &&
@@ -245,20 +258,22 @@ class ShowController extends BaseController{
 
   function create(){
     $created = false;
-    if($this->validate()){
 
-      $d_cinemaRoom   = new CinemaRoomDao();
-      $d_movie        = new MovieDao();
-      $movie          = $d_movie->getById($this->params->show_movie);
-      $cinemaRoom     = $d_cinemaRoom->getById($this->params->show_cinemaroom);
 
-      if($movie && $cinemaRoom){
-        $newShowData  = $this->params->map();
-        $newShow  = new Show($newShowData);
-        $newShow->setCinemaRoom($cinemaRoom);
-        $newShow->setMovie($movie);
-        $newShow->setTime($this->sanitizeTime($newShow->getTime()));
-        $newShow  = $this->updateShowEndTime($newShow);
+    $d_cinemaRoom   = new CinemaRoomDao();
+    $d_movie        = new MovieDao();
+    $movie          = $d_movie->getById($this->params->show_movie);
+    $cinemaRoom     = $d_cinemaRoom->getById($this->params->show_cinemaroom);
+
+    if($movie && $cinemaRoom){
+      $newShowData  = $this->params->map();
+      $newShow  = new Show($newShowData);
+      $newShow->setCinemaRoom($cinemaRoom);
+      $newShow->setMovie($movie);
+      $newShow->setTime($this->sanitizeTime($newShow->getTime()));
+      $newShow  = $this->updateShowEndTime($newShow);
+      $this->params->show_end_time = $newShow->getEndTime();
+      if($this->validate()){
         try{
           $created = $this->d_show->add($newShow);
         }catch(Exception $ex){
@@ -267,11 +282,12 @@ class ShowController extends BaseController{
       }
     }
 
+
     if($created){
       $this->passSuccessMessage = "La funcion fue creada correctamente";
       $this->redirect("/admin/funciones");
     }else{
-      $this->passErrorMessage = "Hubo un error, la funcion no pudo ser creada";
+      if(!$this->passErrorMessage) $this->passErrorMessage = "Hubo un error, la funcion no pudo ser creada";
       $this->redirect("/admin/funciones/nuevo");
     }
 
@@ -295,11 +311,10 @@ class ShowController extends BaseController{
       $updatedShow->setCinemaRoom($cinemaRoom);
       $updatedShow->setId($show->getId());
       $updatedShow->setAvailability($show->getAvailability());
-
+      $updatedShow->setTime($this->sanitizeTime($updatedShow->getTime()));
+      $updatedShow = $this->updateShowEndTime($updatedShow);
 
       if($this->validate($updatedShow)){
-        $updatedShow->setTime($this->sanitizeTime($updatedShow->getTime()));
-        $updatedShow = $this->updateShowEndTime($updatedShow);
         try{
           $this->d_show->update($updatedShow);
           $updated = true;
@@ -312,7 +327,7 @@ class ShowController extends BaseController{
 
     if($updated){
       $this->passSuccessMessage = "La funcion fue actualizada correctamente";
-    }else{
+    }else if(!$this->passErrorMessage){
       $this->passErrorMessage = "Hubo un error, la funcion no pudo ser actualizada";
     }
 
@@ -338,7 +353,7 @@ class ShowController extends BaseController{
 
     if($updated){
       $this->passSuccessMessage = "Show ". ($value ? "activado" : "desactivado") ." correctamente";
-    }else{
+    }else if(!$this->passErrorMessage){
       $this->passErrorMessage = "Hubo un error, el show no pudo ser actualizado";
     }
   }
@@ -356,7 +371,7 @@ class ShowController extends BaseController{
     $show    = $this->d_show->getById($this->params->show_id);
     if($this->validate($show)){
       $this->setShowAvailability(1);
-    }else{
+    }else if(!$this->passErrorMessage){
       $this->passErrorMessage = "Hubo un error, el show no pudo ser actualizado";
     }
     $this->redirect("/admin/funciones");

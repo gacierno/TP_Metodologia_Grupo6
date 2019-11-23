@@ -7,7 +7,6 @@ Esta vista va a hacer getSalas() del objeto $cinema para renderizarlas -->
 <?php if(isset($cinema)) : $isCinemaSet = true; $availability = $cinema->getAvailability(); else : $isCinemaSet = false; endif; ?>
 
 
-<?php include_once('partials/customMessage.php'); ?>
 
 
 <div class="main-container container-fluid cinemalist__main-container">

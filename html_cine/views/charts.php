@@ -1,5 +1,11 @@
 <!-- COMENTARIO PARA GASPU : Voy a utilizar un array de $movies, un array de $cinemas
-y un array de $shows para hacer los filtros -->
+y un array de $shows para hacer los filtros
+
+
+EN CUANTO AL RETORNO :
+Para JS necesito un objeto que tenga el atributo "output" que diga si es tickets o monto, y otro que sea "shows", 
+y dentro del show tiene el attributo name (nombre de la sala, nombre de la pelicula , hora/fecha) y value (valor para esa funcion)
+-->
 
 <?php include_once('header.php'); ?>
 

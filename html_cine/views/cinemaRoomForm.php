@@ -7,7 +7,6 @@ Esta vista cuenta con un objeto $cinemaRoom para renderizar los datos necesarios
 <?php if(isset($cinemaRoom)) : $iscinemaRoomSet = true; $availability = $cinemaRoom->getAvailability(); else : $iscinemaRoomSet = false; endif; ?>
 
 
-<?php include_once('partials/customMessage.php'); ?>
 
 
 <div class="main-container container-fluid cinemaRoomlist__main-container">

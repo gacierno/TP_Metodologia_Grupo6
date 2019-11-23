@@ -4,7 +4,6 @@ $show que tiene los datos a mostrar de la funcion -->
 
 <?php include_once('header.php'); ?>
 
-<?php include_once('partials/customMessage.php'); ?>
 
 <div class="main-container container-fluid purchase__list--container">
 <?php if(isset($purchase)) : ?>

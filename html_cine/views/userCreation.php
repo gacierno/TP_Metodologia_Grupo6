@@ -1,6 +1,5 @@
 <?php include_once('header.php'); ?>
 
-<?php include_once('partials/customMessage.php'); ?>
 
 <div class="container-fluid">
     <div class="row login__row user-creation__row">

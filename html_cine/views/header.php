@@ -15,7 +15,7 @@
 <body>
 
 
-<?php $url = $_SERVER["REQUEST_URI"]; 
+<?php $url = $_SERVER["REQUEST_URI"];
 $pos = strrpos($url, "login"); ?>
 
 <?php if(!$pos) : ?>
@@ -104,3 +104,4 @@ $pos = strrpos($url, "login"); ?>
 </div>
 
 <?php endif; ?>
+<?php include_once('partials/customMessage.php'); ?>
