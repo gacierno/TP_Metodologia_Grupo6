@@ -20,7 +20,42 @@ $(document).ready(function(){
     //and executes it everytime a filter value detect changes
     if($('#myChart').length > 0){
         var ctx = document.getElementById('myChart');
-        myChart = new Chart(ctx, {});
+        myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                datasets: [{
+                    label: '# of Votes',
+                    data: [0, 0, 0, 0, 0, 0],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
         statisticsUpdate();
         $('.charts__filter--container #chart-movies,#chart-cinemas,#chart-begin-date,#chart-final-date,#amount-btn,#tickets-btn').on('change',function(){
             statisticsUpdate();
@@ -439,7 +474,7 @@ function statisticsUpdate(){
     $.ajax({
         url: "/admin/estadisticas",
         data : values,
-        // method : 'POST',
+        method : 'POST',
         success : function(data){
           buildChart(data);
         },
@@ -455,38 +490,48 @@ function statisticsUpdate(){
 
 function buildChart(data){
 
-    var finalLabels = ["cine uno","cine dos","cine tres","cine cuatro","cine cinco","cine seis","cine siete"];
-    var dataset = "# of tickets";
-    var d = [1,2,3,4,5,6,1];
-    var bgColor = [];
-    d.forEach(() => {
-        bgColor.push(getRandomColor());
+    var ds = data["output"];
+    var finalLabels = [];
+    var d = [];
+    data["shows"].forEach((element) => {
+        finalLabels.push(element.name);
+        d.push(element.value);
     });
 
-    setTimeout(function(){
-        myChart.data.labels.pop();
-        myChart.data.labels.push(finalLabels);
-        
-        myChart.data.datasets.forEach((dataset) => {
-            dataset.data = [];
-        });
+    
+    
+    var bgColor = [];
+    var borderColors = [];
 
-        myChart.data.datasets.forEach((dataset) => {
-            dataset.data = d;
-        });
+
+    d.forEach(() => {
+        bgColor.push(random_rgba());
+    });
+
+
+    bgColor.forEach((element,index) => {
+        borderColors[index] = element.replace("0.2","1");
+    });
+
+
+    myChart.data.datasets.forEach((dataset) => {
+        dataset.label = ds;
+        dataset.backgroundColor = bgColor;
+        dataset.borderColor = borderColors;
+    });
+
+    myChart.data.labels = finalLabels;
         
+    myChart.data.datasets.forEach((dataset) => {
+        dataset.data = d;
+    });
+
         
-        myChart.update();
-        
-    },2000);
+    myChart.update();
 }
 
 
-function getRandomColor() {
-    var letters = '0123456789ABCDEF';
-    var color = '#';
-    for (var i = 0; i < 6; i++) {
-      color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
+function random_rgba() {
+    var o = Math.round, r = Math.random, s = 255;
+    return 'rgba(' + o(r()*s) + ',' + o(r()*s) + ',' + o(r()*s) + ', 0.2)';
 }
