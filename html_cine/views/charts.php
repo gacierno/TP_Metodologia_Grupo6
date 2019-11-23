@@ -42,18 +42,20 @@ y un array de $shows para hacer los filtros -->
 
         <div class="form-group charts__options--container">
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                <label class="form-check-label" for="inlineRadio1">Total Recaudado</label>
+                <label class="form-check-label">
+                    <input class="form-check-input" type="radio" name="chartOutput" id="amount-btn" value="amount">
+                Total Recaudado</label>
             </div>
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                <label class="form-check-label" for="inlineRadio2">Tickets Vendidos</label>
+                <label class="form-check-label">
+                    <input class="form-check-input" type="radio" name="chartOutput" id="tickets-btn" value="tickets">
+                Tickets Vendidos</label>
             </div>
         </div>
     </div>
 </div>
 
-<div class="chart-container" style="position: relative; height:100%; width:100%;">
+<div id="chart-container" class="chart-container" style="position: relative; height:100%; width:100%;">
     <canvas id="myChart"></canvas>
 </div>
 
