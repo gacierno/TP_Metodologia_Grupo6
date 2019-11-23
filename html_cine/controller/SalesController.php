@@ -133,7 +133,7 @@ EOD;
       // CREATE TICKETS
       $tickets = array();
       for ($i = 0; $i < $quantity; $i++) {
-        $ticket  = new Ticket(array('show' => $show));
+        $ticket  = new Ticket(array('ticket_show' => $show));
         array_push($tickets,$ticket);
       }
 

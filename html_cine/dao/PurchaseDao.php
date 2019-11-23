@@ -86,7 +86,7 @@ class PurchaseDao extends BaseDao
 
 			$toAdd = array(
 				'show_id' => $singleTicket->getShow()->getId(),
-				'purchase_id' => $obj->getId();
+				'purchase_id' => $obj->getId()
 			);
 
 			$this->d_tickets->add( $toAdd );

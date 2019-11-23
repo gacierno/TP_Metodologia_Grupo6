@@ -1,8 +1,8 @@
-<?php 
+<?php
 namespace dao;
 
 /**
- * 
+ *
  */
 
 use model\Payment as Payment;
@@ -13,7 +13,7 @@ use dao\BaseDao as BaseDao;
 
 class PaymentDao extends BaseDao
 {
-	
+
 	function __construct(){
 		parent::setTableName( 'Payments' );
 		parent::setSingleType( 'payment' );
@@ -33,9 +33,9 @@ class PaymentDao extends BaseDao
 
 	public function parseToHash( $obj ){
 
-		return array( 
+		return array(
 
-			'purchase_id' => $obj->getPurchaseId()  // as a payment can't exist without a purchase
+			'purchase_id' => $obj->getPurchaseId(),  // as a payment can't exist without a purchase
 			'payment_amount' => $obj->getAmount(),
 			'payment_method' => $obj->getMethod(),
 			'payment_date' => $obj->getDate(),
@@ -48,7 +48,7 @@ class PaymentDao extends BaseDao
 			'mp_merchant_order_id' => $obj->getMPMerchantOrderId(),
 			'mp_processing_mode' => $obj->getMPProcessingMode(),
 			'mp_merchant_account_id' => $obj->getMPMerchantAccountId()
-			
+
 		);
 	}
 
