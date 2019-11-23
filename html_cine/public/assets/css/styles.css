@@ -48,7 +48,7 @@ body.open .overlay{
 
 @media all and (min-width:768px){
     .nav__container{
-        padding: 10px 30px;
+        /* padding: 10px 30px; */
     }
 }
 
@@ -60,15 +60,11 @@ body.open .overlay{
 
 @media all and (min-width:768px){
     .nav__links--container{
-        justify-content: start;
+        justify-content: flex-end;
+        padding-right: 30px;
     }
 }
 
-@media all and (min-width:992px){
-    .nav__links--container{
-        justify-content: center;
-    }
-}
 
 .nav__links--container a,.cinemalist__button--container a,.showlist__button--container a,.cinemaRoomlist__button--container a{
     text-decoration: none;
@@ -96,15 +92,12 @@ body.open .overlay{
 }
 
 .nav__logo--container{
-    text-align: center;
+    text-align: left;
 }
 
 .nav__logo--container img{
     height: 60px;
     padding: 0 15px;
-    border-width: 3px;
-    border-style: solid;
-    border-image: linear-gradient( to bottom,  red,  rgba(0, 0, 0, 0) ) 1 100%;
 }
 
 div.some {
@@ -114,7 +107,7 @@ div.some {
     color: white;
     cursor: pointer;
   }
-  
+
   div.some::before {
     content: '';
     position: absolute;
@@ -135,7 +128,7 @@ div.some {
   div.some.open::before{
       left: -5px;
   }
-  
+
   div.some::after {
     content: '';
     position: absolute;
@@ -174,7 +167,7 @@ div.some {
     .nav__menu--mobile{
         display: none;
     }
-    
+
 }
 
 .nav__desktop--menu-container{
@@ -376,13 +369,13 @@ input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
 body{
     background: #232526;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to top, #414345, #232526);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to top, #414345, #232526); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */   
+    background: linear-gradient(to top, #414345, #232526); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 .main-container{
     min-height: 85vh;
     padding:5%;
-    overflow: hidden; 
+    overflow: hidden;
 
 }
 
@@ -498,18 +491,18 @@ body{
 }
 
 .cinema__form input:-webkit-autofill,
-.cinema__form input:-webkit-autofill:hover, 
-.cinema__form input:-webkit-autofill:focus, 
+.cinema__form input:-webkit-autofill:hover,
+.cinema__form input:-webkit-autofill:focus,
 .cinema__form input:-webkit-autofill:active,.login-form input:-webkit-autofill,
-.login-form input:-webkit-autofill:hover, 
-.login-form input:-webkit-autofill:focus, 
+.login-form input:-webkit-autofill:hover,
+.login-form input:-webkit-autofill:focus,
 .login-form input:-webkit-autofill:active,.user-detail__form input:-webkit-autofill,
-.user-detail__form input:-webkit-autofill:hover, 
-.user-detail__form input:-webkit-autofill:focus, 
+.user-detail__form input:-webkit-autofill:hover,
+.user-detail__form input:-webkit-autofill:focus,
 .user-detail__form input:-webkit-autofill:active,
 .cinemaRoom__form input:-webkit-autofill,
-.cinemaRoom__form input:-webkit-autofill:hover, 
-.cinemaRoom__form input:-webkit-autofill:focus, 
+.cinemaRoom__form input:-webkit-autofill:hover,
+.cinemaRoom__form input:-webkit-autofill:focus,
 .cinemaRoom__form input:-webkit-autofill:active {
     -webkit-box-shadow: linear-gradient(to right, #eea2a2 0%, #bbc1bf 19%, #57c6e1 42%, #b49fda 79%, #7ac5d8 100%);
     transition: background-color 5000s ease-in-out 0s;
@@ -699,7 +692,7 @@ body{
         line-height: 40px;
         font-size: 24px;
     }
-    
+
     .moviecard__info--container h4{
         font-size: 16px;
     }
@@ -798,7 +791,7 @@ body{
 	transform: rotate(-45deg);
 	transition: all 200ms ease;
 }
-	
+
 .search.active,.search:hover {
     width: 200px;
 	margin-right: 0px;
@@ -827,8 +820,8 @@ body{
 }
 
 .search input:-webkit-autofill,
-.search input:-webkit-autofill:hover, 
-.search input:-webkit-autofill:focus, 
+.search input:-webkit-autofill:hover,
+.search input:-webkit-autofill:focus,
 .search input:-webkit-autofill:active{
     -webkit-box-shadow: linear-gradient(to right, #eea2a2 0%, #bbc1bf 19%, #57c6e1 42%, #b49fda 79%, #7ac5d8 100%);
     transition: background-color 5000s ease-in-out 0s;
@@ -1041,8 +1034,8 @@ body{
 
 .dni-input[type=number]::-webkit-inner-spin-button,
 .dni-input[type=number]::-webkit-outer-spin-button{
-    -webkit-appearance: none; 
-    margin: 0; 
+    -webkit-appearance: none;
+    margin: 0;
 }
 .custom-msg__container{
     width: 100%;
@@ -1069,7 +1062,7 @@ body{
 @media all and (min-width:768px){
     .movie-detail__banner--container{
         margin-bottom:0px;
-    } 
+    }
 }
 
 .movie-detail__banner--container img{
@@ -1142,7 +1135,7 @@ body{
     .dropdown.movielist__filter--container {
         width: 50%;
         position: relative;
-      } 
+      }
 }
 .dropdown.active ul{
     z-index: 10;
@@ -1244,7 +1237,7 @@ body{
   font-variant: normal;
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
-  font-family: "Font Awesome 5 Free"; 
+  font-family: "Font Awesome 5 Free";
   content: '\f07a';
   font-weight: 900;
   position: absolute;
@@ -1316,7 +1309,7 @@ body{
     color:red;
     font-size:14px;
     font-family: 'Roboto',sans-serif;
-    margin:0;   
+    margin:0;
 }
 
 
@@ -1504,8 +1497,8 @@ select#moviefilter__multiple-select--genre,select#moviefilter__select--cinema{
 
 #user-detail-form input[type=number]::-webkit-inner-spin-button,
 #user-detail-form input[type=number]::-webkit-outer-spin-button{
-    -webkit-appearance: none; 
-}  
+    -webkit-appearance: none;
+}
 
 #user-detail-form input.user-input__readyToSend{
     cursor: auto;
@@ -1515,7 +1508,7 @@ select#moviefilter__multiple-select--genre,select#moviefilter__select--cinema{
     border-image-source:linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
     border-image-slice: 1;
 }
-  
+
 .cinemaRoomlist__title--format{
     display: block;
     color: white;
@@ -1528,7 +1521,7 @@ select#moviefilter__multiple-select--genre,select#moviefilter__select--cinema{
 @media all and (min-width:768px){
     .cinemaRoomlist__title--format{
         font-size: 32px;
-    }  
+    }
 }
 
 .showitem__cinemaroom-name--format{
@@ -1584,7 +1577,7 @@ select#moviefilter__multiple-select--genre,select#moviefilter__select--cinema{
     color: #fff;
     font-size: 18px;
     letter-spacing: 2px;
-}   
+}
 
 .movie-detail__shows--container{
     width: 100%;
@@ -1786,13 +1779,13 @@ select#moviefilter__multiple-select--genre,select#moviefilter__select--cinema{
         color: white;
         margin-bottom: 0;
     }
-    
+
     .ticket__movie--date-time{
         font-family: 'Roboto', sans-serif;
         font-size:14px;
         color: red;
     }
-    
+
     .ticket__movie-cinemaroom{
         font-family: 'Roboto', sans-serif;
         font-size:20px;
