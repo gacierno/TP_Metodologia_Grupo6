@@ -207,7 +207,7 @@ $(document).ready(function(){
             event.preventDefault();
             event.stopPropagation();
             var genre = $('#moviefilter__multiple-select--genre').val();
-            if(genre.indexOf("all") >=0){
+            if(genre.indexOf("all") >=0 || genre.length == 0){
                 genre = null;
             }
             var date = $('#moviefilter__select--date').val();
