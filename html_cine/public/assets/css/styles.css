@@ -457,7 +457,7 @@ body{
 }
 
 .main-container-no-padding{
-    min-height: 85vh;
+    min-height: 80vh;
     overflow: hidden;
     padding: 0;
 }
@@ -1248,14 +1248,18 @@ body{
     text-align: center;
 }
 
-.movie-detail__container{
+.movie-detail__container,.checkout__main-row{
     width: 100%;
     margin: 0;
 }
 
+.purchase__outer--container{
+    padding: 20px 0;
+}
+
 @media all and (min-width:768px){
-    .movie-detail__container{
-        min-height: 85vh;
+    .movie-detail__container,.checkout__main-row{
+        min-height: 80vh;
     }
     .movie-detail__desc--container p{
         text-align: left;
@@ -1735,6 +1739,7 @@ select#moviefilter__multiple-select--genre,select#moviefilter__select--cinema{
     font-family: 'Roboto', sans-serif;
     font-size:18px;
     color: red;
+    text-align: center;
 }
 
 .purchase__item--container span{
@@ -2253,5 +2258,16 @@ select#moviefilter__multiple-select--genre,select#moviefilter__select--cinema{
 
 .show-ticket__name p{
     margin: 0;
+}
+
+.mercadopago-button{
+    transition: 800ms ease all !important;
+    background-color: #dc3545 !important;
+    border-radius: 0 !important;
+}
+
+.mercadopago-button:hover{
+    background-color: #c82333 !important;
+    border-color: #bd2130 !important;
 }
 

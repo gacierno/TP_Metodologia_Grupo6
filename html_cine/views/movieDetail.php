@@ -36,7 +36,7 @@
 
                             <form id="pre-purchase-form" method="POST" action="/funciones/checkout">
                                 <input type="text" hidden style="display:none" name="show_id" value="<?php echo($show->getId()); ?>">
-                                <input type="number" min="0" max="<?php echo($show->getCapacityLeft()); ?>" step="1" value="0" class="ticket_qty">
+                                <input type="number" min="0" max="<?php echo($show->getCapacityLeft()); ?>" step="1" value="0" name="ticket_quantity" class="ticket_qty">
                             </form>
                         </div>
                         <div class="col-sm-12 col-md-4 show-ticket__button">
@@ -51,28 +51,5 @@
 
     </div>
 </div>
-
-
-<script>
-function up(max,id) {
-    document.getElementById(id).value = parseInt(document.getElementById(id).value) + 1;
-
-    if (document.getElementById(id).value >= parseInt(max)) {
-        document.getElementById(id).value = max;
-    }
-    var evt = document.createEvent("HTMLEvents");
-    evt.initEvent("change", false, true);
-    document.getElementById(id).dispatchEvent(evt);
-}
-function down(min,id) {
-    document.getElementById(id).value = parseInt(document.getElementById(id).value) - 1;
-    if (document.getElementById(id).value <= parseInt(min)) {
-        document.getElementById(id).value = min;
-    }
-    var evt = document.createEvent("HTMLEvents");
-    evt.initEvent("change", false, true);
-    document.getElementById(id).dispatchEvent(evt);
-}
-</script>
 
 <?php include_once('footer.php'); ?>
