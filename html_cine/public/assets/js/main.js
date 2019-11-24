@@ -511,7 +511,7 @@ function bindMoviesBehaviour(){
     if($('.movielist__movies--column').length > 0){
 
         $('.movie-item__container').hover(function(){
-            if($(window).width() > 768){
+            if($(window).outerWidth() > 768){
                 var movieItems =  $('.movie-item__container').not(this);
                 movieItems.each(function(index,element){
                     $(element).find('.movies__overlay').first().css('display','block');
@@ -521,7 +521,7 @@ function bindMoviesBehaviour(){
                 $('.movies__info-bar').css('display','flex');
             }
         },function(){
-            if($(window).width() > 768){
+            if($(window).outerWidth() > 768){
                 var movieItems =  $('.movie-item__container').not(this);
                 movieItems.each(function(index,element){
                     $(element).find('.movies__overlay').first().css('display','none');
