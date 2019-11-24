@@ -1749,27 +1749,17 @@ select#moviefilter__multiple-select--genre,select#moviefilter__select--cinema{
 }
 
 .purchase__ticket--outer-container{
-    border: 2px solid red;
-    width: 90%;
     margin: 0 auto;
     padding:10px;
     background-color: rgb(20, 20, 20);
-    margin-bottom: 20px;
 }
 
 @media all and (min-width:768px){
     .purchase__ticket--outer-container{
-        width: 70%;
         padding: 10px 20px;
         display: flex;
         justify-content: center;
         align-items: center;
-    }
-}
-
-@media all and (min-width:992px){
-    .purchase__ticket--outer-container{
-        width: 50%;
     }
 }
 
@@ -2283,4 +2273,20 @@ select#moviefilter__multiple-select--genre,select#moviefilter__select--cinema{
 .mercadopago-button:hover{
     background-color: #c82333 !important;
     border-color: #bd2130 !important;
+}
+
+.ticket__image--container img{
+    width: 100%;
+    object-fit: cover;
+    max-height: 150px;
+}
+
+
+.ticket__image--container{
+    padding:0;
+}
+
+.ticket-row{
+    max-height:150px;
+    margin-bottom: 20px;
 }
