@@ -91,16 +91,23 @@ body.open .overlay{
     }
 }
 
-.login__first-column{
+.login__first-column,.login-creation__first-column{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.login__first-column{
     padding-left: 60px;
 }
 
 @media all and (min-width:768px){
     .login__first-column{
         justify-content: start;
+    }
+    
+    .login-creation__first-column{
+        justify-content: center;
     }
     
 }
