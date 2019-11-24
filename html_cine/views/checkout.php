@@ -24,17 +24,17 @@ $show que tiene los datos a mostrar de la funcion -->
 
         <div class="purchase__item--container">
             <p class="">Valor del Ticket</p>
-            <span><?php echo($show->getCinemaRoom()->getTicketValue()); ?></span>
+            <span><?php echo("$".$show->getCinemaRoom()->getTicketValue()." ARS"); ?></span>
         </div>
 
         <div class="purchase__item--container">
             <p class="">Descuento Aplicado</p>
-            <span><?php echo($purchase->getDiscount()); ?></span>
+            <span><?php echo("$".$purchase->getDiscount()." ARS"); ?></span>
         </div>
 
         <div class="purchase__item--container">
             <p class="">Monto Total</p>
-            <span><?php echo($purchase->getAmount()); ?></span>
+            <span><?php echo("$".$purchase->getAmount()." ARS"); ?></span>
         </div>
 
         <?= $payment_button; ?>
