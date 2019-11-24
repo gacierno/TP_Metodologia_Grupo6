@@ -63,7 +63,7 @@ body.open .overlay{
 }
 
 .nav-only-logo img{
-    width: 100%;
+    width: 60%;
 }
 
 @media all and (min-width: 768px){
@@ -94,6 +94,7 @@ body.open .overlay{
     display: flex;
     justify-content: center;
     align-items: center;
+    padding-left: 60px;
 }
 
 @media all and (min-width:768px){
@@ -104,7 +105,7 @@ body.open .overlay{
 }
 
 .login__container img{
-    width: 100%;
+    width: 70%;
     margin-bottom: 40px;
 }
 
@@ -959,7 +960,7 @@ body{
     margin: 0;
     background:transparent;
     padding: 10% 2% 5% 2%;
-
+    text-align: center;
 }
 
 .user-register__h2--format{
@@ -974,7 +975,7 @@ body{
 
 .register-btn{
     color: white;
-    font-size:16px;
+    font-size:24px;
     letter-spacing: 1px;
     font-family: 'Roboto',sans-serif;
     text-decoration: none;
