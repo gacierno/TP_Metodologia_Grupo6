@@ -7,7 +7,7 @@ $(document).ready(function(){
 
     //bind events to movie list
     bindMoviesBehaviour();
-    
+
 
     //bind btn behaviour to show filter on mobile on click
     if($('#mobile-filter-trigger').length > 0){
@@ -86,7 +86,7 @@ $(document).ready(function(){
                 var info = $(infoContainer).first().find(' .ticket__movie-title').text() + " / " + $(infoContainer).first().find(' .ticket__movie--date-time').text() + " / " + $(infoContainer).first().find(' .ticket__movie-cinemaroom').text();
                 QrCode.makeCode(info);
                 $('body').css('overflow','hidden');
-            } 
+            }
 
             $('.qr-code--container').toggleClass('open');
         });
@@ -514,7 +514,7 @@ function bindMoviesBehaviour(){
             if($(window).outerWidth() > 768){
                 var movieItems =  $('.movie-item__container').not(this);
                 movieItems.each(function(index,element){
-                    $(element).find('.movies__overlay').first().css('display','block');
+                    $(element).find('.movies__overlay').first().stop().fadeIn(200);
                 });
                 var infoId = "#" + $(this).attr('movieId');
                 $(infoId).css('display','block');
@@ -524,12 +524,12 @@ function bindMoviesBehaviour(){
             if($(window).outerWidth() > 768){
                 var movieItems =  $('.movie-item__container').not(this);
                 movieItems.each(function(index,element){
-                    $(element).find('.movies__overlay').first().css('display','none');
+                    $(element).find('.movies__overlay').first().stop().fadeOut(200);
                 });
                 var infoId = "#" + $(this).attr('movieId');
                 $(infoId).css('display','none');
                 $('.movies__info-bar').css('display','none');
             }
-        });    
+        });
     }
 }

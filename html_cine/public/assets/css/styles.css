@@ -104,11 +104,11 @@ body.open .overlay{
     .login__first-column{
         justify-content: start;
     }
-    
+
     .login-creation__first-column{
         justify-content: center;
     }
-    
+
 }
 
 .login__container img{
@@ -981,7 +981,7 @@ body{
 @media all and (min-width:768px){
     .hide-on-desktop{
         display: none;
-    }    
+    }
 }
 
 
@@ -2132,7 +2132,7 @@ select#moviefilter__multiple-select--genre,select#moviefilter__select--cinema{
     .movies__filter--inner-container{
         margin-top: 50px;
     }
-    
+
 }
 
 .movies__filter--inner-container label,p{
@@ -2165,7 +2165,7 @@ select#moviefilter__multiple-select--genre,select#moviefilter__select--cinema{
     -ms-user-select: none;
     user-select: none;
 }
-  
+
 /* Hide the browser's default checkbox */
 .container input {
     position: absolute;
@@ -2174,7 +2174,7 @@ select#moviefilter__multiple-select--genre,select#moviefilter__select--cinema{
     height: 0;
     width: 0;
 }
-  
+
 /* Create a custom checkbox */
 .checkmark {
     position: absolute;
@@ -2185,29 +2185,29 @@ select#moviefilter__multiple-select--genre,select#moviefilter__select--cinema{
     background-color: black;
     border: 1px solid red;
 }
-  
+
 /* On mouse-over, add a grey background color */
 .container:hover input ~ .checkmark {
     background-color: black;
 }
-  
+
 /* When the checkbox is checked, add a blue background */
 .container input:checked ~ .checkmark {
     background-color: red;
 }
-  
+
 /* Create the checkmark/indicator (hidden when not checked) */
 .checkmark:after {
     content: "";
     position: absolute;
     display: none;
 }
-  
+
 /* Show the checkmark when checked */
 .container input:checked ~ .checkmark:after {
     display: block;
 }
-  
+
 /* Style the checkmark/indicator */
 .container .checkmark:after {
     left: 9px;
@@ -2223,19 +2223,17 @@ select#moviefilter__multiple-select--genre,select#moviefilter__select--cinema{
 
 .movie-item__container{
     padding:0;
-    overflow: hidden;
+    /* overflow: hidden; */
     z-index:1;
     position: relative;
+    transition: transform .4s;
 }
 
 .movie-item__container:hover{
-    z-index:12;
+  transform: scale(1.1);
+  z-index: 10;
 }
 
-.movie-item__container:hover img{
-    transform: scale(1.2);
-    transition: transform .2s;
-}
 
 .movie-item__container img{
     width: 100%;
@@ -2247,7 +2245,6 @@ select#moviefilter__multiple-select--genre,select#moviefilter__select--cinema{
 }
 
 .movies__overlay{
-    transition: all .3s;
     position: absolute;
     top: 0;
     left: 0;
@@ -2259,11 +2256,12 @@ select#moviefilter__multiple-select--genre,select#moviefilter__select--cinema{
     display: none;
 }
 
+
 .movies__info-bar{
     transition: all .3s;
     height: 40px;
     position: fixed;
-    bottom: 60px;
+    bottom: 0;
     left: 0;
     width: 100%;
     background-color: red;
