@@ -150,7 +150,13 @@ body.open .overlay{
 
 .nav__logo--container img{
     height: 60px;
-    padding: 0 15px;
+    padding: 0;
+}
+
+@media all and (min-width:768px){
+    .nav__logo--container img{
+        padding: 0 15px;
+    }
 }
 
 div.some {
@@ -340,7 +346,7 @@ input[type=checkbox] {
     height: 100%;
     width: 100%;
     top: 22px;
-    right: 10px;
+    right: -30px;
     height: 22px;
     width: 22px;
 }
@@ -2058,9 +2064,40 @@ select#moviefilter__multiple-select--genre,select#moviefilter__select--cinema{
     justify-content: center;
     align-items: start;
     overflow-y: scroll;
+    transition: all .5s;
+    transform: translateX(-100%);
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 10000;
 }
 
-.movielist__filter--column,.movielist__movies--column{
+@media all and (min-width:768px){
+    .movielist__filter--column{
+        height: 85vh;
+        position: static;
+        transform: translateX(0%) !important;
+        z-index: 2;
+    }
+}
+
+
+
+@media all and (min-width:1200px){
+    .movielist__filter--column{
+        flex-basis: 0 0 0 20%;
+        width: 20%;
+    }
+
+    .movielist__movies--column{
+        flex: 0 0 0 80%;
+        width: 80%;
+    }
+}
+
+.movielist__movies--column{
     padding: 0;
     height: 85vh;
 }
@@ -2072,7 +2109,14 @@ select#moviefilter__multiple-select--genre,select#moviefilter__select--cinema{
 }
 
 .movies__filter--inner-container{
-    margin-top: 50px;
+    margin-top: 70px;
+}
+
+@media all and (min-width:768px){
+    .movies__filter--inner-container{
+        margin-top: 50px;
+    }
+    
 }
 
 .movies__filter--inner-container label,p{
@@ -2224,4 +2268,24 @@ select#moviefilter__multiple-select--genre,select#moviefilter__select--cinema{
     text-align: center;
     margin: 0;
     font-weight: bold;
+}
+
+.mobile-filter-btn-container{
+    width: 100%;
+    padding: 20px 0;
+    text-align: center;
+    background-color: black;
+}
+
+.filter-back-btn--container{
+    text-align: left;
+    position: absolute;
+    top: 27px;
+    left: 30px;
+}
+
+.filter-back-btn--container img{
+    width: auto;
+    height: 20px;
+    cursor: pointer;
 }

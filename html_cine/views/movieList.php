@@ -9,8 +9,10 @@ $genero = isset($_GET['genero']) ? $_GET['genero'] : "";
 
     <div class="row">
     
-        <div class="hide-on-mobile-flex col-md-5 col-lg-3 movielist__filter--column">
-
+        <div class="col-sm-12 col-md-5 col-lg-3 movielist__filter--column">
+            <div class="hide-on-desktop filter-back-btn--container">
+                <img src="/public/assets/images/back-arrow.png" alt="">
+            </div>
             <div class="movies__filter--inner-container">
                 <form id="date-filter-form" method="GET" action="/peliculas">
                 <?php $today = date('Y-m-d',time()); ?>
@@ -23,7 +25,7 @@ $genero = isset($_GET['genero']) ? $_GET['genero'] : "";
                 <form id="cinema-filter-form" method="GET" action="/peliculas">
                 <label>Elige un cine
                     <select id="moviefilter__select--cinema" name="cinema" class="form-control form-control-md movielist__filter-select" value="">
-                        <option value=""  selected>Selecciona un cine</option>
+                        <option value=""  selected></option>
                         <?php foreach ($cinemas as $cinema) : ?>
                         <option value="<?php echo($cinema->getId()); ?>"><?php echo($cinema->getName()); ?></option>
                         <?php endforeach; ?>
@@ -45,8 +47,11 @@ $genero = isset($_GET['genero']) ? $_GET['genero'] : "";
 
         </div>
     
-        
+        <div class="mobile-filter-btn-container hide-on-desktop">
+                <button id="mobile-filter-trigger" class="btn btn-danger">Filtrar</button>
+            </div>
         <div id="movielist__movies--column" class="col-md-7 col-lg-9 movielist__movies--column">
+            
             <div id="movies--inner-container" class="row movies--inner-container">
                 <?php foreach($movies as $movie) : 
                     include_once('movieItem.php'); 

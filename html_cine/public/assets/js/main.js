@@ -9,6 +9,17 @@ $(document).ready(function(){
     bindMoviesBehaviour();
     
 
+    //bind btn behaviour to show filter on mobile on click
+    if($('#mobile-filter-trigger').length > 0){
+        $('#mobile-filter-trigger').on('click',function(){
+            $('.movielist__filter--column').css('transform','translateX(0)');
+        });
+
+        $('.filter-back-btn--container').on('click',function(){
+            $('.movielist__filter--column').css('transform','translateX(-100%)');
+        })
+    }
+
     //creates an empty chart for /admin/estadisticas and execute an AJAX callback for it to be filled,
     //and executes it everytime a filter value detect changes
     if($('#myChart').length > 0){
@@ -500,21 +511,25 @@ function bindMoviesBehaviour(){
     if($('.movielist__movies--column').length > 0){
 
         $('.movie-item__container').hover(function(){
-            var movieItems =  $('.movie-item__container').not(this);
-            movieItems.each(function(index,element){
-                $(element).find('.movies__overlay').first().css('display','block');
-            });
-            var infoId = "#" + $(this).attr('movieId');
-            $(infoId).css('display','block');
-            $('.movies__info-bar').css('display','flex');
+            if($(window).width() > 768){
+                var movieItems =  $('.movie-item__container').not(this);
+                movieItems.each(function(index,element){
+                    $(element).find('.movies__overlay').first().css('display','block');
+                });
+                var infoId = "#" + $(this).attr('movieId');
+                $(infoId).css('display','block');
+                $('.movies__info-bar').css('display','flex');
+            }
         },function(){
-            var movieItems =  $('.movie-item__container').not(this);
-            movieItems.each(function(index,element){
-                $(element).find('.movies__overlay').first().css('display','none');
-            });
-            var infoId = "#" + $(this).attr('movieId');
-            $(infoId).css('display','none');
-            $('.movies__info-bar').css('display','none');
+            if($(window).width() > 768){
+                var movieItems =  $('.movie-item__container').not(this);
+                movieItems.each(function(index,element){
+                    $(element).find('.movies__overlay').first().css('display','none');
+                });
+                var infoId = "#" + $(this).attr('movieId');
+                $(infoId).css('display','none');
+                $('.movies__info-bar').css('display','none');
+            }
         });    
     }
 }
