@@ -35,21 +35,12 @@ body.open .overlay{
 .nav{
     background:rgb(20, 20, 20);
     justify-content: center;
-    border-bottom: 1px solid;
-    border-image-source: linear-gradient(-70deg, rgba(250, 124, 48, 0.6) 30%, rgba(0, 255, 255, 0.6) 50%,rgba(138, 43, 226, 0.6) 75%, rgba(0, 255, 0, 0.6) 100%);
-    border-image-slice: 1;
     margin: 0;
     padding: 10px;
 }
 
 .nav__container{
     padding: 0;
-}
-
-@media all and (min-width:768px){
-    .nav__container{
-        /* padding: 10px 30px; */
-    }
 }
 
 .nav__links--container{
@@ -62,6 +53,66 @@ body.open .overlay{
     .nav__links--container{
         justify-content: flex-end;
         padding-right: 30px;
+    }
+}
+
+.nav-only-logo{
+    background-color: transparent;
+    z-index: 20;
+    margin-bottom: 0;
+}
+
+@media all and (min-width: 768px){
+    .nav-only-logo{
+        margin-bottom: 100px;
+    }
+}
+
+
+.nav-only-logo h1{
+    display: none;
+    font-size: 36px;
+    font-family: 'Roboto',sans-serif;
+    text-align: left;
+    color: white;
+    letter-spacing: 1px;
+    line-height: 40px;
+    width: 90%;
+    margin-right: auto;
+}
+
+@media all and (min-width:768px){
+    .nav-only-logo h1{
+        display: block;
+    }
+}
+
+@media all and (min-width:1200px){
+    .nav-only-logo h1{
+        width: 60%;
+    }
+}
+
+.login__first-column{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media all and (min-width:768px){
+    .login__first-column{
+        justify-content: start;
+    }
+    
+}
+
+.nav-only-logo img{
+    height: 80px;
+}
+
+@media all and (min-width:768px){
+    .nav-only-logo img{
+        height: 100px;
     }
 }
 
@@ -867,21 +918,34 @@ body{
     justify-content: center;
     background-size: cover;
     background-position: center;
-    min-height: 85vh;
+    min-height: 100vh;
     position: relative;
     justify-content: center;
 }
 
 .login__row{
     overflow: hidden;
+    background-image: url('/public/assets/images/userCImage.jpg')
+}
+
+.login__inner-row{
+    width: 100%;
 }
 
 #loginvideo{
+    display: none;
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    transform: scale(1.4);
+    height: 100%;
+    transform: scale(1.6);
+}
+
+@media all and (min-width:1200px){
+    #loginvideo{
+        display: block;
+    }
 }
 
 .user-creation__row{
@@ -892,17 +956,20 @@ body{
 .login__container{
     background: transparent;
     width: 100%;
-    margin: auto 0;
-    padding: 10% 5%;
     z-index: 2;
+    margin: 0;
 }
 
 @media all and (min-width:768px){
     .login__container{
         padding: 6% 2% 5% 2%;
         border-radius: 10%;
-        background: rgb(20, 20, 20);
+        margin: auto 0;
+    }
 
+    .login__container form,.login__create--container{
+        width: 80%;
+        margin: 0 auto;
     }
 }
 
@@ -928,7 +995,7 @@ body{
     padding: 10px 0;
     border: none;
     border-bottom: solid 1px white;
-    background:rgb(20,20,20);
+    background:rgb(153, 153, 153);
     width: 100%;
     color: white;
     letter-spacing: 1px;
