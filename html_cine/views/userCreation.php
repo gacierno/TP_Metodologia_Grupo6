@@ -17,7 +17,10 @@
           </div>
         </div>
         <div class="col-sm-12 col-md-5 col-lg-4 login__container">
-            <h2 class="user-register__h2--format">Registro</h2>
+            <a class="hide-on-desktop" target="_self" href="/">
+                <img src="/public/assets/images/logo.png" >
+            </a>
+            <h2 class="hide-on-mobile user-register__h2--format">Registro</h2>
         <form method="POST" action="/usuario/nuevo" class="login-form">
             <label>
                 <input class="inputText" type="email" name="user_email" required autocomplete="off">
