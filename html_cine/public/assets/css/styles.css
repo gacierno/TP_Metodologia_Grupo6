@@ -2164,6 +2164,7 @@ select#moviefilter__multiple-select--genre,select#moviefilter__select--cinema{
     padding:0;
     overflow: hidden;
     z-index:1;
+    position: relative;
 }
 
 .movie-item__container:hover{

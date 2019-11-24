@@ -6,8 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="/public/assets/css/reset.css">
     <link rel="stylesheet" href="/public/assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/public/assets/owlcarousel/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="/public/assets/owlcarousel/css/owl.theme.default.min.css">
     <link rel="stylesheet" href="/public/assets/css/styles.css">
     <link rel="icon" type="image/png" href="/public/assets/images/favicon.png"/>
     <title>MoviePass</title>  

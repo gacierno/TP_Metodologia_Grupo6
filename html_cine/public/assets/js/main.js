@@ -1,10 +1,3 @@
-//select the slider container for the movieList view
-var moviesSlider = '.owl-carousel.owl-movielist';
-//build the carousel with function
-var builtCarousel = buildCarousel(moviesSlider,false);
-
-
-
 var placeholder;
 var height;
 var myChart;
@@ -12,20 +5,8 @@ var myChart;
 //new movies/create new slider with jquery.Load() method
 $(document).ready(function(){
 
-    if($('.movielist__movies--column').length > 0){
-
-        $('.movie-item__container').hover(function(){
-            $('.movies__overlay').css('display','block');
-            var infoId = "#" + $(this).attr('movieId');
-            $(infoId).css('display','block');
-            $('.movies__info-bar').css('display','flex');
-        },function(){
-            $('.movies__overlay').css('display','none');
-            var infoId = "#" + $(this).attr('movieId');
-            $(infoId).css('display','none');
-            $('.movies__info-bar').css('display','none');
-        });    
-    }
+    //bind events to movie list
+    bindMoviesBehaviour();
     
 
     //creates an empty chart for /admin/estadisticas and execute an AJAX callback for it to be filled,
@@ -265,28 +246,35 @@ $(document).ready(function(){
         });
     }
 
-    //arrows functionality are binded one time only, as they are independent
-    //of the slider creation
-    bindArrows();
 
-    if($('#movielist__filter--outer-container').length > 0){
-        $('form #moviefilter__multiple-select--genre,form #moviefilter__select--cinema,form #moviefilter__select--date').on('change',function(event){
+    if($('.movielist__filter--column').length > 0){
+        $('form#genre-filter-form input, form#cinema-filter-form select,form#date-filter-form input').on('change',function(event){
             event.preventDefault();
             event.stopPropagation();
-            var genre = $('#moviefilter__multiple-select--genre').val();
-            if(genre.indexOf("all") >=0 || genre.length == 0){
-                genre = null;
+            var genreArray = $('#genre-filter-form input');
+            var fGenreArray = [];
+
+            genreArray.each(function(index,element){
+                if($(element).is(':checked')){
+                    fGenreArray.push($(element).val());
+                }
+            });
+
+
+            if(fGenreArray.length == 0){
+                fGenreArray = null;
             }
-            var date = $('#moviefilter__select--date').val();
-            var cinema = $('#moviefilter__select--cinema').val();
-            $(moviesSlider).css("opacity","0.5");
+            var date = $('#date-filter-form input').val();
+            var cinema = $('#cinema-filter-form select').val();
+
             var url = "/peliculas";
-            if(genre || date || cinema){
+
+            if(fGenreArray || date || cinema){
 
                 var first = true;
-                if(genre){
+                if(fGenreArray){
                     url += "?";
-                    url+= "genero=" + genre;
+                    url+= "genero=" + fGenreArray;
                     first = false;
                 }
                 if(date){
@@ -311,21 +299,17 @@ $(document).ready(function(){
                 }
             }
 
-            history.pushState({ genre : genre , date : date , cinema : cinema}, "Peliculas", url );
+            history.pushState({ genre : fGenreArray , date : date , cinema : cinema}, "Peliculas", url );
 
-            $('#movielist-slider-container').load( url +" #movielist-slider",function(data){
-              var newSlider = $(data).find('#movielist-slider');
-              if(newSlider.find('.item').length > 0){
+            $('#movielist__movies--column').load( url +" #movies--inner-container",function(data){
+              var newSlider = $(data).find('#movielist__movies--column');
+              if(newSlider.find('.movie-item__container').length > 0){
                 $('#movies__not-found-row').css('display','none');
-                builtCarousel = buildCarousel(moviesSlider,true);
-                $(moviesSlider).css("opacity","1.0");
               }
               else{
                 $('#movies__not-found-row').css('display','table');
               }
-
-              checkArrowsVisibility();
-
+              bindMoviesBehaviour();
             });
 
             return false;
@@ -374,65 +358,6 @@ $("#inpt_search,#inpt_search_label").on('blur mouseout', function () {
     }
 });
 
-
-//rebuild carousel function
-function buildCarousel(selector,destroy){
-    if(destroy){
-        builtCarousel.trigger('destroy').removeClass('owl-carousel owl-loaded');
-    }
-
-    var carousel_settings = {
-        center: true,
-        items:1,
-        loop:true,
-        margin:30,
-        nav: false,
-        dots:false,
-        responsive:{
-            768:{
-                items:2
-            },
-            1200:{
-                items:4
-            }
-        }
-    };
-
-    return($(selector).owlCarousel( carousel_settings ));
-
-}
-
-
-//function to bind or hide arrows on slider creation
-function bindArrows(){
-
-        $(moviesSlider).closest('.movielist__row').find('.right-arrow').first().fadeIn('fast');
-        $(moviesSlider).closest('.movielist__row').find('.left-arrow').first().fadeIn('fast');
-        var rightArrow = $(moviesSlider).closest('.movielist__row').find('.right-arrow').first();
-        rightArrow.on('click',function(){
-            $(moviesSlider).trigger('next.owl.carousel');
-        });
-
-        var leftArrow = $(moviesSlider).closest('.movielist__row').find('.left-arrow').first();
-        leftArrow.on('click',function(){
-            $(moviesSlider).trigger('prev.owl.carousel');
-        });
-}
-
-
-function checkArrowsVisibility(){
-    var rightArrow = $(moviesSlider).closest('.movielist__row').find('.right-arrow').first();
-    var leftArrow = $(moviesSlider).closest('.movielist__row').find('.left-arrow').first();
-    rightArrow.fadeOut('fast');
-    leftArrow.fadeOut('fast');
-
-    var items = $(moviesSlider).find('.owl-item:not(.cloned)').length;
-    if(items > 1){
-        rightArrow.fadeIn('fast');
-        leftArrow.fadeIn('fast');
-    }
-
-}
 
 
 //variables and functions to give behaviour to nav when scrolled, not handled
@@ -569,4 +494,27 @@ function buildChart(data){
 function random_rgba() {
     var o = Math.round, r = Math.random, s = 255;
     return 'rgba(' + o(r()*s) + ',' + o(r()*s) + ',' + o(r()*s) + ', 0.2)';
+}
+
+function bindMoviesBehaviour(){
+    if($('.movielist__movies--column').length > 0){
+
+        $('.movie-item__container').hover(function(){
+            var movieItems =  $('.movie-item__container').not(this);
+            movieItems.each(function(index,element){
+                $(element).find('.movies__overlay').first().css('display','block');
+            });
+            var infoId = "#" + $(this).attr('movieId');
+            $(infoId).css('display','block');
+            $('.movies__info-bar').css('display','flex');
+        },function(){
+            var movieItems =  $('.movie-item__container').not(this);
+            movieItems.each(function(index,element){
+                $(element).find('.movies__overlay').first().css('display','none');
+            });
+            var infoId = "#" + $(this).attr('movieId');
+            $(infoId).css('display','none');
+            $('.movies__info-bar').css('display','none');
+        });    
+    }
 }

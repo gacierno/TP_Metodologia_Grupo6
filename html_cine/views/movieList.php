@@ -46,14 +46,12 @@ $genero = isset($_GET['genero']) ? $_GET['genero'] : "";
         </div>
     
         
-        <div class="col-md-7 col-lg-9 movielist__movies--column">
-            <div class="row movies--inner-container">
-                <div class="movies__overlay"></div>
+        <div id="movielist__movies--column" class="col-md-7 col-lg-9 movielist__movies--column">
+            <div id="movies--inner-container" class="row movies--inner-container">
                 <?php foreach($movies as $movie) : 
                     include_once('movieItem.php'); 
                 endforeach; ?>
-            </div>
-            <div class="movies__info-bar">
+                <div class="movies__info-bar">
                 <?php foreach($movies as $movie) : ?>
                     <p id="<?php echo($movie->getId()); ?>"><?php echo($movie->getLanguage()); ?> / <?php echo($movie->getDuration()); ?> / <?php foreach($movie->getGenres() as $genre) {
                             
@@ -61,7 +59,9 @@ $genero = isset($_GET['genero']) ? $_GET['genero'] : "";
 
                         }?></p>
                 <?php endforeach; ?>
+                </div>
             </div>
+            
         </div>
     </div>
 
