@@ -30,13 +30,39 @@ $genero = isset($_GET['genero']) ? $_GET['genero'] : "";
                     </select>
                  </label>
                 </form>
+
+
+                <form id="genre-filter-form" method="GET" action="/peliculas">
+                <p>Elige géneros</p>
+                <?php foreach ($genres as $genre) : ?>
+                    <label class="container"><?php echo($genre->getName()); ?>
+                        <input type="checkbox" value="<?php echo($genre->getId()); ?>">
+                        <span class="checkmark"></span>
+                    </label>
+                <?php endforeach; ?>
+                </form>
             </div>
 
         </div>
     
         
-        <div class="col-md-7 col-lg-9 movielist__movies--column"></div>
-    
+        <div class="col-md-7 col-lg-9 movielist__movies--column">
+            <div class="row movies--inner-container">
+                <div class="movies__overlay"></div>
+                <?php foreach($movies as $movie) : 
+                    include_once('movieItem.php'); 
+                endforeach; ?>
+            </div>
+            <div class="movies__info-bar">
+                <?php foreach($movies as $movie) : ?>
+                    <p id="<?php echo($movie->getId()); ?>"><?php echo($movie->getLanguage()); ?> / <?php echo($movie->getDuration()); ?> / <?php foreach($movie->getGenres() as $genre) {
+                            
+                            echo($genre->getName() . " - ");
+
+                        }?></p>
+                <?php endforeach; ?>
+            </div>
+        </div>
     </div>
 
 

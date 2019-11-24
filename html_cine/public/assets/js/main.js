@@ -5,9 +5,6 @@ var builtCarousel = buildCarousel(moviesSlider,false);
 
 
 
-
-
-
 var placeholder;
 var height;
 var myChart;
@@ -15,6 +12,21 @@ var myChart;
 //new movies/create new slider with jquery.Load() method
 $(document).ready(function(){
 
+    if($('.movielist__movies--column').length > 0){
+
+        $('.movie-item__container').hover(function(){
+            $('.movies__overlay').css('display','block');
+            var infoId = "#" + $(this).attr('movieId');
+            $(infoId).css('display','block');
+            $('.movies__info-bar').css('display','flex');
+        },function(){
+            $('.movies__overlay').css('display','none');
+            var infoId = "#" + $(this).attr('movieId');
+            $(infoId).css('display','none');
+            $('.movies__info-bar').css('display','none');
+        });    
+    }
+    
 
     //creates an empty chart for /admin/estadisticas and execute an AJAX callback for it to be filled,
     //and executes it everytime a filter value detect changes

@@ -2057,32 +2057,169 @@ select#moviefilter__multiple-select--genre,select#moviefilter__select--cinema{
     background-color: rgb(0, 0, 0);
     justify-content: center;
     align-items: start;
+    overflow-y: scroll;
 }
 
 .movielist__filter--column,.movielist__movies--column{
+    padding: 0;
     height: 85vh;
 }
 
 .movielist__movies--column{
     overflow-y: scroll;
+    overflow-x: hidden;
+    position: relative;
 }
 
 .movies__filter--inner-container{
-    margin-top: 150px;
+    margin-top: 50px;
 }
 
-.movies__filter--inner-container label{
+.movies__filter--inner-container label,p{
     color: white;
     font-size: 16px;
     font-family: 'Roboto',sans-serif;
     letter-spacing: 1px;
     text-align: left;
+    width: 100%;
 }
 
-.movies__filter--inner-container input{
+.movies__filter--inner-container input,select{
     margin-top: 5px;
 }
 
 .movies__filter--inner-container form:not(:first-child){
     margin-top: 15px;
+}
+
+/* Customize the label (the container) */
+.container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+  
+/* Hide the browser's default checkbox */
+.container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+  
+/* Create a custom checkbox */
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+}
+  
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+  
+/* When the checkbox is checked, add a blue background */
+.container input:checked ~ .checkmark {
+    background-color: red;
+}
+  
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+  
+/* Show the checkmark when checked */
+.container input:checked ~ .checkmark:after {
+    display: block;
+}
+  
+/* Style the checkmark/indicator */
+.container .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.movie-item__container{
+    padding:0;
+    overflow: hidden;
+    z-index:1;
+}
+
+.movie-item__container:hover{
+    z-index:12;
+}
+
+.movie-item__container:hover img{
+    transform: scale(1.2);
+    transition: transform .2s;
+}
+
+.movie-item__container img{
+    width: 100%;
+}
+
+.movies--inner-container{
+    position: relative;
+    margin: 0;
+}
+
+.movies__overlay{
+    transition: all .3s;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    z-index: 10;
+    opacity: 0.8;
+    display: none;
+}
+
+.movies__info-bar{
+    transition: all .3s;
+    height: 40px;
+    position: fixed;
+    bottom: 60px;
+    left: 0;
+    width: 100%;
+    background-color: red;
+    z-index: 13;
+    display: none;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.movies__info-bar p{
+    transition: all .3s;
+    display: none;
+    color: white;
+    font-family: 'Roboto',sans-serif;
+    font-size: 14px;
+    letter-spacing: 1px;
+    text-align: center;
+    margin: 0;
+    font-weight: bold;
 }

@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="/public/assets/owlcarousel/css/owl.theme.default.min.css">
     <link rel="stylesheet" href="/public/assets/css/styles.css">
     <link rel="icon" type="image/png" href="/public/assets/images/favicon.png"/>
-    <title>MoviePass</title>
+    <title>MoviePass</title>  
 </head>
 <body>
 
