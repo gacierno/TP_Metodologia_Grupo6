@@ -14,7 +14,6 @@
               <img src="/public/assets/images/logo.png" >
             </a>
           
-            <h1>Todas las peliculas, todos los cines, todo lo mejor.</h1>
           </div>
         </div>
         <div class="col-sm-12 col-md-5 col-lg-4 login__container">

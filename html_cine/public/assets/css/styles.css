@@ -60,6 +60,7 @@ body.open .overlay{
     background-color: transparent;
     z-index: 20;
     margin-bottom: 0;
+    text-align: center;
 }
 
 .nav-only-logo img{
@@ -966,11 +967,12 @@ body{
 .user-register__h2--format{
     font-size: 36px;
     font-family: 'Roboto',sans-serif;
-    color: red;
+    color: white;
     letter-spacing: 1px;
-    font-weight: bold;
+    font-weight: lighter;
     text-align: center;
     margin-bottom: 40px;
+    text-transform: uppercase;
 }
 
 .register-btn{
