@@ -3,7 +3,7 @@
 ?>
 
 <!-- voy a tener un array de funciones que tienen un objeto movie y un cine y fecha y hora , y la sala -->
-<div class="main-container container-fluid">
+<div class="main-container-no-padding container-fluid">
 <div class="row movie-detail__container">
         <div class="col-sm-12 col-md-4 movie-detail__banner--container">
             <img src="<?php  echo(API_IMAGE_HOST . API_IMAGE_SIZE_LARGE . $movie->getImage()); ?>">

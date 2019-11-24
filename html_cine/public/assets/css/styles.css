@@ -131,6 +131,10 @@ body.open .overlay{
     outline:none;
 }
 
+.nav__links--container a{
+    transition: none;
+}
+
 .cinemalist__button--container a:hover,.showlist__button--container a:hover,.cinemaRoomlist__button--container a:hover{
     background-color:black;
     color:white;
@@ -344,6 +348,7 @@ div.some {
     cursor: pointer;
     text-decoration: none;
 }
+
 input[type="checkbox"]:checked ~ #sidebarMenu {
     transform: translateX(0);
 }
@@ -1068,7 +1073,7 @@ body{
     }
 }
 
-.login-form input{
+.login-form input,.movielist__filter--column input,.movielist__filter--column select{
     padding: 10px 0;
     border: none;
     border-bottom: solid 1px white;
@@ -1216,7 +1221,7 @@ body{
 }
 
 .movie-detail__banner--container{
-    margin-bottom:30px;
+    height: auto;
 }
 
 @media all and (min-width:768px){
@@ -1229,9 +1234,6 @@ body{
     width: 100%;
     object-fit: cover;
     object-position: center;
-    border:2px solid;
-    border-image-source:linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
-    border-image-slice: 1;
 }
 
 .movie-detail__desc--container{
@@ -1576,7 +1578,7 @@ input[type=date]::-webkit-calendar-picker-indicator:hover{
 }
 
 input[type=date]#moviefilter__select--date::-webkit-calendar-picker-indicator:hover{
-    background-color:white;
+    background-color:transparent;
     cursor: pointer;;
 }
 
@@ -2309,3 +2311,8 @@ select#moviefilter__multiple-select--genre,select#moviefilter__select--cinema{
 .btn-danger{
     border-radius: 0;
 }
+
+.form-control{
+    border-radius: 0;
+}
+
