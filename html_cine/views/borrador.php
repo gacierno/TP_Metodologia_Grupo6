@@ -1,45 +1,38 @@
-<div id="movielist__filter--outer-container" class="height-non-mod movielist__filter--container dropdown">
-        <span class="selLabel">Filtrar peliculas</span>
-        <input type="hidden" name="cd-dropdown">
-        <ul class="dropdown-list">
-            <li>
-                <form id="date-filter-form" method="GET" action="/peliculas">
-                <?php $today = date('Y-m-d',time()); ?>
-                    <input id="moviefilter__select--date" min="<?php echo($today); ?>" value="" type="date" name="date" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" class="form-control form-control-md movielist__filter-select">
-                </form>
-            </li>
+<div id="cinema-<?php echo $cinema["cinema"]->getId(); ?>" class="dropdown">
+                    <span class="selLabel"><p class="showitems__cinema-name--format"><?php echo($cinema["cinema"]->getName()); ?></p></span>
+                    <input type="hidden" name="cd-dropdown">
+                    <ul class="dropdown-list">
+                        <?php foreach($cinema["shows"] as $show) : ?>
+                        <li data-value="<?php echo($show->getId()); ?>">
+                            <?php $originalDate = $show->getDay();
+                            $newDate = str_replace('-','/',date('d-m-Y',strtotime($originalDate)));
+                            ?>
 
-            <li>
-            <form id="cinema-filter-form" method="GET" action="/peliculas">
-            <select id="moviefilter__select--cinema" name="cinema" class="form-control form-control-md movielist__filter-select" value="">
-                <option value=""  selected>Selecciona un cine</option>
-                <?php foreach ($cinemas as $cinema) : ?>
-                <option value="<?php echo($cinema->getId()); ?>"><?php echo($cinema->getName()); ?></option>
-                <?php endforeach; ?>
-                </select>
-            </form>
-            </li>
-            <li>
-            <form id="genre-filter-form" method="GET" action="/peliculas">
-                <select id="moviefilter__multiple-select--genre" name="genre" multiple class="form-control form-control-md movielist__filter-select" value="">
-                    <option id="filter-genre-reset"  value="all">Todos los Generos</option>
-                    <?php foreach ($genres as $genre) : ?>
-                    <option value="<?php echo($genre->getId()); ?>"><?php echo($genre->getName()); ?></option>
-                    <?php endforeach; ?>
-                </select>
-            </form>
-            </li>
-        </ul>
-    </div>
-    <div class="row movielist__row">
-        <div id="movielist-slider-container" class="col-12">
-          <div id="movielist-slider" class="owl-carousel owl-theme owl-movielist">
-          <?php include_once('movieItems.php'); ?>
-          </div>
-        </div>
-        <div class="right-arrow"><img src="/public/assets/images/arrow-right.svg"></div>
-        <div class="left-arrow"><img src="/public/assets/images/arrow-left.svg"></div>
-    </div>
-    <div id="movies__not-found-row" class="row">
-        <div class="col-12"><h2>NO MOVIES FOUND</h2></div>
-    </div>
+
+                            <div class="showitem__date--container form-group">
+                                <div class="showitem__date--inner-container">
+                                    <p class="showitem__date--format"><?php echo($newDate); ?> <?php echo($show->getTime()); ?></p><p class="showitem__cinemaroom-name--format"><?php echo($show->getCinemaRoom()->getName()); ?></p>
+                                </div>
+                                <div class="input-group">
+                                    <div class="input-group__form--container">
+                                        <div class="input-group-btn">
+                                            <button id="down" class="btn btn-default" onclick=" down('0','ticketQuantity-<?php echo($show->getId()); ?>')">-</button>
+                                        </div>
+                                        <form id="pre-purchase-form" method="POST" action="/funciones/checkout">
+                                            <input type="text" hidden style="display:none" name="show_id" value="<?php echo($show->getId()); ?>">
+                                            <input type="text" id="ticketQuantity-<?php echo($show->getId()); ?>" name="ticket_quantity" class="form-control ticketQuantity" value="0" />
+                                        </form>
+                                        <div class="input-group-btn">
+                                            <button id="up" class="btn btn-default" onclick="up('<?php echo($show->getCapacityLeft()); ?>','ticketQuantity-<?php echo($show->getId()); ?>')">+</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a id="pre-purchase-button-<?php echo($show->getId()); ?>" class="pre-button button-disabled showitem__buy--button" href="javascript:void(0)">Comprar</a>
+                        </li>
+
+
+
+                        <?php endforeach; ?>
+                    </ul>
+                </div>

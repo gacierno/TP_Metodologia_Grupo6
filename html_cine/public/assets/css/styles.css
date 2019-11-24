@@ -131,6 +131,10 @@ body.open .overlay{
     outline:none;
 }
 
+.nav__links--container a{
+    transition: none;
+}
+
 .cinemalist__button--container a:hover,.showlist__button--container a:hover,.cinemaRoomlist__button--container a:hover{
     background-color:black;
     color:white;
@@ -344,6 +348,7 @@ div.some {
     cursor: pointer;
     text-decoration: none;
 }
+
 input[type="checkbox"]:checked ~ #sidebarMenu {
     transform: translateX(0);
 }
@@ -452,7 +457,7 @@ body{
 }
 
 .main-container-no-padding{
-    min-height: 85vh;
+    min-height: 80vh;
     overflow: hidden;
     padding: 0;
 }
@@ -1068,7 +1073,7 @@ body{
     }
 }
 
-.login-form input{
+.login-form input,.movielist__filter--column input,.movielist__filter--column select{
     padding: 10px 0;
     border: none;
     border-bottom: solid 1px white;
@@ -1216,7 +1221,7 @@ body{
 }
 
 .movie-detail__banner--container{
-    margin-bottom:30px;
+    padding: 0;
 }
 
 @media all and (min-width:768px){
@@ -1227,18 +1232,46 @@ body{
 
 .movie-detail__banner--container img{
     width: 100%;
+    height: 100%;
     object-fit: cover;
     object-position: center;
-    border:2px solid;
-    border-image-source:linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
-    border-image-slice: 1;
 }
 
 .movie-detail__desc--container{
     text-align:center;
     font-family: 'Roboto', sans-serif;
     color: white;
+    padding: 20px 15px;
 }
+
+.movie-detail__desc--container p{
+    text-align: center;
+}
+
+.movie-detail__container,.checkout__main-row{
+    width: 100%;
+    margin: 0;
+}
+
+.purchase__outer--container{
+    padding: 20px 0;
+}
+
+@media all and (min-width:768px){
+    .movie-detail__container,.checkout__main-row{
+        min-height: 80vh;
+    }
+    .movie-detail__desc--container p{
+        text-align: left;
+    }
+    .movie-detail__desc--container{
+        text-align:center;
+        font-family: 'Roboto', sans-serif;
+        color: white;
+        padding: 50px
+    }
+}
+
 
 .movie-detail__desc--container h1{
     font-size: 36px;
@@ -1285,133 +1318,6 @@ body{
 .selected-item p span {
   font-weight: bold;
 }
-/* dropdown list */
-.dropdown {
-  width: 100%;
-  margin-bottom: 20px;
-  position: relative;
-}
-@media all and (min-width:768px){
-    .dropdown.movielist__filter--container {
-        width: 50%;
-        position: relative;
-      }
-}
-.dropdown.active ul{
-    z-index: 10;
-}
-.dropdown.active .selLabel:after {
-  content: '\25B2';
-}
-
-.dropdown > span {
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  height: 60px;
-  color: #fff;
-  font-size: 18px;
-  letter-spacing: 2px;
-  line-height: 60px;
-  background: rgb(20, 20, 20);
-  display: block;
-  padding: 0 50px 0 30px;
-  position: relative;
-  z-index: 9990;
-  cursor: pointer;
-  transform-style: preserve-3d;
-  transform-origin: 50% 0%;
-  transition: transform 300ms;
-  -webkit-backface-visibility: hidden;
-  -webkit-touch-callout: none;
-  user-select: none;
-  border-bottom:1px solid;
-  border-image-source:linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
-  border-image-slice: 1;
-}
-.dropdown > span:after {
-  content: '\25BC';
-  position: absolute;
-  right: 0px;
-  top: 41%;
-  width: 50px;
-  text-align: center;
-  font-size: 12px;
-  padding: 10px;
-  height: 70%;
-  line-height: 24px;
-}
-
-@media all and (min-width:768px){
-    .dropdown > span:after {
-        top:37%;
-    }
-}
-.dropdown > span:active {
-  transform: rotateX(45deg);
-}
-.dropdown > span:active:after {
-  content: '\25B2';
-}
-.dropdown-list {
-  position: absolute;
-  top: 0px;
-  width: 100%;
-}
-
-.dropdown-list li {
-  display: block;
-  list-style: none;
-  left: 0;
-  opacity: 1;
-  transition: transform 300ms ease;
-  position: absolute;
-  top: 0;
-  width: 100%;
-}
-.dropdown-list li {
-  background-color: rgb(20, 20, 20);
-  z-index: 1;
-  border:1px solid;
-  border-image-source:linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
-  border-image-slice: 1;
-}
-.dropdown-list li a {
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
-  -webkit-backface-visibility: hidden;
-  -webkit-touch-callout: none;
-  user-select: none;
-  width: 30%;
-  font-size: 15px;
-  line-height: 60px;
-  padding: 0 30px;
-  display: block;
-  color: #fff;
-  cursor: pointer;
-  letter-spacing: 2px;
-  text-decoration: none;
-}
-
-/* .dropdown-list li a:after{
-  display: inline-block;
-  font-style: normal;
-  font-variant: normal;
-  text-rendering: auto;
-  -webkit-font-smoothing: antialiased;
-  font-family: "Font Awesome 5 Free";
-  content: '\f07a';
-  font-weight: 900;
-  position: absolute;
-  right: 0px;
-  top: 25%;
-  width: 50px;
-  text-align: center;
-  font-size: 24px;
-  padding: 10px;
-  height: 0%;
-  line-height: 24px;
-  cursor: pointer;
-  height: 70%;
-} */
 
 .showlist__button--primary,.showlist__button--secondary{
     width:100%;
@@ -1576,7 +1482,7 @@ input[type=date]::-webkit-calendar-picker-indicator:hover{
 }
 
 input[type=date]#moviefilter__select--date::-webkit-calendar-picker-indicator:hover{
-    background-color:white;
+    background-color:transparent;
     cursor: pointer;;
 }
 
@@ -1741,16 +1647,15 @@ select#moviefilter__multiple-select--genre,select#moviefilter__select--cinema{
 
 .movie-detail__shows--container{
     width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 @media all and (min-width:768px){
     .movie-detail__shows--container{
         width: 80%;
-    }
-}
-@media all and (min-width:992px){
-    .movie-detail__shows--container{
-        width: 60%;
+        margin-top: 50px;
+        margin-bottom: 50px;
     }
 }
 
@@ -1768,26 +1673,9 @@ select#moviefilter__multiple-select--genre,select#moviefilter__select--cinema{
     justify-content: center;
 }
 
-.pre-button.button-disabled{
-    background-color: rgba(255, 0, 0, 0.4);
+.button-disabled{
     cursor: not-allowed;
     opacity: 0.4;
-}
-
-
-.pre-button{
-    background-color: rgba(255, 0, 0, 1);
-    margin: 10px auto;
-    border: 1px solid red;
-    transition: 0.3s ease all;
-
-}
-
-.pre-button:not(.button-disabled):hover{
-    background-color: black;
-    border: 1px solid;
-    border-image-source:linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
-    border-image-slice: 1;
 }
 
 .red-label{
@@ -1851,6 +1739,7 @@ select#moviefilter__multiple-select--genre,select#moviefilter__select--cinema{
     font-family: 'Roboto', sans-serif;
     font-size:18px;
     color: red;
+    text-align: center;
 }
 
 .purchase__item--container span{
@@ -2324,14 +2213,74 @@ select#moviefilter__multiple-select--genre,select#moviefilter__select--cinema{
     border-radius: 0;
 }
 
-
-.movies__filter--inner-container label.header-label{
-  text-transform: uppercase;
-  font-size: 18px;
-  color:#fff;
-  letter-spacing: 1px;
+.form-control{
+    border-radius: 0;
 }
 
-#movielist__movies--column{
-  transition: opacity 0.3s;
+.show-title__container{
+    padding: 0px 5px 10px 5px;
+    border-bottom: 1px solid red;
+    display:flex;
+    justify-content: start;
+    align-items: center;
+}
+
+.show-title__container p{
+    margin: 0;
+    font-size: 16px;
+    font-family: 'Roboto',sans-serif;
+    letter-spacing: 1px;
+    color: white;
+}
+
+@media all and (min-width:768px){
+    .show-title__container p{
+        font-size: 24px;
+    }
+}
+
+.show-tickets--container{
+    padding: 0px 5px 10px 5px;
+    margin: 20px 0 0 0;
+}
+
+.show-ticket__button{
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+@media all and (min-width:768px){
+    .show-ticket__button{
+        justify-content: flex-end;
+        margin-top: 0px;
+    }
+
+    .show-tickets--container{
+        padding: 0px 0px 10px 5px;
+        margin: 20px 0 0 0;
+    }
+
+}
+
+.show-ticket__name,.show-ticket__button{
+    padding: 0;
+    display:flex;
+    align-items: center;
+}
+
+.show-ticket__name p{
+    margin: 0;
+}
+
+.mercadopago-button{
+    transition: 800ms ease all !important;
+    background-color: #dc3545 !important;
+    border-radius: 0 !important;
+}
+
+.mercadopago-button:hover{
+    background-color: #c82333 !important;
+    border-color: #bd2130 !important;
 }
