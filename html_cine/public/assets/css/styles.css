@@ -77,19 +77,12 @@ body.open .overlay{
     color: white;
     letter-spacing: 1px;
     line-height: 40px;
-    width: 90%;
     margin-right: auto;
 }
 
 @media all and (min-width:768px){
     .nav-only-logo h1{
         display: block;
-    }
-}
-
-@media all and (min-width:1200px){
-    .nav-only-logo h1{
-        width: 60%;
     }
 }
 

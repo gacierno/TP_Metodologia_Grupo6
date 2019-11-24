@@ -59,7 +59,7 @@
 
 <div class="container-fluid">
 
-    <div class="row login__row">
+    <div class="row login__row user-creation__row">
 
     <div class="login__overlay"></div>
     <video autoplay muted controls="false" loop id="loginvideo">
