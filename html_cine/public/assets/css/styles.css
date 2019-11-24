@@ -62,6 +62,10 @@ body.open .overlay{
     margin-bottom: 0;
 }
 
+.nav-only-logo img{
+    width: 100%;
+}
+
 @media all and (min-width: 768px){
     .nav-only-logo{
         margin-bottom: 100px;
@@ -956,6 +960,16 @@ body{
     background:transparent;
     padding: 10% 2% 5% 2%;
 
+}
+
+.user-register__h2--format{
+    font-size: 36px;
+    font-family: 'Roboto',sans-serif;
+    color: red;
+    letter-spacing: 1px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 40px;
 }
 
 .register-btn{
