@@ -81,13 +81,16 @@ $(document).ready(function(){
                 var infoContainer = $(this).closest('.purchase__ticket--outer-container').find('.ticket__info--container');
                 var info = $(infoContainer).first().find(' .ticket__movie-title').text() + " / " + $(infoContainer).first().find(' .ticket__movie--date-time').text() + " / " + $(infoContainer).first().find(' .ticket__movie-cinemaroom').text();
                 QrCode.makeCode(info);
-            }
+                $('body').css('overflow','hidden');
+            } 
+
             $('.qr-code--container').toggleClass('open');
         });
 
         //handler for closing QR popup
         $('.qr-code__close-btn').on('click',function(){
             $('.qr-code--container').toggleClass('open');
+            $('body').css('overflow','visible');
         });
     }
 

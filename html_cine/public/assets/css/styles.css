@@ -1934,7 +1934,7 @@ select#moviefilter__multiple-select--genre,select#moviefilter__select--cinema{
     display:none;
     justify-content: center;
     align-items: center;
-    position: absolute;
+    position: fixed;
     top:0;
     left:0;
     width: 100%;
@@ -1943,6 +1943,7 @@ select#moviefilter__multiple-select--genre,select#moviefilter__select--cinema{
 
 .qr-code--container.open{
     display: flex;
+    z-index: 999999;
 }
 
 .qr-code__container--overlay{
