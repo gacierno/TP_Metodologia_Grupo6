@@ -2,13 +2,13 @@
 
 
 <div class="container-fluid">
-    <div class="row login__row user-creation__row">
+    <div class="row login__row">
     <div class="login__overlay"></div>
     <video autoplay muted controls="false" loop id="loginvideo">
       <source src="/public/assets/video/back.mp4" type="video/mp4">
     </video>
     <div class="row login__inner-row">
-        <div class="col-sm-12 col-md-7 col-lg-6 login__first-column">
+        <div class="col-sm-0 col-md-7 col-lg-6 login__first-column">
           <div class="nav-only-logo">
             <a target="_self" href="/">
               <img src="/public/assets/images/logo.png" >

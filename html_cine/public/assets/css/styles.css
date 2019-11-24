@@ -99,15 +99,11 @@ body.open .overlay{
     
 }
 
-.nav-only-logo img{
-    height: 80px;
+.login__container img{
+    width: 100%;
+    margin-bottom: 40px;
 }
 
-@media all and (min-width:768px){
-    .nav-only-logo img{
-        height: 100px;
-    }
-}
 
 
 .nav__links--container a,.cinemalist__button--container a,.showlist__button--container a,.cinemaRoomlist__button--container a{
@@ -943,26 +939,60 @@ body{
 
 .user-creation__row{
     background-image: url('/public/assets/images/loginback.jpg');
-
 }
+
+@media all and (min-width:768px){
+    .hide-on-desktop{
+        display: none;
+    }    
+}
+
 
 .login__container{
     background: transparent;
     width: 100%;
     z-index: 2;
     margin: 0;
+    background:transparent;
+    padding: 10% 2% 5% 2%;
+
+}
+
+.register-btn{
+    color: white;
+    font-size:16px;
+    letter-spacing: 1px;
+    font-family: 'Roboto',sans-serif;
+    text-decoration: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.register-btn:hover{
+    color: white;
+    text-decoration: none;
+}
+
+.hide-on-mobile-flex,.hide-on-mobile{
+    display: none;
 }
 
 @media all and (min-width:768px){
     .login__container{
-        padding: 6% 2% 5% 2%;
-        border-radius: 10%;
-        margin: auto 0;
+        background: rgb(20, 20, 20);
+    }
+
+    .hide-on-mobile-flex{
+        display: flex;
+    }
+
+    .hide-on-mobile{
+        display: block;
     }
 
     .login__container form,.login__create--container{
         width: 80%;
-        margin: 0 auto;
+        margin: 20px auto 0 auto;
     }
 }
 
@@ -1090,8 +1120,12 @@ body{
     100% { background-position: 0 0; }
 }
 
-.login__create--container{
+.login__create--container.hide-on-desktop{
     text-align: center;
+}
+
+.login__create--container.hide-on-mobile{
+    text-align: start;
 }
 
  .login__create--container p{
