@@ -5,6 +5,9 @@ var myChart;
 //new movies/create new slider with jquery.Load() method
 $(document).ready(function(){
 
+
+    
+
     //bind events to movie list
     bindMoviesBehaviour();
     
@@ -118,23 +121,11 @@ $(document).ready(function(){
         }
     });
 
-    //listener that enables each buy button when the ticket quantity is greater than 0
-    //and disables it when it is.
-    $('.ticketQuantity').change(function(){
-        var ticketId = '#' + $(this).attr('id');
-        var container = $(ticketId).closest('li');
-        if($(ticketId).val() > 0){
-            container.find('.pre-button').first().removeClass("button-disabled");
-        }
-        else{
-            container.find('.pre-button').first().addClass("button-disabled");
-        }
-    });
-
     //listener to submit the form that contains the data for the purchase
     $('.pre-button').click(function(){
-        if(!($(this).hasClass('button-disabled'))){
-            $(this).closest('li').find('form').first().submit();
+        var form = $(this).closest('.show-tickets--container').find('form').first();
+        if($(form).find('.ticket_qty').first().val() > 0){
+            $(form).submit();
         }
     });
 
@@ -168,46 +159,6 @@ $(document).ready(function(){
             }
         });
 
-    }
-
-
-    //give movie detail show dropdown individual functionality
-    if($('.dropdown').length > 0){
-        $('.dropdown').each(function(){
-            var dropId = '#' + $(this).attr('id');
-            if($(this).hasClass('movielist__filter--container')){
-                height = $(dropId + ' #moviefilter__select--date').outerHeight();
-            }
-            else{
-                height = $(dropId + ' ul.dropdown-list li').outerHeight();
-                $(dropId + ' .selLabel').height(height);
-            }
-            $(dropId + ' .selLabel').click(function () {
-                $(dropId + '.dropdown').toggleClass('active');
-
-                if($(dropId).hasClass('active')){
-                    var index = 1;
-                    var amountofSels = $(dropId + ' li').length + 1;
-                    var finale = (height * amountofSels) + 'px';
-                    $(dropId + '.dropdown:not(.height-non-mod)').css('height',finale);
-                    $(dropId + ' li').each(function(){
-                        var amount = (height * index) + 'px' ;
-                        $(this).css('transform','translateY(' + amount + ')');
-                        index++;
-                    });
-                }
-                else{
-                    setTimeout(function(){
-                        var finalHeight = (height) + 'px';
-                        $(dropId + '.dropdown:not(.movielist__filter--container)').css('height',finalHeight);
-                    },250);
-                    $(dropId + ' li').each(function(){
-                        $(this).css('transform','translateY(0px)');
-                    });
-                }
-
-            });
-        });
     }
 
 
