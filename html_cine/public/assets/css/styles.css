@@ -2230,7 +2230,7 @@ select#moviefilter__multiple-select--genre,select#moviefilter__select--cinema{
 }
 
 .movie-item__container:hover{
-  transform: scale(1.1);
+  /* transform: scale(1.1); */
   z-index: 10;
 }
 
