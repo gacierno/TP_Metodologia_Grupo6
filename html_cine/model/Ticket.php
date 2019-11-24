@@ -14,7 +14,7 @@ class Ticket
 	function __construct( $options )
 	{
 		$this->setId( (isset($options['ticket_id']) ) ? $options['ticket_id'] : null );
-		$this->setCode( (isset($options['ticket_code']) ) ? $options['ticket_code'] : 'ASASGQT@$YG@$Y@$^@$^' );
+		$this->setCode( (isset($options['ticket_code']) ) ? $options['ticket_code'] : uniqid() );
 		$this->setShow( (isset($options['ticket_show']) ) ? $options['ticket_show'] : null );
 	}
 

@@ -95,7 +95,7 @@ class PurchaseDao extends BaseDao
 		$output = false;
 
 		// guarda la compra sin los objetos pero me deja acceder al id de dicha compra en la base de datos
-		
+
 		if( parent::add( $obj ) ){
 			$purchaseId = $connection->getLastId();
 			$obj->setId( $purchaseId );
@@ -110,7 +110,8 @@ class PurchaseDao extends BaseDao
 
 					$toAdd = array(
 						'show_id' => $singleTicket->getShow()->getId(),
-						'purchase_id' => $obj->getId()
+						'purchase_id' => $obj->getId(),
+						'ticket_code' => $singleTicket->getCode()
 					);
 
 					$this->d_tickets->add( $toAdd );

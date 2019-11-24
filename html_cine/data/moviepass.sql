@@ -121,7 +121,7 @@ create table Tickets(
 	ticket_id int auto_increment,
 	purchase_id int,
 	show_id int,
-	code varchar(100),
+	ticket_code varchar(100),
 	constraint pk_ticket primary key (ticket_id),
 	constraint fk_ticket_purchase foreign key (purchase_id) references Purchases(purchase_id) on update cascade,
 	constraint fk_ticket_show foreign key (show_id) references Shows(show_id) on update cascade
