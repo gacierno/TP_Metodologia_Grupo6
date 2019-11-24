@@ -1,5 +1,8 @@
 <?php
 namespace model;
+
+use dao\TicketDao as TicketDao;
+
 /**
  *
  */
@@ -27,7 +30,11 @@ class Show
 
 	// CON EL DAO DE TICKETS HAY QUE RESTARLE LOS LUGARES OCUPADOS
 		public function getCapacityLeft(){
-			return $this->getCinemaRoom()->getCapacity();
+			$d_ticket 			= new TicketDao();
+			$ticketsForShow = $d_ticket->getTicketsByShowId( $this->getId() );;
+			$capacity 			= $this->getCinemaRoom()->getCapacity();
+			$sold 					= count($ticketsForShow);
+			return $capacity - $sold;
 		}
 
     /**

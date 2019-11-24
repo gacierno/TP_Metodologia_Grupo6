@@ -66,14 +66,19 @@ EOD;
     $purchase     = $this->createPurchase( $quantity, $show );
     $payment_button = $this->createPaymentButton($show,$purchase);
 
+    if($this->validateQuantity($quantity,$show)){
+      $this->render('checkout',
+        array(
+          'purchase'        => $purchase,
+          'show'            => $show,
+          'payment_button'  => $payment_button
+        )
+      );
+    }else{
+      $this->passErrorMessage = "Error, la cantidad de tickets a comprar supera los tickets disponibles.";
+      $this->redirect('/pelicula/detalle' , array('id' => $show->getMovie()->getId()) );
+    }
 
-    $this->render('checkout',
-      array(
-        'purchase'        => $purchase,
-        'show'            => $show,
-        'payment_button'  => $payment_button
-      )
-    );
   }
 
 
@@ -113,10 +118,16 @@ EOD;
     $dt = new DateTime();
     $dt->setDate($dateArray[0],$dateArray[1],$dateArray[2]);
     $weekDay = $dt->format("N");
-    if($quantity >= 2 && $weekDay == 2 || $weekDay == 3){
+    if($quantity >= 2 && ($weekDay == 2 || $weekDay == 3) ){
       $discount = $subtotal * 0.25;
     }
     return $discount;
+  }
+
+
+
+  function validateQuantity($quantity,$show){
+    return $quantity <= $show->getCapacityLeft();
   }
 
 
@@ -138,6 +149,11 @@ EOD;
       $quantity,
       $this->calculateDiscountValue($show,$quantity,$ticketValue*$quantity)
     );
+
+    if(!$this->validateQuantity($quantity,$show)){
+      $this->passErrorMessage = "Error, la cantidad de tickets a comprar supera los tickets disponibles.";
+      return $this->redirect('/pelicula/detalle' , array('id' => $show->getMovie()->getId()) );
+    }
 
     if($validPayment){
       // CREATE PAYMENT

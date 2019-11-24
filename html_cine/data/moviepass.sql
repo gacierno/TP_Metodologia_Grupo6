@@ -121,6 +121,7 @@ create table Tickets(
 	ticket_id int auto_increment,
 	purchase_id int,
 	show_id int,
+	ticket_code varchar(100),
 	constraint pk_ticket primary key (ticket_id),
 	constraint fk_ticket_purchase foreign key (purchase_id) references Purchases(purchase_id) on update cascade,
 	constraint fk_ticket_show foreign key (show_id) references Shows(show_id) on update cascade
@@ -292,12 +293,12 @@ INSERT INTO `Shows` (`show_id`, `show_date`, `show_time`, `show_end_time`, `show
 
 
 --
--- Volcado de datos para la tabla `Roles`
+-- Volcado de datos para la tabla `Profiles`
 --
 
-INSERT INTO `Roles` (`role_id`, `role_name`, `role_description`) VALUES
-(1, 'cliente', 'usuario del sistema'),
-(2, 'admin', 'administradores del sistema');
+INSERT INTO `Profiles` (`profile_id`, `profile_apellido`, `profile_nombre`, `profile_dni`) VALUES
+(1, 'Usuario', 'Admin', '931553193'),
+(2, 'Usuario', 'Cliente', '394139341');
 
 --
 -- Volcado de datos para la tabla `Users`

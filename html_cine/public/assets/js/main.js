@@ -61,7 +61,7 @@ $(document).ready(function(){
             statisticsUpdate();
         });
     }
-    
+
 
 
     //qr code handling on tickets
@@ -147,7 +147,7 @@ $(document).ready(function(){
     $('.sidebarIconToggle').on('click',function(){
         $('body').toggleClass('open');
     });
-    
+
     //give show form endpoint behaviour on delete button click
     if($('.funcion-delete').length > 0){
         $('.funcion-delete').each(function(){
@@ -160,7 +160,7 @@ $(document).ready(function(){
                 $(this).closest('.show-delete-form').attr('action','/admin/funciones/activar');
             }
         });
-        
+
     }
 
 
@@ -427,7 +427,7 @@ function checkArrowsVisibility(){
 if($('#nav').length > 0){
     window.onscroll = function() {headerReadapt();closeMenu();};
     var header = document.getElementById("nav");
-    
+
     var sticky = header.offsetTop;
 }
 
@@ -447,7 +447,7 @@ function headerReadapt() {
             header.style.zIndex = 10;
         }
     }
- 
+
 }
 //close the menu when the user scrolls
 function closeMenu(){
@@ -480,7 +480,7 @@ function statisticsUpdate(){
     $.ajax({
         url: "/admin/estadisticas",
         data : values,
-        method : 'POST',
+        // method : 'POST',
         success : function(data){
           buildChart(data);
         },
@@ -490,7 +490,7 @@ function statisticsUpdate(){
     });
 
     buildChart();
-    
+
 }
 
 
@@ -518,8 +518,8 @@ function buildChart(data){
         d.push(element.value);
     });
 
-    
-    
+
+
     var bgColor = [];
     var borderColors = [];
 
@@ -541,12 +541,12 @@ function buildChart(data){
     });
 
     myChart.data.labels = finalLabels;
-        
+
     myChart.data.datasets.forEach((dataset) => {
         dataset.data = d;
     });
 
-        
+
     myChart.update();
 }
 

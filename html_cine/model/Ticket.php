@@ -1,22 +1,21 @@
-<?php 
+<?php
 namespace model;
 /**
 -  id: int
--  qrCode: string
+-  code: string
 -  show: Object : Show
  */
 class Ticket
 {
 	private $id;
-	private $qrCode;
+	private $code;
 	private $show;     // Object : Show
 
 	function __construct( $options )
 	{
 		$this->setId( (isset($options['ticket_id']) ) ? $options['ticket_id'] : null );
-		$this->setQrCode( (isset($options['ticket_qrCode']) ) ? $options['ticket_qrCode'] : null );
+		$this->setCode( (isset($options['ticket_code']) ) ? $options['ticket_code'] : uniqid() );
 		$this->setShow( (isset($options['ticket_show']) ) ? $options['ticket_show'] : null );
-
 	}
 
     /**
@@ -38,17 +37,17 @@ class Ticket
     /**
      * @return mixed
      */
-    public function getQrCode()
+    public function getCode()
     {
-        return $this->qrCode;
+        return $this->code;
     }
 
     /**
-     * @param mixed $qrCode
+     * @param mixed $code
      */
-    public function setQrCode($qrCode)
+    public function setCode($code)
     {
-        $this->qrCode = $qrCode;
+        $this->code = $code;
     }
 
     /**
