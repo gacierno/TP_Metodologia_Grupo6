@@ -312,7 +312,9 @@ $(document).ready(function(){
 
             history.pushState({ genre : fGenreArray , date : date , cinema : cinema}, "Peliculas", url );
 
+            $('#movielist__movies--column').css('opacity','0.3');
             $('#movielist__movies--column').load( url +" #movies--inner-container",function(data){
+              $('#movielist__movies--column').css('opacity','1.0');
               var newSlider = $(data).find('#movielist__movies--column');
               if(newSlider.find('.movie-item__container').length > 0){
                 $('#movies__not-found-row').css('display','none');

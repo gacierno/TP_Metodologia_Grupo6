@@ -2331,3 +2331,7 @@ select#moviefilter__multiple-select--genre,select#moviefilter__select--cinema{
   color:#fff;
   letter-spacing: 1px;
 }
+
+#movielist__movies--column{
+  transition: opacity 0.3s;
+}
