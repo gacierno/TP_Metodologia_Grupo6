@@ -66,14 +66,19 @@ EOD;
     $purchase     = $this->createPurchase( $quantity, $show );
     $payment_button = $this->createPaymentButton($show,$purchase);
 
+    if($this->validateQuantity($quantity,$show)){
+      $this->render('checkout',
+        array(
+          'purchase'        => $purchase,
+          'show'            => $show,
+          'payment_button'  => $payment_button
+        )
+      );
+    }else{
+      $this->passErrorMessage = "Error, la cantidad de tickets a comprar supera los tickets disponibles.";
+      $this->redirect('/pelicula/detalle' , array('id' => $show->getMovie()->getId()) );
+    }
 
-    $this->render('checkout',
-      array(
-        'purchase'        => $purchase,
-        'show'            => $show,
-        'payment_button'  => $payment_button
-      )
-    );
   }
 
 
@@ -121,6 +126,12 @@ EOD;
 
 
 
+  function validateQuantity($quantity,$show){
+    return $quantity <= $show->getCapacityLeft();
+  }
+
+
+
   function processPayment(){
     $success      = false;
     $d_purchase   = new PurchaseDao();
@@ -138,6 +149,11 @@ EOD;
       $quantity,
       $this->calculateDiscountValue($show,$quantity,$ticketValue*$quantity)
     );
+
+    if(!$this->validateQuantity($quantity,$show)){
+      $this->passErrorMessage = "Error, la cantidad de tickets a comprar supera los tickets disponibles.";
+      return $this->redirect('/pelicula/detalle' , array('id' => $show->getMovie()->getId()) );
+    }
 
     if($validPayment){
       // CREATE PAYMENT
