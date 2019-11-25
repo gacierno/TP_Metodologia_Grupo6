@@ -61,7 +61,7 @@ $(document).ready(function(){
             }
         });
         statisticsUpdate();
-        $('.charts__filter--container #chart-movies,#chart-cinemas,#chart-begin-date,#chart-final-date,#amount-btn,#tickets-btn,#leftover-btn').on('change',function(){
+        $('.charts__filter--container #chart-movies,#chart-cinemas,#amount-btn,#tickets-btn,#leftover-btn').on('change',function(){
             statisticsUpdate();
         });
     }
@@ -384,8 +384,6 @@ function statisticsUpdate(){
 
     var movie = $('#chart-movies').val();
     var cinema = $('#chart-cinemas').val();
-    var beginDate = ($('#chart-begin-date').val() === "") ? null : $('#chart-begin-date').val();
-    var finalDate = ($('#chart-final-date').val() === "") ? null : $('#chart-final-date').val();
     var amount = $('#amount-btn').is(':checked');
     var tickets_sold = $('[name="chartOutput"][value="tickets_sold"]').is(':checked');
     var tickets_not_sold = $('[name="chartOutput"][value="tickets_not_sold"]').is(':checked');
@@ -394,13 +392,10 @@ function statisticsUpdate(){
 
     values["movie"] = movie;
     values["cinema"] = cinema;
-    values["beginDate"] = beginDate;
-    values["finalDate"] = finalDate;
     values["amount"] = amount;
     values["tickets_sold"] = tickets_sold;
     values["tickets_not_sold"] = tickets_not_sold;
 
-    console.log(values);
 
     $.ajax({
         url: "/admin/estadisticas/datos",
@@ -415,23 +410,28 @@ function statisticsUpdate(){
         }
     });
 
-    // buildChart();
-
 }
 
 
 function buildChart(data){
 
-    console.log(data);
 
-    var ds = data["output"];
+    var ds;
+    var finalAmount = 0;
     var finalLabels = [];
     var d = [];
     data["shows"].forEach((element) => {
         finalLabels.push(element.name);
         d.push(element.value);
+        finalAmount += element.value;
     });
-
+    
+    if(data["output"] == "monto"){
+        ds = "Total : $" + finalAmount + " ARS";
+    }
+    else{
+        ds = "Total : " + finalAmount + " Tickets";
+    }
 
 
     var bgColor = [];

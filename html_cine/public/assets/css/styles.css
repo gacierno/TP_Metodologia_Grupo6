@@ -1994,6 +1994,14 @@ select#moviefilter__multiple-select--genre,select#moviefilter__select--cinema{
     width: 100%;
     padding: 0;
     margin: 0;
+    justify-content: center;
+}
+
+@media all and (min-width:992px){
+    .charts__filter--container{
+        width: 80%;
+        margin: 0 auto;
+    }
 }
 
 .charts__selects--container{
@@ -2034,13 +2042,7 @@ select#moviefilter__multiple-select--genre,select#moviefilter__select--cinema{
 
 @media all and (min-width:992px){
     .charts__selects--container label{
-        width: 70%;
-    }
-}
-
-@media all and (min-width:1200px){
-    .charts__selects--container label{
-        width: 50%;
+        width: 100%;
     }
 }
 

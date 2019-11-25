@@ -16,9 +16,11 @@ y dentro del show tiene el attributo name (nombre de la sala, nombre de la pelic
 
 <div class="charts__filter--container row">
     <div class="charts__filters--inner-container row">
-        <div class="form-group charts__selects--container col-sm-12 col-lg-4">
+        <div class="form-group charts__selects--container col-sm-12 col-lg-6">
             <label>Peliculas
             <select class="form-control" id="chart-movies">
+                <option value="">Todas las peliculas</option>
+
                 <?php foreach($movies as $movie) : ?>
                     <option value="<?php echo($movie->getId()); ?>"><?php echo($movie->getName()); ?></option>
                 <?php endforeach; ?>
@@ -26,26 +28,11 @@ y dentro del show tiene el attributo name (nombre de la sala, nombre de la pelic
             </label>
 
         </div>
-        <div class="form-group charts__dates--container col-sm-12 col-lg-4">
-            <div class="row date-row">
-                <div class="col-6">
-                    <?php $today = date('Y-m-d',time()); ?>
-                    <label>Desde
-                    <input id="chart-begin-date" min="<?php echo($today); ?>" value="" type="date" name="initial-date" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" class="form-control form-control-md">
-                    </label>
-                </div>
-                <div class="col-6">
-                    <label>Hasta
-                    <input id="chart-final-date" min="<?php echo($today); ?>" value="" type="date" name="final-date" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" class="form-control form-control-md">
-                    </label>
-                </div>
-            </div>
-
-        </div>
-        <div class="form-group charts__selects--container col-sm-12 col-lg-4">
+        <div class="form-group charts__selects--container col-sm-12 col-lg-6">
 
             <label>Cines
             <select class="form-control" id="chart-cinemas">
+                <option value="">Todos los cines</option>
                 <?php foreach($cinemas as $cinema) : ?>
                     <option value="<?php echo($cinema->getId()); ?>"><?php echo($cinema->getName()); ?></option>
                 <?php endforeach; ?>
@@ -70,6 +57,8 @@ y dentro del show tiene el attributo name (nombre de la sala, nombre de la pelic
                     <input class="form-check-input" type="radio" name="chartOutput" id="tickets-btn" value="tickets_sold">
                 Tickets Vendidos</label>
             </div>
+        </div>
+        <div class="form-group charts__options--container col-sm-12 col-lg-4">
             <div class="form-check form-check-inline">
                 <label class="form-check-label">
                     <input class="form-check-input" type="radio" name="chartOutput" id="tickets-btn" value="tickets_not_sold">
