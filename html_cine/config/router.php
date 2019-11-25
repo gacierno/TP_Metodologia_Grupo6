@@ -77,6 +77,8 @@ $router->post('\/admin\/funciones\/activar',      array( $showController,'enable
 
 
 // CHARTS ============================================================================
+
+$router->get('\/admin\/estadisticas\/datos',      array( $dataController,'fetch' ) );
 $router->get('\/admin\/estadisticas',             array( $dataController,'index' ) );
 
 
