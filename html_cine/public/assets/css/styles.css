@@ -1748,10 +1748,6 @@ select#moviefilter__multiple-select--genre,select#moviefilter__select--cinema{
     justify-content: center;
 }
 
-.button-disabled{
-    cursor: not-allowed;
-    opacity: 0.4;
-}
 
 .red-label{
     color:red;
@@ -2406,4 +2402,17 @@ select#moviefilter__multiple-select--genre,select#moviefilter__select--cinema{
 
 .enter-cinema-btn{
     margin-top: 10px;
+}
+
+.btn-secondary{
+    border-radius: 0;
+}
+
+.btn-secondary.button-disabled{
+    cursor: not-allowed;
+    opacity: 0.4;
+}
+
+#pre-purchase-form input[type="number"]{
+    max-width: 50px;
 }

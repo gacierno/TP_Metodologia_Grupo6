@@ -13,9 +13,10 @@ $show que tiene los datos a mostrar de la funcion -->
             <img src="<?php  echo(API_IMAGE_HOST . API_IMAGE_SIZE_LARGE . $movie->getImage()); ?>">
         </div>
         <div class="col-sm-12 col-md-8 movie-detail__desc--container">
-        <h1>Checkout</h1>
 
             <div class="purchase__outer--container">
+            <h1>Checkout</h1>
+
                 <div class="purchase__item--container">
                     <p class="">Fecha de la funcion</p>
                     <span><?php echo($show->getDay()); ?></span>

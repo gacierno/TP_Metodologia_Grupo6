@@ -121,6 +121,29 @@ $(document).ready(function(){
         }
     });
 
+    //disable "comprar" button when the ticket quantity is 0
+    if($('.ticket_qty').length > 0){
+        $('.ticket_qty').on('change',function(){
+            var button = $(this).closest('.show-tickets--container').find('.pre-button button').first();
+            console.log(button);
+
+            if($(this).val() > 0){
+                if($(button).hasClass('btn-secondary')){
+                    $(button).removeClass('btn-secondary');
+                    $(button).removeClass('button-disabled');
+                    $(button).addClass('btn-danger');
+                }
+            }
+            else{
+                if($(button).hasClass('btn-danger')){
+                    $(button).removeClass('btn-danger');
+                    $(button).addClass('btn-secondary');
+                    $(button).addClass('button-disabled');
+                }
+            }
+        });
+    }
+
     //listener to submit the form that contains the data for the purchase
     $('.pre-button').click(function(){
         var form = $(this).closest('.show-tickets--container').find('form').first();

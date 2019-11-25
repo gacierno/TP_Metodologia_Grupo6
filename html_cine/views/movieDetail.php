@@ -32,7 +32,7 @@
                         <div class="col-sm-12 col-md-8 show-ticket__name">
                         <?php $originalDate = $show->getDay();
                         $newDate = str_replace('-','/',date('d-m-Y',strtotime($originalDate))); ?>
-                            <p><?php echo($newDate); ?> <?php echo($show->getTime()); ?></p>
+                            <p><?php echo($newDate); ?> <?php echo($show->getTime()); ?> <?php echo($show->getCinemaRoom()->getName()); ?></p>
 
                             <form id="pre-purchase-form" method="POST" action="/funciones/checkout">
                                 <input type="text" hidden style="display:none" name="show_id" value="<?php echo($show->getId()); ?>">
@@ -40,7 +40,7 @@
                             </form>
                         </div>
                         <div class="col-sm-12 col-md-4 show-ticket__button">
-                            <a class="pre-button" href="javascript:void(0)"><button class="btn btn-danger">Comprar</button></a>
+                            <a class="pre-button" href="javascript:void(0)"><button class="btn btn-secondary button-disabled">Comprar</button></a>
                         </div>
                     </div>
                     <?php endforeach; ?>
