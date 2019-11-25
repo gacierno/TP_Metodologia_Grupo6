@@ -31,7 +31,7 @@ $show que tiene los datos a mostrar de la funcion -->
                     </div>
 
                     <div class="checkout-form">
-                      <ul>
+                      <ul class="checkout-list">
 
                         <li>
                           <label for="">

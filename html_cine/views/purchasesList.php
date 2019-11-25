@@ -1,6 +1,6 @@
 <?php include_once('header.php'); ?>
 
-<!-- COMENTARIO PARA GASPU : Esta vista va a utilizar un array de 
+<!-- COMENTARIO PARA GASPU : Esta vista va a utilizar un array de
 $purchases del usuario para renderizar los datos y generar el codigo QR con ello -->
 
 <div class="qr-code--container">
@@ -26,13 +26,13 @@ $purchases del usuario para renderizar los datos y generar el codigo QR con ello
             <div class="ticket__info--container">
                 <p class="ticket__movie-title"><?php echo($ticket->getShow()->getMovie()->getName()); ?></p>
                 <span class="ticket__movie--date-time"><?php echo($ticket->getShow()->getTime()); ?> / <?php echo($ticket->getShow()->getDay()); ?></span>
-                <p class="ticket__movie-cinemaroom"><?php echo($ticket->getShow()->getCinemaRoom()->getName()); ?></p>
+                <p class="ticket__movie-cinemaroom" style="color:#aaa;font-size:14px;"><?= $ticket->getShow()->getCinemaRoom()->getCinema()->getName() . ' | ' . $ticket->getShow()->getCinemaRoom()->getName(); ?></p>
             </div><div class="ticket__qr-button--container">
                 <button type="submit" class="btn btn-info qr-button">Ver QR</button>
             </div>
         </div>
         </div>
-        
+
     <?php endforeach;?>
 <?php endforeach;  endif;?>
 

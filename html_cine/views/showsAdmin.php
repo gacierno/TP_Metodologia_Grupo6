@@ -38,12 +38,12 @@
                             </span>
                             <?php endif; ?>
                         </div>
-                    
-                    
+
+
                         <div class="col-sm-12 col-lg-6 showlist__date-name-room--align">
                             <div class="row container-fluid dnr--inner__container">
                                 <div class="showlist__show--date-time col-12"><p><?php echo($show->getDay()); ?> / <?php echo($show->getTime()); ?></p></div>
-                                <div class="showlist__show--cinema col-12"><p><?php echo($cinemaRoom->getName()); ?></p></div>
+                                <div class="showlist__show--cinema col-12"><p><?= $cinemaRoom->getCinema()->getName() . ' | ' . $cinemaRoom->getName(); ?></p></div>
                             </div>
                         </div>
                     </div>
@@ -60,16 +60,16 @@
                                 <button id="funcion-update" type="submit" class="btn btn-info">Actualizar</button>
                             </form>
                         </div>
-                        
+
                         <div class="col-12">
                         <form class="show-delete-form showlist--form" method="POST" action="">
                             <input type="text" name="show_id" value="<?php echo($show->getId()); ?>" hidden>
                             <button type="submit" id="funcion-delete" available="<?php echo($availability); ?>" class="btn btn-danger" onclick="return confirm('Estas Seguro?');"><?php if($availability) : echo ("Desactivar"); else : echo("Activar"); endif; ?></button>
                         </div>
-                        
+
                     </form>
                     </div>
-                    
+
                 </div>
             </div>
         </div>
