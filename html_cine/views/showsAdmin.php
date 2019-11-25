@@ -64,7 +64,7 @@
                         <div class="col-12">
                         <form class="show-delete-form showlist--form" method="POST" action="">
                             <input type="text" name="show_id" value="<?php echo($show->getId()); ?>" hidden>
-                            <button type="submit" id="funcion-delete" available="<?php echo($availability); ?>" class="btn btn-danger" onclick="return confirm('Estas Seguro?');"><?php if($availability) : echo ("Desactivar"); else : echo("Activar"); endif; ?></button>
+                            <button type="submit" id="funcion-delete" available="<?php echo($availability); ?>" class="funcion-delete btn btn-danger" onclick="return confirm('Estas Seguro?');"><?php if($availability) : echo ("Desactivar"); else : echo("Activar"); endif; ?></button>
                         </div>
 
                     </form>

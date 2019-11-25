@@ -166,8 +166,8 @@ $(document).ready(function(){
     });
 
     //give show form endpoint behaviour on delete button click
-    if($('#funcion-delete').length > 0){
-        $('#funcion-delete').each(function(){
+    if($('.funcion-delete').length > 0){
+        $('.funcion-delete').each(function(){
             if($(this).attr('available') == true){
                 $(this).closest('.show-delete-form').attr('action','/admin/funciones/desactivar');
             }
