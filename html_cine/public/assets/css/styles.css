@@ -1478,7 +1478,7 @@ body{
     .showlist__show--date-time p,.showlist__show--cinema p{
         text-align: left;
     }
-    
+
 }
 
 .dnr--inner__container{
@@ -1615,7 +1615,7 @@ select#moviefilter__multiple-select--genre,select#moviefilter__select--cinema{
     .user-detail__profilepic--container{
         margin-bottom:0px;
     }
-    
+
 }
 
 .user-detail__profilepic--container img{
@@ -2482,4 +2482,11 @@ select#moviefilter__multiple-select--genre,select#moviefilter__select--cinema{
     #chart-final-date{
         width: 90%;
     }
+}
+
+.movies__filter--inner-container label.header-label{
+  text-transform: uppercase;
+  font-size: 18px;
+  color:#fff;
+  letter-spacing: 1px;
 }

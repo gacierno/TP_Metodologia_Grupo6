@@ -13,44 +13,75 @@ $show que tiene los datos a mostrar de la funcion -->
             <img src="<?php  echo(API_IMAGE_HOST . API_IMAGE_SIZE_XLARGE . $movie->getImage()); ?>">
         </div>
         <div class="col-sm-12 col-md-8 movie-detail__desc--container">
+            <h1 style="text-align:left"><?php echo($movie->getName()); ?></h1>
+            <small><?php echo($movie->getLanguage()); ?> / <?php echo($movie->getDuration()." minutos"); ?></small>
+            <div class="movie-detail__categories--container">
+                <?php $genres = $movie->getGenres();
+                foreach($genres as $genre) : ?>
 
-            <div class="purchase__outer--container">
-            <h1>Checkout</h1>
+                <div class="badge badge-secondary"><?php echo($genre->getName()); ?></div>
 
-                <div class="purchase__item--container">
-                    <p class="">Fecha de la funcion</p>
-                    <span><?php echo($show->getDay()); ?></span>
-                </div>
+                <?php endforeach; ?>
+            </div>
+            <p><?= $movie->getDescription(); ?></p>
+            <div class="movie-detail__shows--container">
+                <div class="movie-detail__shows--container">
+                    <div class="show-title__container">
+                        <p>Checkout</p>
+                    </div>
+
+                    <div class="checkout-form">
+                      <ul>
+
+                        <li>
+                          <label for="">
+                            Fecha de la funcion:
+                          </label>
+                          <span>
+                            <?= $show->getDay(); ?>
+                          </span>
+                        </li>
+
+                        <li>
+                          <label for="">
+                            Cantidad de Tickets:
+                          </label>
+                          <span>
+                            <?= $purchase->getTicketQty(); ?>
+                          </span>
+                        </li>
+
+                        <li>
+                          <label for="">
+                            Valor del Ticket:
+                          </label>
+                          <span>
+                            <?= "$".$show->getCinemaRoom()->getTicketValue()." ARS"; ?>
+                          </span>
+                        </li>
+
+                        <li>
+                          <label for="">
+                            Descuento Aplicado:
+                          </label>
+                          <span>
+                            <?= "$".$purchase->getDiscount()." ARS"; ?>
+                          </span>
+                        </li>
 
 
+                      </ul>
 
-                <div class="purchase__item--container">
-                    <p class="">Cantidad de Tickets</p>
-                    <span><?php echo($purchase->getTicketQty()); ?></span>
-                </div>
+                      <h1 style="text-align:left">TOTAL: <?= "$".$purchase->getAmount()." ARS"; ?></h1>
 
-                <div class="purchase__item--container">
-                    <p class="">Valor del Ticket</p>
-                    <span><?php echo("$".$show->getCinemaRoom()->getTicketValue()." ARS"); ?></span>
-                </div>
-
-                <div class="purchase__item--container">
-                    <p class="">Descuento Aplicado</p>
-                    <span><?php echo("$".$purchase->getDiscount()." ARS"); ?></span>
-                </div>
-
-                <div class="purchase__item--container">
-                    <p class="">Monto Total</p>
-                    <span><?php echo("$".$purchase->getAmount()." ARS"); ?></span>
-                </div>
-
-                <?= $payment_button; ?>
+                      <?= $payment_button; ?>
+                    </div>
 
             </div>
         </div>
     </div>
 
-    
+
 
 
 <? endif; ?>
