@@ -75,7 +75,14 @@ class ShowController extends BaseController{
 
 
   function validateShowTime($date,$start_time,$end_time,$cinemaroom_id,$existing_show = false){
+    $now = new DateTime('now');
     $startTimeArray = explode(":",$this->sanitizeTime($start_time));
+    $targetDateTimeNumber = intval(implode('',explode('-',$date)).$startTimeArray[0].$startTimeArray[1]);
+    $nowDateTimeNumber    = intval($now->format('YmdHi'));
+    if( $targetDateTimeNumber < $nowDateTimeNumber ){
+      $this->passErrorMessage = "Error, el horario y fecha de inicio de la función ingresado debe ser futuro.";
+      return false;
+    }
     $endTimeArray   = explode(":",$this->sanitizeTime($end_time));
     $sdt = new DateTime();
     $edt = new DateTime();
