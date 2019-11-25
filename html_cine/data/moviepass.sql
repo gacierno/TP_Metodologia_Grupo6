@@ -90,11 +90,11 @@ create table Users(
 
 create table Purchases(
 	purchase_id int auto_increment,
+	user_id int,
 	purchase_date date,
 	purchase_amount float,
 	purchase_discount float default 0,
 	purchase_total float,
-	user_id int,
 	constraint pk_purchase primary key (purchase_id),
 	constraint fk_purchase_user foreign key (user_id) references Users(user_id) on update cascade
 );
@@ -102,10 +102,10 @@ create table Purchases(
 create table Payments(
 	payment_id int auto_increment,
 	purchase_id int,
-	payment_auth_code varchar(100),
-	payment_date date,
 	payment_amount float,
 	payment_method varchar(100),
+	payment_date date,
+	payment_auth_code varchar(100),
 	mp_preference_id varchar(100),
 	mp_payment_id varchar(100),
 	mp_payment_status varchar(100),
@@ -123,6 +123,7 @@ create table Tickets(
 	show_id int,
 	ticket_code varchar(100),
 	constraint pk_ticket primary key (ticket_id),
+	constraint unq_code unique (ticket_code),
 	constraint fk_ticket_purchase foreign key (purchase_id) references Purchases(purchase_id) on update cascade,
 	constraint fk_ticket_show foreign key (show_id) references Shows(show_id) on update cascade
 );

@@ -162,8 +162,15 @@ class MovieDao extends BaseDao implements IApiConnector
 			Genres_on_Movies GM
 			on
 			GM.movie_id = M.movie_id
+		inner join 
+			Cinemas C
+			on C.cinema_id = CR.cinema_id
 		where
 			S.show_available = 1
+			and
+			CR.cinemaroom_available = 1
+			and
+			C.cinema_available = 1
 			and
 			S.show_date >= '
 EOD;

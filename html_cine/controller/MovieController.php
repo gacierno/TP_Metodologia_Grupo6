@@ -52,7 +52,7 @@ class MovieController extends BaseController{
       array(
         'movies'  => $movies,
         'genres'  => $d_genre->getList(),
-        'cinemas' => $d_cinema->getList()
+        'cinemas' => $d_cinema->getList( array('cinema_available' => 1) )
       )
     );
   }
