@@ -52,7 +52,7 @@
             <?php endforeach; ?>
         </select>
         <div class="showlist__submit-button--container">
-            <button type="submit" class="btn btn-info">Crear</button>
+            <button type="submit" class="btn btn-info"><?php if($isShowSet) : echo('Modificar'); else : echo('Crear'); endif; ?> </button>
         </div>
 
         </form>
