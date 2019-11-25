@@ -7,7 +7,6 @@
 <script src="/public/assets/js/jquery.min.js"></script>
 <script type="text/javascript" src="/public/assets/js/qrcode.min.js"></script>
 <script type="text/javascript" src="/public/assets/js/Chart.js"></script>
-<script src="/public/assets/owlcarousel/js/owl.carousel.min.js"></script>
 <script src="/public/assets/js/bootstrap.min.js"></script>
 <script src="/public/assets/js/main.js"></script>
 </body>

@@ -18,7 +18,11 @@ $purchases del usuario para renderizar los datos y generar el codigo QR con ello
 
 <?php foreach ($purchases as $purchase) : ?>
     <?php foreach ($purchase->getTickets() as $ticket) : ?>
-        <div class="purchase__ticket--outer-container">
+        <div class="row ticket-row">
+            <div class="ticket__image--container col-sm-12 col-md-6 col-lg-3">
+                <img src="<?php  echo(API_IMAGE_HOST . API_IMAGE_SIZE_LARGE . $ticket->getShow()->getMovie()->getImage()); ?>">
+            </div>
+            <div class="purchase__ticket--outer-container col-sm-12 col-md-6 col-lg-9">
             <div class="ticket__info--container">
                 <p class="ticket__movie-title"><?php echo($ticket->getShow()->getMovie()->getName()); ?></p>
                 <span class="ticket__movie--date-time"><?php echo($ticket->getShow()->getTime()); ?> / <?php echo($ticket->getShow()->getDay()); ?></span>
@@ -27,6 +31,8 @@ $purchases del usuario para renderizar los datos y generar el codigo QR con ello
                 <button type="submit" class="btn btn-info qr-button">Ver QR</button>
             </div>
         </div>
+        </div>
+        
     <?php endforeach;?>
 <?php endforeach;  endif;?>
 

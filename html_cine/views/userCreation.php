@@ -4,17 +4,19 @@
 <div class="container-fluid">
     <div class="row login__row">
     <div class="login__overlay"></div>
-    <video autoplay muted controls="false" loop id="loginvideo">
-      <source src="/public/assets/video/back.mp4" type="video/mp4">
-    </video>
+    
     <div class="row login__inner-row">
-        <div class="hide-on-mobile-flex col-md-7 col-lg-8 login-creation__first-column">
-          <div class="nav-only-logo">
-            <a target="_self" href="/">
-              <img src="/public/assets/images/logo.png" >
-            </a>
-          
-          </div>
+        <div class="hide-on-mobile-flex col-md-7 col-lg-8">
+        <video autoplay muted controls="false" loop id="loginvideo">
+            <source src="/public/assets/video/back.mp4" type="video/mp4">
+        </video>
+            <div class="login-creation__first-column">
+            <div class="nav-only-logo">
+                <a target="_self" href="/">
+                    <img src="/public/assets/images/logo.png" >
+                </a>
+            </div>
+            </div>
         </div>
         <div class="col-sm-12 col-md-5 col-lg-4 login__container">
             <a class="hide-on-desktop" target="_self" href="/">

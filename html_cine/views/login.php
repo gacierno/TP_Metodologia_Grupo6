@@ -62,17 +62,20 @@
     <div class="row login__row">
 
     <div class="login__overlay"></div>
-    <video autoplay muted controls="false" loop id="loginvideo">
-      <source src="/public/assets/video/back.mp4" type="video/mp4">
-    </video>
+    
       <div class="row login__inner-row">
-        <div class="hide-on-mobile-flex col-md-7 col-lg-8 login__first-column">
-          <div class="nav-only-logo">          
-            <h1>Todas las peliculas, todos los cines, todo lo mejor.</h1>
-            <div class="hide-on-mobile login__create--container">
-              <button type="button" href="/login/create" class="btn btn-danger">
-                <a class="def-btn register-btn" href="/login/create">REGISTRATE</a>
-              </button>
+        <div class="hide-on-mobile-flex col-md-7 col-lg-8 ">
+        <video autoplay muted controls="false" loop id="loginvideo">
+          <source src="/public/assets/video/back.mp4" type="video/mp4">
+        </video>
+          <div class="login__first-column">
+            <div class="nav-only-logo">          
+              <h1>Todas las peliculas, todos los cines, todo lo mejor.</h1>
+              <div class="hide-on-mobile login__create--container">
+                <button type="button" href="/login/create" class="btn btn-danger">
+                  <a class="def-btn register-btn" href="/login/create">REGISTRATE</a>
+                </button>
+              </div>
             </div>
           </div>
         </div>
