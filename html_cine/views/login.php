@@ -110,7 +110,7 @@
         </form>
         <div class="hide-on-desktop login__create--container">
           <button type="button" href="/login/create" class="btn btn-danger">
-            <a class="def-btn register-btn" href="/login/create">REGISTRATE</a>
+            <a class="def-btn register-btn-mobile" href="/login/create">REGISTRATE</a>
           </button>
         </div>
         </div>

@@ -1030,10 +1030,21 @@ body{
     font-weight: bold;
 }
 
-.register-btn:hover{
+.register-btn-mobile{
+    color: white;
+    font-size:16px;
+    letter-spacing: 1px;
+    font-family: 'Roboto',sans-serif;
+    text-decoration: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.register-btn:hover,.register-btn-mobile:hover{
     color: white;
     text-decoration: none;
 }
+
 
 .hide-on-mobile-flex,.hide-on-mobile{
     display: none;
