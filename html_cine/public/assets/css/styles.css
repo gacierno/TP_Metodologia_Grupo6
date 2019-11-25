@@ -2555,3 +2555,7 @@ h1,h2{
   text-transform: uppercase;
   letter-spacing: 1px;
 }
+
+.login__first-column h1{
+  text-transform: none;
+}
