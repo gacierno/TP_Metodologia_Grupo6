@@ -14,9 +14,9 @@ y dentro del show tiene el attributo name (nombre de la sala, nombre de la pelic
 
 <h1>ESTADISTICAS</h1>
 
-<div class="charts__filter--container">
-    <div class="charts__filters--inner-container">
-        <div class="form-group charts__selects--container">
+<div class="charts__filter--container row">
+    <div class="charts__filters--inner-container row">
+        <div class="form-group charts__selects--container col-sm-12 col-lg-4">
             <label>Peliculas
             <select class="form-control" id="chart-movies">
                 <?php foreach($movies as $movie) : ?>
@@ -24,7 +24,24 @@ y dentro del show tiene el attributo name (nombre de la sala, nombre de la pelic
                 <?php endforeach; ?>
             </select>
             </label>
+        </div>
+        <div class="form-group charts__dates--container col-sm-12 col-lg-4">
+            <div class="row date-row">
+                <div class="col-6">
+                    <?php $today = date('Y-m-d',time()); ?>
+                    <label>Desde
+                    <input id="chart-begin-date" min="<?php echo($today); ?>" value="" type="date" name="initial-date" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" class="form-control form-control-md">
+                    </label>
+                </div>
+                <div class="col-6">
+                    <label>Hasta
+                    <input id="chart-final-date" min="<?php echo($today); ?>" value="" type="date" name="final-date" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" class="form-control form-control-md">
+                    </label>
+                </div>
+            </div>
             
+        </div>
+        <div class="form-group charts__selects--container col-sm-12 col-lg-4">
             <label>Cines
             <select class="form-control" id="chart-cinemas">
                 <?php foreach($cinemas as $cinema) : ?>
@@ -35,27 +52,29 @@ y dentro del show tiene el attributo name (nombre de la sala, nombre de la pelic
         </div>
     </div>
 
-    <div class="charts__filters--inner-container dates__outer-container">
-        <div class="form-group charts__dates--container">
-            <?php $today = date('Y-m-d',time()); ?>
-            <label>FROM
-            <input id="chart-begin-date" min="<?php echo($today); ?>" value="" type="date" name="initial-date" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" class="form-control form-control-md">
-            </label>
-            <label>TO
-            <input id="chart-final-date" min="<?php echo($today); ?>" value="" type="date" name="final-date" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" class="form-control form-control-md">
-            </label>
-        </div>
+    <div class="charts__filters--inner-container dates__outer-container row">
 
-        <div class="form-group charts__options--container">
+        <div class="form-group charts__options--container col-sm-12 col-lg-4">
             <div class="form-check form-check-inline">
                 <label class="form-check-label">
                     <input class="form-check-input" type="radio" name="chartOutput" id="amount-btn" value="amount">
                 Total Recaudado</label>
             </div>
+        </div>
+
+        <div class="form-group charts__options--container col-sm-12 col-lg-4">
             <div class="form-check form-check-inline">
                 <label class="form-check-label">
                     <input class="form-check-input" type="radio" name="chartOutput" id="tickets-btn" value="tickets">
                 Tickets Vendidos</label>
+            </div>
+        </div>
+
+        <div class="form-group charts__options--container col-sm-12 col-lg-4">
+            <div class="form-check form-check-inline">
+                <label class="form-check-label">
+                    <input class="form-check-input" type="radio" name="chartOutput" id="leftover-btn" value="leftover">
+                Tickets Remanentes</label>
             </div>
         </div>
     </div>

@@ -61,7 +61,7 @@ $(document).ready(function(){
             }
         });
         statisticsUpdate();
-        $('.charts__filter--container #chart-movies,#chart-cinemas,#chart-begin-date,#chart-final-date,#amount-btn,#tickets-btn').on('change',function(){
+        $('.charts__filter--container #chart-movies,#chart-cinemas,#chart-begin-date,#chart-final-date,#amount-btn,#tickets-btn,#leftover-btn').on('change',function(){
             statisticsUpdate();
         });
     }
@@ -389,6 +389,7 @@ function statisticsUpdate(){
     var finalDate = ($('#chart-final-date').val() === "") ? null : $('#chart-final-date').val();
     var amount = $('#amount-btn').is(':checked');
     var tickets = $('#tickets-btn').is(':checked');
+    var leftover = $('#leftover-btn').is(':checked');
 
     var values = {};
 
@@ -398,6 +399,7 @@ function statisticsUpdate(){
     values["finalDate"] = finalDate;
     values["amount"] = amount;
     values["tickets"] = tickets;
+    values["leftover"] = leftover;
 
     $.ajax({
         url: "/admin/estadisticas",
