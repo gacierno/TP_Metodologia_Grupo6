@@ -36,12 +36,22 @@
 
                             <form id="pre-purchase-form" method="POST" action="/funciones/checkout">
                                 <input type="text" hidden style="display:none" name="show_id" value="<?php echo($show->getId()); ?>">
+                                <?php if ($show->getCapacityLeft() > 0) : ?>
                                 <input type="number" min="0" max="<?php echo($show->getCapacityLeft()); ?>" step="1" value="0" name="ticket_quantity" class="ticket_qty">
+                                <?php else : ?>
+                                <input type="number" min="0" max="0" step="1" value="0" name="ticket_quantity" class="ticket_qty">
+                                <?php endif; ?>
                             </form>
                         </div>
+                        <?php if ($show->getCapacityLeft() > 0) : ?>
                         <div class="col-sm-12 col-md-4 show-ticket__button">
                             <a class="pre-button" href="javascript:void(0)"><button class="btn btn-secondary button-disabled">Comprar</button></a>
                         </div>
+                        <?php else : ?>
+                            <div class="col-sm-12 col-md-4 show-ticket__button">
+                            <a  href="javascript:void(0)"><button class="btn btn-secondary button-disabled">Agotado</button></a>
+                        </div>
+                        <?php endif; ?>
                     </div>
                     <?php endforeach; ?>
                 </div>
