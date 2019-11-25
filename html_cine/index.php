@@ -5,6 +5,8 @@
 
 
   require_once('config/settings.php');
+
+  date_default_timezone_set(CURRENT_TIMEZONE);
   // SDK de Mercado Pago
   require_once('vendor/autoload.php');
   require_once('lib/autoload.php');

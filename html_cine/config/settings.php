@@ -15,6 +15,8 @@
 
 	define( "TIME_BETWEEN_SHOWS" , 15);
 
+	define( "CURRENT_TIMEZONE" , "America/Argentina/Buenos_Aires");
+
 	// USAGE
 	// imageUrl = API_IMAGE_HOST . API_IMAGE_SIZE_XSMALL . Movie->getImage();
 
