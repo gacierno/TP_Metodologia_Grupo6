@@ -10,7 +10,7 @@ $show que tiene los datos a mostrar de la funcion -->
 <?php $movie = $show->getMovie(); ?>
     <div class="row checkout__main-row">
         <div class="col-sm-12 col-md-4 movie-detail__banner--container">
-            <img src="<?php  echo(API_IMAGE_HOST . API_IMAGE_SIZE_LARGE . $movie->getImage()); ?>">
+            <img src="<?php  echo(API_IMAGE_HOST . API_IMAGE_SIZE_XLARGE . $movie->getImage()); ?>">
         </div>
         <div class="col-sm-12 col-md-8 movie-detail__desc--container">
 
