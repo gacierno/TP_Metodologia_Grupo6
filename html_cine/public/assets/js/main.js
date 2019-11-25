@@ -388,7 +388,8 @@ function statisticsUpdate(){
     var beginDate = ($('#chart-begin-date').val() === "") ? null : $('#chart-begin-date').val();
     var finalDate = ($('#chart-final-date').val() === "") ? null : $('#chart-final-date').val();
     var amount = $('#amount-btn').is(':checked');
-    var tickets = $('#tickets-btn').is(':checked');
+    var tickets_sold = $('[name="chartOutput"][value="tickets_sold"]').is(':checked');
+    var tickets_not_sold = $('[name="chartOutput"][value="tickets_not_sold"]').is(':checked');
 
     var values = {};
 
@@ -397,40 +398,32 @@ function statisticsUpdate(){
     values["beginDate"] = beginDate;
     values["finalDate"] = finalDate;
     values["amount"] = amount;
-    values["tickets"] = tickets;
+    values["tickets_sold"] = tickets_sold;
+    values["tickets_not_sold"] = tickets_not_sold;
+
+    console.log(values);
 
     $.ajax({
-        url: "/admin/estadisticas",
+        url: "/admin/estadisticas/datos",
         data : values,
-        // method : 'POST',
+        method : 'GET',
         success : function(data){
-          buildChart(data);
+          console.log(data);
+          buildChart(JSON.parse(data));
         },
         error : function(){
           $('#chart-container').html("<h1 style='text-align:center;'>No Results Found<h1>");
         }
     });
 
-    buildChart();
+    // buildChart();
 
 }
 
 
 function buildChart(data){
-    //ejemplo a borrar cuando este hecho
-    var data = {
-        output : "tickets o monto",
-        shows : [
-            show1 = {
-                name : "PELICULA 1 , SALA 1, 23/11/2019 - 21:00hs",
-                value : 2000
-            },
-            show2 = {
-                name : "PELICULA 2 , SALA 2, 24/12/2020 - 09:00hs",
-                value : 500
-            }
-        ]
-    }
+
+    console.log(data);
 
     var ds = data["output"];
     var finalLabels = [];

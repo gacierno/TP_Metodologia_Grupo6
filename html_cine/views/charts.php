@@ -3,7 +3,7 @@ y un array de $shows para hacer los filtros
 
 
 EN CUANTO AL RETORNO :
-Para JS necesito un objeto que tenga el atributo "output" que diga si es tickets o monto, y otro que sea "shows", 
+Para JS necesito un objeto que tenga el atributo "output" que diga si es tickets o monto, y otro que sea "shows",
 y dentro del show tiene el attributo name (nombre de la sala, nombre de la pelicula , hora/fecha) y value (valor para esa funcion)
 -->
 
@@ -24,7 +24,7 @@ y dentro del show tiene el attributo name (nombre de la sala, nombre de la pelic
                 <?php endforeach; ?>
             </select>
             </label>
-            
+
             <label>Cines
             <select class="form-control" id="chart-cinemas">
                 <?php foreach($cinemas as $cinema) : ?>
@@ -49,13 +49,18 @@ y dentro del show tiene el attributo name (nombre de la sala, nombre de la pelic
         <div class="form-group charts__options--container">
             <div class="form-check form-check-inline">
                 <label class="form-check-label">
-                    <input class="form-check-input" type="radio" name="chartOutput" id="amount-btn" value="amount">
+                    <input class="form-check-input" checked type="radio" name="chartOutput" id="amount-btn" value="amount">
                 Total Recaudado</label>
             </div>
             <div class="form-check form-check-inline">
                 <label class="form-check-label">
-                    <input class="form-check-input" type="radio" name="chartOutput" id="tickets-btn" value="tickets">
+                    <input class="form-check-input" type="radio" name="chartOutput" id="tickets-btn" value="tickets_sold">
                 Tickets Vendidos</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <label class="form-check-label">
+                    <input class="form-check-input" type="radio" name="chartOutput" id="tickets-btn" value="tickets_not_sold">
+                Tickets Remanente</label>
             </div>
         </div>
     </div>
