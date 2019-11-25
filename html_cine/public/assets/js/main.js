@@ -5,9 +5,6 @@ var myChart;
 //new movies/create new slider with jquery.Load() method
 $(document).ready(function(){
 
-
-    
-
     //bind events to movie list
     bindMoviesBehaviour();
 

@@ -7,7 +7,7 @@ $genero = isset($_GET['genero']) ? $_GET['genero'] : "";
 <div class="main-container-no-padding container-fluid">
 
 
-    <div class="row">
+    <div class="row">    
 
         <div class="col-sm-12 col-md-5 col-lg-3 movielist__filter--column">
             <div class="hide-on-desktop filter-back-btn--container">

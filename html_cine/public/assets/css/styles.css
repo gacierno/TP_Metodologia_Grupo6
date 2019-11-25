@@ -566,7 +566,7 @@ body{
     position: relative;
 }
 
-.cinema__form input,.user-detail__form input,.cinemaRoom__form input{
+.cinema__form input,.user-detail__form input,.cinemaRoom__form input,.cinema__form select,.cinemaRoom__form select,.cinemaRoom__form select:focus{
     padding: 10px 0;
     border: none;
     border-bottom: solid 1px white;
@@ -576,7 +576,6 @@ body{
     letter-spacing: 1px;
     font-size: 15px;
     font-family: Roboto,sans-serif;
-    padding-left:5px;
 }
 
 
@@ -1483,15 +1482,16 @@ body{
 .showlist__movie--select,.showlist__movie--select:active,.showlist__movie--select:focus,.showlist__cinema--select,.showlist__cinema--select:active,.showlist__cinema--select:focus{
     width: 100%;
     margin-left: auto;
-    background: rgb(197, 197, 197);
+    background: rgb(153, 153, 153);
     outline: none;
     color: white;
     border: none;
-    padding-left:5px;
     border-radius: 0;
     border-bottom: solid 1px black;
     margin-bottom: 40px;
 }
+
+
 
 .showlist__movie--select option{
     width: 100%;
@@ -1553,9 +1553,13 @@ input[type=date]::-webkit-calendar-picker-indicator:hover{
     padding-left: 8px;
 }
 
-input[type=date]#moviefilter__select--date::-webkit-calendar-picker-indicator:hover{
+input[type=date]#moviefilter__select--date::-webkit-calendar-picker-indicator:hover,#show-form input[type=date]::-webkit-calendar-picker-indicator:hover{
     background-color:transparent;
-    cursor: pointer;;
+    cursor: pointer;
+}
+
+#moviefilter__select--cinema option,.showlist__movie--select,.showlist__movie--select,.showlist__cinema--select,.showlist__cinema--select option{
+    background-color: rgb(153, 153, 153);
 }
 
 select#moviefilter__multiple-select--genre::-ms-expand,select#moviefilter__select--cinema::-ms-expand{
