@@ -69,7 +69,7 @@ y dentro del show tiene el attributo name (nombre de la sala, nombre de la pelic
     </div>
 </div>
 
-<div id="chart-container" class="chart-container" style="position: relative; height:100%; width:100%;">
+<div id="chart-container" class="chart-container">
     <canvas id="myChart"></canvas>
 </div>
 

@@ -1,6 +1,9 @@
 var placeholder;
 var height;
 var myChart;
+var ctx;
+var givenType;
+var chartOpts = {}
 //on document ready,hide filter input placeholder and to load
 //new movies/create new slider with jquery.Load() method
 $(document).ready(function(){
@@ -23,43 +26,10 @@ $(document).ready(function(){
     //creates an empty chart for /admin/estadisticas and execute an AJAX callback for it to be filled,
     //and executes it everytime a filter value detect changes
     if($('#myChart').length > 0){
-        var ctx = document.getElementById('myChart');
-        myChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-                datasets: [{
-                    label: '# of Votes',
-                    data: [0, 0, 0, 0, 0, 0],
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true
-                        }
-                    }]
-                }
-            }
-        });
+        chartOpts.lastRes = $(window).outerWidth();
+        givenType = (chartOpts.lastRes >= 992) ? 'bar' : 'horizontalBar';
+        ctx = document.getElementById('myChart');
+
         statisticsUpdate();
         $('.charts__filter--container #chart-movies,#chart-cinemas,#amount-btn,#tickets-btn,#leftover-btn').on('change',function(){
             statisticsUpdate();
@@ -302,26 +272,16 @@ $(document).ready(function(){
 
 //resizes dropdown size in case one line turns into two
 $(window).resize(function(){
-    if(($('.dropdown').length > 0)&&(!($('.dropdown').hasClass('movielist__filter--container')))){
-        $('.dropdown').each(function(){
-            var dropId = '#' + $(this).attr('id');
-            if(!($(this).hasClass('movielist__filter--container'))){
-                height = $(dropId + ' ul.dropdown-list li').outerHeight();
-                $(dropId).height(height);
-                $(dropId + ' .selLabel').height(height);
-            }
-            if($(dropId).hasClass('active')){
-                var index = 1;
-                var amountofSels = $(dropId + ' li').length + 1;
-                var finale = (height * amountofSels) + 'px';
-                $(dropId + '.dropdown:not(.height-non-mod)').css('height',finale);
-                $(dropId + ' li').each(function(){
-                    var amount = (height * index) + 'px' ;
-                    $(this).css('transform','translateY(' + amount + ')');
-                    index++;
-                });
-            }
-        });
+    if(myChart !== null){
+        if($(window).outerWidth() >= 992 && chartOpts.lastRes < 992){
+            givenType = 'bar';
+            statisticsUpdate();
+        }
+        else if($(window).outerWidth() < 992 && chartOpts.lastRes > 992){
+            givenType = 'horizontalBar';
+            statisticsUpdate();
+        }
+        chartOpts.lastRes = $(window).outerWidth();
     }
 });
 
@@ -381,7 +341,6 @@ function closeMenu(){
 
 
 function statisticsUpdate(){
-
     var movie = $('#chart-movies').val();
     var cinema = $('#chart-cinemas').val();
     var amount = $('#amount-btn').is(':checked');
@@ -402,7 +361,6 @@ function statisticsUpdate(){
         data : values,
         method : 'GET',
         success : function(data){
-          console.log(data);
           buildChart(JSON.parse(data));
         },
         error : function(){
@@ -414,7 +372,6 @@ function statisticsUpdate(){
 
 
 function buildChart(data){
-
 
     var ds;
     var finalAmount = 0;
@@ -447,21 +404,35 @@ function buildChart(data){
         borderColors[index] = element.replace("0.2","1");
     });
 
+    if(myChart){
+        myChart.destroy();
+    }
 
-    myChart.data.datasets.forEach((dataset) => {
-        dataset.label = ds;
-        dataset.backgroundColor = bgColor;
-        dataset.borderColor = borderColors;
+    myChart = new Chart(ctx, {
+        type: givenType,
+        maintainAspectRatio: false, 
+        data: {
+            labels: finalLabels,
+            datasets: [{
+                label: ds,
+                minBarLength: 4,
+                data: d,
+                backgroundColor:bgColor,
+                borderColor: borderColors,
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {        
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
     });
 
-    myChart.data.labels = finalLabels;
-
-    myChart.data.datasets.forEach((dataset) => {
-        dataset.data = d;
-    });
-
-
-    myChart.update();
 }
 
 

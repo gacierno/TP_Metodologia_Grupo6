@@ -53,10 +53,8 @@ class DataController extends BaseController{
     foreach( $purchaseByShow as $showPurchases ){
       $tickets  = $showPurchases[0]->getTickets();
       $show     = $tickets[0]->getShow();
-      $name     = $show->getMovie()->getName();
-      $name     .= ' - ' . $show->getCinemaRoom()->getCinema()->getName();
-      $name     .= ', ' . $show->getCinemaRoom()->getName();
-      $name     .= ' | ' . $show->getDay() . ' ' . $show->getTime();
+      $name = [];
+      array_push($name,$show->getMovie()->getName(), $show->getCinemaRoom()->getCinema()->getName(),$show->getCinemaRoom()->getName(), $show->getDay(),$show->getTime());
 
       $total    = 0;
 

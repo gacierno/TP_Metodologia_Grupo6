@@ -2046,6 +2046,10 @@ select#moviefilter__multiple-select--genre,select#moviefilter__select--cinema{
     }
 }
 
+.chart-container{
+    min-height: 500px;
+}
+
 .charts__selects--container{
     display: flex;
     justify-content: center;
