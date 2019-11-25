@@ -123,7 +123,7 @@ body.open .overlay{
     cursor:pointer;
     color: white;
     font-family: 'Roboto',sans-serif;
-    font-size:16px;
+    font-size:12px;
     letter-spacing: 1px;
     padding: 10px;
     position:relative;
@@ -131,13 +131,14 @@ body.open .overlay{
     outline:none;
 }
 
-.nav__links--container a{
-    transition: none;
+@media all and (min-width:1200px){
+    .nav__links--container a,.cinemalist__button--container a,.showlist__button--container a,.cinemaRoomlist__button--container a{
+        font-size:16px;
+    }
 }
 
-.cinemalist__button--container a:hover,.showlist__button--container a:hover,.cinemaRoomlist__button--container a:hover{
-    background-color:black;
-    color:white;
+.nav__links--container a{
+    transition: none;
 }
 
 .nav__logo--container{
@@ -280,6 +281,7 @@ div.some {
     letter-spacing: normal;
     font-size: 16px;
     font-family: 'Roboto',sans-serif;
+    transition: color .15s;
 }
 
 .rgb-divider{
@@ -462,7 +464,6 @@ body{
     padding: 0;
 }
 
-
 .cinemacard__container,.cinemaRoomcard__container{
     justify-content: center;
     padding:0;
@@ -475,13 +476,6 @@ body{
     justify-content: center;
     margin: 0 auto;
     overflow: hidden;
-    -webkit-box-shadow: 6px 6px 13px 2px rgba(0,0,0,0.75);
-    -moz-box-shadow: 6px 6px 13px 2px rgba(0,0,0,0.75);
-    box-shadow: 6px 6px 13px 2px rgba(0,0,0,0.75);
-    cursor: pointer;
-    border: 2px solid;
-    border-image-source: linear-gradient(-70deg, rgba(250, 124, 48, 0.6) 30%, rgba(0, 255, 255, 0.6) 50%,rgba(138, 43, 226, 0.6) 75%, rgba(0, 255, 0, 0.6) 100%);
-    border-image-slice: 1;
 }
 
 .cinemacard__overlay ,.cinemaRoomcard__overlay{
@@ -493,11 +487,6 @@ body{
     display: none;
     transition: all 0.2s ease-in-out;
     background:  linear-gradient(-70deg, rgba(250, 124, 48, 0.6) 30%, rgba(0, 255, 255, 0.6) 50%,rgba(138, 43, 226, 0.6) 75%, rgba(0, 255, 0, 0.6) 100%);
-}
-
-.cinemacard__inner-container:hover ,.cinemaRoomcard__inner-container:hover{
-    transition: all .2s ease-in-out;
-    transform: scale(1.1);
 }
 
 .cinemacard__inner-container:hover .cinemacard__overlay ,.cinemaRoomcard__inner-container:hover .cinemaRoomcard__overlay{
@@ -539,12 +528,32 @@ body{
 .cinema__form--container ,.cinemaRoom__form--container{
     position: relative;
     width: 100%;
-    background:white;
+    background:rgb(20, 20, 20);
     padding: 30px 20px;
     margin:0;
-    border:2px solid;
-    border-image-source: linear-gradient(-70deg, rgba(250, 124, 48, 0.6) 30%, rgba(0, 255, 255, 0.6) 50%,rgba(138, 43, 226, 0.6) 75%, rgba(0, 255, 0, 0.6) 100%);
-    border-image-slice: 1;
+    justify-content: center;
+}
+
+.cinema__form--container h1 {
+    margin-bottom: 20px;
+}
+
+@media all and (min-width:768px){
+    .cinema__form--container ,.cinemaRoom__form--container{
+        width: 80%;
+        margin:0 auto;
+    }
+}
+
+@media all and (min-width:992px){
+    .cinema__form--container ,.cinemaRoom__form--container{
+        width: 50%;
+        margin:0 auto;
+    }
+}
+
+.cinema__form--header,.cinemaRoom__form-header{
+    margin-bottom: 20px;
 }
 
 .cinema__form , .cinemaRoom__form{
@@ -560,8 +569,8 @@ body{
 .cinema__form input,.user-detail__form input,.cinemaRoom__form input{
     padding: 10px 0;
     border: none;
-    border-bottom: solid 1px black;
-    background:rgb(197, 197, 197);
+    border-bottom: solid 1px white;
+    background:rgb(153, 153, 153);
     width: 100%;
     color: white;
     letter-spacing: 1px;
@@ -569,6 +578,7 @@ body{
     font-family: Roboto,sans-serif;
     padding-left:5px;
 }
+
 
 .cinema__form input:focus,.login-form input:focus,.user-detail__form input:focus{
     outline:none;
@@ -693,7 +703,7 @@ body{
   top: -30px;
   left: 0px;
   opacity: 1;
-  color: black;
+  color: white;
 }
 
 .inputText {
@@ -1395,17 +1405,79 @@ body{
 }
 
 .showlist__show--container{
-    padding: 10px;
     border:2px solid;
     margin-bottom: 20px;
-    border-image-source:linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
-    border-image-slice: 1;
+    background-color: rgb(20, 20, 20);
+    padding: 0;
 }
 
-.showlist__item--separator{
-    border-right: 1px solid;
-    border-image-source:linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
-    border-image-slice: 1;
+.showlist__main--outer-row{
+    justify-content: center;
+}
+
+.showlist__show--container .row{
+    width: 100%;
+}
+
+.show__image--row-container{
+    padding: 0;
+}
+
+.showlist__movie--details,.showlist__movie--actions{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.showlist__movie--actions{
+    padding: 0;
+}
+
+.showlist__movie--actions .row,.col-12{
+    justify-content: center;
+    padding: 0;
+}
+
+.showlist__outer--row{
+    margin: 0;
+}
+
+.showlist--form{
+    text-align: center;
+}
+
+.showlist__details-inner-row{
+    padding: 0;
+}
+
+.showlist__show--date-time p,.showlist__show--cinema p{
+    text-align: center;
+}
+
+.showlist__name-lang-av--align,.showlist__date-name-room--align{
+    justify-content: center;
+    margin-top: 10px;
+}
+
+
+
+@media all and (min-width:992px){
+    .showlist__name-lang-av--align,.showlist__date-name-room--align{
+        justify-content: flex-start;
+    }
+    .showlist__show--date-time p,.showlist__show--cinema p{
+        text-align: left;
+    }
+    
+}
+
+.dnr--inner__container{
+    padding: 0%;
+    margin: 0;
+}
+
+.showlist--form:first-child{
+    margin-bottom: 10px;
 }
 
 .showlist__movie--select,.showlist__movie--select:active,.showlist__movie--select:focus,.showlist__cinema--select,.showlist__cinema--select:active,.showlist__cinema--select:focus{
@@ -1511,18 +1583,24 @@ select#moviefilter__multiple-select--genre,select#moviefilter__select--cinema{
 }
 
 
-.user-detail__profilepic--container{
-    margin-bottom: 30px;
+.user-detail__user-desc--container{
+    padding: 24px;
+    width: 100%;
+    margin: 20px 10px;
+    background-color: rgb(20, 20, 20);
 }
 
-.user-detail__user-desc--container{
-    padding-top: 24px;
+.user-detwail__row{
+    width: 100%;
+    justify-content: center;
 }
+
 
 @media all and (min-width:992px){
     .user-detail__profilepic--container{
         margin-bottom:0px;
     }
+    
 }
 
 .user-detail__profilepic--container img{
@@ -1570,9 +1648,6 @@ select#moviefilter__multiple-select--genre,select#moviefilter__select--cinema{
     cursor: auto;
     transition: all 0.3s ease-in-out 0s;
     background-color: black;
-    border: 1px solid;
-    border-image-source:linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
-    border-image-slice: 1;
 }
 
 .cinemaRoomlist__title--format{
@@ -1888,6 +1963,7 @@ select#moviefilter__multiple-select--genre,select#moviefilter__select--cinema{
     font-family: 'Roboto',sans-serif;
     font-size: 36px;
     color: white;
+    margin-bottom: 40px;
 }
 
 .fb-login-container{
@@ -2287,6 +2363,47 @@ select#moviefilter__multiple-select--genre,select#moviefilter__select--cinema{
 }
 
 .ticket-row{
-    max-height:150px;
+    margin: 0;
     margin-bottom: 20px;
+    width: 100%;
+}
+
+.ticket__movie-title,.ticket__movie-cinemaroom{
+    text-align: center;
+}
+
+@media all and (min-width:768px){
+    .ticket-row{
+        max-height:150px;
+        margin: 0 auto;
+        margin-bottom: 20px;
+        width: 80%;
+    }
+    .ticket__movie-title,.ticket__movie-cinemaroom{
+        text-align: left;
+    }
+}
+
+@media all and (min-width:992px){
+    .ticket-row{
+        width: 60%;
+    }
+}
+
+.btn{
+    font-size:12px;
+}
+
+@media all and (min-width:1200px){
+    .btn{
+        font-size:16px;
+    }
+}
+
+.btn-info{
+    border-radius: 0;
+}
+
+.enter-cinema-btn{
+    margin-top: 10px;
 }

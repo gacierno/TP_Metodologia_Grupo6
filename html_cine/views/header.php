@@ -44,7 +44,9 @@ $pos = strrpos($url, "login"); ?>
         <?php if ($role === 'admin') : ?>
         <li class="nav__desktop--inner-link"><a class="no-border" href="/admin/estadisticas">Estadisticas</a></li>
         <?php endif; ?>
+        <?php if(!($user->getFBId())) : ?>
         <li class="nav__desktop--inner-link"><a class="no-border" href="/usuario">Perfil</a></li>
+        <?php endif; ?>
         <li class="nav__desktop--inner-link"><a class="no-border" href="/logout"><button class="btn btn-danger">Cerrar Sesión</button></a></li>
       </ul>
     <?php endif; ?>
@@ -77,8 +79,10 @@ $pos = strrpos($url, "login"); ?>
         <li class="nav__desktop--inner-link"><a class="no-border" href="/admin/estadisticas">Estadisticas</a></li>
         <hr class="rgb-divider">
         <?php endif; ?>
+        <?php if(!($user->getFBId())) : ?>
         <li class="nav__desktop--inner-link"><a class="no-border" href="/usuario">Perfil</a></li>
         <hr class="rgb-divider">
+        <?php endif; ?>
         <li class="nav__desktop--inner-link"><a class="no-border" href="/logout">Cerrar Sesión</a></li>
       </ul>
   </div>

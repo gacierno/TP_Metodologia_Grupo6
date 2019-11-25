@@ -5,8 +5,8 @@
 
 
 <div class="main-container container-fluid showlist__main-container">
-    <h1><?php if($isShowSet) : echo('Modificación'); else : echo('Creación'); endif; ?> de Función</h1>
     <div class="row cinema__form--container">
+        <h1><?php if($isShowSet) : echo('Modificación'); else : echo('Creación'); endif; ?> de Función</h1>
 
         <form id="show-form" class="cinema__form" method="POST" action="<?php if($isShowSet) : echo('/admin/funciones/actualizar'); else : echo('/admin/funciones/nuevo'); endif; ?>">
         <?php if($isShowSet) : ?>
@@ -52,7 +52,7 @@
             <?php endforeach; ?>
         </select>
         <div class="showlist__submit-button--container">
-            <button type="submit" class="cinemaform__button--primary">Enviar</button>
+            <button type="submit" class="btn btn-info">Crear</button>
         </div>
 
         </form>

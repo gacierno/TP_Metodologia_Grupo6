@@ -10,18 +10,20 @@ Esta vista cuenta con un objeto $cinemaRoom para renderizar los datos necesarios
 
 
 <div class="main-container container-fluid cinemaRoomlist__main-container">
-    <h1><?php if($iscinemaRoomSet) : echo('Modificación de la'); else : echo('Creación de'); endif; ?> Sala <?php if($iscinemaRoomSet) : echo($cinemaRoom->getName()); endif; ?></h1>
-    <?php if($iscinemaRoomSet) : if($availability) : ?>
-        <span class="badge badge-primary">
-            Activa
-        </span>
-    <?php else: ?>
-    <span class="badge badge-danger">
-        Inactivo
-    </span>
-<?php endif; endif; ?>
+    
     <div class="row cinemaRoom__form--container">
-
+        <div class="col-12 cinemaRoom__form-header">
+        <h1><?php if($iscinemaRoomSet) : echo('Modificación de la'); else : echo('Creación de'); endif; ?> Sala <?php if($iscinemaRoomSet) : echo($cinemaRoom->getName()); endif; ?></h1>
+            <?php if($iscinemaRoomSet) : if($availability) : ?>
+                <span class="badge badge-info">
+                    Activa
+                </span>
+            <?php else: ?>
+            <span class="badge badge-danger">
+                Inactivo
+            </span>
+        <?php endif; endif; ?>
+        </div>
         <form id="cinemaRoom-form" class="cinemaRoom__form" method="POST" action="<?php if($iscinemaRoomSet) : echo('/admin/cines/salas/actualizar'); else : echo('/admin/cines/salas/nuevo'); endif; ?>">
 
         <input type="hidden" name="cinema_id" value="<?= $cinema->getId(); ?>">
@@ -45,9 +47,9 @@ Esta vista cuenta con un objeto $cinemaRoom para renderizar los datos necesarios
         </label>
 
         <div class="cinemaRoomform__button--container">
-            <button type="submit" class="cinemaRoomform__button--primary">Enviar</button>
+            <button type="submit" class="btn btn-info">Crear</button>
             <?php if($iscinemaRoomSet) : ?>
-            <button id="cinemaRoom-delete" type="submit" <?php if($availability) : echo("available"); else : echo("not-available"); endif; ?> class="cinemaRoomform__button--secondary" onclick="return confirm('Estas Seguro?');"><?php if($availability) : echo("Desactivar"); else : echo("Activar"); endif; ?></button>
+            <button id="cinemaRoom-delete" type="submit" <?php if($availability) : echo("available"); else : echo("not-available"); endif; ?> class="btn btn-danger" onclick="return confirm('Estas Seguro?');"><?php if($availability) : echo("Desactivar"); else : echo("Activar"); endif; ?></button>
             <?php endif; ?>
         </div>
 

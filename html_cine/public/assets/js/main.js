@@ -147,14 +147,12 @@ $(document).ready(function(){
     });
 
     //give show form endpoint behaviour on delete button click
-    if($('.funcion-delete').length > 0){
-        $('.funcion-delete').each(function(){
+    if($('#funcion-delete').length > 0){
+        $('#funcion-delete').each(function(){
             if($(this).attr('available') == true){
-                console.log($(this).closest('.show-delete-form'));
                 $(this).closest('.show-delete-form').attr('action','/admin/funciones/desactivar');
             }
             else{
-                console.log($(this).closest('.show-delete-form'));
                 $(this).closest('.show-delete-form').attr('action','/admin/funciones/activar');
             }
         });

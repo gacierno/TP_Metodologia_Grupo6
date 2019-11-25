@@ -3,14 +3,11 @@
 
 <div class="main-container container-fluid">
 
-<h1 class="profile__header--format">Mi Perfil</h1>
 
-<div class="row">
-    <div class="col-sm-12 col-lg-4 col-xl-3 user-detail__profilepic--container">
-        <img src="/public/assets/images/person.png" alt="">
-    </div>
-    <div class="col-sm-12 col-lg-8 col-xl-9 user-detail__user-desc--container">
 
+<div class="row user-detwail__row">
+    <div class="col-sm-12 col-md-6 col-lg-4 user-detail__user-desc--container">
+    <h1 class="profile__header--format">Mi Perfil</h1>
     <form id="user-detail-form" class="user-detail__form" method="POST" action="/usuario/actualizar">
         <input class="inputText" type="text" name="user_id" value="<?php echo($user->getId()); ?>" hidden>
         <?php if($user->getFBId() == null) : ?>
@@ -36,10 +33,10 @@
             <input class="inputText" type="number"  name="profile_dni" value="<?php echo($user->getProfile()->getDni()); ?>" disabled required>
             <span class="floating-label">DNI</span>
         </label>
-        <button id="user-update" type="button" class="cinemaform__button--primary">Actualizar</button>
+        <button id="user-update" type="button" class="btn btn-info">Actualizar</button>
         <?php endif; ?>
 
-        <button id="user-delete" type="button" class="cinemaform__button--secondary">Desactivar Mi Cuenta</button>
+        <button id="user-delete" type="button" class="btn btn-danger">Desactivar Mi Cuenta</button>
 
         </form>
 
