@@ -122,7 +122,6 @@ $(document).ready(function(){
     if($('.ticket_qty').length > 0){
         $('.ticket_qty').on('change',function(){
             var button = $(this).closest('.show-tickets--container').find('.pre-button button').first();
-            console.log(button);
 
             if($(this).val() > 0){
                 if($(button).hasClass('btn-secondary')){

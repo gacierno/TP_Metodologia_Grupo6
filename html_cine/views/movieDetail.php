@@ -6,7 +6,7 @@
 <div class="main-container-no-padding container-fluid">
 <div class="row movie-detail__container">
         <div class="col-sm-12 col-md-4 movie-detail__banner--container">
-            <img src="<?php  echo(API_IMAGE_HOST . API_IMAGE_SIZE_LARGE . $movie->getImage()); ?>">
+            <img src="<?php  echo(API_IMAGE_HOST . API_IMAGE_SIZE_XLARGE . $movie->getImage()); ?>">
         </div>
         <div class="col-sm-12 col-md-8 movie-detail__desc--container">
             <h1><?php echo($movie->getName()); ?></h1>
