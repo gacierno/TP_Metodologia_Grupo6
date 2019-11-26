@@ -6,6 +6,9 @@
 <div class="main-container container-fluid">
     <div class="row">
         <div class="showlist__button--container col-12">
+            <button class="btn btn-danger" onclick="updateMovies(this)" type="button" name="button">ACTUALIZAR PELICULAS</button>
+        </div>
+        <div class="showlist__button--container col-12">
             <a target="_self" href="/admin/funciones/nuevo"><button class="btn btn-info">Agregar Funcion</button></a>
         </div>
     </div>

@@ -1,6 +1,27 @@
 var placeholder;
 var height;
 var myChart;
+
+function updateMovies(el){
+  $(el).css("opacity",0.4);
+  $(el).text("Updating...");
+  if(!$(el).hasClass("disabled")){
+    $(el).addClass("disabled");
+    $.ajax(
+      {
+        url : '/peliculas/update',
+        success : function(res){
+          $(el).css("opacity",1.0);
+          $(el).text("ACTUALIZACION EXITOSA");
+        },
+        error: function(res){
+          $(el).css("opacity",1.0);
+          $(el).text("ACTUALIZACION EXITOSA");
+        }
+      }
+    )
+  }
+}
 //on document ready,hide filter input placeholder and to load
 //new movies/create new slider with jquery.Load() method
 $(document).ready(function(){
@@ -425,7 +446,7 @@ function buildChart(data){
         d.push(element.value);
         finalAmount += element.value;
     });
-    
+
     if(data["output"] == "monto"){
         ds = "Total : $" + finalAmount + " ARS";
     }
