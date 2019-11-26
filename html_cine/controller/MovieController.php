@@ -59,6 +59,19 @@ class MovieController extends BaseController{
 
 
 
+  function updateMoviesAndGenres(){
+    $d_genre = new GenreDao();
+    $d_movie = new MovieDao();
+    try{
+      $d_genre->fetch();
+      $d_movie->fetch();
+    }catch(Exception $ex){
+      $this->throw("Error updating movies.");
+    }
+    echo "MOVIES UPDATED SUCCESSFULLY";
+  }
+
+
 
   function detail(){
     extract($this->params->map());

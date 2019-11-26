@@ -83,8 +83,10 @@ $router->get('\/admin\/estadisticas',             array( $dataController,'index'
 
 
 // PELICULAS =======================================================================
+$router->get('\/peliculas\/update',               array( $movieController,'updateMoviesAndGenres' ) );
 $router->get('\/pelicula\/detalle',               array( $movieController,'detail' ) );
 $router->get('\/peliculas',                       array( $movieController,'index' ) );
+
 
 
 // LOGIN ============================================================================
