@@ -52,8 +52,9 @@ $genero = isset($_GET['genero']) ? $_GET['genero'] : "";
                 <button id="mobile-filter-trigger" class="btn btn-danger">Filtrar</button>
             </div>
         <div id="movielist__movies--column" class="col-md-7 col-lg-9 movielist__movies--column">
-
             <div id="movies--inner-container" class="row movies--inner-container">
+            <div id="movies__not-found-row"><h2>No Movies Found</h2></div>
+
                 <?php foreach($movies as $movie) :
                     include_once('movieItem.php');
                 endforeach; ?>

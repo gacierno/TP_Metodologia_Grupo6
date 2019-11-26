@@ -2,7 +2,6 @@ var placeholder;
 var height;
 var myChart;
 var ctx;
-var givenType;
 var chartOpts = {}
 //on document ready,hide filter input placeholder and to load
 //new movies/create new slider with jquery.Load() method
@@ -27,7 +26,6 @@ $(document).ready(function(){
     //and executes it everytime a filter value detect changes
     if($('#myChart').length > 0){
         chartOpts.lastRes = $(window).outerWidth();
-        givenType = (chartOpts.lastRes >= 992) ? 'bar' : 'horizontalBar';
         ctx = document.getElementById('myChart');
 
         statisticsUpdate();
@@ -258,7 +256,7 @@ $(document).ready(function(){
                 $('#movies__not-found-row').css('display','none');
               }
               else{
-                $('#movies__not-found-row').css('display','table');
+                $('#movies__not-found-row').css('display','flex');
               }
               bindMoviesBehaviour();
             });
@@ -272,13 +270,8 @@ $(document).ready(function(){
 
 //resizes dropdown size in case one line turns into two
 $(window).resize(function(){
-    if(myChart !== null){
-        if($(window).outerWidth() >= 992 && chartOpts.lastRes < 992){
-            givenType = 'bar';
-            statisticsUpdate();
-        }
-        else if($(window).outerWidth() < 992 && chartOpts.lastRes > 992){
-            givenType = 'horizontalBar';
+    if(myChart !== null && $('#myChart').length > 0){
+        if(($(window).outerWidth() >= 992 && chartOpts.lastRes < 992)||($(window).outerWidth() < 992 && chartOpts.lastRes > 992)){
             statisticsUpdate();
         }
         chartOpts.lastRes = $(window).outerWidth();
@@ -404,34 +397,53 @@ function buildChart(data){
         borderColors[index] = element.replace("0.2","1");
     });
 
-    if(myChart){
-        myChart.destroy();
-    }
+    if($(window).outerWidth() >= 992){
 
-    myChart = new Chart(ctx, {
-        type: givenType,
-        maintainAspectRatio: false, 
-        data: {
-            labels: finalLabels,
-            datasets: [{
-                label: ds,
-                minBarLength: 4,
-                data: d,
-                backgroundColor:bgColor,
-                borderColor: borderColors,
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {        
-                        beginAtZero: true
-                    }
-                }]
-            }
+        if(myChart){
+            myChart.destroy();
         }
-    });
+        
+        myChart = new Chart(ctx, {
+            type: "bar",
+            data: {
+                labels: finalLabels,
+                datasets: [{
+                    label: ds,
+                    minBarLength: 4,
+                    data: d,
+                    backgroundColor:bgColor,
+                    borderColor: borderColors,
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {        
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    }
+    else{
+        $('#mobile-chart-container').empty();
+
+        var namesArray = '';
+
+        data["shows"].forEach(function(element,index){
+            var valuesArray = '';
+            element.name.forEach(function(element,index){
+                valuesArray += '<div class="col-12 single-data"><p>'+element+'</p></div>';
+            });
+
+            namesArray += '<div class="row single-item-row"><div class="col-12 item-header-col"><div class="row item--inner-row"><div class="col-8 item-data"><div class="row item-data--inner-row">'+valuesArray+'</div></div><div class="col-4 item-amount"><p>'+element.value+'</p></div></div></div></div>';
+        });
+
+
+        $('#mobile-chart-container').append('<div class="row chart-header-row"><div class="col-12 chart-header-container"><p>'+ ds +'</p></div></div>'+namesArray);
+    }
 
 }
 

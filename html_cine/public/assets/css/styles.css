@@ -968,9 +968,12 @@ body{
 
 #movies__not-found-row{
     height: 60vh;
-    display: none;
     text-align: center;
     margin: 0 auto;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    color: white;
 }
 
 #movies__not-found-row .col-12{
@@ -2562,4 +2565,97 @@ h1,h2{
 
 .login__first-column h1{
   text-transform: none;
+}
+
+.chart-container{
+    display: none;
+}
+
+.mobile-chart-container{
+    margin: 20px 0;
+}
+
+@media all and (min-width:992px){
+    .chart-container{
+        display: block;
+    }
+    .mobile-chart-container{
+        display: none;
+    }
+}
+
+.chart-header-row,.single-item-row,.item--inner-row{
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.charts__selects--container,.charts__selects--container{
+    padding: 0;
+}
+
+@media all and (min-width:992px){
+    .charts__selects--container,.charts__selects--container{
+        padding: 0 15px;
+    }
+}
+
+.chart-header-container{
+    width: 100%;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+}
+
+.chart-header-container p{
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    margin: 0;
+    padding: 10px 0;
+}
+
+.item-amount{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.single-item-row{
+    margin: 20px 0;
+}
+
+.item-data,.single-data{
+    padding: 0;
+}
+
+.single-data p{
+    margin-bottom: 5px;
+    text-align: left;
+    text-transform: capitalize;
+    font-family: 'Roboto',sans-serif;
+    font-weight: bold;
+    color: red;
+}
+
+.item-data--inner-row{
+    width: 100%;
+    padding: 10px;
+    justify-content: center;
+    margin: 0;
+    background-color: rgb(20, 20, 20);
+    border-right: 1px solid white;
+}
+
+.item-amount{
+    padding: 20px;
+    background-color: rgb(20, 20, 20);
+}
+
+.item-amount p{
+    margin: 0;
+    text-align: center;
 }
