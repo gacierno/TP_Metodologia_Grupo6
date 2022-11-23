@@ -18,6 +18,6 @@
   },
   "homepage": "https://github.com/gacierno/TP_Metodologia_Grupo6#readme",
   "devDependencies": {
-    "browser-sync": "^2.26.7"
+    "browser-sync": "^2.27.10"
   }
 }
